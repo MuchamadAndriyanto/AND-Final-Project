@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/img"
-    tools:context="com.example.finalproject.com.finalproject.finalproject.view.HistoryFragment">
+    tools:context=".view.HistoryFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
