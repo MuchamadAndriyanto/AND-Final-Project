@@ -1,4 +1,4 @@
-package com.example.finalprojeck
+package com.finalproject.tiketku
 
 import org.junit.Test
 

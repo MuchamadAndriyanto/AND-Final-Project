@@ -1,4 +1,4 @@
-package com.example.finalprojeck
+package com.finalproject.tiketku
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

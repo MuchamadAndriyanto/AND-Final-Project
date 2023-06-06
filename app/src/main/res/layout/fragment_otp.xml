@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.OtpFragment"
+    tools:context="com.example.finalproject.com.finalproject.finalproject.view.OtpFragment"
     android:background="@drawable/img"
     tools:ignore="Overdraw">
 

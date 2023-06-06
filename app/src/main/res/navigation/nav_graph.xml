@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.finalprojeck.view.HomeFragment"
+        android:name="com.finalproject.tiketku.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.finalprojeck.view.RegisterFragment"
+        android:name="com.finalproject.tiketku.view.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.finalprojeck.view.LoginFragment"
+        android:name="com.finalproject.tiketku.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -43,22 +43,22 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.finalprojeck.view.ProfileFragment"
+        android:name="com.finalproject.tiketku.view.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.finalprojeck.view.HistoryFragment"
+        android:name="com.finalproject.tiketku.view.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.example.finalprojeck.view.NotificationsFragment"
+        android:name="com.finalproject.tiketku.view.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.finalprojeck.view.SplashFragment"
+        android:name="com.finalproject.tiketku.view.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.example.finalprojeck.view.ResetPasswordFragment"
+        android:name="com.finalproject.tiketku.view.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
