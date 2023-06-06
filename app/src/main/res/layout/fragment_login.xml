@@ -6,20 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.LoginFragment"
-    android:background="@drawable/img"
+    android:background="@drawable/bg_gradation"
     tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/tvMasuk"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginTop="82dp"
-        android:layout_marginEnd="120dp"
         android:layout_marginBottom="20dp"
-        android:gravity="center"
         android:text="Masuk"
         android:textColor="@color/black"
         android:textSize="40sp"
@@ -32,11 +30,11 @@
 
     <TextView
         android:id="@+id/tvEmail"
-        android:layout_width="137dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="40dp"
-        android:text="Email/No Telepon"
+        android:text="Email / Nomor Telepon"
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +53,12 @@
         app:boxStrokeColor="@color/purple"
         app:hintTextColor="@color/purple"
         android:backgroundTint="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail">
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+        app:boxStrokeWidth="0dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEditText"
@@ -69,28 +72,33 @@
 
     <TextView
         android:id="@+id/tvPass"
-        android:layout_width="137dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginTop="10dp"
         android:text="Password"
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvLupaSandi"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:layout_width="137dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="260dp"
+        android:id="@+id/tvLupaSandi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
         android:text="Lupa Kata Sandi"
         android:textColor="@color/purple"
         android:textSize="17sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvPass"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail"
         tools:ignore="MissingConstraints" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputPassword"
@@ -99,10 +107,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Input_Password"
+        app:boxStrokeWidth="0dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        android:hint="Input Password"
         app:hintEnabled="true"
-        app:boxStrokeColor="@color/purple"
-        app:hintTextColor="@color/purple"
         android:backgroundTint="@color/white"
         app:endIconMode="password_toggle"
         app:layout_constraintTop_toBottomOf="@+id/tvPass">
@@ -117,12 +128,16 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="start"
         android:layout_marginTop="15dp"
-        android:backgroundTint="@color/purple"
+        android:padding="16dp"
+        android:background="@drawable/button_radius"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        app:backgroundTint="@null"
         android:text="Masuk"
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"

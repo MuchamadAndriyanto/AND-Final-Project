@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="600dp"
+    android:layout_gravity="bottom"
+    android:elevation="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.DetailPenerbangan.NoResultDetailFragment">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivclose"
+            android:src="@drawable/x"
+            android:layout_margin="14dp"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/personSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/person_search" />
+        <TextView
+            android:id="@+id/tvHasilPencarian"
+            android:layout_below="@+id/personSearch"
+            android:text="Maaf Tiket Terjual Habis!"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/cobaLagi"
+            android:layout_below="@+id/tvHasilPencarian"
+            android:text="Coba Cari Perjalanan Lainnya!"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/purple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            app:backgroundTint="@null"
+            android:id="@+id/btnUbahPencarian"
+            android:padding="14dp"
+            android:layout_margin="14dp"
+            android:textAllCaps="false"
+            android:text="Ubah Pencarian"
+            android:background="@drawable/button_radius"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

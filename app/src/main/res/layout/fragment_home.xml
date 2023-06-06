@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:ignore="HardcodedText"
     tools:context=".view.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
-        android:background="@drawable/img"
+        android:background="@drawable/bg_gradation"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -22,10 +23,10 @@
             android:layout_marginTop="25dp"
             android:text="Hei, Mau kemana?"
             android:textColor="#151515"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -62,7 +63,7 @@
                             android:id="@+id/ivPesawat"
                             android:layout_width="19.95dp"
                             android:layout_height="17.35dp"
-                            android:src="@drawable/img_6"/>
+                            android:src="@drawable/plane"/>
 
                         <TextView
                             android:id="@+id/tvFrom"
@@ -107,7 +108,7 @@
                             android:id="@+id/ivPesawat2"
                             android:layout_width="19.95dp"
                             android:layout_height="17.35dp"
-                            android:src="@drawable/img_6"/>
+                            android:src="@drawable/plane"/>
 
                         <TextView
                             android:id="@+id/tvTo"
@@ -132,12 +133,12 @@
 
                     <ImageButton
                         android:id="@+id/ibPanah"
-                        android:layout_width="13.33dp"
-                        android:layout_height="13.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:background="@color/white"
-                        android:src="@drawable/img_10"
+                        android:src="@drawable/desc_asc"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </RelativeLayout>
@@ -187,7 +188,7 @@
                             android:id="@+id/ivDateDeparture"
                             android:layout_width="19.24dp"
                             android:layout_height="20.93dp"
-                            android:src="@drawable/img_7"
+                            android:src="@drawable/calendar"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"/>
 
@@ -234,7 +235,7 @@
                             android:id="@+id/ivdateReturn"
                             android:layout_width="19.24dp"
                             android:layout_height="20.93dp"
-                            android:src="@drawable/img_7"
+                            android:src="@drawable/calendar"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"/>
 
@@ -257,7 +258,7 @@
                                 android:id="@+id/tvPilihTanggal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="pilih tanggal"
+                                android:text="Pilih Tanggal"
                                 android:layout_marginTop="6dp"
                                 android:textSize="14sp"
                                 android:textColor="#7126B5"/>
@@ -289,7 +290,7 @@
                             android:id="@+id/ivPassangers"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/img_8"
+                            android:src="@drawable/user"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"/>
 
@@ -335,7 +336,7 @@
                             android:id="@+id/ivSeatClass"
                             android:layout_width="12dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/img_9"
+                            android:src="@drawable/passanger"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"/>
 
@@ -385,9 +386,9 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
-                    android:lineHeight="20dp"
-                    style="@style/Widget.Material3.Button"
-                    android:backgroundTint="#7126B5"
+                    android:padding="12dp"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button_radius"
                     app:layout_constraintTop_toBottomOf="@id/Passangers"
                     app:layout_constraintBottom_toBottomOf="parent"/>
             </LinearLayout>
@@ -401,7 +402,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:text="Destination Favorite"
+        android:text="Favorite Destination"
         android:textColor="#151515"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"

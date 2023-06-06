@@ -3,18 +3,18 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_home_24"
-        android:title="home" />
+        android:icon="@drawable/fi_home"
+        android:title="Beranda" />
     <item
         android:id="@+id/historyFragment"
-        android:icon="@drawable/ic_history_24"
-        android:title="history" />
+        android:icon="@drawable/history"
+        android:title="Riwayat" />
     <item
         android:id="@+id/notificationsFragment"
-        android:icon="@drawable/ic_notifications_24"
-        android:title="notif" />
+        android:icon="@drawable/notif"
+        android:title="Notifikasi" />
     <item
         android:id="@+id/profileFragment"
-        android:icon="@drawable/ic_person_pin_24"
-        android:title="profile" />
+        android:icon="@drawable/user_menu"
+        android:title="Akun" />
 </menu>
