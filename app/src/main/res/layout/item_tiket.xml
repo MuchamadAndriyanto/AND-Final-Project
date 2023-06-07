@@ -185,7 +185,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:src="@drawable/logo1"
+                    android:src="@drawable/logo2"
                     android:layout_height="match_parent"/>
 
             </LinearLayout>
@@ -193,18 +193,13 @@
             <LinearLayout
                 android:id="@+id/lin7"
                 android:layout_toEndOf="@id/lin6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fabLove"
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/ic_arrow_bawah"
-                    android:layout_height="100dp"
-                    app:collapsedSize="10dp"
-                    android:backgroundTint="@color/abu"
-                    android:contentDescription="TODO">
-
-                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/button_arrow_bottom"/>
             </LinearLayout>
 
         </RelativeLayout>
