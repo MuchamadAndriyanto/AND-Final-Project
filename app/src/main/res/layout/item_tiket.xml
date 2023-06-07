@@ -201,7 +201,7 @@
                     android:src="@drawable/ic_arrow_bawah"
                     android:layout_height="100dp"
                     app:collapsedSize="10dp"
-                    android:backgroundTint="@color/red"
+                    android:backgroundTint="@color/abu"
                     android:contentDescription="TODO">
 
                 </com.google.android.material.floatingactionbutton.FloatingActionButton>
