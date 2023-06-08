@@ -1,11 +1,15 @@
 package com.finalproject.tiketku.view
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.finalproject.tiketku.R
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,9 +38,23 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val switchMaterial = view.findViewById<SwitchMaterial>(R.id.switchMaterial)
+
+        switchMaterial.setOnCheckedChangeListener { _, isChecked ->
+            val thumbTint = if (isChecked) {
+                ContextCompat.getColor(requireContext(), R.color.purple)  // Purple color
+            } else {
+                ContextCompat.getColor(requireContext(), R.color.white)  // Grey color
+            }
+
+            switchMaterial.thumbTintList = ColorStateList.valueOf(thumbTint)
+        }
+
+        return view
     }
+
 
     companion object {
         /**
