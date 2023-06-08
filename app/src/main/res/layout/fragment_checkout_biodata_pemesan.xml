@@ -118,17 +118,29 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="20dp"
+                            android:layout_marginRight="60dp"
                             android:text="Punya Nama Keluarga"
                             android:textColor="@color/black"
                             android:textSize="14sp"
                             />
+
+                        <Switch
+                            android:id="@+id/mySwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="60dp"
+                            android:checked="true"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+
 
                         <!--com.google.android.material.materialswitch.MaterialSwitch
                             android:layout_width="wrap_content"
@@ -167,6 +179,7 @@
                         android:layout_height="wrap_content"
                         android:text="Nomer Telphone"
                         android:textColor="@color/darkpurple"
+                        android:layout_marginTop="10dp"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         />
@@ -192,6 +205,7 @@
                         android:textColor="@color/darkpurple"
                         android:textStyle="bold"
                         android:textSize="14sp"
+                        android:layout_marginTop="10dp"
                         />
 
                     <com.google.android.material.textfield.TextInputLayout
