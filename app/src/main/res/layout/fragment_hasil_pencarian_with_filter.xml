@@ -10,7 +10,7 @@
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic__close_24"
+        android:src="@drawable/ic_close_24"
         android:layout_margin="12dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
