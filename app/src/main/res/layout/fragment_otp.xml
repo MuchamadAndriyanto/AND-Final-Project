@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.OtpFragment"
-    android:background="@drawable/bg_gradation"
+    tools:context=".view.User.OtpFragment"
     tools:ignore="Overdraw">
 
     <ImageView
@@ -21,13 +20,12 @@
 
     <TextView
         android:id="@+id/tvOtp"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="26dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginTop="82dp"
-        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:text="Masukkan OTP"
         android:textColor="@color/black"
@@ -42,7 +40,7 @@
         android:layout_width="330dp"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="23dp"
         android:layout_marginEnd="40dp"
         android:gravity="center"
         android:textStyle="bold"
@@ -57,70 +55,76 @@
         android:id="@+id/Otp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="27dp"
         android:layout_marginEnd="30dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ketik_6_dig"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ketik_6_dig">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <EditText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:backgroundTint="@android:color/darker_gray"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/edittext_background"
+            android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <EditText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:backgroundTint="@android:color/darker_gray"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/edittext_background"
+            android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <EditText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:backgroundTint="@android:color/darker_gray"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/edittext_background"
+            android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <EditText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:backgroundTint="@android:color/darker_gray"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/edittext_background"
+            android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <EditText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:backgroundTint="@android:color/darker_gray"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/edittext_background"
+            android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
-            android:importantForAutofill="no"
             android:inputType="number"
-            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <EditText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:backgroundTint="@android:color/darker_gray"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/edittext_background"
+            android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/tvMintaKode"

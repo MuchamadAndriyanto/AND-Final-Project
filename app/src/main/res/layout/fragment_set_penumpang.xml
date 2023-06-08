@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.Beranda.SetPenumpangFragment">
 
+
     <ImageView
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
@@ -288,7 +289,6 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <!-- Garis pemisah -->
         <View
             android:id="@+id/gridTop3"
             android:layout_width="match_parent"
@@ -309,6 +309,7 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/gridTop3"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

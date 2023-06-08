@@ -380,6 +380,7 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <Button
+                        android:id="@+id/btnPencarian"
                         style="@style/ButtonPrimary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

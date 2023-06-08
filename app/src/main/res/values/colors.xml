@@ -41,4 +41,6 @@
     <color name="neutral_02">#D0D0D0</color>
     <color name="neutral_01">#FFFFFF</color>
 
+    <color name="border_color">#CCCCCC</color>
+
 </resources>

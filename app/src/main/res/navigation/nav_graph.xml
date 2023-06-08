@@ -19,10 +19,19 @@
         <action
             android:id="@+id/action_homeFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_setPenumpangFragment"
+            app:destination="@id/setPenumpangFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_destinasiPencarianFragment"
+            app:destination="@id/destinasiPencarianFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_setClassFragment"
+            app:destination="@id/setClassFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.finalproject.tiketku.view.RegisterFragment"
+        android:name="com.finalproject.tiketku.view.User.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -31,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.finalproject.tiketku.view.LoginFragment"
+        android:name="com.finalproject.tiketku.view.User.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -43,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.finalproject.tiketku.view.ProfileFragment"
+        android:name="com.finalproject.tiketku.view.User.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
@@ -70,11 +79,26 @@
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.finalproject.tiketku.view.ResetPasswordFragment"
+        android:name="com.finalproject.tiketku.view.User.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
             android:id="@+id/action_resetPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/setPenumpangFragment"
+        android:name="com.finalproject.tiketku.view.Beranda.SetPenumpangFragment"
+        android:label="fragment_set_penumpang"
+        tools:layout="@layout/fragment_set_penumpang" />
+    <fragment
+        android:id="@+id/destinasiPencarianFragment"
+        android:name="com.finalproject.tiketku.view.Beranda.DestinasiPencarianFragment"
+        android:label="fragment_destinasi_pencarian"
+        tools:layout="@layout/fragment_destinasi_pencarian" />
+    <fragment
+        android:id="@+id/setClassFragment"
+        android:name="com.finalproject.tiketku.view.Beranda.SetClassFragment"
+        android:label="fragment_set_class"
+        tools:layout="@layout/fragment_set_class" />
 </navigation>
