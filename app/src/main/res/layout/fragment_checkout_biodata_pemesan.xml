@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.CheckoutBiodataPemesanFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lin1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/darkpurple"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <!-- Tombol Kembali -->
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fi_arrow_left" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Biodata Pemesanan"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_below="@+id/lin1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/darkblue_03"
+            app:shapeAppearance="?attr/shapeAppearanceMediumComponent"
+            android:layout_margin="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkblue_03"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="20dp"
+                        android:text="Data Diri Pemesanan"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        >
+
+                    </TextView>
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Lengkap"
+                        android:textColor="@color/darkpurple"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Lengkap">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="Punya Nama Keluarga"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            />
+
+                        <!--com.google.android.material.materialswitch.MaterialSwitch
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:checked="true"
+                            android:text="@string/label_1"/-->
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Keluarga"
+                        android:textColor="@color/darkpurple"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Keluarga">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nomer Telphone"
+                        android:textColor="@color/darkpurple"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_nomer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomer Telphone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="@color/darkpurple"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            app:backgroundTint="@null"
+            android:id="@+id/btnSubmit"
+            android:padding="14dp"
+            android:layout_margin="20dp"
+            android:textAllCaps="false"
+            android:text="Pilih"
+            android:background="@drawable/button_radius"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</FrameLayout>
