@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardHasil"
+    android:padding="20dp"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="5dp"
+    android:outlineAmbientShadowColor="@color/darkpurple"
+    tools:context=".adapter.HasilPenerbanganAdapter">
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/detailTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07.00"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="35dp"
+                android:id="@+id/time"
+                android:layout_toEndOf="@+id/detailTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4h 0m"/>
+            <TextView
+                android:id="@+id/detailTimeArrived"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07.45"
+                android:layout_toEndOf="@+id/time"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/detailTotalDec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="IDR 1.200.000"
+                android:textColor="@color/purple"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rlDivider"
+            android:layout_below="@id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_marginStart="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl2"
+            android:layout_below="@id/rlDivider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/kodeAsal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JKT"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:id="@+id/transit"
+                android:layout_toEndOf="@id/kodeAsal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Direct"/>
+            <TextView
+                android:id="@+id/kodeTujuan"
+                android:layout_toEndOf="@id/transit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MLB"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl3"
+            android:layout_below="@id/rl2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp">
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D0D0D0" />
+            <ImageView
+                android:id="@+id/logoMaskapai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/logo_maskapai" />
+
+            <TextView
+                android:id="@+id/Maskapai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@id/logoMaskapai"
+                android:text="Jet Air - Economy" />
+
+            <ImageView
+                android:layout_below="@id/Maskapai"
+                android:layout_toEndOf="@id/logoMaskapai"
+                android:id="@+id/baggage"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_baggage" />
+
+            <ImageView
+                android:layout_below="@id/Maskapai"
+                android:id="@+id/bot_arrow"
+                android:layout_margin="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_bot_arrow_" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

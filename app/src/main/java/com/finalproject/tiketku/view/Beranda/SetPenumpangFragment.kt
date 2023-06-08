@@ -25,7 +25,7 @@ class SetPenumpangFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnClose.setOnClickListener {
+        binding.ivclose.setOnClickListener {
             dismiss()
         }
 

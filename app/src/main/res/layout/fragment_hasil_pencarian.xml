@@ -3,45 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.HasilPencarianFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/darkpurple"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <!-- Tombol Kembali -->
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fi_arrow_left" />
-
+        <!-- Navbar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            >
+            android:background="@color/darkpurple"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-            <TextView
+            <!-- Tombol Kembali -->
+            <ImageView
+                android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="JKT > MLB "
-                android:textStyle="bold"
+                android:src="@drawable/fi_arrow_left" />
+
+            <!-- Judul Navbar -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:text="Pilihan Penerbangan"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="- 2 Penumpang - Economy"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
         </LinearLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
+
 
 </FrameLayout>

@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_setClassFragment"
             app:destination="@id/setClassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hasilPencarianFragment"
+            app:destination="@id/hasilPencarianFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -101,4 +104,14 @@
         android:name="com.finalproject.tiketku.view.Beranda.SetClassFragment"
         android:label="fragment_set_class"
         tools:layout="@layout/fragment_set_class" />
+    <fragment
+        android:id="@+id/hasilPencarianFragment"
+        android:name="com.finalproject.tiketku.view.HasilPencarianFragment"
+        android:label="fragment_hasil_pencarian"
+        tools:layout="@layout/fragment_hasil_pencarian" />
+    <fragment
+        android:id="@+id/hasilPencarianWithFilterFragment"
+        android:name="com.finalproject.tiketku.view.HasilPencarianWithFilterFragment"
+        android:label="fragment_hasil_pencarian_with_filter"
+        tools:layout="@layout/fragment_hasil_pencarian_with_filter" />
 </navigation>
