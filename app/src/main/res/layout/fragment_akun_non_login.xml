@@ -65,7 +65,13 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="start"
             android:layout_marginTop="100dp"
+            android:padding="16dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            app:backgroundTint="@null"
             android:background="@drawable/button_radius"
             android:text="Masuk" />
 
