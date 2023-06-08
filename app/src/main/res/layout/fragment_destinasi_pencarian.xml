@@ -1,77 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".view.Beranda.DestinasiPencarianFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardSearchView"
-        android:layout_width="0dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnClose"
-        app:layout_constraintHorizontal_bias="0.5">
+        android:elevation="4dp"
+        android:radius="8dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:gravity="center_vertical">
+            android:padding="16dp">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_search_24"
-                android:contentDescription="Search Icon"
-                android:layout_marginEnd="30dp" />
+                android:id="@+id/ivSearch"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_search_24"/>
 
             <EditText
                 android:id="@+id/etSearch"
-                android:layout_width="276dp"
+                style="@style/TextBody14Regular"
+                android:layout_width="match_parent"
                 android:layout_height="23dp"
-                android:background="@android:color/transparent"
-                android:hint="Search destination"
-                android:imeOptions="actionSearch"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="-2dp"
+                android:layout_toEndOf="@id/ivSearch"
+                android:background="@null"
+                android:hint="Masukan Kota atau Negara"
                 android:inputType="text"
-                android:maxLines="1"
-                android:textColor="@color/black"
+                android:paddingStart="15dp"
                 tools:ignore="TouchTargetSizeCheck" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/btnClose"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
+        android:id="@+id/ivClose"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@id/cardSearchView"
+        android:layout_alignEnd="@id/cardSearchView"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="-40dp"
+        android:src="@drawable/ic_close_24" />
+
+    <TextView
+        android:id="@+id/tv_Pencarian"
+        style="@style/TextTitle16Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardSearchView"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:text="Pencarian Terkini"
+        android:textColor="#151515" />
+
+    <TextView
+        android:id="@+id/tv_Hapus"
+        style="@style/TextBody14Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardSearchView"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
-        android:src="@drawable/ic__close_24"
-        android:contentDescription="Close Icon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/rvDestination"
-        app:layout_constraintStart_toEndOf="@id/cardSearchView" />
+        android:text="Hapus"
+        android:textColor="#FF0000" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDestination"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@id/cardSearchView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_Pencarian"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:clipToPadding="false"
         tools:listitem="@layout/item_destinasi" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.AkunNonLoginFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_akun"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_Jumlah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment Riwayat"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_NoLogin"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="18dp"
+        android:paddingHorizontal="25dp"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close_24"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="12dp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="155.89dp"
+            android:layout_height="241.9dp"
+            android:src="@drawable/ic_nonlogin"
+            android:layout_marginTop="160dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            style="@style/TextBody14Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maaf, Anda harus login terlebih dahulu!"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="55dp" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="start"
+            android:layout_marginTop="100dp"
+            android:padding="16dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/button_radius"
+            android:text="Masuk" />
+
+    </LinearLayout>
+
+</FrameLayout>

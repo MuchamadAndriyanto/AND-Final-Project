@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.HasilPencarianWithFilterFragment">
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close_24"
+        android:layout_margin="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="#151515" />
+
+    <LinearLayout
+        android:id="@+id/passangerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp">
+
+        <View
+            android:id="@+id/gridTop1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D0D0D0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/btnClose"/>
+
+        <RelativeLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lin_harga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga -"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Termurah"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/gridTop2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D0D0D0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/btnClose"/>
+
+        <RelativeLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lin_durasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Durasi -"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terpendek"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/gridTop3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D0D0D0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/btnClose"/>
+
+        <RelativeLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lin_Keberangkatan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Keberangkatan -"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paling Awal"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/gridTop4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D0D0D0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/btnClose"/>
+
+        <RelativeLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lin_keberangkatan2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Keberangkatan -"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paling Akhir"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/gridTop5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D0D0D0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/btnClose"/>
+
+        <RelativeLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lin_kedatangan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kedatangan -"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paling Awal"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/gridTop6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D0D0D0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/btnClose"/>
+
+        <RelativeLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lin_kedatangan2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kedatangan -"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paling Akhir"
+                    android:textSize="14sp"
+                    android:textColor="#151515"
+                    android:lineSpacingExtra="-1sp"
+                    android:gravity="top"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/gridTop7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D0D0D0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/btnClose"/>
+
+        <Button
+            android:id="@+id/btnPilihPenumpang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            style="@style/Widget.Material3.Button"
+            android:backgroundTint="#4B1979"
+            android:text="Pilih"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/gridTop3"/>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
