@@ -28,6 +28,7 @@ class DestinasiPencarianFragment : Fragment() {
             findNavController().navigate(R.id.action_destinasiPencarianFragment_to_homeFragment)
         }
 
+
     }
 
 }
