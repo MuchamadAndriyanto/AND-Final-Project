@@ -45,6 +45,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_setPenumpangFragment)
         }
 
+        binding.SeatClass.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_setClassFragment)
+        }
+
         binding.flDeparture.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_destinasiPencarianFragment)
         }
