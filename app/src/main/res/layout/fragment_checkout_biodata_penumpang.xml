@@ -3,12 +3,371 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.Checkout.CheckoutBiodataPenumpangFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lin1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/darkpurple"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <!-- Tombol Kembali -->
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/fi_arrow_left" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Biodata Penumpang"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/lin1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btnSubmit">
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card"
+                        android:layout_below="@+id/lin1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="@color/darkblue_03"
+                        app:shapeAppearance="?attr/shapeAppearanceMediumComponent"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/darkblue_03"
+                                >
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginStart="20dp"
+                                    android:text="Data Diri Pemesanan"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"
+                                    >
+
+                                </TextView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nama Lengkap"
+                                    android:textColor="@color/darkpurple"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/inputEmail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:hint="Nama Lengkap"
+                                    app:hintEnabled="true"
+                                    app:endIconMode="clear_text"
+                                    style="@style/TextInputLayoutStyle">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/emailEditText"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPersonName"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:textColor="@android:color/black" />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:layout_marginBottom="20dp"
+                                        android:text="Punya Nama Keluarga"
+                                        android:textColor="@color/black"
+                                        android:textSize="14sp"/>
+
+                                    <com.google.android.material.switchmaterial.SwitchMaterial
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/switchMaterial"
+                                        android:layout_alignParentEnd="true"
+                                        android:checked="false"
+                                        app:thumbTint="@color/white"
+                                        app:trackTint="@color/grey" />
+
+                                </LinearLayout>
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nama Keluarga"
+                                    android:textColor="@color/darkpurple"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/namaKeluarga"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:hint="Nama Keluarga"
+                                    app:hintEnabled="true"
+                                    app:endIconMode="clear_text"
+                                    style="@style/TextInputLayoutStyle">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/inputNamaKeluarga"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPersonName"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:textColor="@android:color/black" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nomor Telphone"
+                                    android:textColor="@color/darkpurple"
+                                    android:layout_marginTop="10dp"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/noTelp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:hint="Nomor Telepon"
+                                    app:hintEnabled="true"
+                                    app:endIconMode="clear_text"
+                                    style="@style/TextInputLayoutStyle">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/inputNoTelp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPersonName"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:textColor="@android:color/black" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tanggal Lahir"
+                                    android:textColor="@color/darkpurple"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:layout_marginTop="10dp"
+                                    />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/tanggalLahir"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:hint="dd--mm--yyyy"
+                                    app:hintEnabled="true"
+                                    app:endIconMode="custom"
+                                    app:endIconDrawable="@drawable/calendar"
+                                    style="@style/TextInputLayoutStyle">
+
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/inputTglLahir"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPersonName"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:textColor="@android:color/black" />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Kewarganegaraan"
+                                    android:textColor="@color/darkpurple"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:layout_marginTop="10dp" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/kewarganegaraan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:hint="Kewarganegaraan"
+                                    app:hintEnabled="true"
+                                    app:endIconMode="clear_text"
+                                    style="@style/TextInputLayoutStyle">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/inputKewarganegaraan"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPersonName"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:textColor="@android:color/black" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="KTP/Paspor"
+                                    android:textColor="@color/darkpurple"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:layout_marginTop="10dp" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/ktpPaspor"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:hint="KTP/Paspor"
+                                    app:hintEnabled="true"
+                                    app:endIconMode="clear_text"
+                                    style="@style/TextInputLayoutStyle">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/inputKtpPaspor"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPersonName"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:textColor="@android:color/black" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Negara Penerbit"
+                                    android:textColor="@color/darkpurple"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:layout_marginTop="10dp" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/negeraPenerbit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:hint="Negara Penerbit"
+                                    app:hintEnabled="true"
+                                    app:endIconMode="clear_text"
+                                    style="@style/TextInputLayoutStyle">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/inputnegaraPenerbit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPersonName"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:textColor="@android:color/black" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+
+
+        <Button
+            app:backgroundTint="@null"
+            android:id="@+id/btnSubmit"
+            android:padding="14dp"
+            android:layout_margin="20dp"
+            android:textAllCaps="false"
+            android:text="Pilih"
+            android:background="@drawable/button_radius"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
 </FrameLayout>
