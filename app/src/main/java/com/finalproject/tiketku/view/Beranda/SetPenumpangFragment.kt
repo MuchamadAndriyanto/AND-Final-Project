@@ -1,5 +1,7 @@
 package com.finalproject.tiketku.view.Beranda
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class SetPenumpangFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentSetPenumpangBinding
+    private lateinit var sharedPreferences: SharedPreferences
     private var baby = 0
     private var child = 0
     private var adult = 0
@@ -24,6 +27,7 @@ class SetPenumpangFragment : BottomSheetDialogFragment() {
         return binding.root
 
 
+
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +35,16 @@ class SetPenumpangFragment : BottomSheetDialogFragment() {
         binding.ivClose.setOnClickListener {
             dismiss()
         }
+
+        // Initialize SharedPreferences
+        sharedPreferences = requireContext().getSharedPreferences("baby", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("child", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("adult", Context.MODE_PRIVATE)
+
+        // Retrieve the saved counter value
+        baby = sharedPreferences.getInt("baby", 0)
+        child = sharedPreferences.getInt("child", 0)
+        adult = sharedPreferences.getInt("adult", 0)
 
         //button tambah kurang Baby
         binding.tvPassangerBaby.text = baby.toString()
@@ -64,22 +78,26 @@ class SetPenumpangFragment : BottomSheetDialogFragment() {
     private fun babyTambah(){
         baby++
         binding.tvPassangerBaby.text = baby.toString()
+        sharedPreferences.edit().putInt("baby", baby).apply()
     }
 
     private fun childTambah(){
         child++
         binding.tvPassangerChild.text = child.toString()
+        sharedPreferences.edit().putInt("child", child).apply()
     }
 
     private fun adultTambah(){
         adult++
         binding.tvPassangerAdult.text = adult.toString()
+        sharedPreferences.edit().putInt("adult", adult).apply()
     }
 
     private fun babyKurang() {
         if (baby > 0) {
             baby--
             binding.tvPassangerBaby.text = baby.toString()
+            sharedPreferences.edit().putInt("baby", baby).apply()
         }
     }
 
@@ -87,6 +105,7 @@ class SetPenumpangFragment : BottomSheetDialogFragment() {
         if (child > 0) {
             child--
             binding.tvPassangerChild.text = child.toString()
+            sharedPreferences.edit().putInt("child", child).apply()
         }
     }
 
@@ -94,6 +113,7 @@ class SetPenumpangFragment : BottomSheetDialogFragment() {
         if (adult > 0) {
             adult--
             binding.tvPassangerAdult.text = adult.toString()
+            sharedPreferences.edit().putInt("adult", adult).apply()
         }
     }
 }
