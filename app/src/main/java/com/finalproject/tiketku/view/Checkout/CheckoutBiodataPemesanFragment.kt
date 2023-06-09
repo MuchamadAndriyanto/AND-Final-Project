@@ -1,4 +1,4 @@
-package com.finalproject.tiketku.view
+package com.finalproject.tiketku.view.Checkout
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
