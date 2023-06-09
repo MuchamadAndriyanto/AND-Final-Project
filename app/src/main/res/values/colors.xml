@@ -10,7 +10,7 @@
     <color name="biru" tools:keep="@color/biru">#0F23A3</color>
     <color name="yellow">#FFC801</color>
     <color name="backgor">#232020</color>
-    <color name="emas">#FFDF6E</color>
+    <color name="emas">#00000000</color>
     <color name="abu">#807F7E</color>
     <color name="grey">#D6D6D5</color>
 

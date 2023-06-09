@@ -5,6 +5,7 @@
     android:layout_height="500dp"
     android:layout_gravity="bottom"
     android:elevation="15dp"
+    android:background="@android:color/transparent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.Beranda.SetClassFragment">
 
@@ -44,7 +45,7 @@
                 app:backgroundTint="@null"
                 android:id="@+id/btnSimpan"
                 android:padding="14dp"
-                android:layout_marginTop="95dp"
+                android:layout_marginTop="100dp"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:text="Simpan"
