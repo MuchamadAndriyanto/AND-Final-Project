@@ -108,7 +108,7 @@
             android:id="@+id/action_destinasiPencarianFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/setClassFragment"
         android:name="com.finalproject.tiketku.view.Beranda.SetClassFragment"
         android:label="fragment_set_class"
@@ -116,7 +116,7 @@
         <action
             android:id="@+id/action_setClassFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/hasilPencarianFragment"
         android:name="com.finalproject.tiketku.view.HasilPencarianFragment"
