@@ -94,7 +94,11 @@
         android:id="@+id/setPenumpangFragment"
         android:name="com.finalproject.tiketku.view.Beranda.SetPenumpangFragment"
         android:label="fragment_set_penumpang"
-        tools:layout="@layout/fragment_set_penumpang" />
+        tools:layout="@layout/fragment_set_penumpang" >
+        <action
+            android:id="@+id/action_setPenumpangFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </dialog>
     <fragment
         android:id="@+id/destinasiPencarianFragment"
         android:name="com.finalproject.tiketku.view.Beranda.DestinasiPencarianFragment"
@@ -108,7 +112,11 @@
         android:id="@+id/setClassFragment"
         android:name="com.finalproject.tiketku.view.Beranda.SetClassFragment"
         android:label="fragment_set_class"
-        tools:layout="@layout/fragment_set_class" />
+        tools:layout="@layout/fragment_set_class" >
+        <action
+            android:id="@+id/action_setClassFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/hasilPencarianFragment"
         android:name="com.finalproject.tiketku.view.HasilPencarianFragment"

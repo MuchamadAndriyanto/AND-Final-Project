@@ -8,6 +8,7 @@
     android:id="@+id/homeFragment"
     tools:ignore="HardcodedText"
     tools:context=".view.Beranda.HomeFragment">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -121,7 +122,6 @@
                                             android:src="@drawable/ic_flip_departure" />
 
                                     </LinearLayout>
-
 
                                     <com.google.android.flexbox.FlexboxLayout
                                         android:id="@+id/fl_Tujuan"
@@ -298,6 +298,7 @@
                                 android:layout_marginStart="30dp"
                                 android:layout_marginEnd="30dp"
                                 android:layout_marginTop="16dp">
+
                                 <RelativeLayout
                                     android:id="@+id/Passangers"
                                     android:layout_width="match_parent"
@@ -392,7 +393,8 @@
                             </LinearLayout>
                             <Button
                                 app:backgroundTint="@null"
-                                android:background="@drawable/button_radius"                        android:id="@+id/btnPencarian"
+                                android:background="@drawable/button_radius"
+                                android:id="@+id/btnPencarian"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Cari Penerbangan"
