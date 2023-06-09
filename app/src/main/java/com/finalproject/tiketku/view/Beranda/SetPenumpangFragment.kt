@@ -5,11 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
-import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentSetPenumpangBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -33,7 +28,7 @@ class SetPenumpangFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivclose.setOnClickListener {
+        binding.ivClose.setOnClickListener {
             dismiss()
         }
 
