@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     tools:context=".view.User.LoginFragment"
-    android:background="@drawable/bg_gradation"
     tools:ignore="Overdraw">
 
     <TextView
@@ -42,23 +42,21 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputEmail"
+        android:hint="Input Email"
+        app:boxStrokeErrorColor="@color/red_danger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Input Email"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         app:hintEnabled="true"
         app:endIconMode="clear_text"
+        style="@style/TextInputLayoutStyle"
         app:boxStrokeColor="@color/purple"
         app:hintTextColor="@color/purple"
         android:backgroundTint="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-        app:boxStrokeWidth="0dp"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp">
+       >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEditText"
@@ -102,18 +100,17 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputPassword"
+        android:hint="Input Password"
+        app:boxStrokeErrorColor="@color/red_danger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:boxStrokeWidth="0dp"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp"
-        android:hint="Input Password"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         app:hintEnabled="true"
+        style="@style/TextInputLayoutStyle"
+        app:boxStrokeColor="@color/purple"
+        app:hintTextColor="@color/purple"
         android:backgroundTint="@color/white"
         app:endIconMode="password_toggle"
         app:layout_constraintTop_toBottomOf="@+id/tvPass">
@@ -132,50 +129,55 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="start"
-        android:layout_marginTop="15dp"
-        android:padding="16dp"
+        android:layout_marginTop="32dp"
+        android:padding="12dp"
         android:background="@drawable/button_radius"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         app:backgroundTint="@null"
         android:text="Masuk"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintStart_toEndOf="@id/inputPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+        <LinearLayout
+            android:id="@+id/llRegister"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
 
-    <TextView
-        android:id="@+id/belumPunyaAkun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginBottom="125dp"
-        android:gravity="center_horizontal"
-        android:lineSpacingExtra="-1sp"
-        android:text="Belum Punya Akun?"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+                android:id="@+id/belumPunyaAkun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                android:layout_marginBottom="125dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="-1sp"
+                android:text="Belum Punya Akun?"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
-    <TextView
-        android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="235dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginBottom="125dp"
-        android:gravity="center_horizontal"
-        android:lineSpacingExtra="-1sp"
-        android:text="Daftar Disini"
-        android:textColor="@color/purple"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+            <TextView
+                android:id="@+id/btnRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                android:layout_marginBottom="125dp"
+                android:layout_marginStart="12dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="-1sp"
+                android:text="Daftar Disini"
+                android:textColor="@color/purple"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+        </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
