@@ -75,10 +75,10 @@
         style="@style/TextBody14Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_Pencarian"
         android:layout_marginTop="10dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
+        android:layout_toEndOf="@id/tv_Pencarian"
+        android:layout_alignBaseline="@id/tv_Pencarian"
+        android:layout_marginStart="175dp"
         android:text="Hapus"
         android:textColor="#FF0000" />
 
