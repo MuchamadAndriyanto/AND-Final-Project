@@ -227,6 +227,7 @@
                                             android:textColor="#8A8A8A"/>
 
                                         <TextView
+                                            android:id="@+id/tvDateDeparture"
                                             style="@style/TextBody14Medium"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
@@ -244,14 +245,16 @@
                                 </RelativeLayout>
 
                                 <RelativeLayout
-                                    android:id="@+id/date_Return"
+                                    android:id="@+id/dateReturn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="10dp"
+                                    android:clickable="false"
+                                    android:focusable="false"
                                     android:layout_weight="1">
 
                                     <ImageView
-                                        android:id="@+id/iv_dateReturn"
+                                        android:id="@+id/ivDateReturn"
                                         android:layout_width="26dp"
                                         android:layout_height="24dp"
                                         android:src="@drawable/ic_kalender"
@@ -263,7 +266,7 @@
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
                                         android:layout_marginStart="12dp"
-                                        android:layout_toEndOf="@id/iv_dateReturn">
+                                        android:layout_toEndOf="@id/ivDateReturn">
 
                                         <TextView
                                             android:id="@+id/tv_Return"
@@ -280,7 +283,9 @@
                                             android:layout_height="wrap_content"
                                             android:text="Pilih tanggal"
                                             android:layout_marginTop="6dp"
-                                            android:textColor="@color/purple"/>
+                                            android:textColor="@color/grey"
+                                            android:clickable="false"
+                                            android:focusable="false"/>
 
                                         <View
                                             android:layout_width="match_parent"
