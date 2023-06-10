@@ -13,20 +13,16 @@ import com.finalproject.tiketku.databinding.FragmentSetClassBinding
 import com.finalproject.tiketku.model.DummySetClass
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-
 class SetClassFragment : BottomSheetDialogFragment() {
-
 
     private lateinit var binding: FragmentSetClassBinding
     private lateinit var classList: ArrayList<DummySetClass>
     private lateinit var classAdapter: SetClassAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialog)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
