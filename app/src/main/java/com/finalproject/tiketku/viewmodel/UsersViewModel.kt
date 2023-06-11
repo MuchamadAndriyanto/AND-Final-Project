@@ -13,10 +13,9 @@ import retrofit2.Response
 class UsersViewModel : ViewModel() {
 
     private var livedataUser: MutableLiveData<List<DataPostUsersItem>> = MutableLiveData()
-
     val dataPostUser: LiveData<List<DataPostUsersItem>> get() = livedataUser
     fun postUserRegister(dataUsers: ResponseUsersItem) {
-        //memakai callback yang retrofit
+
        ApiClient.instance.registerUser(dataUsers).enqueue(object : Callback<List<DataPostUsersItem>> {
             override fun onResponse(
                 call: Call<List<DataPostUsersItem>>,

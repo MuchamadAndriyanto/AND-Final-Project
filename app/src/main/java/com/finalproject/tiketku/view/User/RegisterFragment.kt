@@ -36,23 +36,20 @@ class RegisterFragment : Fragment() {
     }
 
     private fun register() {
-
         val username = binding.usernameEditText.text.toString()
         val email = binding.emailEditText.text.toString()
         val nomor_telepon = binding.noEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
         if (username.isEmpty() || email.isEmpty() || nomor_telepon.isEmpty() || password.isEmpty()) {
-
             Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
 
         } else {
 
-        }
-            userVM.postUserRegister( dataUsers = ResponseUsersItem("", email, 0, "", nomor_telepon, username, password))
-
+            userVM.postUserRegister(ResponseUsersItem("", email, 0, "", nomor_telepon, username, password))
             Toast.makeText(requireContext(), "Registration Success", Toast.LENGTH_SHORT).show()
 
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }
+}

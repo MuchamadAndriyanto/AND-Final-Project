@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.FragmentAkunNonLoginBinding
 import com.finalproject.tiketku.databinding.FragmentLoginBinding
-
 class LoginFragment : Fragment() {
 
     private lateinit var binding : FragmentLoginBinding
