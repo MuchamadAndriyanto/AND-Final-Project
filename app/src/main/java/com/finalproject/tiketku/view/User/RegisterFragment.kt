@@ -5,12 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentRegisterBinding
+import com.finalproject.tiketku.viewmodel.UsersViewModel
 
 class RegisterFragment : Fragment() {
+
     private lateinit var binding: FragmentRegisterBinding
+    private lateinit var usersViewModel: UsersViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,15 +24,33 @@ class RegisterFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        usersViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
 
+        // Register button click listener
         binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            val username = binding.usernameEditText.text.toString()
+            val email = binding.emailEditText.text.toString()
+            val nomor_telepon = binding.noEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+
+            usersViewModel.postDataUsers(username, email, nomor_telepon, password)
         }
 
+        // Observe the postDataUsers LiveData
+        usersViewModel.postUsers().observe(viewLifecycleOwner, { responseUsersItem ->
+            if (responseUsersItem != null) {
+                // Registration successful
+                Toast.makeText(requireContext(), "Registration successful!", Toast.LENGTH_SHORT).show()
+
+                val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                findNavController().navigate(action)
+            } else {
+                // Registration failed
+                Toast.makeText(requireContext(), "Registration failed!", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        return binding.root
     }
 }

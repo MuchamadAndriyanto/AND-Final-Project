@@ -143,8 +143,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:hintEnabled="true"
         android:hint="+62"
+        app:hintEnabled="true"
         app:boxStrokeColor="@color/purple"
         app:hintTextColor="@color/purple"
         android:backgroundTint="@color/white"
@@ -161,8 +161,11 @@
             android:id="@+id/noEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:textColor="@color/black"/>
+            android:inputType="phone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
