@@ -13,7 +13,7 @@ interface ApiService {
     fun getAllNews(): Call<List<ResponseUsersItem>>
 
     @POST("register")
-    fun postDataUsers() : Call<ResponseUsersItem>
+    fun postDataUsers(@Body user: DataUsers): Call<ResponseUsersItem>
 
 
 }

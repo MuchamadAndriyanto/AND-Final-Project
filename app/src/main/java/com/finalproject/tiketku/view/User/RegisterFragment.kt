@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.databinding.FragmentRegisterBinding
+import com.finalproject.tiketku.model.DataUsers
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 
 class RegisterFragment : Fragment() {
@@ -22,23 +21,30 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         usersViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
 
-        // Register button click listener
         binding.btnRegister.setOnClickListener {
             val username = binding.usernameEditText.text.toString()
             val email = binding.emailEditText.text.toString()
             val nomor_telepon = binding.noEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
 
-            usersViewModel.postDataUsers(username, email, nomor_telepon, password)
+            val user = DataUsers(
+                alamat = "",
+                email = email,
+                id = 0,
+                namaLengkap = "",
+                nomorTelepon = nomor_telepon,
+                username = username,
+                password = password
+            )
+
+            usersViewModel.postDataUsers(user)
         }
 
-        // Observe the postDataUsers LiveData
-        usersViewModel.postUsers().observe(viewLifecycleOwner, { responseUsersItem ->
+        usersViewModel.response.observe(viewLifecycleOwner, { responseUsersItem ->
             if (responseUsersItem != null) {
                 // Registration successful
                 Toast.makeText(requireContext(), "Registration successful!", Toast.LENGTH_SHORT).show()
