@@ -10,6 +10,7 @@
     tools:context=".view.Beranda.SetPenumpangFragment">
 
     <androidx.cardview.widget.CardView
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="20dp">

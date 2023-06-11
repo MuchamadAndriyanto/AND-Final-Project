@@ -12,11 +12,12 @@ import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentHomeBinding
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.SharedPreferences
+import android.util.Log
 import android.widget.DatePicker
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-
 
 class HomeFragment : Fragment() {
 
@@ -24,6 +25,14 @@ class HomeFragment : Fragment() {
     private var selectedStartDate: String? = null
     private var selectedReturnDate: String? = null
     private var selectedDate: String? = null
+    private var babyCount = 0
+    private var childCount = 0
+    private var adultCount = 0
+    private var totalPassengerCount = 0
+    private lateinit var sharedPreferences: SharedPreferences
+    private val sharedPreferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
+        updatePassengerCount()
+    }
 
 
     override fun onCreateView(
@@ -32,6 +41,10 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
+
+
+        sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
+
 
         val switchMaterial = binding.switchMaterial
         val tvPilihTanggal = binding.tvPilihTanggal
@@ -64,10 +77,10 @@ class HomeFragment : Fragment() {
             }
 
             binding.dateDeparture.setOnClickListener {
-                    showDatePicker(requireContext()) { date ->
-                        selectedStartDate = date
-                        binding.tvDateDeparture.text = date
-                    }
+                showDatePicker(requireContext()) { date ->
+                    selectedStartDate = date
+                    binding.tvDateDeparture.text = date
+                }
             }
 
             binding.dateReturn.setOnClickListener {
@@ -106,7 +119,6 @@ class HomeFragment : Fragment() {
         binding.btnPencarian.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
         }
-//      tampilkan di halaman home untuk hasil
 
         binding.dateDeparture.setOnClickListener {
             showDatePicker(requireContext()) { date ->
@@ -114,12 +126,10 @@ class HomeFragment : Fragment() {
                 binding.tvDateDeparture.text = date
             }
         }
-//        binding.dateReturn.setOnClickListener {
-//            showDatePicker(requireContext()) { date ->
-//                selectedReturnDate = date
-//                binding.tvPilihTanggal.text = date
-//            }
-//        }
+
+        binding.tvPenumpang.text = "1" // Inisialisasi nilai awal total penumpang
+
+
     }
 
     private fun showDatePicker(
@@ -151,4 +161,25 @@ class HomeFragment : Fragment() {
         calendar.set(Calendar.MONTH, month)
         return dateFormat.format(calendar.time)
     }
+
+    override fun onResume() {
+        super.onResume()
+        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceListener)
+        updatePassengerCount()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceListener)
+    }
+
+    private fun updatePassengerCount() {
+        babyCount = sharedPreferences.getInt("baby", 0)
+        childCount = sharedPreferences.getInt("child", 0)
+        adultCount = sharedPreferences.getInt("adult", 0)
+        val totalPassengers = babyCount + childCount + adultCount
+        totalPassengerCount = totalPassengers
+        binding.tvPenumpang.text = totalPassengers.toString()
+    }
+
 }
