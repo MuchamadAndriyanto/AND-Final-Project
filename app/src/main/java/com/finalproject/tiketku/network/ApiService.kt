@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.network
 
+import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.ResponseUsersItem
 import retrofit2.Call
@@ -14,5 +15,8 @@ interface ApiService {
 
     @POST("register")
     fun registerUser(@Body request: ResponseUsersItem): Call<List<DataPostUsersItem>>
+
+    @POST("forgotPassword")
+    fun postPassword(@Body request: DataPassword) : Call<DataPassword>
 
 }
