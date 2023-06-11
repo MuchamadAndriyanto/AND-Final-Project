@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.network
 
+import com.finalproject.tiketku.model.DataLoginUserItem
 import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.ResponseUsersItem
@@ -14,7 +15,7 @@ interface ApiService {
     fun getAllUsers(): Call<List<ResponseUsersItem>>
 
     @POST("login")
-    fun getLogin(): Call<List<DataPostUsersItem>>
+    fun postLogin(@Body request: DataLoginUserItem): Call<List<DataLoginUserItem>>
 
     @POST("register")
     fun registerUser(@Body request: ResponseUsersItem): Call<List<DataPostUsersItem>>
