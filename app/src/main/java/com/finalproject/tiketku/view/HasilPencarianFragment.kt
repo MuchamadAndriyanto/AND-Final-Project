@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,7 @@ class HasilPencarianFragment : Fragment() {
     private lateinit var binding: FragmentHasilPencarianBinding
     private lateinit var classAdapter: HariAdapter
     private lateinit var classList: ArrayList<ListHasilPencarian>
+    private var selectedClass: ListHasilPencarian? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,12 +50,27 @@ class HasilPencarianFragment : Fragment() {
 
         val selected = 0
 
+        classAdapter = HariAdapter(classList)
+        classAdapter.setOnItemClickCallback(object : HariAdapter.OnItemClickCallback {
+            override fun onItemClicked(position: Int, data: ListHasilPencarian) {
+                // Store the selected data
+                selectedClass = data
+            }
+        })
+
         binding.rvHari.apply {
-            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false)
-            classAdapter = HariAdapter (classList,selected)
+            layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             adapter = classAdapter
-            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL))
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.HORIZONTAL
+                )
+            )
         }
+
+
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_hasilPencarianFragment_to_homeFragment)

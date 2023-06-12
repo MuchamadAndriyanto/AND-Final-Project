@@ -4,15 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.ListHasilPencarian
 
-class HariAdapter(private val listClass:List<ListHasilPencarian>, val selectedCard:Int):
+class HariAdapter(private val listClass:List<ListHasilPencarian>):
     RecyclerView.Adapter<HariAdapter.ViewHolder>() {
 
-    var onItemClick: ((ListHasilPencarian) -> Unit)? = null
+    private var selectedCard = -1
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
@@ -24,6 +25,17 @@ class HariAdapter(private val listClass:List<ListHasilPencarian>, val selectedCa
         var hari = itemView.findViewById<TextView>(R.id.tv_hari)
         var tgl = itemView.findViewById<TextView>(R.id.tv_tgl)
         val lin1 = itemView.findViewById<View>(R.id.layout_hari)
+
+        init {
+            lin1.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    selectedCard = position
+                    notifyDataSetChanged()
+                    onItemClickCallback?.onItemClicked(position, listClass[position])
+                }
+            }
+        }
     }
 
 
@@ -39,17 +51,32 @@ class HariAdapter(private val listClass:List<ListHasilPencarian>, val selectedCa
         holder.tgl.text = currentItem.tgl
 
         if (position == selectedCard) {
-            holder.lin1.setBackgroundResource(R.drawable.hover2)
+            holder.lin1.setBackgroundResource(R.drawable.curved_set_class)
+            holder.hari.setTextColor(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.white
+                )
+            )
+            holder.tgl.setTextColor(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.white
+                )
+            )
         } else {
             holder.lin1.setBackgroundResource(R.drawable.curve_set_class)
-            holder.hari.setTextColor(holder.itemView.resources.getColor(R.color.black))
-            holder.tgl.setTextColor(holder.itemView.resources.getColor(R.color.black))
-        }
-
-        holder.lin1.setOnClickListener {
-            onItemClickCallback?.onItemClicked(
-                holder.adapterPosition,
-                listClass[holder.adapterPosition]
+            holder.hari.setTextColor(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.black
+                )
+            )
+            holder.tgl.setTextColor(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.black
+                )
             )
         }
 
