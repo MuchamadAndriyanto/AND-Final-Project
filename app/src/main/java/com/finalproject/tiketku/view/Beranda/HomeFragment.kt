@@ -129,7 +129,11 @@ class HomeFragment : Fragment() {
 
         binding.tvPenumpang.text = "1" // Inisialisasi nilai awal total penumpang
 
-
+        // Listen for the result from SetClassFragment
+        parentFragmentManager.setFragmentResultListener("selected_class", this) { _, result ->
+            val className = result.getString("selected_class", "")
+            binding.tvBusiness.text = className
+        }
     }
 
     private fun showDatePicker(
@@ -166,6 +170,7 @@ class HomeFragment : Fragment() {
         super.onResume()
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceListener)
         updatePassengerCount()
+
     }
 
     override fun onPause() {

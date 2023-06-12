@@ -1,10 +1,12 @@
 package com.finalproject.tiketku.view.Beranda
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +33,6 @@ class SetClassFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSetClassBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -54,28 +55,30 @@ class SetClassFragment : BottomSheetDialogFragment() {
         classAdapter = SetClassAdapter(classList)
         classAdapter.setOnItemClickCallback(object : SetClassAdapter.OnItemClickCallback {
             override fun onItemClicked(position: Int, data: DummySetClass) {
-                // Store the selected data
                 selectedClass = data
             }
         })
 
         binding.rvSetClass.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = classAdapter
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
+            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
 
         binding.btnSimpan.setOnClickListener {
             selectedClass?.let {
+                saveSelectedClass(it)
                 Toast.makeText(requireContext(), "Data saved: ${it.kelas}", Toast.LENGTH_SHORT).show()
                 dismiss()
             }
         }
     }
+    private fun saveSelectedClass(selectedClass: DummySetClass) {
+        val result = Bundle().apply {
+            putString("selected_class", selectedClass.kelas)
+        }
+        setFragmentResult("selected_class", result)
+        dismiss()
+    }
 }
+
