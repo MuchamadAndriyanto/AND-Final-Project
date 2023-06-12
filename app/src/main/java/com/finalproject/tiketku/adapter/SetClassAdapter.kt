@@ -52,6 +52,19 @@ class SetClassAdapter(private val listClass: List<DummySetClass>) :
         if (position == selectedCard) {
             holder.layoutSetClass.setBackgroundResource(R.drawable.curved_set_class)
             holder.succesIcon.visibility = View.VISIBLE
+            holder.className.setTextColor(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.white
+                )
+            )
+            holder.priceClass.setTextColor(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.white
+                )
+            )
+
         } else {
             holder.layoutSetClass.setBackgroundResource(R.drawable.curve_set_class)
             holder.succesIcon.visibility = View.GONE
