@@ -3,6 +3,7 @@ package com.finalproject.tiketku.network
 import com.finalproject.tiketku.model.DataLoginUserItem
 import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataPostUsersItem
+import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import retrofit2.Call
 import retrofit2.http.Body
@@ -22,5 +23,8 @@ interface ApiService {
 
     @POST("forgotPassword")
     fun postPassword(@Body request: DataPassword) : Call<DataPassword>
+
+    @POST("reset-password")
+    fun postResetPassword(@Body request: DataResetPassword) : Call<List<DataResetPassword>>
 
 }

@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            if (!isLoggedIn() && (menuItem.itemId == R.id.historyFragment || menuItem.itemId == R.id.notificationsFragment || menuItem.itemId == R.id.profileFragment)) {
+            if (!isLoggedIn() && (menuItem.itemId == R.id.homeFragment ||menuItem.itemId == R.id.historyFragment || menuItem.itemId == R.id.notificationsFragment || menuItem.itemId == R.id.profileFragment)) {
                 // Simpan ID menu yang diklik pengguna ke shared preferences
                 val editor = sharedPref.edit()
                 editor.putInt("clickedMenuItemId", menuItem.itemId)

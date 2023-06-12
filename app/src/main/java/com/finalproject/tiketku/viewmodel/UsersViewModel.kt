@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.finalproject.tiketku.model.DataLoginUserItem
+import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataPostUsersItem
+import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.network.ApiClient
 import retrofit2.Call
@@ -13,9 +15,13 @@ import retrofit2.Response
 
 class UsersViewModel : ViewModel() {
 
+    private var livedataResetPassword: MutableLiveData<List<DataResetPassword>> = MutableLiveData()
+    private var livedataPassword: MutableLiveData<DataPassword?> = MutableLiveData()
     private var livedataUserLogin : MutableLiveData<List<DataLoginUserItem>> = MutableLiveData()
     private var livedataUser: MutableLiveData<List<DataPostUsersItem>> = MutableLiveData()
 
+    val dataResetPassword: MutableLiveData<List<DataResetPassword>> get() = livedataResetPassword
+    val dataLoginPassword: MutableLiveData<DataPassword?> get() = livedataPassword
     val dataLoginUser: LiveData<List<DataLoginUserItem>> get() = livedataUserLogin
     val dataPostUser: LiveData<List<DataPostUsersItem>> get() = livedataUser
 
@@ -61,4 +67,41 @@ class UsersViewModel : ViewModel() {
             }
         })
     }
+    fun postUserPassword(dataPassword: DataPassword) {
+        // Menggunakan callback retrofit
+        ApiClient.instance.postPassword(dataPassword).enqueue(object : Callback<DataPassword> {
+            override fun onResponse(call: Call<DataPassword>, response: Response<DataPassword>) {
+                if (response.isSuccessful) {
+                    livedataPassword.postValue(response.body())
+                } else {
+                    livedataPassword.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<DataPassword>, t: Throwable) {
+                livedataPassword.postValue(null)
+            }
+        })
+    }
+    fun postUserResetPassword(dataResetPassword: DataResetPassword) {
+        // Menggunakan callback retrofit
+        ApiClient.instance.postResetPassword(dataResetPassword).enqueue(object : Callback<List<DataResetPassword>> {
+            override fun onResponse(
+                call: Call<List<DataResetPassword>>,
+                response: Response<List<DataResetPassword>>
+            ) {
+                if (response.isSuccessful){
+                    livedataResetPassword.postValue(response.body())
+                }else{
+                    livedataResetPassword.postValue(emptyList())
+                }
+            }
+
+            override fun onFailure(call: Call<List<DataResetPassword>>, t: Throwable) {
+                livedataResetPassword.postValue(emptyList())
+            }
+        })
+    }
+
 }
+

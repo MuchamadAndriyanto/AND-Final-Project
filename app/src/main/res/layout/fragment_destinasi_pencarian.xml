@@ -66,9 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rlTop"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:text="Pencarian Terkini"
-        android:textColor="#151515" />
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_Hapus"
@@ -76,21 +76,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/tv_Pencarian"
+        android:layout_marginEnd="20dp"
         android:layout_alignBaseline="@id/tv_Pencarian"
-        android:layout_marginStart="175dp"
+        android:layout_alignParentEnd="true"
         android:text="Hapus"
-        android:textColor="#FF0000" />
+        android:textColor="@color/red_danger" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDestination"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_Pencarian"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:clipToPadding="false"
         tools:listitem="@layout/item_destinasi" />
 
