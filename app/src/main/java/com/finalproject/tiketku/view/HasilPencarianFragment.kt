@@ -38,6 +38,9 @@ class HasilPencarianFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnFilter1.setOnClickListener {
+            findNavController().navigate(R.id.action_hasilPencarianFragment_to_hasilPencarianWithFilterFragment)
+        }
 
         classList = ArrayList()
         classList.add(ListHasilPencarian("Senin","00/00/00"))
