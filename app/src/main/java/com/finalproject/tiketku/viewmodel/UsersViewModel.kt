@@ -3,10 +3,12 @@ package com.finalproject.tiketku.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.finalproject.tiketku.model.DataLogin
 import com.finalproject.tiketku.model.DataLoginUserItem
 import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.DataResetPassword
+import com.finalproject.tiketku.model.ResponseLogin
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.network.ApiClient
 import retrofit2.Call
@@ -17,12 +19,13 @@ class UsersViewModel : ViewModel() {
 
     private var livedataResetPassword: MutableLiveData<List<DataResetPassword>> = MutableLiveData()
     private var livedataPassword: MutableLiveData<DataPassword?> = MutableLiveData()
-    private var livedataUserLogin : MutableLiveData<List<DataLoginUserItem>> = MutableLiveData()
+    private var livedataUserLogin : MutableLiveData<List<DataLogin>?> = MutableLiveData()
     private var livedataUser: MutableLiveData<List<DataPostUsersItem>> = MutableLiveData()
+    private var livedataLogin = MutableLiveData<List<DataLoginUserItem>?>()
 
     val dataResetPassword: MutableLiveData<List<DataResetPassword>> get() = livedataResetPassword
     val dataLoginPassword: MutableLiveData<DataPassword?> get() = livedataPassword
-    val dataLoginUser: LiveData<List<DataLoginUserItem>> get() = livedataUserLogin
+    val dataLoginUser: MutableLiveData<List<DataLogin>?> get() = livedataUserLogin
     val dataPostUser: LiveData<List<DataPostUsersItem>> get() = livedataUser
 
 
@@ -47,23 +50,22 @@ class UsersViewModel : ViewModel() {
         })
     }
 
-    fun postUserLogin(dataUserLogin: DataLoginUserItem){
-        //memakai callback yang retrofit
-        ApiClient.instance.postLogin(dataUserLogin).enqueue(object : Callback<List<DataLoginUserItem>> {
-            override fun onResponse(
-                call: Call<List<DataLoginUserItem>>,
-                response: Response<List<DataLoginUserItem>>
+    fun postUserLogin(email: String, password: String) {
+        val request = DataLoginUserItem(email, password)
 
-            ) {
-                if (response.isSuccessful){
-                    livedataUserLogin.postValue(response.body())
-                }else{
-                    livedataUserLogin.postValue(emptyList())
+        ApiClient.instance.postLogin(request).enqueue(object : Callback<ResponseLogin> {
+            override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
+                val dataLogin = response.body()?.data
+
+                if (response.isSuccessful && dataLogin != null) {
+                    livedataUserLogin.postValue(listOf(dataLogin))
+                } else {
+                    livedataUserLogin.postValue(null)
                 }
             }
 
-            override fun onFailure(call: Call<List<DataLoginUserItem>>, t: Throwable) {
-                livedataUserLogin.postValue(emptyList())
+            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+                livedataUserLogin.postValue(null)
             }
         })
     }

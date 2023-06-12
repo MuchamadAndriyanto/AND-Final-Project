@@ -33,13 +33,15 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment, R.id.historyFragment, R.id.notificationsFragment, R.id.profileFragment -> {
                     bottomNavigationView.visibility = View.VISIBLE
-                    if (!isLoggedIn() && destination.id != R.id.homeFragment) {
+                    if (!isLoggedIn()) {
                         // Simpan ID halaman tujuan yang diminta pengguna ke shared preferences
                         val editor = sharedPref.edit()
                         editor.putInt("requestedDestinationId", destination.id)
                         editor.apply()
 
-                        navController.navigate(R.id.akunNonLoginFragment)
+                        if (destination.id != R.id.homeFragment) {
+                            navController.navigate(R.id.akunNonLoginFragment)
+                        }
                     }
                 }
                 else -> {
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            if (!isLoggedIn() && (menuItem.itemId == R.id.homeFragment ||menuItem.itemId == R.id.historyFragment || menuItem.itemId == R.id.notificationsFragment || menuItem.itemId == R.id.profileFragment)) {
+            if (!isLoggedIn()) {
                 // Simpan ID menu yang diklik pengguna ke shared preferences
                 val editor = sharedPref.edit()
                 editor.putInt("clickedMenuItemId", menuItem.itemId)
@@ -58,19 +60,31 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.akunNonLoginFragment)
                 return@setOnNavigationItemSelectedListener false
             } else {
+                // Simpan ID halaman terakhir yang diklik ke shared preferences
+                val editor = sharedPref.edit()
+                editor.putInt("clickedMenuItemId", menuItem.itemId)
+                editor.apply()
+
                 val handled = NavigationUI.onNavDestinationSelected(menuItem, navController)
                 if (handled) {
-                    // Simpan ID halaman terakhir yang diklik ke shared preferences
-                    val editor = sharedPref.edit()
-                    editor.putInt("clickedMenuItemId", menuItem.itemId)
-                    editor.apply()
-
                     // Ambil email pengguna yang sedang login dari shared preferences
                     val loggedInEmail = sharedPref.getString("email", "")
 
                     Log.d("MainActivity", "Pengguna sudah login dengan email: $loggedInEmail")
                 }
                 return@setOnNavigationItemSelectedListener handled
+            }
+        }
+
+        val isLoggedIn = isLoggedIn()
+        val clickedMenuItemId = sharedPref.getInt("clickedMenuItemId", R.id.homeFragment)
+
+        if (isLoggedIn) {
+            bottomNavigationView.menu.findItem(clickedMenuItemId).isChecked = true
+        } else {
+            val requestedDestinationId = sharedPref.getInt("requestedDestinationId", R.id.homeFragment)
+            if (requestedDestinationId != R.id.homeFragment) {
+                navController.navigate(R.id.akunNonLoginFragment)
             }
         }
     }
@@ -80,3 +94,4 @@ class MainActivity : AppCompatActivity() {
         return sharedPref.getBoolean("isLoggedIn", false)
     }
 }
+

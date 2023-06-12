@@ -12,9 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentLoginBinding
-import com.finalproject.tiketku.model.DataLoginUserItem
+import com.finalproject.tiketku.model.DataLogin
 import com.finalproject.tiketku.model.DataPassword
-import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 
 class LoginFragment : Fragment() {
@@ -44,8 +43,6 @@ class LoginFragment : Fragment() {
         binding.tvLupaSandi.setOnClickListener {
            lupaSandi()
         }
-
-
 
         binding.btnLogin.setOnClickListener {
             login()
@@ -88,29 +85,38 @@ class LoginFragment : Fragment() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEdiText.text.toString()
 
-        if (email.isEmpty()|| password.isEmpty()) {
-            Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
-
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(requireContext(), "Email and password are required", Toast.LENGTH_SHORT).show()
         } else {
-            loginUserVM.postUserLogin(DataLoginUserItem( email, password))
-            Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
-// Simpan status login ke shared preferences
-            val editor = sharedPref.edit()
-            editor.putBoolean("isLoggedIn", true)
-            editor.apply()
+            loginUserVM.dataLoginUser.observe(viewLifecycleOwner) { dataLoginUser ->
+                if (dataLoginUser != null && dataLoginUser.isNotEmpty()) {
+                    // Login success
+                    Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
 
-            // Simpan email dan password pengguna ke SharedPreferences
-            editor.putString("email", email)
-            editor.putString("password", password)
-            editor.apply()
+                    // Simpan status login ke shared preferences
+                    val editor = sharedPref.edit()
+                    editor.putBoolean("isLoggedIn", true)
+                    editor.apply()
 
-// Ambil ID halaman terakhir yang diklik dari shared preferences
-            val lastClickedItemId = sharedPref.getInt("clickedMenuItemId", R.id.homeFragment)
+                    // Simpan email dan password pengguna ke SharedPreferences
+                    editor.putString("email", email)
+                    editor.putString("password", password)
+                    editor.apply()
 
-// Navigasikan pengguna ke halaman terakhir yang diklik
-            findNavController().navigate(lastClickedItemId)
+                    // Ambil ID halaman terakhir yang diklik dari shared preferences
+                    val lastClickedItemId = sharedPref.getInt("clickedMenuItemId",0)
 
+                    // Navigasikan pengguna ke halaman terakhir yang diklik
+                    findNavController().navigate(lastClickedItemId)
+                } else {
+                    // Login failed
+                    Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            loginUserVM.postUserLogin(email, password)
         }
     }
+
 
 }
