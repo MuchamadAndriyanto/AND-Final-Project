@@ -116,6 +116,7 @@
                                             android:background="@color/neutral_02" />
 
                                         <ImageView
+                                            android:id="@+id/flip"
                                             android:layout_marginStart="-12dp"
                                             android:layout_width="26dp"
                                             android:layout_height="24dp"

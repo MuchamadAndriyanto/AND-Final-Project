@@ -228,6 +228,10 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
+    <style name="DateDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/darkblue_05</item>
+    </style>
+
 
 
 

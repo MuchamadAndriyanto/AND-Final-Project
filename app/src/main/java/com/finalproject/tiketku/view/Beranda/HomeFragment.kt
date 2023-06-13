@@ -12,9 +12,12 @@ import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentHomeBinding
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.widget.DatePicker
+import android.widget.ImageView
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -127,7 +130,13 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.tvPenumpang.text = "1" // Inisialisasi nilai awal total penumpang
+        sharedPreferences.edit()
+            .putInt("baby", 0)
+            .putInt("child", 0)
+            .putInt("adult", 0)
+            .apply()
+
+        updatePassengerCount()
 
         // Listen for the result from SetClassFragment
         parentFragmentManager.setFragmentResultListener("selected_class", this) { _, result ->
@@ -146,19 +155,41 @@ class HomeFragment : Fragment() {
         val initialDay = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
-            context,
-            { _, year, monthOfYear, dayOfMonth ->
-                val date = "$dayOfMonth ${getMonthName(monthOfYear)} $year"
-                onDateSelected(date)
-            },
+            ContextThemeWrapper(context, R.style.DateDialogTheme),
+            null,
             initialYear,
             initialMonth,
             initialDay
         )
 
+        datePickerDialog.setOnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            val date = "$dayOfMonth ${getMonthName(monthOfYear)} $year"
+            onDateSelected(date)
+        }
+
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Oke") { _, _ ->
+            val datePicker = datePickerDialog.datePicker
+            val year = datePicker.year
+            val month = datePicker.month
+            val day = datePicker.dayOfMonth
+            val date = "$day ${getMonthName(month)} $year"
+            onDateSelected(date)
+        }
+
+        datePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Batal") { _, _ ->
+            // Tidak ada tindakan yang perlu dilakukan ketika tombol "Batal" ditekan
+        }
+
+        datePickerDialog.setOnShowListener { dialog ->
+            val positiveButton = (dialog as DatePickerDialog).getButton(DialogInterface.BUTTON_POSITIVE)
+            val negativeButton = dialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+
+            positiveButton.setTextColor(ContextCompat.getColor(context, R.color.darkblue_05))
+            negativeButton.setTextColor(ContextCompat.getColor(context, R.color.darkblue_05))
+        }
+
         datePickerDialog.show()
     }
-
     private fun getMonthName(month: Int): String {
         val dateFormat = SimpleDateFormat("MMMM", Locale.getDefault())
         val calendar = Calendar.getInstance()
@@ -183,8 +214,12 @@ class HomeFragment : Fragment() {
         childCount = sharedPreferences.getInt("child", 0)
         adultCount = sharedPreferences.getInt("adult", 0)
         val totalPassengers = babyCount + childCount + adultCount
+
+        // Mengubah jumlah penumpang menjadi teks yang sesuai
+        val passengerText = "$totalPassengers penumpang"
+
         totalPassengerCount = totalPassengers
-        binding.tvPenumpang.text = totalPassengers.toString()
+        binding.tvPenumpang.text = passengerText
     }
 
 }
