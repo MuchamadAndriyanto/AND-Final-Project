@@ -1,7 +1,7 @@
 package com.finalproject.tiketku.view.User
 
+import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -36,13 +36,25 @@ class ProfileFragment : Fragment() {
 
         val tvKeluar = view.findViewById<TextView>(R.id.tvKeluar)
         tvKeluar.setOnClickListener {
-            // Hapus Shared Preferences
-            sharedPref.edit().clear().apply()
-
-            // Kembali ke tampilan Splash
-            val navController = findNavController()
-            navController.navigate(R.id.action_profileFragment_to_splashFragment)
+            showLogoutConfirmationDialog()
         }
     }
 
+    private fun showLogoutConfirmationDialog() {
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setMessage("Apakah anda yakin ingin keluar?")
+            .setPositiveButton("Ya") { _, _ ->
+                logout()
+            }
+            .setNegativeButton("Tidak", null)
+            .show()
+    }
+
+    private fun logout() {
+        // Hapus Shared Preferences
+        sharedPref.edit().clear().apply()
+
+        val navController = findNavController()
+        navController.navigate(R.id.action_profileFragment_to_splashFragment)
+    }
 }
