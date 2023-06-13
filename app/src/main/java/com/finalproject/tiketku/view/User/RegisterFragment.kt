@@ -46,7 +46,7 @@ class RegisterFragment : Fragment() {
 
         } else {
 
-            userVM.postUserRegister(ResponseUsersItem("", email, 0, "", nomor_telepon, username, password))
+            userVM.postUserRegister(ResponseUsersItem("jln.apa adanya", email, 0, "Dadang", nomor_telepon, username, password))
             Toast.makeText(requireContext(), "Registration Success", Toast.LENGTH_SHORT).show()
 
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
