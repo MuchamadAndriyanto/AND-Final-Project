@@ -90,7 +90,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isLoggedIn(): Boolean {
-        // Ubah logika isLoggedIn sesuai kebutuhan Anda
         return sharedPref.getBoolean("isLoggedIn", false)
     }
 }
