@@ -1,10 +1,13 @@
 package com.finalproject.tiketku.view
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.GridLayout
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -17,29 +20,40 @@ import com.finalproject.tiketku.adapter.SetClassAdapter
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
 import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
 import com.finalproject.tiketku.model.DummySetClass
+import com.finalproject.tiketku.model.ListFilter
 import com.finalproject.tiketku.model.ListHasilPencarian
-
 
 class HasilPencarianFragment : Fragment() {
     private lateinit var binding: FragmentHasilPencarianBinding
     private lateinit var classAdapter: HariAdapter
     private lateinit var classList: ArrayList<ListHasilPencarian>
-    private var selectedClass: ListHasilPencarian? = null
+    private var selectedFilter: String? = null
+
+    lateinit var btnFilter2: Button
+
+    companion object {
+        const val REQUEST_CODE_FILTER = 123
+        const val REQUEST_KEY_FILTER = "request_key_filter" // Kunci untuk menyimpan fragment hasil filter
+        const val RESULT_KEY_FILTER = "result_key_filter" // Kunci untuk menyimpan hasil filter dalam Intent
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentHasilPencarianBinding.inflate(layoutInflater, container, false)
+        binding = FragmentHasilPencarianBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnFilter1.setOnClickListener {
-            findNavController().navigate(R.id.action_hasilPencarianFragment_to_hasilPencarianWithFilterFragment)
+            val filterFragment = HasilPencarianWithFilterFragment() // Membuat instance dari fragment HasilPencarianWithFilterFragment
+            filterFragment.setTargetFragment(this, REQUEST_CODE_FILTER) // Mengatur fragment target untuk menerima hasil dari fragment filter
+            parentFragmentManager.beginTransaction()
+                .add(filterFragment, REQUEST_KEY_FILTER)
+                .commit()
         }
 
         classList = ArrayList()
@@ -56,14 +70,12 @@ class HasilPencarianFragment : Fragment() {
         classAdapter = HariAdapter(classList)
         classAdapter.setOnItemClickCallback(object : HariAdapter.OnItemClickCallback {
             override fun onItemClicked(position: Int, data: ListHasilPencarian) {
-                // Store the selected data
-                selectedClass = data
+                selectedFilter = data.hari
             }
         })
 
         binding.rvHari.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             adapter = classAdapter
             addItemDecoration(
                 DividerItemDecoration(
@@ -73,12 +85,27 @@ class HasilPencarianFragment : Fragment() {
             )
         }
 
-
-
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_hasilPencarianFragment_to_homeFragment)
         }
 
+        btnFilter2 = binding.root.findViewById(R.id.btnFilter2)
+        btnFilter2.setOnClickListener {
+            val filterFragment = HasilPencarianWithFilterFragment()
+            filterFragment.setTargetFragment(this, REQUEST_CODE_FILTER)
+            parentFragmentManager.beginTransaction()
+                .add(filterFragment, REQUEST_KEY_FILTER)
+                .commit()
+        }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_FILTER && resultCode == Activity.RESULT_OK) {
+            val selectedFilter = data?.getStringExtra(RESULT_KEY_FILTER) // Mengambil hasil filter dari Intent menggunakan kunci RESULT_KEY_FILTER
+            if (selectedFilter != null) {
+                btnFilter2.text = selectedFilter // Memperbarui teks tombol btnFilter2 dengan hasil filter
+            }
+        }
     }
 }
