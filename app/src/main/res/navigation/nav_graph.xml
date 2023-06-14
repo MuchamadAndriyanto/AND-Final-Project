@@ -52,10 +52,18 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_resetPasswordFragment"
-            app:destination="@id/resetPasswordFragment" />
+            app:destination="@id/resetPasswordFragment">
+            <argument
+                android:name="resetToken"
+                app:argType="string"
+                app:nullable="true"/>
+        </action>
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_verifikasiFragment"
+            app:destination="@id/verifikasiFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -99,6 +107,9 @@
         <action
             android:id="@+id/action_resetPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_verifikasiFragment"
+            app:destination="@id/verifikasiFragment" />
     </fragment>
     <dialog
         android:id="@+id/setPenumpangFragment"
@@ -159,5 +170,17 @@
         <action
             android:id="@+id/action_akunNonLoginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifikasiFragment"
+        android:name="com.finalproject.tiketku.view.User.VerifikasiFragment"
+        android:label="fragment_verifikasi"
+        tools:layout="@layout/fragment_verifikasi" >
+        <action
+            android:id="@+id/action_verifikasiFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_verifikasiFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
     </fragment>
 </navigation>

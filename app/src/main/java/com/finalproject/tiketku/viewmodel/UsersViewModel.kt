@@ -9,6 +9,7 @@ import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.model.ResponseLogin
+import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.network.ApiClient
 import retrofit2.Call
@@ -17,13 +18,12 @@ import retrofit2.Response
 
 class UsersViewModel : ViewModel() {
 
-    private var livedataResetPassword: MutableLiveData<List<DataResetPassword>> = MutableLiveData()
+    private var livedataResetPassword: MutableLiveData<ResponseResetPassword?> = MutableLiveData()
     private var livedataPassword: MutableLiveData<DataPassword?> = MutableLiveData()
     private var livedataUserLogin : MutableLiveData<List<DataLogin>?> = MutableLiveData()
     private var livedataUser: MutableLiveData<List<DataPostUsersItem>> = MutableLiveData()
-    private var livedataLogin = MutableLiveData<List<DataLoginUserItem>?>()
 
-    val dataResetPassword: MutableLiveData<List<DataResetPassword>> get() = livedataResetPassword
+    val dataResetPassword: MutableLiveData<ResponseResetPassword?> get() = livedataResetPassword
     val dataLoginPassword: MutableLiveData<DataPassword?> get() = livedataPassword
     val dataLoginUser: MutableLiveData<List<DataLogin>?> get() = livedataUserLogin
     val dataPostUser: LiveData<List<DataPostUsersItem>> get() = livedataUser
@@ -87,20 +87,20 @@ class UsersViewModel : ViewModel() {
     }
     fun postUserResetPassword(dataResetPassword: DataResetPassword) {
         // Menggunakan callback retrofit
-        ApiClient.instance.postResetPassword(dataResetPassword).enqueue(object : Callback<List<DataResetPassword>> {
+        ApiClient.instance.postResetPassword(dataResetPassword).enqueue(object : Callback<ResponseResetPassword> {
             override fun onResponse(
-                call: Call<List<DataResetPassword>>,
-                response: Response<List<DataResetPassword>>
+                call: Call<ResponseResetPassword>,
+                response: Response<ResponseResetPassword>
             ) {
                 if (response.isSuccessful){
                     livedataResetPassword.postValue(response.body())
                 }else{
-                    livedataResetPassword.postValue(emptyList())
+                    livedataResetPassword.postValue(null)
                 }
             }
 
-            override fun onFailure(call: Call<List<DataResetPassword>>, t: Throwable) {
-                livedataResetPassword.postValue(emptyList())
+            override fun onFailure(call: Call<ResponseResetPassword>, t: Throwable) {
+                livedataResetPassword.postValue(null)
             }
         })
     }

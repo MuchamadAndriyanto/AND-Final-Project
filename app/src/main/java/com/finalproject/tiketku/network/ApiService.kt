@@ -5,6 +5,7 @@ import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.model.ResponseLogin
+import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import retrofit2.Call
 import retrofit2.http.Body
@@ -17,7 +18,7 @@ interface ApiService {
     fun getAllUsers(): Call<List<ResponseUsersItem>>
 
     @POST("login")
-    fun postLogin(@Body request: DataLoginUserItem): Call<ResponseLogin>
+    fun postLogin(@Body request: DataLoginUserItem ): Call<ResponseLogin>
 
     @POST("register")
     fun registerUser(@Body request: ResponseUsersItem): Call<List<DataPostUsersItem>>
@@ -26,6 +27,6 @@ interface ApiService {
     fun postPassword(@Body request: DataPassword) : Call<DataPassword>
 
     @POST("reset-password")
-    fun postResetPassword(@Body request: DataResetPassword) : Call<List<DataResetPassword>>
+    fun postResetPassword(@Body request: DataResetPassword) : Call<ResponseResetPassword>
 
 }

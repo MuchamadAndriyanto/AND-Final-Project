@@ -4,7 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class DataResetPassword(
     @SerializedName("resetToken")
-    val resetToken : String,
+    val resetToken: String,
     @SerializedName("newPassword")
-    val newPassword : String
+    val newPassword: String
+
+
 )
