@@ -45,10 +45,10 @@ class SetClassFragment : BottomSheetDialogFragment() {
         }
 
         classList = ArrayList()
-        classList.add(DummySetClass("Kelas 1", "Rp.20000"))
-        classList.add(DummySetClass("Kelas 2", "Rp.30000"))
-        classList.add(DummySetClass("Kelas 3", "Rp.40000"))
-        classList.add(DummySetClass("Kelas 4", "Rp.50000"))
+        classList.add(DummySetClass("Economy", "Rp.20000"))
+        classList.add(DummySetClass("Premium Economy", "Rp.30000"))
+        classList.add(DummySetClass("Business", "Rp.40000"))
+        classList.add(DummySetClass("First Class", "Rp.50000"))
 
         val selected = 0
 
@@ -68,7 +68,6 @@ class SetClassFragment : BottomSheetDialogFragment() {
         binding.btnSimpan.setOnClickListener {
             selectedClass?.let {
                 saveSelectedClass(it)
-                Toast.makeText(requireContext(), "Data saved: ${it.kelas}", Toast.LENGTH_SHORT).show()
                 dismiss()
             }
         }

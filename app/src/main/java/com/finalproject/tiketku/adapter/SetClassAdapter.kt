@@ -77,7 +77,7 @@ class SetClassAdapter(private val listClass: List<DummySetClass>) :
             holder.priceClass.setTextColor(
                 ContextCompat.getColor(
                     holder.itemView.context,
-                    R.color.black
+                    R.color.purple
                 )
             )
         }
