@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_profileFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_akunFragment"
+            app:destination="@id/akunFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -182,5 +185,14 @@
         <action
             android:id="@+id/action_verifikasiFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/akunFragment"
+        android:name="com.finalproject.tiketku.view.User.AkunFragment"
+        android:label="fragment_akun"
+        tools:layout="@layout/fragment_akun" >
+        <action
+            android:id="@+id/action_akunFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

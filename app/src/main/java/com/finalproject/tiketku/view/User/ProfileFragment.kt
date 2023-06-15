@@ -11,9 +11,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
+import com.finalproject.tiketku.databinding.FragmentHomeBinding
+import com.finalproject.tiketku.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
+    private lateinit var binding : FragmentProfileBinding
     private lateinit var sharedPref: SharedPreferences
     private lateinit var username: String
 
@@ -22,8 +25,8 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,6 +40,10 @@ class ProfileFragment : Fragment() {
         val tvKeluar = view.findViewById<TextView>(R.id.tvKeluar)
         tvKeluar.setOnClickListener {
             showLogoutConfirmationDialog()
+        }
+
+        binding.tvProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_akunFragment)
         }
     }
 

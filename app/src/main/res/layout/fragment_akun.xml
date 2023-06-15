@@ -7,7 +7,7 @@
     tools:context=".view.User.AkunFragment">
 
     <TextView
-        android:id="@+id/tv_Profile"
+        android:id="@+id/tv_Profilee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
