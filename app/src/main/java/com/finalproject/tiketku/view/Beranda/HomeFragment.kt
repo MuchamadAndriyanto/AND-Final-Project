@@ -138,6 +138,7 @@ class HomeFragment : Fragment() {
         updatePassengerCount()
         loadSelectedClass()
 
+        //digunakan untuk menerima kiriman data dari setclass
         parentFragmentManager.setFragmentResultListener("selected_class", viewLifecycleOwner) { _, result ->
             val className = result.getString("selected_class", "")
             val sharedPreferences = requireContext().getSharedPreferences("selected_class", Context.MODE_PRIVATE)
@@ -231,6 +232,7 @@ class HomeFragment : Fragment() {
         binding.tvPenumpang.text = passengerText
     }
 
+    //digunakan untuk menyimpan data setclas supaya tidak kreset
     private fun loadSelectedClass() {
         val sharedPreferences = requireContext().getSharedPreferences("selected_class", Context.MODE_PRIVATE)
         val className = sharedPreferences.getString("selected_class", "")

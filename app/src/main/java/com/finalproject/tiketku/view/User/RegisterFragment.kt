@@ -31,6 +31,11 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userVM = ViewModelProvider(this).get(UsersViewModel::class.java)
+
+        binding.btnAdaAkun.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
         binding.btnRegister.setOnClickListener {
             register()
         }

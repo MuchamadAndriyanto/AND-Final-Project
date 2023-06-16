@@ -74,6 +74,7 @@ class SetClassFragment : BottomSheetDialogFragment() {
         }
     }
 
+    //untuk menyimpan data kelas yang dipilih ke dalam SharedPreferences di home
     private fun saveSelectedClass(selectedClass: DummySetClass) {
         val sharedPreferences = requireContext().getSharedPreferences("selected_class", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
