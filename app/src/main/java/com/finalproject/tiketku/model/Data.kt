@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Data(
     @SerializedName("bandaraAwal")
-    val bandaraAwal: BandaraAwal,
+    val bandaraAwal: List<BandaraAwal>,
     @SerializedName("bandaraTujuan")
     val bandaraTujuan: BandaraTujuan
 )

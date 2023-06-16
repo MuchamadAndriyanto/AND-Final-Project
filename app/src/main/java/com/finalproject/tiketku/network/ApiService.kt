@@ -10,6 +10,7 @@ import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.model.SearchRespomse
 import com.finalproject.tiketku.model.UpdateProfilePost
+import com.finalproject.tiketku.model.search.SearchResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -35,10 +36,10 @@ interface ApiService {
     @POST("reset-password")
     fun postResetPassword(@Body request: DataResetPassword) : Call<ResponseResetPassword>
 
-    @GET("city")
+    @GET("get-city")
     fun getSearch(
-        @Query("kota") title : String
-    ):Call<SearchRespomse>
+        @Query("query") kota : String
+    ):Call<SearchResponse>
 
     @POST("editusers/{id}")
     fun updateProfile(

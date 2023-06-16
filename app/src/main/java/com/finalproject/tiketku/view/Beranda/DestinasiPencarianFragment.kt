@@ -13,6 +13,7 @@ import com.finalproject.tiketku.adapter.DestinasiAdapter
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
 import com.finalproject.tiketku.model.BandaraAwal
+import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.viewmodel.DestinasiViewModel
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 
@@ -43,9 +44,9 @@ class DestinasiPencarianFragment : Fragment() {
         }
     }
 
-    fun getSearch(title: String) {
+    fun getSearch(kota: String) {
         if (binding.etSearch.text.toString().isNotEmpty()) {
-            searchVM.callGetSearch(title)
+            searchVM.callGetSearch(kota)
             searchVM.search.observe(viewLifecycleOwner) {
                 if (it != null) {
                     showSearch(it)
@@ -54,7 +55,7 @@ class DestinasiPencarianFragment : Fragment() {
         }
     }
 
-    fun showSearch(data: List<BandaraAwal>) {
+    fun showSearch(data: List<Data>) {
         val searchAdapter = DestinasiAdapter(data)
         binding.rvDestination.adapter = searchAdapter
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
