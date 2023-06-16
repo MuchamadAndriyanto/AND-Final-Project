@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentRegisterBinding
+import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 
@@ -42,14 +43,33 @@ class RegisterFragment : Fragment() {
         val password = binding.passwordEditText.text.toString()
 
         if (username.isEmpty() || email.isEmpty() || nomor_telepon.isEmpty() || password.isEmpty()) {
-            Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
-
-        } else {
-
-            userVM.postUserRegister(ResponseUsersItem("jln.apa adanya", email, 0, "Dadang", nomor_telepon, username, password))
-            Toast.makeText(requireContext(), "Registration Success", Toast.LENGTH_SHORT).show()
-
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            Toast.makeText(requireContext(), "Registration Failed: Input fields cannot be empty", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        if (username.length < 5 || password.length < 5) {
+            Toast.makeText(requireContext(), "Registration Failed: Username and password must be at least 5 characters", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val dataPostUser = userVM.dataPostUserRegis
+        dataPostUser.observe(viewLifecycleOwner, { response ->
+
+            if (response != null) { Toast.makeText(requireContext(), "Registration Success", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+
+            } else { Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
+
+            }
+        })
+
+        userVM.postUserRegister(
+            DataPostUsersItem(
+                username,
+                email,
+                nomor_telepon,
+                password
+            )
+        )
     }
 }

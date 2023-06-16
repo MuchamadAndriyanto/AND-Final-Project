@@ -21,31 +21,25 @@ class UsersViewModel : ViewModel() {
     private var livedataResetPassword: MutableLiveData<ResponseResetPassword?> = MutableLiveData()
     private var livedataPassword: MutableLiveData<DataPassword?> = MutableLiveData()
     private var livedataUserLogin : MutableLiveData<List<DataLogin>?> = MutableLiveData()
-    private var livedataUser: MutableLiveData<List<DataPostUsersItem>> = MutableLiveData()
+    private var livedataUserRegis: MutableLiveData<ResponseUsersItem?> = MutableLiveData()
 
     val dataResetPassword: MutableLiveData<ResponseResetPassword?> get() = livedataResetPassword
     val dataLoginPassword: MutableLiveData<DataPassword?> get() = livedataPassword
     val dataLoginUser: MutableLiveData<List<DataLogin>?> get() = livedataUserLogin
-    val dataPostUser: LiveData<List<DataPostUsersItem>> get() = livedataUser
+    val dataPostUserRegis: MutableLiveData<ResponseUsersItem?> get() = livedataUserRegis
 
-
-    fun postUserRegister(dataUsers: ResponseUsersItem) {
-
-       ApiClient.instance.registerUser(dataUsers).enqueue(object : Callback<List<DataPostUsersItem>> {
-            override fun onResponse(
-                call: Call<List<DataPostUsersItem>>,
-                response: Response<List<DataPostUsersItem>>
-
-            ) {
+    fun postUserRegister(dataUsers: DataPostUsersItem) {
+        ApiClient.instance.registerUser(dataUsers).enqueue(object : Callback<ResponseUsersItem> {
+            override fun onResponse(call: Call<ResponseUsersItem>, response: Response<ResponseUsersItem>) {
                 if (response.isSuccessful) {
-                    livedataUser.postValue(response.body())
+                    livedataUserRegis.postValue(response.body())
                 } else {
-                    livedataUser.postValue(emptyList())
+                    livedataUserRegis.postValue(null)
                 }
             }
 
-            override fun onFailure(call: Call<List<DataPostUsersItem>>, t: Throwable) {
-                livedataUser.postValue(emptyList())
+            override fun onFailure(call: Call<ResponseUsersItem>, t: Throwable) {
+                livedataUserRegis.postValue(null)
             }
         })
     }

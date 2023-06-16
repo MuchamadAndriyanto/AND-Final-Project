@@ -24,7 +24,7 @@ interface ApiService {
     fun postLogin(@Body request: DataLoginUserItem ): Call<ResponseLogin>
 
     @POST("register")
-    fun registerUser(@Body request: ResponseUsersItem): Call<List<DataPostUsersItem>>
+    fun registerUser(@Body request: DataPostUsersItem): Call<ResponseUsersItem>
 
     @POST("forgotPassword")
     fun postPassword(@Body request: DataPassword) : Call<DataPassword>

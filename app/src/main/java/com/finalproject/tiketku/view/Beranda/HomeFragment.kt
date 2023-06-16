@@ -48,7 +48,6 @@ class HomeFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
 
-
         val switchMaterial = binding.switchMaterial
         val tvPilihTanggal = binding.tvPilihTanggal
         val dateReturn = binding.dateReturn
@@ -137,10 +136,15 @@ class HomeFragment : Fragment() {
             .apply()
 
         updatePassengerCount()
+        loadSelectedClass()
 
-        // Listen for the result from SetClassFragment
-        parentFragmentManager.setFragmentResultListener("selected_class", this) { _, result ->
+        parentFragmentManager.setFragmentResultListener("selected_class", viewLifecycleOwner) { _, result ->
             val className = result.getString("selected_class", "")
+            val sharedPreferences = requireContext().getSharedPreferences("selected_class", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("selected_class", className)
+            editor.apply()
+
             binding.tvBusiness.text = className
         }
     }
@@ -209,6 +213,11 @@ class HomeFragment : Fragment() {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceListener)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        parentFragmentManager.clearFragmentResultListener("selected_class")
+    }
+
     private fun updatePassengerCount() {
         babyCount = sharedPreferences.getInt("baby", 0)
         childCount = sharedPreferences.getInt("child", 0)
@@ -220,6 +229,13 @@ class HomeFragment : Fragment() {
 
         totalPassengerCount = totalPassengers
         binding.tvPenumpang.text = passengerText
+    }
+
+    private fun loadSelectedClass() {
+        val sharedPreferences = requireContext().getSharedPreferences("selected_class", Context.MODE_PRIVATE)
+        val className = sharedPreferences.getString("selected_class", "")
+
+        binding.tvBusiness.text = className
     }
 
 }

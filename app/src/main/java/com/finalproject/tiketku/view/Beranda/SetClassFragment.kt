@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -72,12 +73,14 @@ class SetClassFragment : BottomSheetDialogFragment() {
             }
         }
     }
+
     private fun saveSelectedClass(selectedClass: DummySetClass) {
-        val result = Bundle().apply {
-            putString("selected_class", selectedClass.kelas)
-        }
-        setFragmentResult("selected_class", result)
+        val sharedPreferences = requireContext().getSharedPreferences("selected_class", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("selected_class", selectedClass.kelas)
+        editor.apply()
+
+        setFragmentResult("selected_class", bundleOf("selected_class" to selectedClass.kelas))
         dismiss()
     }
 }
-
