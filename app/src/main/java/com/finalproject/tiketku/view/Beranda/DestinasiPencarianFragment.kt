@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.view.Beranda
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,7 +27,7 @@ class DestinasiPencarianFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDestinasiPencarianBinding.inflate(layoutInflater, container, false)
+        binding = FragmentDestinasiPencarianBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,13 +40,13 @@ class DestinasiPencarianFragment : Fragment() {
         /*searchVM = ViewModelProvider(this).get(DestinasiViewModel::class.java)*/
         searchVM = ViewModelProvider(requireActivity()).get(DestinasiViewModel::class.java)
         binding.ivSearch.setOnClickListener {
-            val titleSearch = binding.etSearch.text.toString()
-            getSearch(titleSearch)
+            val kotaSearch = binding.etSearch.text.toString()
+            getSearch(kotaSearch)
         }
     }
 
     fun getSearch(kota: String) {
-        if (binding.etSearch.text.toString().isNotEmpty()) {
+        if (binding.etSearch.text.isNotEmpty()) {
             searchVM.callGetSearch(kota)
             searchVM.search.observe(viewLifecycleOwner) {
                 if (it != null) {
@@ -61,6 +62,29 @@ class DestinasiPencarianFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.rvDestination.layoutManager = layoutManager
 
+/*        searchAdapter.onClick = { item ->
+            val idNowPlaying = item.id
+            val intent = Intent(context, HomeFragment::class.java)
+            intent.putExtra("ID", idNowPlaying.toString())
+            context.startActivity(intent)
+        }*/
+
+        searchAdapter.onClick = {item ->
+            val kota = item.kota
+            clik(kota)
+        }
 
     }
+
+    private fun clik(kota: String){
+        binding.rvDestination.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvDestination.setHasFixedSize(false)
+        searchVM.callGetSearch(kota)
+        searchVM.search.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.rvDestination.adapter = DestinasiAdapter(it)
+            }
+        }
+    }
+
 }
