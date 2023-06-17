@@ -9,5 +9,7 @@ data class UpdateProfilePost(
     @SerializedName("nama_lengkap")
     val namaLengkap: String,
     @SerializedName("alamat")
-    val alamat: String
+    val alamat: String,
+    @SerializedName("nomor_telepon")
+    val nomorTelepon: String
 )

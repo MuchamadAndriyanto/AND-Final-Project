@@ -9,6 +9,7 @@ import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.Data
+import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.model.search.SearchResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -44,7 +45,7 @@ interface ApiService {
     fun updateProfile(
         @Header("Authorization") token: String,
         @Body request: UpdateProfilePost
-    ) : Call<List<Data>>
+    ): Call<ResponseProfile>
 
 
 }

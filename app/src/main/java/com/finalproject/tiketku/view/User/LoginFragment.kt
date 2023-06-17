@@ -102,12 +102,15 @@ class LoginFragment : Fragment() {
 
                         // Simpan username, alamat, dan nama lengkap ke SharedPreferences
                         val username = responseUser.username
-                        val alamat = responseUser.alamat
                         val namaLengkap = responseUser.namaLengkap
+                        val alamat = responseUser.alamat
+                        val nomorTelepon = responseUser.nomorTelepon
+
 
                         editor.putString("username", username)
-                        editor.putString("alamat", alamat)
                         editor.putString("namaLengkap", namaLengkap)
+                        editor.putString("alamat", alamat)
+                        editor.putString("nomorTelepon", nomorTelepon)
                         editor.putString("accessToken", accessToken) // Save the token to SharedPreferences
                         editor.apply()
 

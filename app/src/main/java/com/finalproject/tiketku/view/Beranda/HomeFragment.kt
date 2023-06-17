@@ -14,10 +14,11 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.ContextThemeWrapper
-import android.widget.DatePicker
 import android.widget.ImageView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -130,13 +131,12 @@ class HomeFragment : Fragment() {
         }
 
         sharedPreferences.edit()
-            .putInt("baby", 0)
+            .putInt("baby", 2)
             .putInt("child", 0)
             .putInt("adult", 0)
             .apply()
 
         updatePassengerCount()
-        loadSelectedClass()
 
         //digunakan untuk menerima kiriman data dari setclass
         parentFragmentManager.setFragmentResultListener("selected_class", viewLifecycleOwner) { _, result ->
@@ -148,6 +148,10 @@ class HomeFragment : Fragment() {
 
             binding.tvBusiness.text = className
         }
+        
+        loadSelectedClass()
+
+
     }
 
     private fun showDatePicker(
@@ -220,7 +224,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun updatePassengerCount() {
-        babyCount = sharedPreferences.getInt("baby", 0)
+        babyCount = sharedPreferences.getInt("baby", 2)
         childCount = sharedPreferences.getInt("child", 0)
         adultCount = sharedPreferences.getInt("adult", 0)
         val totalPassengers = babyCount + childCount + adultCount

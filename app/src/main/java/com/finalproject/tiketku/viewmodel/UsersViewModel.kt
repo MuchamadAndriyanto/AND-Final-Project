@@ -13,6 +13,7 @@ import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.Data
+import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.network.ApiClient
 import com.finalproject.tiketku.network.ApiService
 import retrofit2.Call
@@ -109,14 +110,14 @@ class UsersViewModel : ViewModel() {
     }
 
     private val apiService: ApiService = ApiClient.instance
-    val livedataUpdateProfile = MutableLiveData<List<Data>?>()
+    val livedataUpdateProfile = MutableLiveData<ResponseProfile?>()
 
     fun updateProfile(token: String, updateProfile: UpdateProfilePost) {
         val bearerToken = "Bearer $token"
 
         val call = apiService.updateProfile(bearerToken, updateProfile)
-        call.enqueue(object : Callback<List<Data>> {
-            override fun onResponse(call: Call<List<Data>>, response: Response<List<Data>>) {
+        call.enqueue(object : Callback<ResponseProfile> {
+            override fun onResponse(call: Call<ResponseProfile>, response: Response<ResponseProfile>) {
                 if (response.isSuccessful) {
                     livedataUpdateProfile.value = response.body()
                 } else {
@@ -125,7 +126,7 @@ class UsersViewModel : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<List<Data>>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseProfile>, t: Throwable) {
                 Log.e("UserViewModel", "Failed to update profile", t)
                 livedataUpdateProfile.value = null
             }

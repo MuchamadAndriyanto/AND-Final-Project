@@ -38,26 +38,30 @@ class AkunFragment : Fragment() {
         val username = sharedPref.getString("username", "")
         val namaLengkap = sharedPref.getString("namaLengkap", "")
         val alamat = sharedPref.getString("alamat", "")
+        val nomorTelepon = sharedPref.getString("nomorTelepon", "")
 
         binding.editTextUsername.setText(username)
         binding.editTextNamaLengkap.setText(namaLengkap)
         binding.editTextAlamat.setText(alamat)
+        binding.noEditText.setText(nomorTelepon)
 
         binding.btnUpdate.setOnClickListener {
 
             val newUsername = binding.editTextUsername.text.toString()
             val newNamaLengkap = binding.editTextNamaLengkap.text.toString()
             val newAlamat = binding.editTextAlamat.text.toString()
+            val newNomorTelepon = binding.noEditText.text.toString()
 
             // Simpan data pengguna yang diperbarui ke SharedPreferences
             val editor = sharedPref.edit()
             editor.putString("username", newUsername)
             editor.putString("namaLengkap", newNamaLengkap)
             editor.putString("alamat", newAlamat)
+            editor.putString("nomorTelepon", newNomorTelepon)
             editor.apply()
 
             // Buat objek UpdateProfilePost dengan data yang diperbarui
-            val updateProfile = UpdateProfilePost(newUsername, newNamaLengkap, newAlamat)
+            val updateProfile = UpdateProfilePost(newUsername, newNamaLengkap, newAlamat, newNomorTelepon)
 
             // Panggil fungsi updateProfile dari ViewModel
             viewModel.updateProfile(token, updateProfile)

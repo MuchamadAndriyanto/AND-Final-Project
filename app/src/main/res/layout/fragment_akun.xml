@@ -143,6 +143,47 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/tvNomor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:text="Nomor Telepon"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputAlamat"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeErrorColor="@color/red_danger"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:hintEnabled="true"
+        app:endIconMode="clear_text"
+        android:hint="+62"
+        style="@style/TextInputLayoutStyle"
+        app:boxStrokeColor="@color/purple"
+        app:hintTextColor="@color/purple"
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/tvNomor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/noEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/btn_Update"
@@ -160,6 +201,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputAlamat" />
+        app:layout_constraintTop_toBottomOf="@id/inputNo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
