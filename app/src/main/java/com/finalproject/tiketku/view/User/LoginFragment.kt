@@ -18,7 +18,7 @@ import com.finalproject.tiketku.viewmodel.UsersViewModel
 
 class LoginFragment : Fragment() {
 
-    private lateinit var binding : FragmentLoginBinding
+    private lateinit var binding: FragmentLoginBinding
     private lateinit var loginUserVM: UsersViewModel
     lateinit var sharedPref: SharedPreferences
 
@@ -41,7 +41,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.tvLupaSandi.setOnClickListener {
-           lupaSandi()
+            lupaSandi()
         }
 
         binding.btnLogin.setOnClickListener {
@@ -65,10 +65,11 @@ class LoginFragment : Fragment() {
                     if (currentDestination?.id == R.id.loginFragment) {
                         findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
                     }
-                    Log.d("LoginFragment","email resetPassword = $email")
+                    Log.d("LoginFragment", "email resetPassword = $email")
                 } else {
                     // Login failed
-                    Toast.makeText(requireContext(), "Reset Password Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Reset Password Failed", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 
@@ -81,38 +82,59 @@ class LoginFragment : Fragment() {
         val password = binding.passwordEdiText.text.toString()
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(requireContext(), "Email and password are required", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Email and password are required", Toast.LENGTH_SHORT)
+                .show()
         } else {
             loginUserVM.dataLoginUser.observe(viewLifecycleOwner) { dataLoginUser ->
                 if (dataLoginUser != null && dataLoginUser.isNotEmpty()) {
-                    // Login success
-                    Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
+                    val responseUser = dataLoginUser[0]
 
-                    // Simpan status login ke shared preferences
-                    val editor = sharedPref.edit()
-                    editor.putBoolean("isLoggedIn", true)
-                    editor.apply()
+                    if (responseUser.accessToken!= null) {
+                        // Login success
+                        Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
 
-                    // Simpan email dan password pengguna ke SharedPreferences
-                    editor.putString("email", email)
-                    editor.putString("password", password)
-                    editor.apply()
+                        // Simpan status login ke shared preferences
+                        val editor = sharedPref.edit()
+                        editor.putBoolean("isLoggedIn", true)
+                        editor.apply()
 
-                    // Ambil ID halaman terakhir yang diklik dari shared preferences
-                    val lastClickedItemId = sharedPref.getInt("clickedMenuItemId", 0)
+                        val accessToken = responseUser.accessToken // Get the token from the response
 
-                    // Cek apakah pengguna belum menavigasi ke halaman apa pun sebelumnya
-                    val destinationId = if (lastClickedItemId != 0) {
-                        lastClickedItemId
+                        // Simpan username, alamat, dan nama lengkap ke SharedPreferences
+                        val username = responseUser.username
+                        val alamat = responseUser.alamat
+                        val namaLengkap = responseUser.namaLengkap
+
+                        editor.putString("username", username)
+                        editor.putString("alamat", alamat)
+                        editor.putString("namaLengkap", namaLengkap)
+                        editor.putString("accessToken", accessToken) // Save the token to SharedPreferences
+                        editor.apply()
+
+                        // Ambil ID halaman terakhir yang diklik dari shared preferences
+                        val lastClickedItemId = sharedPref.getInt("clickedMenuItemId", 0)
+
+                        // Cek apakah pengguna belum menavigasi ke halaman apa pun sebelumnya
+                        val destinationId = if (lastClickedItemId != 0) {
+                            lastClickedItemId
+                        } else {
+                            R.id.homeFragment // Gunakan halaman beranda sebagai alternatif
+                        }
+
+                        // Navigasikan pengguna ke halaman terakhir yang diklik atau halaman beranda
+                        findNavController().navigate(destinationId)
+
                     } else {
-                        R.id.homeFragment // Gunakan halaman beranda sebagai alternatif
+                        // Login failed (token is null)
+                        Toast.makeText(
+                            requireContext(),
+                            "Login Failed: Invalid token",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
-                    // Navigasikan pengguna ke halaman terakhir yang diklik atau halaman beranda
-                    findNavController().navigate(destinationId)
-
                 } else {
-                    // Login failed
+                    // Login failed (empty response)
                     Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -120,6 +142,4 @@ class LoginFragment : Fragment() {
             loginUserVM.postUserLogin(email, password)
         }
     }
-
-
 }

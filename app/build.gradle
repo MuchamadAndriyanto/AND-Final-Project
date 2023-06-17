@@ -39,13 +39,24 @@ android {
 }
 
 dependencies {
-// Retrofit
+
+    //viewmodel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+
+    //livedata
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
+    // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 
-    //viewmodel
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
 
     //data store
     implementation "androidx.datastore:datastore-preferences:1.0.0"

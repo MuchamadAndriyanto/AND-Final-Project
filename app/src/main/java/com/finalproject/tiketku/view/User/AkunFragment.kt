@@ -1,19 +1,23 @@
 package com.finalproject.tiketku.view.User
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.finalproject.tiketku.databinding.FragmentAkunBinding
-import com.finalproject.tiketku.model.UpdateProfilePost
+import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 
 class AkunFragment : Fragment() {
     private lateinit var binding: FragmentAkunBinding
     private lateinit var viewModel: UsersViewModel
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var token: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,25 +29,43 @@ class AkunFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
+        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
-        viewModel = ViewModelProvider(requireActivity()).get(UsersViewModel::class.java)
+        // Ambil token dari SharedPreferences
+        token = sharedPref.getString("accessToken", "") ?: ""
+
+        val username = sharedPref.getString("username", "")
+        val namaLengkap = sharedPref.getString("namaLengkap", "")
+        val alamat = sharedPref.getString("alamat", "")
+
+        binding.editTextUsername.setText(username)
+        binding.editTextNamaLengkap.setText(namaLengkap)
+        binding.editTextAlamat.setText(alamat)
 
         binding.btnUpdate.setOnClickListener {
-            val username = binding.editTextUsername.text.toString()
-            val namaLengkap = binding.editTextNamaLengkap.text.toString()
-            val alamat = binding.editTextAlamat.text.toString()
 
-            val updateProfile = UpdateProfilePost(username, namaLengkap, alamat)
-//            updateProfile(updateProfile)
+            val newUsername = binding.editTextUsername.text.toString()
+            val newNamaLengkap = binding.editTextNamaLengkap.text.toString()
+            val newAlamat = binding.editTextAlamat.text.toString()
+
+            // Simpan data pengguna yang diperbarui ke SharedPreferences
+            val editor = sharedPref.edit()
+            editor.putString("username", newUsername)
+            editor.putString("namaLengkap", newNamaLengkap)
+            editor.putString("alamat", newAlamat)
+            editor.apply()
+
+            // Buat objek UpdateProfilePost dengan data yang diperbarui
+            val updateProfile = UpdateProfilePost(newUsername, newNamaLengkap, newAlamat)
+
+            // Panggil fungsi updateProfile dari ViewModel
+            viewModel.updateProfile(token, updateProfile)
+
+            // Tampilkan pesan sukses
+            Toast.makeText(requireContext(), "Profile updated successfully", Toast.LENGTH_SHORT).show()
         }
     }
-
-//    private fun updateProfile(updateProfile: UpdateProfilePost) {
-//        viewModel.updateData(updateProfile)
-//        viewModel.dataUpdate.observe(viewLifecycleOwner) { response ->
-//            if (response != null) {
-//                Toast.makeText(requireContext(), "Data berhasil diupdate", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
 }
+
+

@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.finalproject.tiketku.model.DataLogin
@@ -7,12 +8,13 @@ import com.finalproject.tiketku.model.DataLoginUserItem
 import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.DataResetPassword
-import com.finalproject.tiketku.model.DataX
 import com.finalproject.tiketku.model.ResponseLogin
 import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
-import com.finalproject.tiketku.model.UpdateProfilePost
+import com.finalproject.tiketku.model.profile.UpdateProfilePost
+import com.finalproject.tiketku.model.profile.Data
 import com.finalproject.tiketku.network.ApiClient
+import com.finalproject.tiketku.network.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,13 +25,11 @@ class UsersViewModel : ViewModel() {
     private var livedataPassword: MutableLiveData<DataPassword?> = MutableLiveData()
     private var livedataUserLogin: MutableLiveData<List<DataLogin>?> = MutableLiveData()
     private var livedataUserRegis: MutableLiveData<ResponseUsersItem?> = MutableLiveData()
-    private var livedataUpdateProfile : MutableLiveData<List<DataX>?> = MutableLiveData()
 
     val dataResetPassword: MutableLiveData<ResponseResetPassword?> get() = livedataResetPassword
     val dataLoginPassword: MutableLiveData<DataPassword?> get() = livedataPassword
     val dataLoginUser: MutableLiveData<List<DataLogin>?> get() = livedataUserLogin
     val dataPostUserRegis: MutableLiveData<ResponseUsersItem?> get() = livedataUserRegis
-    val dataUpdate: MutableLiveData<List<DataX>?> get() = livedataUpdateProfile
 
     fun postUserRegister(dataUsers: DataPostUsersItem) {
         ApiClient.instance.registerUser(dataUsers).enqueue(object : Callback<ResponseUsersItem> {
@@ -108,25 +108,27 @@ class UsersViewModel : ViewModel() {
             })
     }
 
-    fun updateData(token : String, updateprofile: UpdateProfilePost){
-        ApiClient.instance.updateProfile("Bearer $token",updateprofile).enqueue(object :
-            Callback<List<DataX>>{
-            override fun onResponse(
-                call: Call<List<DataX>>,
-                response: Response<List<DataX>>
-            ) {
-                if(response.isSuccessful){
-                    livedataUpdateProfile.postValue(response.body())
-                }else{
-                    livedataUpdateProfile.postValue(null)
+    private val apiService: ApiService = ApiClient.instance
+    val livedataUpdateProfile = MutableLiveData<List<Data>?>()
+
+    fun updateProfile(token: String, updateProfile: UpdateProfilePost) {
+        val bearerToken = "Bearer $token"
+
+        val call = apiService.updateProfile(bearerToken, updateProfile)
+        call.enqueue(object : Callback<List<Data>> {
+            override fun onResponse(call: Call<List<Data>>, response: Response<List<Data>>) {
+                if (response.isSuccessful) {
+                    livedataUpdateProfile.value = response.body()
+                } else {
+                    Log.e("UserViewModel", "Failed to update profile")
+                    livedataUpdateProfile.value = null
                 }
             }
 
-            override fun onFailure(call: Call<List<DataX>>, t: Throwable) {
-                livedataUpdateProfile.postValue(null)
+            override fun onFailure(call: Call<List<Data>>, t: Throwable) {
+                Log.e("UserViewModel", "Failed to update profile", t)
+                livedataUpdateProfile.value = null
             }
-
         })
     }
 }
-
