@@ -58,6 +58,10 @@ class DestinasiPencarianFragment : Fragment() {
             getSearch(requireContext(), kotaSearch)
         }
 
+        binding.tvHapus.setOnClickListener{
+            clearSearch()
+        }
+
         sharedPreferences = requireContext().getSharedPreferences("histori", Context.MODE_PRIVATE)
 
         showSearchHistory(requireContext())
@@ -150,5 +154,12 @@ class DestinasiPencarianFragment : Fragment() {
             // Melakukan pencarian berdasarkan teks yang diklik
         }*/
     }
+
+    private fun clearSearch() {
+        binding.etSearch.text.clear()
+        val emptyList: List<Data> = emptyList()
+        showSearch(requireContext(), emptyList)
+    }
+
 
 }
