@@ -7,7 +7,15 @@
     android:layout_margin="1dp"
     android:padding="2dp">
 
-
+    <TextView
+        android:id="@+id/tvLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="histori - "
+        android:layout_margin="2dp"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        />
 
     <TextView
         android:id="@+id/tvDestination"

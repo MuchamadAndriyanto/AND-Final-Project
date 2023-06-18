@@ -17,7 +17,7 @@ RecyclerView.Adapter<HistoriPencarianAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_destinasi, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_histori_pencarian, parent, false)
         return ViewHolder(view)
     }
 

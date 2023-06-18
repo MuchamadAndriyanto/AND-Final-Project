@@ -68,6 +68,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:text="Pencarian Terkini"
+        android:textSize="18dp"
         android:textColor="@color/black" />
 
     <TextView
