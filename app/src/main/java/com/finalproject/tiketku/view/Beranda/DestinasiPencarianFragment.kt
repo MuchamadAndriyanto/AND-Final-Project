@@ -54,16 +54,6 @@ class DestinasiPencarianFragment : Fragment() {
 
     }
 
-    /*fun getSearch(context: Context,kota: String) {
-        if (binding.etSearch.text.toString().isNotEmpty()) {
-            searchVM.callGetSearch(kota)
-            searchVM.search.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    showSearch(context,it)
-                }
-            }
-        }
-    }*/
 
     fun getSearch(context: Context, kota: String) {
         val searchText = binding.etSearch.text.toString().trim()
@@ -71,7 +61,6 @@ class DestinasiPencarianFragment : Fragment() {
             searchVM.callGetSearch(kota)
             searchVM.search.observe(viewLifecycleOwner) { searchResults ->
                 val filteredResults = searchResults?.filter { data ->
-                    // Ubah logika pencocokan di sini sesuai kebutuhan Anda
                     data.kota.contains(searchText, ignoreCase = true)
                 }
                 showSearch(context, filteredResults ?: emptyList())
