@@ -1,11 +1,14 @@
 package com.finalproject.tiketku.view.Beranda
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +17,7 @@ import com.finalproject.tiketku.adapter.DestinasiAdapter
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
 import com.finalproject.tiketku.model.BandaraAwal
+import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.viewmodel.DestinasiViewModel
 import com.finalproject.tiketku.viewmodel.UsersViewModel
@@ -21,6 +25,8 @@ import com.finalproject.tiketku.viewmodel.UsersViewModel
 class DestinasiPencarianFragment : Fragment() {
     private lateinit var binding: FragmentDestinasiPencarianBinding
     private lateinit var searchVM: DestinasiViewModel
+
+    private var selectedClass: Data? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,23 +47,40 @@ class DestinasiPencarianFragment : Fragment() {
         searchVM = ViewModelProvider(requireActivity()).get(DestinasiViewModel::class.java)
         binding.ivSearch.setOnClickListener {
             val kotaSearch = binding.etSearch.text.toString()
-            getSearch(kotaSearch)
+
+            getSearch(requireContext(), kotaSearch)
         }
+
+
     }
 
-    fun getSearch(kota: String) {
-        if (binding.etSearch.text.isNotEmpty()) {
+    /*fun getSearch(context: Context,kota: String) {
+        if (binding.etSearch.text.toString().isNotEmpty()) {
             searchVM.callGetSearch(kota)
             searchVM.search.observe(viewLifecycleOwner) {
                 if (it != null) {
-                    showSearch(it)
+                    showSearch(context,it)
                 }
+            }
+        }
+    }*/
+
+    fun getSearch(context: Context, kota: String) {
+        val searchText = binding.etSearch.text.toString().trim()
+        if (searchText.isNotEmpty()) {
+            searchVM.callGetSearch(kota)
+            searchVM.search.observe(viewLifecycleOwner) { searchResults ->
+                val filteredResults = searchResults?.filter { data ->
+                    // Ubah logika pencocokan di sini sesuai kebutuhan Anda
+                    data.kota.contains(searchText, ignoreCase = true)
+                }
+                showSearch(context, filteredResults ?: emptyList())
             }
         }
     }
 
-    fun showSearch(data: List<Data>) {
-        val searchAdapter = DestinasiAdapter(data)
+    fun showSearch(context: Context,data: List<Data>) {
+        val searchAdapter = DestinasiAdapter(context,data)
         binding.rvDestination.adapter = searchAdapter
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.rvDestination.layoutManager = layoutManager
@@ -71,20 +94,32 @@ class DestinasiPencarianFragment : Fragment() {
 
         searchAdapter.onClick = {item ->
             val kota = item.kota
-            clik(kota)
+            clik(context,kota)
         }
 
     }
 
-    private fun clik(kota: String){
+    private fun clik(context: Context,kota: String){
+
         binding.rvDestination.layoutManager = LinearLayoutManager(requireContext())
         binding.rvDestination.setHasFixedSize(false)
         searchVM.callGetSearch(kota)
         searchVM.search.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.rvDestination.adapter = DestinasiAdapter(it)
+                binding.rvDestination.adapter = DestinasiAdapter(context,it)
+
             }
         }
+    }
+
+    private fun saveSelectedClass(selectedClass: Data) {
+        val sharedPreferences = requireContext().getSharedPreferences("search", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("search", selectedClass.kota)
+        editor.apply()
+
+        setFragmentResult("search", bundleOf("search" to selectedClass.kota))
+
     }
 
 }
