@@ -2,6 +2,7 @@ package com.finalproject.tiketku.view.Beranda
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.adapter.DestinasiAdapter
 import com.finalproject.tiketku.R
+import com.finalproject.tiketku.adapter.HistoriPencarianAdapter
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
 import com.finalproject.tiketku.model.BandaraAwal
 import com.finalproject.tiketku.model.DummySetClass
@@ -25,6 +27,10 @@ import com.finalproject.tiketku.viewmodel.UsersViewModel
 class DestinasiPencarianFragment : Fragment() {
     private lateinit var binding: FragmentDestinasiPencarianBinding
     private lateinit var searchVM: DestinasiViewModel
+    private val PREF_NAME = "SearchHistory"
+    private val KEY_HISTORY = "search_history"
+    private lateinit var sharedPreferences: SharedPreferences
+
 
     private var selectedClass: Data? = null
 
@@ -45,13 +51,16 @@ class DestinasiPencarianFragment : Fragment() {
         }
         /*searchVM = ViewModelProvider(this).get(DestinasiViewModel::class.java)*/
         searchVM = ViewModelProvider(requireActivity()).get(DestinasiViewModel::class.java)
+
         binding.ivSearch.setOnClickListener {
             val kotaSearch = binding.etSearch.text.toString()
 
             getSearch(requireContext(), kotaSearch)
         }
 
+        sharedPreferences = requireContext().getSharedPreferences("histori", Context.MODE_PRIVATE)
 
+        showSearchHistory(requireContext())
     }
 
 
@@ -64,6 +73,7 @@ class DestinasiPencarianFragment : Fragment() {
                     data.kota.contains(searchText, ignoreCase = true)
                 }
                 showSearch(context, filteredResults ?: emptyList())
+                saveSearchHistory(searchText)
             }
         }
     }
@@ -109,6 +119,36 @@ class DestinasiPencarianFragment : Fragment() {
 
         setFragmentResult("search", bundleOf("search" to selectedClass.kota))
 
+    }
+
+    private fun saveSearchHistory(searchText: String) {
+        val searchHistory = getSearchHistory().toMutableList()
+        searchHistory.add(searchText)
+
+        val editor = sharedPreferences.edit()
+        editor.putStringSet(KEY_HISTORY, searchHistory.toSet())
+        editor.apply()
+    }
+
+    private fun getSearchHistory(): Set<String> {
+        return sharedPreferences.getStringSet(KEY_HISTORY, emptySet()) ?: emptySet()
+    }
+
+    fun showSearchHistory(context: Context) {
+
+
+        // Histori pencarian
+        val searchHistory = getSearchHistory().toList()
+        val searchHistoryAdapter = HistoriPencarianAdapter(context, searchHistory)
+        binding.rvDestination.adapter = searchHistoryAdapter
+        binding.rvDestination.layoutManager = LinearLayoutManager(context)
+
+        /*searchHistoryAdapter.onItemClick = { searchText ->
+            // Mengatur teks pencarian saat item histori pencarian diklik
+            binding.etSearch.setText(searchText)
+
+            // Melakukan pencarian berdasarkan teks yang diklik
+        }*/
     }
 
 }
