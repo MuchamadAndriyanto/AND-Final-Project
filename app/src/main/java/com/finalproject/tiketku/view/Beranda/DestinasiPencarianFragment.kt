@@ -59,7 +59,7 @@ class DestinasiPencarianFragment : Fragment() {
         }
 
         binding.tvHapus.setOnClickListener{
-            clearSearch()
+            clearSearchHistory(it, requireContext(), "kota")
         }
 
         sharedPreferences = requireContext().getSharedPreferences("histori", Context.MODE_PRIVATE)
@@ -160,6 +160,28 @@ class DestinasiPencarianFragment : Fragment() {
         val emptyList: List<Data> = emptyList()
         showSearch(requireContext(), emptyList)
     }
+
+    private fun loadSearchHistory(context: Context,kota: String) {
+        val searchHistory = getSearchHistory().toList()
+        val searchHistoryAdapter = HistoriPencarianAdapter(context, searchHistory)
+        searchHistoryAdapter.onItemClick = { searchText ->
+            binding.etSearch.setText(searchText)
+            getSearch(context, kota)
+        }
+
+        binding.rvDestination.adapter = searchHistoryAdapter
+        binding.rvDestination.layoutManager = LinearLayoutManager(context)
+    }
+
+    fun clearSearchHistory(view: View, context: Context, kota: String) {
+        val editor = sharedPreferences.edit()
+        editor.remove(KEY_HISTORY)
+        editor.apply()
+
+        loadSearchHistory(context, kota)
+
+    }
+
 
 
 }
