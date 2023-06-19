@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.view.Beranda
 
+import FavoritDestinasiViewModel
 import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +16,13 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.view.ContextThemeWrapper
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
+import com.finalproject.tiketku.model.favorit.DataFavorite
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -33,6 +41,9 @@ class HomeFragment : Fragment() {
     private val sharedPreferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
         updatePassengerCount()
     }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: DestinasiFavoritAdapter
+    private lateinit var listDestinasiFavorit: List<DataFavorite>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,14 +60,14 @@ class HomeFragment : Fragment() {
 
         switchMaterial.setOnCheckedChangeListener { _, isChecked ->
             val thumbTint = if (isChecked) {
-                ContextCompat.getColor(requireContext(), R.color.purple)  // Purple color
+                ContextCompat.getColor(requireContext(), R.color.purple)
             } else {
-                ContextCompat.getColor(requireContext(), R.color.white)  // Grey color
+                ContextCompat.getColor(requireContext(), R.color.white)
             }
             val textColor = if (isChecked) {
-                ContextCompat.getColor(requireContext(), R.color.purple)  // Warna ungu
+                ContextCompat.getColor(requireContext(), R.color.purple)
             } else {
-                ContextCompat.getColor(requireContext(), R.color.grey)  // Warna abu-abu
+                ContextCompat.getColor(requireContext(), R.color.grey)
             }
             tvPilihTanggal.setTextColor(textColor)
             // Mengatur status enabled pada "Pilih tanggal" TextView berdasarkan status switch
@@ -99,6 +110,17 @@ class HomeFragment : Fragment() {
             binding.tvTujuan.text = currentDepartureText
         }
 
+        // Isi listDestinasiFavorit dengan data destinasi favorit yang sesuai
+        val viewModelFavorite = ViewModelProvider(this).get(FavoritDestinasiViewModel::class.java)
+        viewModelFavorite.getFavorite()
+        viewModelFavorite.livedataFavorite.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null) {
+                val adapter = DestinasiFavoritAdapter(requireContext(), favList)
+                binding.rvItemDestinasi.layoutManager = GridLayoutManager(requireContext(), 2)
+                binding.rvItemDestinasi.adapter = adapter
+            }
+        })
+
 
         return view
     }
@@ -134,9 +156,9 @@ class HomeFragment : Fragment() {
         }
 
         sharedPreferences.edit()
-            .putInt("baby", 2)
+            .putInt("baby", 0)
             .putInt("child", 0)
-            .putInt("adult", 0)
+            .putInt("adult", 1)
             .apply()
 
         updatePassengerCount()
@@ -163,6 +185,7 @@ class HomeFragment : Fragment() {
         val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
 
         binding.tvTujuan.text = selectedDestinationTo
+
 
     }
 
@@ -238,7 +261,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun updatePassengerCount() {
-        babyCount = sharedPreferences.getInt("baby", 2)
+        babyCount = sharedPreferences.getInt("baby", 0)
         childCount = sharedPreferences.getInt("child", 0)
         adultCount = sharedPreferences.getInt("adult", 0)
         val totalPassengers = babyCount + childCount + adultCount
