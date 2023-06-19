@@ -1,6 +1,6 @@
 package com.finalproject.tiketku.view.Beranda
 
-import FavoritDestinasiViewModel
+import com.finalproject.tiketku.viewmodel.FavoritDestinasiViewModel
 import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -23,10 +23,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
 import com.finalproject.tiketku.model.favorit.DataFavorite
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
