@@ -11,8 +11,9 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentSplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
 

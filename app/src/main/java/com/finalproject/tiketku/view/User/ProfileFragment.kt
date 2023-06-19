@@ -13,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentHomeBinding
 import com.finalproject.tiketku.databinding.FragmentProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private lateinit var binding : FragmentProfileBinding

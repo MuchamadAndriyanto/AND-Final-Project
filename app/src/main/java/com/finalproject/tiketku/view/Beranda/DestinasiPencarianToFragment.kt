@@ -18,7 +18,9 @@ import com.finalproject.tiketku.adapter.HistoriPencarianAdapter
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
 import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.viewmodel.DestinasiViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DestinasiPencarianToFragment : Fragment() {
     private lateinit var binding: FragmentDestinasiPencarianBinding
     private lateinit var searchVM: DestinasiViewModel

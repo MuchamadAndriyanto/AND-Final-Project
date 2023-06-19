@@ -17,7 +17,9 @@ import com.finalproject.tiketku.databinding.FragmentVerifikasiBinding
 import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class VerifikasiFragment : Fragment() {
     private lateinit var binding: FragmentVerifikasiBinding

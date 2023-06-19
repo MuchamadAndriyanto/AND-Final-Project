@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.finalproject.tiketku.databinding.FragmentAkunBinding
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.viewmodel.UsersViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AkunFragment : Fragment() {
     private lateinit var binding: FragmentAkunBinding
     private lateinit var viewModel: UsersViewModel

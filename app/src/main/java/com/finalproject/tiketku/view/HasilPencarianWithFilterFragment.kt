@@ -22,7 +22,9 @@ import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.ListFilter
 import com.finalproject.tiketku.model.ListHasilPencarian
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HasilPencarianWithFilterFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentHasilPencarianWithFilterBinding

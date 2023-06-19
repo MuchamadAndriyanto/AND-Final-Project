@@ -16,11 +16,14 @@ import com.finalproject.tiketku.model.profile.Data
 import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.network.ApiClient
 import com.finalproject.tiketku.network.ApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class UsersViewModel : ViewModel() {
+@HiltViewModel
+class UsersViewModel @Inject constructor(private var api : ApiService): ViewModel() {
 
     private var livedataResetPassword: MutableLiveData<ResponseResetPassword?> = MutableLiveData()
     private var livedataPassword: MutableLiveData<DataPassword?> = MutableLiveData()
@@ -33,7 +36,7 @@ class UsersViewModel : ViewModel() {
     val dataPostUserRegis: MutableLiveData<ResponseUsersItem?> get() = livedataUserRegis
 
     fun postUserRegister(dataUsers: DataPostUsersItem) {
-        ApiClient.instance.registerUser(dataUsers).enqueue(object : Callback<ResponseUsersItem> {
+       api.registerUser(dataUsers).enqueue(object : Callback<ResponseUsersItem> {
             override fun onResponse(
                 call: Call<ResponseUsersItem>,
                 response: Response<ResponseUsersItem>
@@ -54,7 +57,7 @@ class UsersViewModel : ViewModel() {
     fun postUserLogin(email: String, password: String) {
         val request = DataLoginUserItem(email, password)
 
-        ApiClient.instance.postLogin(request).enqueue(object : Callback<ResponseLogin> {
+        api.postLogin(request).enqueue(object : Callback<ResponseLogin> {
             override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
                 val dataLogin = response.body()?.data
 
@@ -72,8 +75,8 @@ class UsersViewModel : ViewModel() {
     }
 
     fun postUserPassword(dataPassword: DataPassword) {
-        // Menggunakan callback retrofit
-        ApiClient.instance.postPassword(dataPassword).enqueue(object : Callback<DataPassword> {
+
+        api.postPassword(dataPassword).enqueue(object : Callback<DataPassword> {
             override fun onResponse(call: Call<DataPassword>, response: Response<DataPassword>) {
                 if (response.isSuccessful) {
                     livedataPassword.postValue(response.body())
@@ -89,8 +92,8 @@ class UsersViewModel : ViewModel() {
     }
 
     fun postUserResetPassword(dataResetPassword: DataResetPassword) {
-        // Menggunakan callback retrofit
-        ApiClient.instance.postResetPassword(dataResetPassword)
+
+        api.postResetPassword(dataResetPassword)
             .enqueue(object : Callback<ResponseResetPassword> {
                 override fun onResponse(
                     call: Call<ResponseResetPassword>,
@@ -109,7 +112,7 @@ class UsersViewModel : ViewModel() {
             })
     }
 
-    private val apiService: ApiService = ApiClient.instance
+    private val apiService: ApiService = api
     val livedataUpdateProfile = MutableLiveData<ResponseProfile?>()
 
     fun updateProfile(token: String, updateProfile: UpdateProfilePost) {
