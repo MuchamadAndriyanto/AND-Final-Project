@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -92,12 +93,18 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
 
+        // Mengatur ulang data ke nilai awal
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-        // Mengatur ulang data ke nilai awal, yaitu "Jakarta (JKT)"
         editor.putString("key", "Jakarta (JKT)")
         editor.apply()
+
+        val sharedPreferencesTo = getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
+        val editorTo = sharedPreferencesTo.edit()
+
+        editorTo.putString("keyTo", "Tujuan Penerbangan ")
+        editorTo.apply()
     }
 
     private fun isLoggedIn(): Boolean {

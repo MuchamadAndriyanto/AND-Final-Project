@@ -15,10 +15,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.view.ContextThemeWrapper
-import android.widget.ImageView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -38,14 +34,12 @@ class HomeFragment : Fragment() {
         updatePassengerCount()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
-
 
         sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
 
@@ -71,7 +65,6 @@ class HomeFragment : Fragment() {
             switchMaterial.thumbTintList = ColorStateList.valueOf(thumbTint)
             tvPilihTanggal.isFocusable = isChecked
             dateReturn.isClickable = isChecked
-
 
             if (!isChecked) {
                 // Reset nilai tanggal kembali saat switch dinonaktifkan
@@ -166,11 +159,10 @@ class HomeFragment : Fragment() {
 
         binding.tvDeparture.text = selectedDestination
 
-        val sharedPreferencesto = requireContext().getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
-        val selectedDestinationto = sharedPreferencesto.getString("keyTo", "")
+        val sharedPreferencesTo = requireContext().getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
+        val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
 
-        binding.tvTujuan.text = selectedDestinationto
-
+        binding.tvTujuan.text = selectedDestinationTo
 
     }
 
@@ -231,12 +223,12 @@ class HomeFragment : Fragment() {
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceListener)
         updatePassengerCount()
 
-
     }
 
     override fun onPause() {
         super.onPause()
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceListener)
+
     }
 
     override fun onDestroyView() {
@@ -265,6 +257,5 @@ class HomeFragment : Fragment() {
 
         binding.tvBusiness.text = className
     }
-
 
 }
