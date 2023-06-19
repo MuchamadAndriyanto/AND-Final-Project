@@ -15,10 +15,8 @@ import com.finalproject.tiketku.model.BandaraAwal
 import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.model.search.SearchResponse
 
-class DestinasiAdapter(private val context: Context, private val list: List<Data>) :
-    RecyclerView.Adapter<DestinasiAdapter.ViewHolder>() {
+class DestinasiAdapter(private val context: Context, private val list: List<Data>) : RecyclerView.Adapter<DestinasiAdapter.ViewHolder>() {
 
-    var onItemClick: ((Data) -> Unit)? = null
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
     inner class ViewHolder(val binding: ItemDestinasiBinding) : RecyclerView.ViewHolder(binding.root) {

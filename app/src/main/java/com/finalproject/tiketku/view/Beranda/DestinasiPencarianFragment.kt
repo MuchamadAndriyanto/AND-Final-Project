@@ -45,16 +45,9 @@ class DestinasiPencarianFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ivClose.setOnClickListener {
-            val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-
-            // Reset data ke nilai awal, misalnya "Jakarta (JKT)"
-            editor.putString("key", "Jakarta (JKT)")
-            editor.apply()
 
             findNavController().navigate(R.id.action_destinasiPencarianFragment_to_homeFragment)
         }
-
 
         searchVM = ViewModelProvider(requireActivity()).get(DestinasiViewModel::class.java)
 
@@ -92,20 +85,6 @@ class DestinasiPencarianFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.rvDestination.layoutManager = layoutManager
 
-        searchAdapter.onItemClick = { item ->
-            val kota = item.kota
-            click(context, kota)
-        }
-    }
-
-    // Click function
-    private fun click(context: Context, kota: String) {
-        val selectedDestination = kota
-
-        val result = Bundle().apply {
-            putString("selected_destination", selectedDestination)
-        }
-        findNavController().navigate(R.id.action_destinasiPencarianFragment_to_homeFragment, result)
     }
 
     private fun saveSearchHistory(searchText: String) {
