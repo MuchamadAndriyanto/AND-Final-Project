@@ -12,8 +12,9 @@ import com.finalproject.tiketku.databinding.FragmentAkunNonLoginBinding
 import com.finalproject.tiketku.databinding.FragmentHomeBinding
 import com.finalproject.tiketku.databinding.FragmentSetClassBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AkunNonLoginFragment : Fragment() {
 
     private lateinit var binding : FragmentAkunNonLoginBinding

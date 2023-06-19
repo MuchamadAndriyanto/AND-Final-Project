@@ -16,7 +16,9 @@ import com.finalproject.tiketku.adapter.SetClassAdapter
 import com.finalproject.tiketku.databinding.FragmentSetClassBinding
 import com.finalproject.tiketku.model.DummySetClass
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SetClassFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentSetClassBinding

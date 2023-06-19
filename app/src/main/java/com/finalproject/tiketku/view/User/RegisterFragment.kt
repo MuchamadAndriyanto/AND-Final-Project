@@ -13,7 +13,9 @@ import com.finalproject.tiketku.databinding.FragmentRegisterBinding
 import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.viewmodel.UsersViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding

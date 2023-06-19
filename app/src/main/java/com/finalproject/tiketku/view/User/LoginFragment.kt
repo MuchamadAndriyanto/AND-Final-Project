@@ -15,7 +15,9 @@ import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentLoginBinding
 import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.viewmodel.UsersViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding

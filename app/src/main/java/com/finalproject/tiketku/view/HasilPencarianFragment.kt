@@ -22,7 +22,9 @@ import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
 import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.ListFilter
 import com.finalproject.tiketku.model.ListHasilPencarian
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HasilPencarianFragment : Fragment() {
     private lateinit var binding: FragmentHasilPencarianBinding
     private lateinit var classAdapter: HariAdapter

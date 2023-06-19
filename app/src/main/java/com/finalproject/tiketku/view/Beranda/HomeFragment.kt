@@ -15,10 +15,12 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.view.ContextThemeWrapper
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding

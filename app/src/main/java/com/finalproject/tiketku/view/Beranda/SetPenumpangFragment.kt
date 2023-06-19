@@ -11,7 +11,9 @@ import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentSetPenumpangBinding
 import com.finalproject.tiketku.model.PassengerCountListener
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SetPenumpangFragment : BottomSheetDialogFragment() {
 
     // Deklarasikan listener

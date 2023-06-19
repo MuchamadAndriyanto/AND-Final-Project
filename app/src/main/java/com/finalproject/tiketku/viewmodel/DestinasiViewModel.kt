@@ -11,18 +11,21 @@ import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.model.search.SearchResponse
 import com.finalproject.tiketku.network.ApiClient
 import com.finalproject.tiketku.network.ApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class DestinasiViewModel : ViewModel() {
+@HiltViewModel
+class DestinasiViewModel  @Inject constructor(private var api : ApiService): ViewModel() {
 
 
     private val _search = MutableLiveData<List<Data>>()
     val search: LiveData<List<Data>> = _search
 
     fun callGetSearch(kota: String) {
-        ApiClient.instance.getSearch(kota).enqueue(object : Callback<SearchResponse> {
+       api.getSearch(kota).enqueue(object : Callback<SearchResponse> {
             override fun onResponse(
                 call: Call<SearchResponse>,
                 response: Response<SearchResponse>

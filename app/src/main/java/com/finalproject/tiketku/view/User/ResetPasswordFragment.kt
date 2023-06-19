@@ -17,7 +17,9 @@ import com.finalproject.tiketku.model.DataLoginUserItem
 import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.viewmodel.UsersViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResetPasswordFragment : Fragment() {
 
     private lateinit var binding: FragmentResetPasswordBinding

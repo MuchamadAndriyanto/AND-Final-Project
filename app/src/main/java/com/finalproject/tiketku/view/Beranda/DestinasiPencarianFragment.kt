@@ -23,7 +23,9 @@ import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.viewmodel.DestinasiViewModel
 import com.finalproject.tiketku.viewmodel.UsersViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DestinasiPencarianFragment : Fragment() {
 
     private lateinit var binding: FragmentDestinasiPencarianBinding
