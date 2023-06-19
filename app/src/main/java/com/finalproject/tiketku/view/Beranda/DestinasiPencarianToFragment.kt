@@ -1,31 +1,25 @@
 package com.finalproject.tiketku.view.Beranda
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.finalproject.tiketku.adapter.DestinasiAdapter
 import com.finalproject.tiketku.R
+import com.finalproject.tiketku.adapter.DestinasiAdapter
+import com.finalproject.tiketku.adapter.DestinasiToAdapter
 import com.finalproject.tiketku.adapter.HistoriPencarianAdapter
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
-import com.finalproject.tiketku.model.BandaraAwal
-import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.viewmodel.DestinasiViewModel
-import com.finalproject.tiketku.viewmodel.UsersViewModel
 
-class DestinasiPencarianFragment : Fragment() {
-
+class DestinasiPencarianToFragment : Fragment() {
     private lateinit var binding: FragmentDestinasiPencarianBinding
     private lateinit var searchVM: DestinasiViewModel
     private lateinit var sharedPreferences: SharedPreferences
@@ -46,7 +40,7 @@ class DestinasiPencarianFragment : Fragment() {
 
         binding.ivClose.setOnClickListener {
 
-            findNavController().navigate(R.id.action_destinasiPencarianFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_destinasiPencarianToFragment_to_homeFragment)
         }
 
         searchVM = ViewModelProvider(requireActivity()).get(DestinasiViewModel::class.java)
@@ -79,7 +73,7 @@ class DestinasiPencarianFragment : Fragment() {
         }
     }
     private fun showSearch(context: Context, data: List<Data>) {
-        val searchAdapter = DestinasiAdapter(context, data)
+        val searchAdapter = DestinasiToAdapter(context, data)
         binding.rvDestination.adapter = searchAdapter
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.rvDestination.layoutManager = layoutManager

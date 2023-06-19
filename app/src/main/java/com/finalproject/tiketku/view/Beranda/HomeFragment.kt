@@ -126,7 +126,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.flTujuan.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_destinasiPencarianFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_destinasiPencarianToFragment)
         }
 
         binding.btnPencarian.setOnClickListener {
@@ -165,6 +165,11 @@ class HomeFragment : Fragment() {
         val selectedDestination = sharedPreferences.getString("key", "")
 
         binding.tvDeparture.text = selectedDestination
+
+        val sharedPreferencesto = requireContext().getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
+        val selectedDestinationto = sharedPreferencesto.getString("keyTo", "")
+
+        binding.tvTujuan.text = selectedDestinationto
 
 
     }

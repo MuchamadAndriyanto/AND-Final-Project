@@ -30,8 +30,7 @@ class DestinasiViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val data = response.body()
                     if (data != null) {
-                        _search.postValue(data.data as List<Data>?)/*
-                        Log.e("Error : ", "onFailure : ${response.message()}")*/
+                        _search.postValue(data.data as List<Data>?)
                     }
                 } else {
                     Log.e("Error : ", "onFailure : ${response.message()}")
