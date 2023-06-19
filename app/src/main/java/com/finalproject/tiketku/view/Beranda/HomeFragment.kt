@@ -97,6 +97,16 @@ class HomeFragment : Fragment() {
 
         }
 
+        binding.flip.setOnClickListener {
+
+            val currentDepartureText = binding.tvDeparture.text.toString()
+            val currentArrivalText = binding.tvTujuan.text.toString()
+
+            binding.tvDeparture.text = currentArrivalText
+            binding.tvTujuan.text = currentDepartureText
+        }
+
+
         return view
     }
 
@@ -150,6 +160,11 @@ class HomeFragment : Fragment() {
         }
         
         loadSelectedClass()
+
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val selectedDestination = sharedPreferences.getString("key", "")
+
+        binding.tvDeparture.text = selectedDestination
 
 
     }
@@ -211,6 +226,7 @@ class HomeFragment : Fragment() {
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceListener)
         updatePassengerCount()
 
+
     }
 
     override fun onPause() {
@@ -220,6 +236,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
         parentFragmentManager.clearFragmentResultListener("selected_class")
     }
 
@@ -243,5 +260,6 @@ class HomeFragment : Fragment() {
 
         binding.tvBusiness.text = className
     }
+
 
 }

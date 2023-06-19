@@ -15,38 +15,40 @@ import com.finalproject.tiketku.model.BandaraAwal
 import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.model.search.SearchResponse
 
-class DestinasiAdapter (val context: Context,var list : List<Data>): RecyclerView.Adapter<DestinasiAdapter.ViewHolder>() {
-    var onClick : ((Data) -> Unit)? = null
+class DestinasiAdapter(private val context: Context, private val list: List<Data>) :
+    RecyclerView.Adapter<DestinasiAdapter.ViewHolder>() {
 
+    var onItemClick: ((Data) -> Unit)? = null
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
-    class ViewHolder(var binding : ItemDestinasiBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bindFilms(item: Data,sharedPreferences: SharedPreferences){
-            binding.tvDestination.setOnClickListener{
+    inner class ViewHolder(val binding: ItemDestinasiBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bindFilms(item: Data, sharedPreferences: SharedPreferences) {
+            binding.tvDestination.setOnClickListener {
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                // Menyimpan data ke SharedPreferences
                 editor.putString("key", item.kota)
                 editor.apply()
 
-                Navigation.findNavController(itemView).navigate(R.id.action_destinasiPencarianFragment_to_homeFragment)
+                val navController = Navigation.findNavController(binding.root)
+                navController.previousBackStackEntry?.savedStateHandle?.set("selected_destination", item.kota)
+                navController.navigate(R.id.action_destinasiPencarianFragment_to_homeFragment)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var view = ItemDestinasiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return  ViewHolder(view)
+        val view = ItemDestinasiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var source = list[position]
-        holder.bindFilms(source , sharedPreferences)
-        holder.binding.tvDestination.text = source.kota
+        val item = list[position]
+        holder.bindFilms(item, sharedPreferences)
+        holder.binding.tvDestination.text = item.kota
 
         holder.itemView.setOnClickListener {
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             // Menyimpan data ke SharedPreferences
-            editor.putString("key", source.kota)
+            editor.putString("key", item.kota)
             editor.apply()
 
             Navigation.findNavController(it).navigate(R.id.action_destinasiPencarianFragment_to_homeFragment)
@@ -54,8 +56,6 @@ class DestinasiAdapter (val context: Context,var list : List<Data>): RecyclerVie
     }
 
     override fun getItemCount(): Int {
-        return  list.size
+        return list.size
     }
-
-
 }

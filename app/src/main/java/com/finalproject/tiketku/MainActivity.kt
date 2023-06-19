@@ -89,6 +89,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Mengatur ulang data ke nilai awal, yaitu "Jakarta (JKT)"
+        editor.putString("key", "Jakarta (JKT)")
+        editor.apply()
+    }
+
     private fun isLoggedIn(): Boolean {
         return sharedPref.getBoolean("isLoggedIn", false)
     }

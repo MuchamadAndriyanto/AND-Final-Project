@@ -96,9 +96,10 @@
                                             style="@style/TextTitle16Medium"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Jakarta (JKTA)"
+                                            android:text="Jakarta (JKT)"
                                             android:textColor="@color/black"
                                             android:layout_marginStart="20dp" />
+
                                     </com.google.android.flexbox.FlexboxLayout>
 
                                     <LinearLayout
@@ -424,12 +425,13 @@
                 android:layout_marginTop="24dp" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvItemDestinasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                tools:listitem="@layout/item_destinasi_fav"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" />
+                android:layout_marginEnd="16dp"
+                tools:listitem="@layout/item_destinasi_fav" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

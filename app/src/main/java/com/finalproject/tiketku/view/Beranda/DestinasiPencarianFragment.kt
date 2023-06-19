@@ -25,20 +25,18 @@ import com.finalproject.tiketku.viewmodel.DestinasiViewModel
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 
 class DestinasiPencarianFragment : Fragment() {
+
     private lateinit var binding: FragmentDestinasiPencarianBinding
     private lateinit var searchVM: DestinasiViewModel
-    private val PREF_NAME = "SearchHistory"
-    private val KEY_HISTORY = "search_history"
     private lateinit var sharedPreferences: SharedPreferences
 
-
-    private var selectedClass: Data? = null
+    private val PREF_NAME = "SearchHistory"
+    private val KEY_HISTORY = "search_history"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentDestinasiPencarianBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,28 +45,34 @@ class DestinasiPencarianFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ivClose.setOnClickListener {
+            val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+
+            // Reset data ke nilai awal, misalnya "Jakarta (JKT)"
+            editor.putString("key", "Jakarta (JKT)")
+            editor.apply()
+
             findNavController().navigate(R.id.action_destinasiPencarianFragment_to_homeFragment)
         }
-        /*searchVM = ViewModelProvider(this).get(DestinasiViewModel::class.java)*/
+
+
         searchVM = ViewModelProvider(requireActivity()).get(DestinasiViewModel::class.java)
 
         binding.ivSearch.setOnClickListener {
             val kotaSearch = binding.etSearch.text.toString()
-
             getSearch(requireContext(), kotaSearch)
         }
 
-        binding.tvHapus.setOnClickListener{
-            clearSearchHistory(it, requireContext(), "kota")
+        binding.tvHapus.setOnClickListener {
+            clearSearchHistory(requireContext(), "kota")
         }
 
-        sharedPreferences = requireContext().getSharedPreferences("histori", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
         showSearchHistory(requireContext())
     }
 
-
-    fun getSearch(context: Context, kota: String) {
+    private fun getSearch(context: Context, kota: String) {
         val searchText = binding.etSearch.text.toString().trim()
         if (searchText.isNotEmpty()) {
             searchVM.callGetSearch(kota)
@@ -82,47 +86,26 @@ class DestinasiPencarianFragment : Fragment() {
         }
     }
 
-    fun showSearch(context: Context,data: List<Data>) {
-        val searchAdapter = DestinasiAdapter(context,data)
+    private fun showSearch(context: Context, data: List<Data>) {
+        val searchAdapter = DestinasiAdapter(context, data)
         binding.rvDestination.adapter = searchAdapter
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.rvDestination.layoutManager = layoutManager
 
-/*        searchAdapter.onClick = { item ->
-            val idNowPlaying = item.id
-            val intent = Intent(context, HomeFragment::class.java)
-            intent.putExtra("ID", idNowPlaying.toString())
-            context.startActivity(intent)
-        }*/
-
-        searchAdapter.onClick = {item ->
+        searchAdapter.onItemClick = { item ->
             val kota = item.kota
-            clik(context,kota)
-        }
-
-    }
-
-    private fun clik(context: Context,kota: String){
-
-        binding.rvDestination.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvDestination.setHasFixedSize(false)
-        searchVM.callGetSearch(kota)
-        searchVM.search.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.rvDestination.adapter = DestinasiAdapter(context,it)
-
-            }
+            click(context, kota)
         }
     }
 
-    private fun saveSelectedClass(selectedClass: Data) {
-        val sharedPreferences = requireContext().getSharedPreferences("search", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("search", selectedClass.kota)
-        editor.apply()
+    // Click function
+    private fun click(context: Context, kota: String) {
+        val selectedDestination = kota
 
-        setFragmentResult("search", bundleOf("search" to selectedClass.kota))
-
+        val result = Bundle().apply {
+            putString("selected_destination", selectedDestination)
+        }
+        findNavController().navigate(R.id.action_destinasiPencarianFragment_to_homeFragment, result)
     }
 
     private fun saveSearchHistory(searchText: String) {
@@ -138,50 +121,24 @@ class DestinasiPencarianFragment : Fragment() {
         return sharedPreferences.getStringSet(KEY_HISTORY, emptySet()) ?: emptySet()
     }
 
-    fun showSearchHistory(context: Context) {
-
-
-        // Histori pencarian
+    private fun showSearchHistory(context: Context) {
         val searchHistory = getSearchHistory().toList()
         val searchHistoryAdapter = HistoriPencarianAdapter(context, searchHistory)
         binding.rvDestination.adapter = searchHistoryAdapter
         binding.rvDestination.layoutManager = LinearLayoutManager(context)
 
-        /*searchHistoryAdapter.onItemClick = { searchText ->
-            // Mengatur teks pencarian saat item histori pencarian diklik
-            binding.etSearch.setText(searchText)
-
-            // Melakukan pencarian berdasarkan teks yang diklik
-        }*/
-    }
-
-    private fun clearSearch() {
-        binding.etSearch.text.clear()
-        val emptyList: List<Data> = emptyList()
-        showSearch(requireContext(), emptyList)
-    }
-
-    private fun loadSearchHistory(context: Context,kota: String) {
-        val searchHistory = getSearchHistory().toList()
-        val searchHistoryAdapter = HistoriPencarianAdapter(context, searchHistory)
         searchHistoryAdapter.onItemClick = { searchText ->
             binding.etSearch.setText(searchText)
-            getSearch(context, kota)
+            getSearch(context, searchText)
         }
-
-        binding.rvDestination.adapter = searchHistoryAdapter
-        binding.rvDestination.layoutManager = LinearLayoutManager(context)
     }
 
-    fun clearSearchHistory(view: View, context: Context, kota: String) {
+    private fun clearSearchHistory(context: Context, kota: String) {
         val editor = sharedPreferences.edit()
         editor.remove(KEY_HISTORY)
         editor.apply()
 
-        loadSearchHistory(context, kota)
-
+        // Menghapus riwayat pencarian
+        showSearchHistory(context)
     }
-
-
-
 }
