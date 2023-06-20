@@ -15,6 +15,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.util.Log
 import android.view.ContextThemeWrapper
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -154,6 +155,7 @@ class HomeFragment : Fragment() {
             showDatePicker(requireContext()) { date ->
                 selectedDate = date
                 binding.tvDateDeparture.text = date
+                Log.d("homefragment","tgl=$date" )
             }
         }
 

@@ -1,6 +1,7 @@
 package com.finalproject.tiketku.view
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,18 +11,26 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
+import com.finalproject.tiketku.adapter.DestinasiAdapter
+import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
 import com.finalproject.tiketku.adapter.HariAdapter
+import com.finalproject.tiketku.adapter.HasilPenerbanganAdapter
 import com.finalproject.tiketku.adapter.SetClassAdapter
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
 import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
 import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.ListFilter
 import com.finalproject.tiketku.model.ListHasilPencarian
+import com.finalproject.tiketku.viewmodel.FavoritDestinasiViewModel
+import com.finalproject.tiketku.viewmodel.PencarianPenerbanganViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -98,6 +107,18 @@ class HasilPencarianFragment : Fragment() {
                 btnFilter2.text = selectedFilter // Memperbarui teks tombol btnFilter2 dengan hasil filter
             }
         }
+
+
+        val viewModelFavorite = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
+        viewModelFavorite.getFavorite()
+        viewModelFavorite.livedataFavorite.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null) {
+                val searchAdapter = HasilPenerbanganAdapter(requireContext(), favList)
+                binding.rvTiket.adapter = searchAdapter
+                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                binding.rvTiket.layoutManager = layoutManager
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -109,5 +130,10 @@ class HasilPencarianFragment : Fragment() {
             }
         }
     }
+
+
+
+
+
 }
 
