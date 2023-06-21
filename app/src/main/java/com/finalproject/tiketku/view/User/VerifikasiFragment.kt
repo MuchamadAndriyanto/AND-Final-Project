@@ -18,6 +18,7 @@ import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 @AndroidEntryPoint
 
@@ -51,7 +52,7 @@ class VerifikasiFragment : Fragment() {
             Log.d("VerifikasiFragment", "Token  = $token")
 
             if (token.isEmpty() || password.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), "Token and password are required", Toast.LENGTH_SHORT).show()
+                Toasty.warning(requireContext(), "Token and password are required", Toast.LENGTH_SHORT, true).show()
             } else {
                 val dataResetPassword = DataResetPassword(token, password)
 
@@ -65,11 +66,7 @@ class VerifikasiFragment : Fragment() {
                             findNavController().navigate(R.id.action_verifikasiFragment_to_loginFragment)
 
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Reset Password Failed!!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toasty.error(requireContext(), "Reset Password Failed!!", Toast.LENGTH_SHORT, true).show()
                     }
                 }
 

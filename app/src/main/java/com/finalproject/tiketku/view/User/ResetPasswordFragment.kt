@@ -18,6 +18,7 @@ import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 @AndroidEntryPoint
 class ResetPasswordFragment : Fragment() {
@@ -57,7 +58,7 @@ class ResetPasswordFragment : Fragment() {
                 // Navigasi ke halaman VerifikasiFragment
                 findNavController().navigate(R.id.action_resetPasswordFragment_to_verifikasiFragment)
             } else {
-                Toast.makeText(requireContext(), "Password tidak cocok", Toast.LENGTH_SHORT).show()
+                Toasty.warning(requireContext(), "Password tidak cocok", Toast.LENGTH_SHORT, true).show()
             }
         }
     }

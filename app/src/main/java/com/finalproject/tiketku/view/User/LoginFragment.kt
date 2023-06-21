@@ -16,6 +16,7 @@ import com.finalproject.tiketku.databinding.FragmentLoginBinding
 import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -56,7 +57,7 @@ class LoginFragment : Fragment() {
         val email = binding.emailEditText.text.toString()
 
         if (email.isEmpty()) {
-            Toast.makeText(requireContext(), "Masukkan Email", Toast.LENGTH_SHORT).show()
+            Toasty.warning(requireContext(), "Masukkan Email", Toast.LENGTH_SHORT, true).show()
 
         } else {
             loginUserVM.dataLoginPassword.observe(viewLifecycleOwner) { dataLoginPassword ->
@@ -70,7 +71,7 @@ class LoginFragment : Fragment() {
                     Log.d("LoginFragment", "email resetPassword = $email")
                 } else {
                     // Login failed
-                    Toast.makeText(requireContext(), "Reset Password Failed", Toast.LENGTH_SHORT)
+                    Toasty.error(requireContext(), "Reset Password Failed", Toast.LENGTH_SHORT, true)
                         .show()
                 }
             }
@@ -84,7 +85,7 @@ class LoginFragment : Fragment() {
         val password = binding.passwordEdiText.text.toString()
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(requireContext(), "Email and password are required", Toast.LENGTH_SHORT)
+            Toasty.warning(requireContext(), "Email and password are required", Toast.LENGTH_SHORT, true)
                 .show()
         } else {
             loginUserVM.dataLoginUser.observe(viewLifecycleOwner) { dataLoginUser ->
@@ -93,7 +94,7 @@ class LoginFragment : Fragment() {
 
                     if (responseUser.accessToken!= null) {
                         // Login success
-                        Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
+                        Toasty.success(requireContext(), "Login Success", Toast.LENGTH_SHORT, true).show()
 
                         // Simpan status login ke shared preferences
                         val editor = sharedPref.edit()
@@ -131,16 +132,12 @@ class LoginFragment : Fragment() {
 
                     } else {
                         // Login failed (token is null)
-                        Toast.makeText(
-                            requireContext(),
-                            "Login Failed: Invalid token",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toasty.error(requireContext(), "Login Failed: Invalid token", Toast.LENGTH_SHORT, true).show()
                     }
 
                 } else {
                     // Login failed (empty response)
-                    Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
+                    Toasty.error(requireContext(), "Login Failed", Toast.LENGTH_SHORT, true).show()
                 }
             }
 

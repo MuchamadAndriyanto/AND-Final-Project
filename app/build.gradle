@@ -43,6 +43,12 @@ android {
 
 dependencies {
 
+    //lottie
+    implementation 'com.airbnb.android:lottie:4.0.0'
+
+    //style toast
+    implementation 'com.github.GrenderG:Toasty:1.5.0'
+
     //hilt
     implementation "com.google.dagger:hilt-android:2.45"
     kapt "com.google.dagger:hilt-android-compiler:2.45"

@@ -14,6 +14,7 @@ import com.finalproject.tiketku.model.DataPostUsersItem
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
@@ -50,22 +51,24 @@ class RegisterFragment : Fragment() {
         val password = binding.passwordEditText.text.toString()
 
         if (username.isEmpty() || email.isEmpty() || nomor_telepon.isEmpty() || password.isEmpty()) {
-            Toast.makeText(requireContext(), "Registration Failed: Input fields cannot be empty", Toast.LENGTH_SHORT).show()
+            Toasty.warning(requireContext(), "Registration Failed: Input fields cannot be empty", Toast.LENGTH_SHORT, true).show()
             return
         }
 
         if (username.length < 5 || password.length < 5) {
-            Toast.makeText(requireContext(), "Registration Failed: Username and password must be at least 5 characters", Toast.LENGTH_SHORT).show()
+            Toasty.error(requireContext(), "Registration Failed: Username and password must be at least 5 characters", Toast.LENGTH_SHORT, true).show()
             return
         }
 
         val dataPostUser = userVM.dataPostUserRegis
         dataPostUser.observe(viewLifecycleOwner, { response ->
 
-            if (response != null) { Toast.makeText(requireContext(), "Registration Success", Toast.LENGTH_SHORT).show()
+            if (response != null) {
+                Toasty.success(requireContext(), "Registration Success", Toast.LENGTH_SHORT, true).show()
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
-            } else { Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
+            } else {
+                Toasty.error(requireContext(), "Registration Failed", Toast.LENGTH_SHORT, true).show()
 
             }
         })
