@@ -4,17 +4,15 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.ItemDestinasiBinding
 import com.finalproject.tiketku.databinding.ItemDestinasiFavBinding
 import com.finalproject.tiketku.model.favorit.DataFavorite
-import com.finalproject.tiketku.model.search.Data
 import com.bumptech.glide.Glide
+import com.finalproject.tiketku.view.Beranda.HomeFragmentDirections
 
-class DestinasiFavoritAdapter(private val context: Context, private val list: List<DataFavorite>)
-    : RecyclerView.Adapter<DestinasiFavoritAdapter.ViewHolder>() {
+class DestinasiFavoritAdapter(private val context: Context, private val list: List<DataFavorite>) : RecyclerView.Adapter<DestinasiFavoritAdapter.ViewHolder>() {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
@@ -28,9 +26,9 @@ class DestinasiFavoritAdapter(private val context: Context, private val list: Li
         return ViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: DestinasiFavoritAdapter.ViewHolder, position: Int) {
         val item = list[position]
+
         holder.binding.tvDestination.text = item.bandaraTujuan.kota
         holder.binding.tvDeparture.text = item.bandaraAwal.kota
         holder.binding.tvTanggalFavorit.text = item.tanggalBerangkat
@@ -39,11 +37,16 @@ class DestinasiFavoritAdapter(private val context: Context, private val list: Li
 
         Glide.with(context)
             .load(item.foto)
-            .placeholder(R.drawable.ic_launcher_background) // Gambar placeholder jika tidak ada gambar yang dimuat
-            .error(R.drawable.ic_launcher_background) // Gambar error jika terjadi kesalahan dalam memuat gambar
+            .placeholder(R.drawable.ic_launcher_background)
+            .error(R.drawable.ic_launcher_background)
             .into(holder.binding.ivDestinationFavorit)
 
-
+        //membawa id ke detail
+        holder.binding.cardDetail.setOnClickListener { view ->
+            val id = item.id
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailPenerbanganFragment(id)
+            view.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

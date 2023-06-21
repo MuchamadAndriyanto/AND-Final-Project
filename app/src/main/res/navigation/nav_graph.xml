@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_homeFragment_to_destinasiPencarianToFragment"
             app:destination="@id/destinasiPencarianToFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailPenerbanganFragment"
+            app:destination="@id/detailPenerbanganFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -205,6 +208,20 @@
         tools:layout="@layout/fragment_destinasi_pencarian_to" >
         <action
             android:id="@+id/action_destinasiPencarianToFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPenerbanganFragment"
+        android:name="com.finalproject.tiketku.view.DetailPenerbangan.DetailPenerbanganFragment"
+        android:label="fragment_detail_penerbangan"
+        tools:layout="@layout/fragment_detail_penerbangan" >
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_detailPenerbanganFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

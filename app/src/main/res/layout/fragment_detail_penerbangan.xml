@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/detail"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
     tools:context=".view.DetailPenerbangan.DetailPenerbanganFragment"
     tools:ignore="HardcodedText" >
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,16 +42,66 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/detailDestination"
-            android:padding="14dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="14dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="Solo -> Jakarta (0h 45m)"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvDeparture"
+                android:layout_marginStart="16dp"
+                style="@style/TextBody12Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jakarta"
+                android:textColor="#151515"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                style="@style/TextBody12Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" -> "
+                android:textColor="#151515"
+                />
+
+            <TextView
+                android:id="@+id/tvDestination"
+                style="@style/TextBody12Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bangkok"
+                android:textColor="#151515"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/tvSelisihJam"
+                android:layout_marginStart="5dp"
+                style="@style/TextBody12Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(0h - "
+                android:textColor="#151515"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/tvSelisihMenit"
+                style="@style/TextBody12Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="45m) "
+                android:textColor="#151515"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardDetail"
             android:padding="20dp"

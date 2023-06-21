@@ -7,6 +7,7 @@ import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.model.ResponseLogin
 import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
+import com.finalproject.tiketku.model.detail.Detail
 import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
@@ -18,6 +19,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -50,5 +52,11 @@ interface ApiService {
 
     @GET("home")
     fun getFavorite(): Call<ResponseFavoriteDestination>
+
+    @GET("select-ticket/{id}")
+    fun getDetail(
+        @Path("id") id: Int
+    ): Call<Detail>
+
 
 }
