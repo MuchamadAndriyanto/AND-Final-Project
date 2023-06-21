@@ -27,10 +27,10 @@ class HasilPenerbanganAdapter(private val context: Context, private val list: Li
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
     val selectedDestination = sharedPreferences.getString("key", "")
 
-    /*private val SetClasSharedPref: SharedPreferences = context.getSharedPreferences("selected_class", Context.MODE_PRIVATE)
+    private val SetClasSharedPref: SharedPreferences = context.getSharedPreferences("selected_class", Context.MODE_PRIVATE)
     val setClassSharePrefe = SetClasSharedPref.getString("selected_class", "")
 
-    val data = setClassSharePrefe*/
+    val data = setClassSharePrefe
 
 
     val filteredList = list.filter { item ->
@@ -62,7 +62,7 @@ class HasilPenerbanganAdapter(private val context: Context, private val list: Li
         holder.binding.tvJa.text = item2.selisihJam.toString()
         holder.binding.tvHarga.text = item2.maskapai.hargaTiket
         holder.binding.maskapai1.text = item2.maskapai.namaMaskapai
-        /*holder.binding.setClass.text = data*/
+        holder.binding.setClass.text = data
         /*holder.binding.tvKota.text = selectedDestinationTo*/
 
         if (item2.bandaraAwal.kota == selectedDestination && item2.bandaraTujuan.kota == selectedDestinationTo) {

@@ -181,9 +181,11 @@
                     >
                     <TextView
                         android:id="@+id/maskapai1"
-                        android:layout_width="50dp"
-                        android:layout_height="32dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Jet Air"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="#000000"
@@ -192,7 +194,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="-"
+                        android:text=" - "
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="#000000"
@@ -200,8 +204,10 @@
 
                     <TextView
                         android:id="@+id/set_class"
-                        android:layout_width="70dp"
-                        android:layout_height="32dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text=" Economy "
                         android:textStyle="bold"
                         android:textSize="14sp"
