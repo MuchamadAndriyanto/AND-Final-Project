@@ -7,6 +7,7 @@ import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.model.ResponseLogin
 import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
+import com.finalproject.tiketku.model.caripenerbangan.ResponseCariPenerbangan
 import com.finalproject.tiketku.model.detail.Detail
 import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
@@ -58,5 +59,6 @@ interface ApiService {
         @Path("id") id: Int
     ): Call<Detail>
 
-
+    @GET("home")
+    fun getCariPenerbangan(): Call<ResponseCariPenerbangan>
 }

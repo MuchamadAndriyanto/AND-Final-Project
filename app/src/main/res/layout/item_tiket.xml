@@ -174,14 +174,42 @@
                 android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:text="Jet Air - Economy"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:textColor="#000000"
-                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/maskapai1"
+                        android:layout_width="50dp"
+                        android:layout_height="32dp"
+                        android:text="Jet Air"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        />
+
+                    <TextView
+                        android:id="@+id/set_class"
+                        android:layout_width="70dp"
+                        android:layout_height="32dp"
+                        android:text=" Economy "
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        />
+
+                </LinearLayout>
+
 
                 <ImageView
                     android:layout_width="wrap_content"

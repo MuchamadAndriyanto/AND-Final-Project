@@ -2,6 +2,8 @@ package com.finalproject.tiketku.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
+import com.finalproject.tiketku.model.caripenerbangan.ResponseCariPenerbangan
 import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
 import com.finalproject.tiketku.network.ApiService
@@ -14,26 +16,26 @@ import javax.inject.Inject
 @HiltViewModel
 class PencarianPenerbanganViewModel @Inject constructor(private var api : ApiService): ViewModel() {
 
-    private val liveDataFavorite: MutableLiveData<List<DataFavorite>?> = MutableLiveData()
+    private val liveDataCariPenerbangan: MutableLiveData<List<DataCariPenerbangan>?> = MutableLiveData()
 
-    val livedataFavorite: MutableLiveData<List<DataFavorite>?> get() = liveDataFavorite
+    val livedataCariPenerbangan: MutableLiveData<List<DataCariPenerbangan>?> get() = liveDataCariPenerbangan
 
     fun getFavorite() {
-        api.getFavorite().enqueue(object : Callback<ResponseFavoriteDestination> {
+        api.getCariPenerbangan().enqueue(object : Callback<ResponseCariPenerbangan> {
             override fun onResponse(
-                call: Call<ResponseFavoriteDestination>,
-                response: Response<ResponseFavoriteDestination>
+                call: Call<ResponseCariPenerbangan>,
+                response: Response<ResponseCariPenerbangan>
             ) {
                 if (response.isSuccessful) {
                     val favoriteList = response.body()?.data
-                    liveDataFavorite.postValue(favoriteList)
+                    liveDataCariPenerbangan.postValue(favoriteList)
                 } else {
-                    liveDataFavorite.postValue(emptyList())
+                    liveDataCariPenerbangan.postValue(emptyList())
                 }
             }
 
-            override fun onFailure(call: Call<ResponseFavoriteDestination>, t: Throwable) {
-                liveDataFavorite.postValue(emptyList())
+            override fun onFailure(call: Call<ResponseCariPenerbangan>, t: Throwable) {
+                liveDataCariPenerbangan.postValue(emptyList())
             }
         })
     }

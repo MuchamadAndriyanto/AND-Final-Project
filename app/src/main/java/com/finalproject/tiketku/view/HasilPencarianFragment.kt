@@ -111,7 +111,7 @@ class HasilPencarianFragment : Fragment() {
 
         val viewModelFavorite = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
         viewModelFavorite.getFavorite()
-        viewModelFavorite.livedataFavorite.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelFavorite.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
             if (favList != null) {
                 val searchAdapter = HasilPenerbanganAdapter(requireContext(), favList)
                 binding.rvTiket.adapter = searchAdapter
