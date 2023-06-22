@@ -19,7 +19,8 @@ import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
 import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.view.HasilPencarianFragmentDirections
 
-class HasilPenerbanganAdapter(private val context: Context, private var list: List<DataCariPenerbangan>) : RecyclerView.Adapter<HasilPenerbanganAdapter.ViewHolder>() {
+class HasilPenerbanganAdapter(private val context: Context, private var list: List<DataCariPenerbangan>)
+    : RecyclerView.Adapter<HasilPenerbanganAdapter.ViewHolder>() {
 
     private val sharedPreferencesTo: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
     val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
@@ -31,13 +32,21 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     val setClassSharePrefe = SetClasSharedPref.getString("selected_class", "")
     val selected_class = setClassSharePrefe
 
-    private val filterPref: SharedPreferences = context.getSharedPreferences("selected_class", Context.MODE_PRIVATE)
-    val filterSharedPref = filterPref.getString("selected_class", "")
+    private val filterPref: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    val filterSharedPref = filterPref.getString("filter_key", "")
     val filter = filterSharedPref
 
-    val filteredList = list.filter { item ->
-        item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo
-    }.toMutableList()
+
+
+    /*    val filteredList = list.filter { item ->
+            item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo
+        }.toMutableList()*/
+
+    private val filteredList = mutableListOf<DataCariPenerbangan>()
+
+    init {
+        updateFilteredList()
+    }
 
     inner class ViewHolder(val binding: ItemTiketBinding) : RecyclerView.ViewHolder(binding.root) {}
 
@@ -58,6 +67,8 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         holder.binding.maskapai1.text = item2.maskapai.namaMaskapai
         holder.binding.setClass.text = selected_class
 
+
+
         if (item2.bandaraAwal.kota == selectedDestination && item2.bandaraTujuan.kota == selectedDestinationTo) {
             holder.binding.root.visibility = View.VISIBLE
         } else {
@@ -68,12 +79,6 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
                 notifyItemRemoved(position)
                 notifyItemRangeChanged(position, filteredList.size)
             }
-        }
-
-        holder.binding.cardDetail.setOnClickListener { view ->
-            val id = item2.id
-            val action = HasilPencarianFragmentDirections.actionHasilPencarianFragmentToDetailPenerbanganFragment(id)
-            holder.itemView.findNavController().navigate(action)
         }
 
 
@@ -90,10 +95,40 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         }
     }
 
+    private fun updateFilteredList() {
+        filteredList.clear()
+        filteredList.addAll(list.filter { item ->
+            item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo
+        })
 
-    fun setFilteredListBySmallest() {
-        filteredList.sortBy { it.maskapai.hargaTiket.toDouble() }
+        if (filter == "Termurah") {
+            filteredList.sortBy { it.maskapai.hargaTiketNoFormat }
+        }else if (filter == "Terpendek") {
+            filteredList.sortByDescending { it.selisihJam }
+        }
+
         notifyDataSetChanged()
+    }
+
+
+    fun setFilterPreferences(filter: String) {
+        val editor = filterPref.edit()
+        editor.putString("filter_key", filter)
+        editor.apply()
+
+        updateFilteredList()
+    }
+
+    fun setDestinations(destination: String, destinationTo: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("key", destination)
+        editor.apply()
+
+        val editorTo = sharedPreferencesTo.edit()
+        editorTo.putString("keyTo", destinationTo)
+        editorTo.apply()
+
+        updateFilteredList()
     }
 }
 

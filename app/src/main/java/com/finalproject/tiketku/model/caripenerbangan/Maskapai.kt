@@ -7,5 +7,7 @@ data class Maskapai(
     @SerializedName("harga_tiket")
     val hargaTiket: String,
     @SerializedName("nama_maskapai")
-    val namaMaskapai: String
+    val namaMaskapai: String,
+    @SerializedName("hargaTiketNoFormat")
+    val hargaTiketNoFormat: Int
 )
