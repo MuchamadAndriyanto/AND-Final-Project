@@ -81,6 +81,14 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
             }
         }
 
+        //kedetail
+        holder.binding.cardDetail.setOnClickListener { view ->
+            val id = item2.id
+            val action = HasilPencarianFragmentDirections.actionHasilPencarianFragmentToDetailPenerbanganFragment(id)
+            holder.itemView.findNavController().navigate(action)
+        }
+
+
 
     }
 
