@@ -17,33 +17,28 @@ import com.finalproject.tiketku.databinding.ItemTiketBinding
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
 import com.finalproject.tiketku.model.favorit.DataFavorite
 
-class HasilPenerbanganAdapter(private val context: Context, private val list: List<DataCariPenerbangan>)
+class HasilPenerbanganAdapter(private val context: Context, private var list: List<DataCariPenerbangan>)
     : RecyclerView.Adapter<HasilPenerbanganAdapter.ViewHolder>() {
-
-
 
     private val sharedPreferencesTo: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
     val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
+
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
     val selectedDestination = sharedPreferences.getString("key", "")
 
     private val SetClasSharedPref: SharedPreferences = context.getSharedPreferences("selected_class", Context.MODE_PRIVATE)
     val setClassSharePrefe = SetClasSharedPref.getString("selected_class", "")
+    val selected_class = setClassSharePrefe
 
-    val data = setClassSharePrefe
-
+    private val filterPref: SharedPreferences = context.getSharedPreferences("selected_class", Context.MODE_PRIVATE)
+    val filterSharedPref = filterPref.getString("selected_class", "")
+    val filter = filterSharedPref
 
     val filteredList = list.filter { item ->
-        item.bandaraAwal.kota == selectedDestination
-        item.bandaraTujuan.kota == selectedDestinationTo
-    }
+        item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo
+    }.toMutableList()
 
-    val sortedList = (filteredList + (list - filteredList)).toList()
-
-
-    inner class ViewHolder(val binding: ItemTiketBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    inner class ViewHolder(val binding: ItemTiketBinding) : RecyclerView.ViewHolder(binding.root) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -51,10 +46,8 @@ class HasilPenerbanganAdapter(private val context: Context, private val list: Li
         return ViewHolder(binding)
     }
 
-
-    override fun onBindViewHolder(holder: HasilPenerbanganAdapter.ViewHolder, position: Int) {
-        val item = list[position]
-        val item2 = sortedList[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item2 = filteredList[position]
         holder.binding.tvKota.text = item2.bandaraAwal.kota
         holder.binding.tvKota2.text = item2.bandaraTujuan.kota
         holder.binding.tvJam.text = item2.jamBerangkat
@@ -62,20 +55,39 @@ class HasilPenerbanganAdapter(private val context: Context, private val list: Li
         holder.binding.tvJa.text = item2.selisihJam.toString()
         holder.binding.tvHarga.text = item2.maskapai.hargaTiket
         holder.binding.maskapai1.text = item2.maskapai.namaMaskapai
-        holder.binding.setClass.text = data
-        /*holder.binding.tvKota.text = selectedDestinationTo*/
+        holder.binding.setClass.text = selected_class
 
         if (item2.bandaraAwal.kota == selectedDestination && item2.bandaraTujuan.kota == selectedDestinationTo) {
             holder.binding.root.visibility = View.VISIBLE
         } else {
             holder.binding.root.visibility = View.GONE
+            val indexToRemove = list.indexOf(item2)
+            if (indexToRemove >= 0) {
+                filteredList.removeAt(position)
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, filteredList.size)
+            }
         }
 
+
     }
-
-
 
     override fun getItemCount(): Int {
-        return sortedList.size
+        return filteredList.size
+    }
+
+    private fun removeItemAt(list: MutableList<DataCariPenerbangan>, index: Int) {
+        if (index >= 0 && index < list.size) {
+            list.removeAt(index)
+            notifyItemRemoved(index)
+        }
+    }
+
+
+    fun setFilteredListBySmallest() {
+        filteredList.sortBy { it.maskapai.hargaTiket.toDouble() }
+        notifyDataSetChanged()
     }
 }
+
+

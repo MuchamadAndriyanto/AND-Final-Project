@@ -3,6 +3,7 @@ package com.finalproject.tiketku.view
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,23 +30,28 @@ import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
 import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.ListFilter
 import com.finalproject.tiketku.model.ListHasilPencarian
+import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
 import com.finalproject.tiketku.viewmodel.FavoritDestinasiViewModel
 import com.finalproject.tiketku.viewmodel.PencarianPenerbanganViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+
 class HasilPencarianFragment : Fragment() {
     private lateinit var binding: FragmentHasilPencarianBinding
     private lateinit var classAdapter: HariAdapter
     private lateinit var classList: ArrayList<ListHasilPencarian>
     private var selectedFilter: String? = null
 
+    private lateinit var sharedPreferences: SharedPreferences
     lateinit var btnFilter2: Button
 
     companion object {
         const val REQUEST_CODE_FILTER = 123
         const val REQUEST_KEY_FILTER = "request_key_filter" // Kunci untuk menyimpan fragment hasil filter
         const val RESULT_KEY_FILTER = "result_key_filter" // Kunci untuk menyimpan hasil filter dalam Intent
+        const val SHARED_PREFS_NAME = "MyPrefs" // Nama Shared Preferences
+        const val FILTER_KEY = "filter_key" // Kunci untuk menyimpan data filter di Shared Preferences
     }
 
     override fun onCreateView(
@@ -92,22 +98,24 @@ class HasilPencarianFragment : Fragment() {
             findNavController().navigate(R.id.action_hasilPencarianFragment_to_homeFragment)
         }
 
+        sharedPreferences = requireContext().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        selectedFilter = sharedPreferences.getString(FILTER_KEY, null)
+
+        btnFilter2 = binding.btnFilter2
+        btnFilter2.text = selectedFilter
+
         binding.btnFilter1.setOnClickListener {
-            val filterFragment = HasilPencarianWithFilterFragment() // Membuat instance dari fragment HasilPencarianWithFilterFragment
-            filterFragment.setTargetFragment(this, REQUEST_CODE_FILTER) // Mengatur fragment target untuk menerima hasil dari fragment filter
+            val filterFragment = HasilPencarianWithFilterFragment()
+            filterFragment.setTargetFragment(this, REQUEST_CODE_FILTER)
             parentFragmentManager.beginTransaction()
                 .add(filterFragment, REQUEST_KEY_FILTER)
                 .commit()
         }
 
-
-        btnFilter2 = binding.root.findViewById(R.id.btnFilter2)
         btnFilter2.setOnClickListener {
-            if (selectedFilter != null) {
-                btnFilter2.text = selectedFilter // Memperbarui teks tombol btnFilter2 dengan hasil filter
-            }
+            selectedFilter = sharedPreferences.getString(FILTER_KEY, null)
+            btnFilter2.text = selectedFilter
         }
-
 
         val viewModelFavorite = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
         viewModelFavorite.getFavorite()
@@ -124,16 +132,14 @@ class HasilPencarianFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_FILTER && resultCode == Activity.RESULT_OK) {
-            selectedFilter = data?.getStringExtra(RESULT_KEY_FILTER) // Mengambil hasil filter dari Intent menggunakan kunci RESULT_KEY_FILTER
+            selectedFilter = data?.getStringExtra(RESULT_KEY_FILTER)
             if (selectedFilter != null) {
-                btnFilter2.text = selectedFilter // Memperbarui teks tombol btnFilter2 dengan hasil filter
+                btnFilter2.text = selectedFilter
+                // Simpan data filter ke SharedPreferences
+                sharedPreferences.edit().putString(FILTER_KEY, selectedFilter).apply()
             }
         }
     }
-
-
-
-
-
 }
+
 
