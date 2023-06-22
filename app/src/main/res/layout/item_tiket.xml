@@ -4,7 +4,7 @@
     app:cardMaxElevation="5dp"
     app:cardCornerRadius="15dp"
     android:layout_margin="20dp"
-    android:id="@+id/detailNews"
+    android:id="@+id/cardDetail"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout

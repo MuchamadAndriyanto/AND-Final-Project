@@ -158,6 +158,9 @@
         <action
             android:id="@+id/action_hasilPencarianFragment_to_hasilPencarianWithFilterFragment"
             app:destination="@id/hasilPencarianWithFilterFragment" />
+        <action
+            android:id="@+id/action_hasilPencarianFragment_to_detailPenerbanganFragment"
+            app:destination="@id/detailPenerbanganFragment" />
     </fragment>
     <dialog
         android:id="@+id/hasilPencarianWithFilterFragment"
@@ -223,5 +226,16 @@
         <action
             android:id="@+id/action_detailPenerbanganFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_detailPenerbanganFragment_to_checkoutBiodataPenumpangFragment"
+            app:destination="@id/checkoutBiodataPenumpangFragment" />
+        <action
+            android:id="@+id/action_detailPenerbanganFragment_to_akunNonLoginFragment"
+            app:destination="@id/akunNonLoginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/checkoutBiodataPenumpangFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.CheckoutBiodataPenumpangFragment"
+        android:label="fragment_checkout_biodata_penumpang"
+        tools:layout="@layout/fragment_checkout_biodata_penumpang" />
 </navigation>

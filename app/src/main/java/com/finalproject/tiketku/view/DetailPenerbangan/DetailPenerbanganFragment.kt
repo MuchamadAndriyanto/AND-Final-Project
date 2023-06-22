@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.view.DetailPenerbangan
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +36,7 @@ class DetailPenerbanganFragment : Fragment() {
 
         // Mengambil data detail
         val args: DetailPenerbanganFragmentArgs by navArgs()
-        val id = args.id
+        var id = args.id
         detailViewModel.getDetail(id)
 
         // Observer untuk liveDetailFavorite
@@ -59,14 +60,34 @@ class DetailPenerbanganFragment : Fragment() {
 
                 binding.detailTotalDec.text = detail.maskapai.harga_tiket
 
+                // Cek status login
+                val sharedPreferences = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
+                val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+
+                if (isLoggedIn) {
+                    binding.btnSubmit.setOnClickListener {
+                        findNavController().navigate(R.id.action_detailPenerbanganFragment_to_checkoutBiodataPenumpangFragment)
+                    }
+                } else {
+                    binding.btnSubmit.setOnClickListener {
+                        findNavController().navigate(R.id.action_detailPenerbanganFragment_to_akunNonLoginFragment)
+                    }
+                }
+
             } else {
                 // Data detail tidak tersedia, lakukan sesuatu
                 Toast.makeText(requireContext(), "Gagal memuat detail", Toast.LENGTH_SHORT).show()
             }
         })
 
+        arguments?.let {
+            val safeArgs = DetailPenerbanganFragmentArgs.fromBundle(it)
+            id = safeArgs.id
+        }
+
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_detailPenerbanganFragment_to_homeFragment)
         }
+
     }
 }

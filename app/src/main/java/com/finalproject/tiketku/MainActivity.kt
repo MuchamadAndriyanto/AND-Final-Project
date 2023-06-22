@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -25,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         sharedPref = getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment
@@ -37,15 +35,12 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment, R.id.historyFragment, R.id.notificationsFragment, R.id.profileFragment -> {
                     bottomNavigationView.visibility = View.VISIBLE
-                    if (!isLoggedIn()) {
+                    if (!isLoggedIn() && destination.id != R.id.homeFragment) {
                         // Simpan ID halaman tujuan yang diminta pengguna ke shared preferences
                         val editor = sharedPref.edit()
                         editor.putInt("requestedDestinationId", destination.id)
                         editor.apply()
-
-                        if (destination.id != R.id.homeFragment) {
-                            navController.navigate(R.id.akunNonLoginFragment)
-                        }
+                        navController.navigate(R.id.akunNonLoginFragment)
                     }
                 }
                 else -> {
@@ -55,7 +50,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            if (!isLoggedIn()) {
+            val isLoggedIn = isLoggedIn()
+            val clickedMenuItemId = sharedPref.getInt("clickedMenuItemId", R.id.homeFragment)
+
+            if (!isLoggedIn && menuItem.itemId != R.id.homeFragment) {
                 // Simpan ID menu yang diklik pengguna ke shared preferences
                 val editor = sharedPref.edit()
                 editor.putInt("clickedMenuItemId", menuItem.itemId)
@@ -69,21 +67,23 @@ class MainActivity : AppCompatActivity() {
                 editor.putInt("clickedMenuItemId", menuItem.itemId)
                 editor.apply()
 
-                val handled = NavigationUI.onNavDestinationSelected(menuItem, navController)
-                if (handled) {
-                    // Ambil email pengguna yang sedang login dari shared preferences
-                    val loggedInEmail = sharedPref.getString("email", "")
-
-                    Log.d("MainActivity", "Pengguna sudah login dengan email: $loggedInEmail")
+                if (isLoggedIn || menuItem.itemId == R.id.homeFragment) {
+                    val handled = NavigationUI.onNavDestinationSelected(menuItem, navController)
+                    if (handled) {
+                        // Ambil email pengguna yang sedang login dari shared preferences
+                        val loggedInEmail = sharedPref.getString("email", "")
+                        Log.d("MainActivity", "Pengguna sudah login dengan email: $loggedInEmail")
+                    }
+                    return@setOnNavigationItemSelectedListener handled
                 }
-                return@setOnNavigationItemSelectedListener handled
             }
+            return@setOnNavigationItemSelectedListener false
         }
 
         val isLoggedIn = isLoggedIn()
         val clickedMenuItemId = sharedPref.getInt("clickedMenuItemId", R.id.homeFragment)
 
-        if (isLoggedIn) {
+        if (isLoggedIn || clickedMenuItemId == R.id.homeFragment) {
             bottomNavigationView.menu.findItem(clickedMenuItemId).isChecked = true
         } else {
             val requestedDestinationId = sharedPref.getInt("requestedDestinationId", R.id.homeFragment)
@@ -114,4 +114,3 @@ class MainActivity : AppCompatActivity() {
         return sharedPref.getBoolean("isLoggedIn", false)
     }
 }
-

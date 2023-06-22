@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.finalproject.tiketku.R
@@ -16,9 +17,9 @@ import com.finalproject.tiketku.databinding.ItemDestinasiFavBinding
 import com.finalproject.tiketku.databinding.ItemTiketBinding
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
 import com.finalproject.tiketku.model.favorit.DataFavorite
+import com.finalproject.tiketku.view.HasilPencarianFragmentDirections
 
-class HasilPenerbanganAdapter(private val context: Context, private var list: List<DataCariPenerbangan>)
-    : RecyclerView.Adapter<HasilPenerbanganAdapter.ViewHolder>() {
+class HasilPenerbanganAdapter(private val context: Context, private var list: List<DataCariPenerbangan>) : RecyclerView.Adapter<HasilPenerbanganAdapter.ViewHolder>() {
 
     private val sharedPreferencesTo: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
     val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
@@ -67,6 +68,12 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
                 notifyItemRemoved(position)
                 notifyItemRangeChanged(position, filteredList.size)
             }
+        }
+
+        holder.binding.cardDetail.setOnClickListener { view ->
+            val id = item2.id
+            val action = HasilPencarianFragmentDirections.actionHasilPencarianFragmentToDetailPenerbanganFragment(id)
+            holder.itemView.findNavController().navigate(action)
         }
 
 
