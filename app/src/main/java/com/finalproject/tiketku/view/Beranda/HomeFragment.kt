@@ -12,9 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentHomeBinding
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.ContextThemeWrapper
 import androidx.lifecycle.Observer
@@ -36,6 +39,7 @@ class HomeFragment : Fragment() {
     private var selectedStartDate: String? = null
     private var selectedReturnDate: String? = null
     private var selectedDate: String? = null
+    private var loadingDialog: Dialog? = null
     private var babyCount = 0
     private var childCount = 0
     private var adultCount = 0
@@ -190,7 +194,15 @@ class HomeFragment : Fragment() {
 
         binding.tvTujuan.text = selectedDestinationTo
 
+/*        binding.btnPencarian.setOnClickListener {
+            tampilkanLoadingDialog()
 
+            // Simulasi waktu proses selama 4 detik
+            Handler(Looper.getMainLooper()).postDelayed({
+                sembunyikanLoadingDialog()
+                findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
+            }, 4000)
+        }*/
     }
 
     private fun showDatePicker(
@@ -284,5 +296,19 @@ class HomeFragment : Fragment() {
 
         binding.tvBusiness.text = className
     }
+
+ /*   private fun tampilkanLoadingDialog() {
+        loadingDialog = Dialog(requireContext())
+        loadingDialog?.setContentView(R.layout.dialog_loading)
+        loadingDialog?.setCancelable(false)
+        loadingDialog?.show()
+    }
+
+    private fun sembunyikanLoadingDialog() {
+        loadingDialog?.dismiss()
+        loadingDialog = null
+    }*/
+
+
 
 }

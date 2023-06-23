@@ -112,14 +112,24 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         if (filter == "Termurah") {
             filteredList.sortBy { it.maskapai.hargaTiketNoFormat }
         }else if (filter == "Terpendek") {
-            filteredList.sortByDescending { it.selisihJam }
+            filteredList.sortBy { it.selisihJam }
+        }else if (filter+"b"
+            == "Paling Akhirb") {
+            filteredList.sortByDescending { it.jamBerangkat }
+        }else if (filter+"b" == "Paling Awalb") {
+            filteredList.sortBy { it.jamBerangkat }
+        }else if (filter+"d"
+            == "Paling Akhird") {
+            filteredList.sortByDescending { it.jamKedatangan }
+        }else if (filter+"d" == "Paling Awald") {
+            filteredList.sortBy { it.jamKedatangan }
         }
 
         notifyDataSetChanged()
     }
 
 
-    fun setFilterPreferences(filter: String) {
+/*    fun setFilterPreferences(filter: String) {
         val editor = filterPref.edit()
         editor.putString("filter_key", filter)
         editor.apply()
@@ -137,7 +147,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         editorTo.apply()
 
         updateFilteredList()
-    }
+    }*/
 }
 
 
