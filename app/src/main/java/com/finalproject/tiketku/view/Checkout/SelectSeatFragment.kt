@@ -65,48 +65,50 @@ class SelectSeatFragment : Fragment() {
                 Toast.makeText(requireContext(), "Pilih kursi terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
         }
-//
-//        // Mengatur onClickListener untuk tombol kursi
-//        val seatButtons = binding.seatGrid.children.toList()
-//
-//        for (button in seatButtons) {
-//            button.setOnClickListener {
-//                // Mengatur kursi terpilih
-//                setSelectedSeat(button.tag.toString())
-//                // Mengubah tampilan tombol saat dipilih
-//                button.isSelected = !button.isSelected
-//            }
-//        }
-//    }
-//
-//    // Fungsi untuk mengatur kursi terpilih
-//    private fun setSelectedSeat(seat: String) {
-//        if (selectedSeat == seat) {
-//            // Menghapus pilihan jika kursi sudah dipilih sebelumnya
-//            selectedSeat = null
-//        } else {
-//            // Mengatur kursi terpilih
-//            selectedSeat = seat
-//        }
-//        // Mengubah tampilan tombol berdasarkan status pemilihan
-//        updateButtonAppearance()
-//    }
-//
-//    // Fungsi untuk memperbarui tampilan tombol berdasarkan status pemilihan kursi
-//    private fun updateButtonAppearance() {
-//        val seatButtons = binding.seatGrid.children.toList()
-//
-//        for (button in seatButtons) {
-//            if (button.tag.toString() == selectedSeat) {
-//                // Mengatur tampilan tombol saat dipilih
-//                button.isSelected = true
-//                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.darkblue_03))
-//            } else {
-//                // Mengatur tampilan tombol saat tidak dipilih
-//                button.isSelected = false
-//                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.grey))
-//            }
-//        }
+
+        // Mengatur onClickListener untuk tombol kursi
+        val seatButtons = binding.seatGrid.children.toList()
+
+        for (button in seatButtons) {
+            button.setOnClickListener {
+                // Mengambil ID tombol yang diklik
+                val seatId = button.id
+
+                // Mengatur kursi terpilih
+                setSelectedSeat(seatId.toString())
+
+                // Mengubah tampilan tombol saat dipilih
+                updateButtonAppearance(seatId)
+            }
+        }
+    }
+
+    // Fungsi untuk mengatur kursi terpilih
+    private fun setSelectedSeat(seat: String) {
+        if (selectedSeat == seat) {
+            // Menghapus pilihan jika kursi sudah dipilih sebelumnya
+            selectedSeat = null
+        } else {
+            // Mengatur kursi terpilih
+            selectedSeat = seat
+        }
+    }
+
+    // Fungsi untuk memperbarui tampilan tombol berdasarkan status pemilihan kursi
+    private fun updateButtonAppearance(selectedSeatId: Int) {
+        val seatButtons = binding.seatGrid.children.toList()
+
+        for (button in seatButtons) {
+            if (button.id == selectedSeatId) {
+                // Mengatur tampilan tombol saat dipilih
+                button.isSelected = true
+                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.darkblue_03))
+            } else {
+                // Mengatur tampilan tombol saat tidak dipilih
+                button.isSelected = false
+                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.grey))
+            }
+        }
     }
 
     // Fungsi untuk melakukan proses pemesanan
