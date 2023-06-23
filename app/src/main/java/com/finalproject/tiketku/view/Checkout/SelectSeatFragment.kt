@@ -80,7 +80,7 @@ class SelectSeatFragment : Fragment() {
             }
         }
 
-        // Mengatur onClickListener untuk tombol kursi
+        /// Mengatur onClickListener untuk tombol kursi
         val seatButtons = binding.seatGrid.children.toList()
 
         for (button in seatButtons) {
@@ -88,8 +88,11 @@ class SelectSeatFragment : Fragment() {
                 // Mengambil ID tombol yang diklik
                 val seatId = button.id
 
+                // Mengambil nilai kursi dari ID tombol
+                val seat = resources.getResourceEntryName(seatId)
+
                 // Mengatur kursi terpilih
-                setSelectedSeat(seatId.toString())
+                setSelectedSeat(seat)
 
                 // Mengubah tampilan tombol saat dipilih
                 updateButtonAppearance(seatId)
