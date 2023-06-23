@@ -3,6 +3,7 @@ package com.finalproject.tiketku.view.Checkout
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,18 @@ class SelectSeatFragment : Fragment() {
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
 
+        val email = sharedPref.getString("email", "")
+        val idPenerbangan = sharedPref.getInt("idPenerbangan", 0)
+        val jumlahPenumpang = sharedPref.getString("jumlahPenumpang", "")
+        val namaKeluarga = sharedPref.getString("namaKeluarga", "")
+        val namaLengkap = sharedPref.getString("namaLengkap", "")
+        val noTelp = sharedPref.getString("noTelp", "")
+
+        Log.d("SelectSeatCheck", "data : $email, $idPenerbangan,$jumlahPenumpang, $namaKeluarga, $namaLengkap,$noTelp")
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_selectSeatFragment_to_checkoutBiodataPemesanFragment)
+        }
         binding.btnSubmit.setOnClickListener {
             // Mengambil nilai-nilai dari SharedPreferences
             val email = sharedPref.getString("email", "")
@@ -53,9 +66,10 @@ class SelectSeatFragment : Fragment() {
                 // Misalkan Anda memiliki fungsi untuk melakukan proses pemesanan atau tindakan lainnya
                 if (email != null && jumlahPenumpang != null && namaKeluarga != null && namaLengkap != null && noTelp != null) {
                     processBooking(email, idPenerbangan, jumlahPenumpang, selectedSeat!!, namaKeluarga!!, namaLengkap!!, noTelp)
+                    Log.d("SelectSeatCheck", "data : $selectedSeat, $email, $idPenerbangan,$jumlahPenumpang, $namaKeluarga, $namaLengkap,$noTelp")
 
                     // Navigasi ke halaman selanjutnya setelah melakukan proses
-                    findNavController().navigate(R.id.action_selectSeatFragment_to_checkoutBiodataPemesanFragment)
+                    findNavController().navigate(R.id.action_selectSeatFragment_to_riwayatPesananKosongFragment)
                 } else {
                     // Salah satu nilai-nilai null, lakukan sesuatu
                     Toast.makeText(requireContext(), "Gagal pesan", Toast.LENGTH_SHORT).show()

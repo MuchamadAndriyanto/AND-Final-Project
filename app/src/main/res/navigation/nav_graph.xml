@@ -291,5 +291,13 @@
         <action
             android:id="@+id/action_selectSeatFragment_to_checkoutBiodataPemesanFragment"
             app:destination="@id/checkoutBiodataPemesanFragment" />
+        <action
+            android:id="@+id/action_selectSeatFragment_to_riwayatPesananKosongFragment"
+            app:destination="@id/riwayatPesananKosongFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/riwayatPesananKosongFragment"
+        android:name="com.finalproject.tiketku.view.RiwayatPesananKosongFragment"
+        android:label="fragment_riwayat_pesanan_kosong"
+        tools:layout="@layout/fragment_riwayat_pesanan_kosong" />
 </navigation>

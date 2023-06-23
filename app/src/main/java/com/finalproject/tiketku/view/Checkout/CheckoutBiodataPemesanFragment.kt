@@ -53,7 +53,6 @@ class CheckoutBiodataPemesanFragment : Fragment() {
         val switchMaterial = binding.switchMaterial
         val linear_nama_keluarga = binding.lin4
         val nama_keluarga_switch = binding.inputNamaKeluarga
-        val jumlahPenumpang = binding.inputJumlahKursi.text.toString()
 
         // Switch material
         switchMaterial.setOnCheckedChangeListener { _, isChecked ->
@@ -96,9 +95,12 @@ class CheckoutBiodataPemesanFragment : Fragment() {
             editor.putString("jumlahPenumpang", jumlahPenumpang)
             editor.apply()
 
-            Log.d("SelectSeatCheckOut", "data : $idPenerbangan,$jumlahPenumpang, $nama_keluarga, $nama_lengkap,$nomorTelepon")
+            Log.d("SelectSeatCheckOut", "data : $email, $idPenerbangan,$jumlahPenumpang, $nama_keluarga, $nama_lengkap,$nomorTelepon")
             // Navigasi ke fragment SelectSeatFragment
             findNavController().navigate(R.id.action_checkoutBiodataPemesanFragment_to_selectSeatFragment)
+        }
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_checkoutBiodataPemesanFragment_to_detailPenerbanganFragment)
         }
     }
 }
