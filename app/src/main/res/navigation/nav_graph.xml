@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailPenerbanganFragment"
             app:destination="@id/detailPenerbanganFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_checkoutBiodataPemesanFragment"
+            app:destination="@id/checkoutBiodataPemesanFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -232,10 +235,61 @@
         <action
             android:id="@+id/action_detailPenerbanganFragment_to_akunNonLoginFragment"
             app:destination="@id/akunNonLoginFragment" />
+        <action
+            android:id="@+id/action_detailPenerbanganFragment_to_checkoutBiodataPemesanFragment"
+            app:destination="@id/checkoutBiodataPemesanFragment">
+            <argument
+                android:name="id_penerbangan"
+                app:argType="integer" />
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/checkoutBiodataPenumpangFragment"
         android:name="com.finalproject.tiketku.view.Checkout.CheckoutBiodataPenumpangFragment"
         android:label="fragment_checkout_biodata_penumpang"
         tools:layout="@layout/fragment_checkout_biodata_penumpang" />
+    <fragment
+        android:id="@+id/checkoutBiodataPemesanFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.CheckoutBiodataPemesanFragment"
+        android:label="fragment_checkout_biodata_pemesan"
+        tools:layout="@layout/fragment_checkout_biodata_pemesan" >
+        <argument
+            android:name="id_penerbangan"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_checkoutBiodataPemesanFragment_to_detailPenerbanganFragment"
+            app:destination="@id/detailPenerbanganFragment" />
+        <action
+            android:id="@+id/action_checkoutBiodataPemesanFragment_to_selectSeatFragment"
+            app:destination="@id/selectSeatFragment">
+            <argument
+                android:name="email"
+                app:argType="string" />
+            <argument
+                android:name="idPenerbangan"
+                app:argType="integer" />
+            <argument
+                android:name="jumlahPenumpang"
+                app:argType="string" />
+            <argument
+                android:name="nama_keluarga"
+                app:argType="string" />
+            <argument
+                android:name="nama_lengkap"
+                app:argType="string" />
+            <argument
+                android:name="no_telp"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/selectSeatFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.SelectSeatFragment"
+        android:label="SelectSeatFragment" >
+        <action
+            android:id="@+id/action_selectSeatFragment_to_checkoutBiodataPemesanFragment"
+            app:destination="@id/checkoutBiodataPemesanFragment" />
+    </fragment>
 </navigation>

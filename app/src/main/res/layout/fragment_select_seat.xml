@@ -1,0 +1,823 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.Checkout.SelectSeatFragment">
+
+    <!-- Layout utama -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/darkpurple"
+            android:orientation="horizontal">
+
+            <!-- Tombol Kembali -->
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/fi_arrow_left"
+                android:padding="10dp" />
+
+            <!-- Judul -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Pilih Kursi"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <!-- Konten -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            app:cardCornerRadius="8dp">
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Judul Konten -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/darkblue_03"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Kursi"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <!-- Tempat Duduk -->
+        <GridLayout
+            android:id="@+id/seatGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="6"
+            android:rowCount="10"
+            android:padding="10dp">
+
+            <!-- Baris 1 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A1"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A1"
+                style="@style/SeatButtonStyle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B1"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B1"
+                style="@style/SeatButtonStyle" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C1"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C1"
+                style="@style/SeatButtonStyle" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D1"
+                android:layout_column="3"
+                android:layout_row="0"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D1"
+                style="@style/SeatButtonStyle" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E1"
+                android:layout_column="4"
+                android:layout_row="0"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E1"
+                style="@style/SeatButtonStyle" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F1"
+                android:layout_column="5"
+                android:layout_row="0"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F1"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Baris 2 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A2"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A2"
+                style="@style/SeatButtonStyle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B2"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B2"
+                style="@style/SeatButtonStyle" />
+            <!-- Sisipkan button untuk baris 2, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C2"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C2"
+                style="@style/SeatButtonStyle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D2"
+                android:layout_column="3"
+                android:layout_row="1"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D2"
+                style="@style/SeatButtonStyle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E2"
+                android:layout_column="4"
+                android:layout_row="1"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E2"
+                style="@style/SeatButtonStyle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F2"
+                android:layout_column="5"
+                android:layout_row="1"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F2"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Baris 3 -->
+            <!-- Sisipkan button untuk baris 3, kolom A sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A3"
+                android:layout_column="0"
+                android:layout_row="2"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A3"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 3, kolom B sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B3"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B3"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 3, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C3"
+                android:layout_column="2"
+                android:layout_row="2"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C3"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 3, kolom D sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D3"
+                android:layout_column="3"
+                android:layout_row="2"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D3"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 3, kolom E sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E3"
+                android:layout_column="4"
+                android:layout_row="2"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E3"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 3, kolom F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F3"
+                android:layout_column="5"
+                android:layout_row="2"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F3"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Baris 4 -->
+            <!-- Sisipkan button untuk baris 4, kolom A sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A4"
+                android:layout_column="0"
+                android:layout_row="3"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A4"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 4, kolom B sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B4"
+                android:layout_column="1"
+                android:layout_row="3"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B4"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 4, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C4"
+                android:layout_column="2"
+                android:layout_row="3"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C4"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 4, kolom D sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D4"
+                android:layout_column="3"
+                android:layout_row="3"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D4"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 4, kolom E sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E4"
+                android:layout_column="4"
+                android:layout_row="3"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E4"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 4, kolom F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F4"
+                android:layout_column="5"
+                android:layout_row="3"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F4"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Baris 5 -->
+            <!-- Sisipkan button untuk baris 5, kolom A sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A5"
+                android:layout_column="0"
+                android:layout_row="4"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A5"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 5, kolom B sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B5"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B5"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 5, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C5"
+                android:layout_column="2"
+                android:layout_row="4"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C5"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 5, kolom D sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D5"
+                android:layout_column="3"
+                android:layout_row="4"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D5"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 5, kolom E sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E5"
+                android:layout_column="4"
+                android:layout_row="4"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E5"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 5, kolom F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F5"
+                android:layout_column="5"
+                android:layout_row="4"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F5"
+                style="@style/SeatButtonStyle" />
+            <!-- Baris 6 -->
+            <!-- Sisipkan button untuk baris 6, kolom A sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A6"
+                android:layout_column="0"
+                android:layout_row="5"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A6"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 6, kolom B sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B6"
+                android:layout_column="1"
+                android:layout_row="5"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B6"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 6, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C6"
+                android:layout_column="2"
+                android:layout_row="5"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C6"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 6, kolom D sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D6"
+                android:layout_column="3"
+                android:layout_row="5"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D6"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 6, kolom E sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E6"
+                android:layout_column="4"
+                android:layout_row="5"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E6"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 6, kolom F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F6"
+                android:layout_column="5"
+                android:layout_row="5"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F6"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Baris 7 -->
+            <!-- Sisipkan button untuk baris 7, kolom A sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A7"
+                android:layout_column="0"
+                android:layout_row="6"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A7"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 7, kolom B sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B7"
+                android:layout_column="1"
+                android:layout_row="6"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B7"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 7, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C7"
+                android:layout_column="2"
+                android:layout_row="6"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C7"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 7, kolom D sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D7"
+                android:layout_column="3"
+                android:layout_row="6"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D7"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 7, kolom E sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E7"
+                android:layout_column="4"
+                android:layout_row="6"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E7"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 7, kolom F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F7"
+                android:layout_column="5"
+                android:layout_row="6"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F7"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Baris 8 -->
+            <!-- Sisipkan button untuk baris 8, kolom A sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A8"
+                android:layout_column="0"
+                android:layout_row="7"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A8"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 8, kolom B sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B8"
+                android:layout_column="1"
+                android:layout_row="7"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B8"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 8, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C8"
+                android:layout_column="2"
+                android:layout_row="7"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C8"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 8, kolom D sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D8"
+                android:layout_column="3"
+                android:layout_row="7"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D8"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 8, kolom E sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E8"
+                android:layout_column="4"
+                android:layout_row="7"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E8"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 8, kolom F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F8"
+                android:layout_column="5"
+                android:layout_row="7"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F8"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Baris 9 -->
+            <!-- Sisipkan button untuk baris 9, kolom A sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A9"
+                android:layout_column="0"
+                android:layout_row="8"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A9"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 9, kolom B sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B9"
+                android:layout_column="1"
+                android:layout_row="8"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B9"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 9, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C9"
+                android:layout_column="2"
+                android:layout_row="8"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C9"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 9, kolom D sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D9"
+                android:layout_column="3"
+                android:layout_row="8"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D9"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 9, kolom E sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E9"
+                android:layout_column="4"
+                android:layout_row="8"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E9"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 9, kolom F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F9"
+                android:layout_column="5"
+                android:layout_row="8"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F9"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Baris 10 -->
+            <!-- Sisipkan button untuk baris 10, kolom A sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/A10"
+                android:layout_column="0"
+                android:layout_row="9"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="A10"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 10, kolom B sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/B10"
+                android:layout_column="1"
+                android:layout_row="9"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="B10"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 10, kolom C sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/C10"
+                android:layout_column="2"
+                android:layout_row="9"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="C10"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 10, kolom D sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/D10"
+                android:layout_column="3"
+                android:layout_row="9"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="D10"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 10, kolom E sampai F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/E10"
+                android:layout_column="4"
+                android:layout_row="9"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="E10"
+                style="@style/SeatButtonStyle" />
+
+            <!-- Sisipkan button untuk baris 10, kolom F -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/F10"
+                android:layout_column="5"
+                android:layout_row="9"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="2dp"
+                android:text="F10"
+                style="@style/SeatButtonStyle" />
+
+
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+<RelativeLayout
+    android:layout_marginBottom="15dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <Button
+        app:backgroundTint="@null"
+        android:id="@+id/btnSubmit"
+        android:padding="14dp"
+        android:layout_margin="20dp"
+        android:textAllCaps="false"
+        android:text="Pilih"
+        android:background="@drawable/button_radius"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
+</FrameLayout>

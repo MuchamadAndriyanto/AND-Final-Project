@@ -153,6 +153,7 @@ class HomeFragment : Fragment() {
 
         binding.btnPencarian.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
+
         }
 
         binding.dateDeparture.setOnClickListener {
@@ -284,6 +285,11 @@ class HomeFragment : Fragment() {
         childCount = sharedPreferences.getInt("child", 0)
         adultCount = sharedPreferences.getInt("adult", 0)
         val totalPassengers = babyCount + childCount + adultCount
+
+        // Simpan nilai total penumpang ke dalam Shared Preferences
+        val editor = sharedPreferences.edit()
+        editor.putInt("totalPassengers", totalPassengers)
+        editor.apply()
 
         // Mengubah jumlah penumpang menjadi teks yang sesuai
         val passengerText = "$totalPassengers penumpang"

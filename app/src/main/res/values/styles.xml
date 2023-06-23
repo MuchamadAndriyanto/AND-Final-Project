@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="SeatButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="backgroundColor">@color/grey</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="android:background">@android:color/white</item>
         <item name="boxStrokeColor">@android:color/white</item>

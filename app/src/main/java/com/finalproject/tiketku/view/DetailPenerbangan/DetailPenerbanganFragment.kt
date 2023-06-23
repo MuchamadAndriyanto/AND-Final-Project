@@ -66,7 +66,9 @@ class DetailPenerbanganFragment : Fragment() {
 
                 if (isLoggedIn) {
                     binding.btnSubmit.setOnClickListener {
-                        findNavController().navigate(R.id.action_detailPenerbanganFragment_to_checkoutBiodataPenumpangFragment)
+                        val action = DetailPenerbanganFragmentDirections.actionDetailPenerbanganFragmentToCheckoutBiodataPemesanFragment(id)
+                        action.idPenerbangan = id // Mengirimkan id_penerbangan ke action
+                        findNavController().navigate(action)
                     }
                 } else {
                     binding.btnSubmit.setOnClickListener {

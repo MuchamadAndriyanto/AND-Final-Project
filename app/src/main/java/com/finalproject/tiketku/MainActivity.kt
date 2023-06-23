@@ -82,15 +82,15 @@ class MainActivity : AppCompatActivity() {
 
         val isLoggedIn = isLoggedIn()
         val clickedMenuItemId = sharedPref.getInt("clickedMenuItemId", R.id.homeFragment)
-
-        if (isLoggedIn || clickedMenuItemId == R.id.homeFragment) {
-            bottomNavigationView.menu.findItem(clickedMenuItemId).isChecked = true
-        } else {
-            val requestedDestinationId = sharedPref.getInt("requestedDestinationId", R.id.homeFragment)
-            if (requestedDestinationId != R.id.homeFragment) {
-                navController.navigate(R.id.akunNonLoginFragment)
-            }
-        }
+//
+//        if (isLoggedIn || clickedMenuItemId == R.id.homeFragment) {
+//            bottomNavigationView.menu.findItem(clickedMenuItemId).isChecked = true
+//        } else {
+//            val requestedDestinationId = sharedPref.getInt("requestedDestinationId", R.id.homeFragment)
+//            if (requestedDestinationId != R.id.homeFragment) {
+//                navController.navigate(R.id.akunNonLoginFragment)
+//            }
+//        }
     }
 
     override fun onStop() {

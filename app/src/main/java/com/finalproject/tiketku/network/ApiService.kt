@@ -11,6 +11,8 @@ import com.finalproject.tiketku.model.caripenerbangan.ResponseCariPenerbangan
 import com.finalproject.tiketku.model.detail.Detail
 import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
+import com.finalproject.tiketku.model.order.DataOrder
+import com.finalproject.tiketku.model.order.ResponseOrder
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.model.search.SearchResponse
@@ -61,4 +63,11 @@ interface ApiService {
 
     @GET("home")
     fun getCariPenerbangan(): Call<ResponseCariPenerbangan>
+
+    @POST("order")
+    fun postOrderBiodata(
+        @Header("Authorization") token: String,
+        @Body request: DataOrder
+    ): Call<ResponseOrder>
+
 }
