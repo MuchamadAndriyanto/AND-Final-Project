@@ -83,13 +83,13 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
             filteredList.sortBy { it.maskapai.hargaTiketNoFormat }
         } else if (filter == "Terpendek") {
             filteredList.sortBy { it.selisihJam }
-        } else if (filter == "Paling Akhir") {
+        } else if (filter+"b" == "Paling Akhirb") {
             filteredList.sortByDescending { it.jamBerangkat }
-        } else if (filter == "Paling Awal") {
+        } else if (filter+"b" == "Paling Awalb") {
             filteredList.sortBy { it.jamBerangkat }
-        } else if (filter == "Paling Akhir") {
+        } else if (filter+"d" == "Paling Akhird") {
             filteredList.sortByDescending { it.jamKedatangan }
-        } else if (filter == "Paling Awal") {
+        } else if (filter+"d" == "Paling Awald") {
             filteredList.sortBy { it.jamKedatangan }
         }
 
