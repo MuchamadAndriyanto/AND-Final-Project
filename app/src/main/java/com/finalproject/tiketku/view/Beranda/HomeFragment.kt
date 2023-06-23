@@ -194,15 +194,18 @@ class HomeFragment : Fragment() {
 
         binding.tvTujuan.text = selectedDestinationTo
 
-/*        binding.btnPencarian.setOnClickListener {
-            tampilkanLoadingDialog()
+        binding.btnPencarian.setOnClickListener {
+            showLoading()
 
-            // Simulasi waktu proses selama 4 detik
-            Handler(Looper.getMainLooper()).postDelayed({
-                sembunyikanLoadingDialog()
+            // Jalankan penundaan selama 4 detik sebelum navigasi dilakukan
+            Handler().postDelayed({
+                hideLoading()
+
+                // Navigasi ke fragment tujuan
                 findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
-            }, 4000)
-        }*/
+            }, 2000) // Penundaan selama 4 detik (4000 milidetik)
+        }
+
     }
 
     private fun showDatePicker(
@@ -297,17 +300,18 @@ class HomeFragment : Fragment() {
         binding.tvBusiness.text = className
     }
 
- /*   private fun tampilkanLoadingDialog() {
-        loadingDialog = Dialog(requireContext())
-        loadingDialog?.setContentView(R.layout.dialog_loading)
-        loadingDialog?.setCancelable(false)
-        loadingDialog?.show()
+    private fun showLoading() {
+        // Tampilkan efek loading di sini (misalnya dengan mengubah teks Button)
+        binding.btnPencarian.text = "Loading..."
+        binding.btnPencarian.isEnabled = false
     }
 
-    private fun sembunyikanLoadingDialog() {
-        loadingDialog?.dismiss()
-        loadingDialog = null
-    }*/
+    private fun hideLoading() {
+        // Sembunyikan efek loading di sini (misalnya dengan mengembalikan teks Button)
+        binding.btnPencarian.text = "Cari Penerbangan"
+        binding.btnPencarian.isEnabled = true
+    }
+
 
 
 

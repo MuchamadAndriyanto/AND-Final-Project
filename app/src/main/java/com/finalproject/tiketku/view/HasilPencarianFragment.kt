@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +37,6 @@ import com.finalproject.tiketku.viewmodel.PencarianPenerbanganViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-
 class HasilPencarianFragment : Fragment() {
     private lateinit var binding: FragmentHasilPencarianBinding
     private lateinit var classAdapter: HariAdapter
@@ -45,6 +45,9 @@ class HasilPencarianFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
     lateinit var btnFilter2: Button
+
+    private lateinit var hasilPenerbanganAdapter: HasilPenerbanganAdapter
+    private lateinit var tiketList: List<DataCariPenerbangan>
 
     companion object {
         const val REQUEST_CODE_FILTER = 123
@@ -74,12 +77,11 @@ class HasilPencarianFragment : Fragment() {
         classList.add(ListHasilPencarian("Sabtu", "00/00/00"))
         classList.add(ListHasilPencarian("Minggu", "00/00/00"))
 
-        val selected = 0
-
         classAdapter = HariAdapter(classList)
         classAdapter.setOnItemClickCallback(object : HariAdapter.OnItemClickCallback {
             override fun onItemClicked(position: Int, data: ListHasilPencarian) {
                 selectedFilter = data.hari
+                applyFilter(selectedFilter)
             }
         })
 
@@ -104,6 +106,12 @@ class HasilPencarianFragment : Fragment() {
         btnFilter2 = binding.btnFilter2
         btnFilter2.text = selectedFilter
 
+        btnFilter2.setOnClickListener {
+            selectedFilter = sharedPreferences.getString(FILTER_KEY, null)
+            applyFilter(selectedFilter)
+            btnFilter2.text = selectedFilter
+        }
+
         binding.btnFilter1.setOnClickListener {
             val filterFragment = HasilPencarianWithFilterFragment()
             filterFragment.setTargetFragment(this, REQUEST_CODE_FILTER)
@@ -112,21 +120,23 @@ class HasilPencarianFragment : Fragment() {
                 .commit()
         }
 
-        btnFilter2.setOnClickListener {
-            selectedFilter = sharedPreferences.getString(FILTER_KEY, null)
-            btnFilter2.text = selectedFilter
-        }
-
         val viewModelFavorite = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
+
         viewModelFavorite.getFavorite()
         viewModelFavorite.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
             if (favList != null) {
-                val searchAdapter = HasilPenerbanganAdapter(requireContext(), favList)
-                binding.rvTiket.adapter = searchAdapter
+                tiketList = favList
+                hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
+                binding.rvTiket.adapter = hasilPenerbanganAdapter
                 val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                 binding.rvTiket.layoutManager = layoutManager
+                applyFilter(selectedFilter)
             }
         })
+    }
+
+    private fun applyFilter(filter: String?) {
+        hasilPenerbanganAdapter.filterData(filter)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -134,6 +144,7 @@ class HasilPencarianFragment : Fragment() {
         if (requestCode == REQUEST_CODE_FILTER && resultCode == Activity.RESULT_OK) {
             selectedFilter = data?.getStringExtra(RESULT_KEY_FILTER)
             if (selectedFilter != null) {
+                applyFilter(selectedFilter)
                 btnFilter2.text = selectedFilter
                 // Simpan data filter ke SharedPreferences
                 sharedPreferences.edit().putString(FILTER_KEY, selectedFilter).apply()

@@ -1,8 +1,10 @@
 package com.finalproject.tiketku.view
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -89,11 +91,25 @@ class HasilPencarianWithFilterFragment : BottomSheetDialogFragment() {
 
         binding.btnSimpan.setOnClickListener {
             if (selectedClass != null) {
-                saveData(selectedClass!!)
+                // Tampilkan dialog dengan progress bar
+                val progressDialog = ProgressDialog(requireContext())
+                progressDialog.setMessage("Mohon tunggu...")
+                progressDialog.isIndeterminate = true
+                progressDialog.setCancelable(false)
+                progressDialog.show()
 
+                // Simulasikan penundaan untuk tujuan demonstrasi (Anda dapat menghapusnya dalam implementasi nyata)
+                Handler().postDelayed({
+                    // Tutup dialog setelah penundaan
+                    progressDialog.dismiss()
+
+                    // Lakukan tindakan setelah selesai menyimpan data
+                    saveData(selectedClass!!)
+                }, 3000) // Simulasikan penundaan 3 detik sebelum menutup dialog
             } else {
                 Toast.makeText(requireContext(), "Pilih satu opsi", Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 

@@ -36,12 +36,6 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     val filterSharedPref = filterPref.getString("filter_key", "")
     val filter = filterSharedPref
 
-
-
-    /*    val filteredList = list.filter { item ->
-            item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo
-        }.toMutableList()*/
-
     private val filteredList = mutableListOf<DataCariPenerbangan>()
 
     init {
@@ -67,43 +61,19 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         holder.binding.maskapai1.text = item2.maskapai.namaMaskapai
         holder.binding.setClass.text = selected_class
 
-
-
-        if (item2.bandaraAwal.kota == selectedDestination && item2.bandaraTujuan.kota == selectedDestinationTo) {
-            holder.binding.root.visibility = View.VISIBLE
-        } else {
-            holder.binding.root.visibility = View.GONE
-            val indexToRemove = list.indexOf(item2)
-            if (indexToRemove >= 0) {
-                filteredList.removeAt(position)
-                notifyItemRemoved(position)
-                notifyItemRangeChanged(position, filteredList.size)
-            }
-        }
-
         //kedetail
         holder.binding.cardDetail.setOnClickListener { view ->
             val id = item2.id
             val action = HasilPencarianFragmentDirections.actionHasilPencarianFragmentToDetailPenerbanganFragment(id)
             holder.itemView.findNavController().navigate(action)
         }
-
-
-
     }
 
     override fun getItemCount(): Int {
         return filteredList.size
     }
 
-    private fun removeItemAt(list: MutableList<DataCariPenerbangan>, index: Int) {
-        if (index >= 0 && index < list.size) {
-            list.removeAt(index)
-            notifyItemRemoved(index)
-        }
-    }
-
-    private fun updateFilteredList() {
+    private fun updateFilteredList(filter: String? = null) {
         filteredList.clear()
         filteredList.addAll(list.filter { item ->
             item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo
@@ -111,43 +81,29 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
 
         if (filter == "Termurah") {
             filteredList.sortBy { it.maskapai.hargaTiketNoFormat }
-        }else if (filter == "Terpendek") {
+        } else if (filter == "Terpendek") {
             filteredList.sortBy { it.selisihJam }
-        }else if (filter+"b"
-            == "Paling Akhirb") {
+        } else if (filter == "Paling Akhir") {
             filteredList.sortByDescending { it.jamBerangkat }
-        }else if (filter+"b" == "Paling Awalb") {
+        } else if (filter == "Paling Awal") {
             filteredList.sortBy { it.jamBerangkat }
-        }else if (filter+"d"
-            == "Paling Akhird") {
+        } else if (filter == "Paling Akhir") {
             filteredList.sortByDescending { it.jamKedatangan }
-        }else if (filter+"d" == "Paling Awald") {
+        } else if (filter == "Paling Awal") {
             filteredList.sortBy { it.jamKedatangan }
         }
 
         notifyDataSetChanged()
     }
 
-
-/*    fun setFilterPreferences(filter: String) {
-        val editor = filterPref.edit()
-        editor.putString("filter_key", filter)
-        editor.apply()
-
-        updateFilteredList()
+    fun filterData(filter: String?) {
+        updateFilteredList(filter)
     }
 
-    fun setDestinations(destination: String, destinationTo: String) {
-        val editor = sharedPreferences.edit()
-        editor.putString("key", destination)
-        editor.apply()
-
-        val editorTo = sharedPreferencesTo.edit()
-        editorTo.putString("keyTo", destinationTo)
-        editorTo.apply()
-
+    fun updateData(newList: List<DataCariPenerbangan>) {
+        list = newList
         updateFilteredList()
-    }*/
+    }
 }
 
 
