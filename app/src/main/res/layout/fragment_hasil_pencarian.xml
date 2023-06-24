@@ -64,7 +64,7 @@
             tools:ignore="MissingConstraints">
 
             <LinearLayout
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Button
                     style="?attr/materialButtonOutlinedStyle"
@@ -79,7 +79,7 @@
             </LinearLayout>
             <LinearLayout
                 android:gravity="right"
-                android:layout_width="190dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
