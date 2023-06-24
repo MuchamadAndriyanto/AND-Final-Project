@@ -10,6 +10,7 @@ import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.model.caripenerbangan.ResponseCariPenerbangan
 import com.finalproject.tiketku.model.detail.Detail
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
+import com.finalproject.tiketku.model.notif.NotifResponse
 import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.order.ResponseOrder
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
@@ -56,6 +57,9 @@ interface ApiService {
 
     @GET("home")
     fun getFavorite(): Call<ResponseFavoriteDestination>
+
+    @GET("notification")
+    fun getNotif(): Call<NotifResponse>
 
     @GET("select-ticket/{id}")
     fun getDetail(
