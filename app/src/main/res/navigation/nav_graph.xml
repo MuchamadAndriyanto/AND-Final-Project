@@ -294,10 +294,29 @@
         <action
             android:id="@+id/action_selectSeatFragment_to_riwayatPesananKosongFragment"
             app:destination="@id/riwayatPesananKosongFragment" />
+        <action
+            android:id="@+id/action_selectSeatFragment_to_checkOutDetailFragment"
+            app:destination="@id/checkOutDetailFragment">
+            <argument
+                android:name="id"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/riwayatPesananKosongFragment"
         android:name="com.finalproject.tiketku.view.RiwayatPesananKosongFragment"
         android:label="fragment_riwayat_pesanan_kosong"
         tools:layout="@layout/fragment_riwayat_pesanan_kosong" />
+    <fragment
+        android:id="@+id/checkOutDetailFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.CheckOutDetailFragment"
+        android:label="fragment_check_out_detail"
+        tools:layout="@layout/fragment_check_out_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_checkOutDetail_to_selectSeatFragment"
+            app:destination="@id/selectSeatFragment" />
+    </fragment>
 </navigation>

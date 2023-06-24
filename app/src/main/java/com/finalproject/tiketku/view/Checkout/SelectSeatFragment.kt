@@ -69,7 +69,7 @@ class SelectSeatFragment : Fragment() {
                     Log.d("SelectSeatCheck", "data : $selectedSeat, $email, $idPenerbangan,$jumlahPenumpang, $namaKeluarga, $namaLengkap,$noTelp")
 
                     // Navigasi ke halaman selanjutnya setelah melakukan proses
-                    findNavController().navigate(R.id.action_selectSeatFragment_to_riwayatPesananKosongFragment)
+                    findNavController().navigate(R.id.action_selectSeatFragment_to_checkOutDetailFragment)
                 } else {
                     // Salah satu nilai-nilai null, lakukan sesuatu
                     Toast.makeText(requireContext(), "Gagal pesan", Toast.LENGTH_SHORT).show()

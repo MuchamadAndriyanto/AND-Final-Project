@@ -9,12 +9,13 @@ import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.model.caripenerbangan.ResponseCariPenerbangan
 import com.finalproject.tiketku.model.detail.Detail
-import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
 import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.order.ResponseOrder
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.ResponseProfile
+import com.finalproject.tiketku.model.rincianCO.DataDetailOrder
+import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
 import com.finalproject.tiketku.model.search.SearchResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -70,4 +71,14 @@ interface ApiService {
         @Body request: DataOrder
     ): Call<ResponseOrder>
 
+    @GET("get-order/{id}")
+    fun getDetailOrder(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Call<ResponseRincianOrder>
+
+    @GET("get-pemesan")
+    fun getKursi(
+        @Header("Authorization") token: String
+    ): Call<ResponseOrder>
 }
