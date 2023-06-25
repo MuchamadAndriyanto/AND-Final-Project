@@ -15,7 +15,6 @@ import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.order.ResponseOrder
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.ResponseProfile
-import com.finalproject.tiketku.model.rincianCO.DataDetailOrder
 import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
 import com.finalproject.tiketku.model.riwayat.ResponseRiwayat
 import com.finalproject.tiketku.model.rountrip.ResponseRountrip
@@ -98,6 +97,8 @@ interface ApiService {
     @GET("tiket?tanggal=08-06-2023")
     fun geTrip(): Call<ResponseRountrip>
 
-    @GET("get-pemesan")
-    fun getRiwayat():  Call<ResponseRiwayat>
+    @GET("history-order")
+    fun getRiwayat(
+        @Header("Authorization") token: String,
+    ):  Call<ResponseRiwayat>
 }

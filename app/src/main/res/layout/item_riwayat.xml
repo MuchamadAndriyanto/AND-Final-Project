@@ -16,6 +16,19 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="1dp">
 
+            <TextView
+                android:id="@+id/status"
+                style="@style/TextBody10Medium"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:text="Limited!"
+                android:layout_margin="6dp"
+                android:layout_gravity="top|end"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/badge_shape"
+                />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +61,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvjakarta"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextBody14Bold"
@@ -56,6 +70,7 @@
                             android:textColor="@color/neutral_05"/>
 
                         <TextView
+                            android:id="@+id/tvBerangkat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -65,6 +80,7 @@
                             android:textColor="@color/neutral_05"/>
 
                         <TextView
+                            android:id="@+id/tvJamBerangkat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -86,6 +102,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvJarak"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -114,6 +131,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvMelbourne"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextBody14Bold"
@@ -122,6 +140,7 @@
                             android:textColor="@color/neutral_05"/>
 
                         <TextView
+                            android:id="@+id/tvKedatangan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextBody12Regular"
@@ -130,6 +149,7 @@
                             android:textColor="@color/neutral_05"/>
 
                         <TextView
+                            android:id="@+id/tvJamKedatangan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -182,6 +202,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/Boking"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextBody12Bold"
@@ -190,6 +211,7 @@
                             android:textColor="@color/neutral_05"/>
 
                         <TextView
+                            android:id="@+id/Kode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextBody12Regular"
@@ -211,6 +233,7 @@
                         android:layout_toEndOf="@id/layoutAirline">
 
                         <TextView
+                            android:id="@+id/Class"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextBody12Bold"
@@ -218,6 +241,7 @@
                             android:textColor="@color/neutral_05"/>
 
                         <TextView
+                            android:id="@+id/Economy"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextBody12Regular"
@@ -247,7 +271,7 @@
                             android:layout_gravity="end" />
 
                         <TextView
-                            android:id="@+id/tvPriceFlight"
+                            android:id="@+id/tvPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextTitle16Medium"

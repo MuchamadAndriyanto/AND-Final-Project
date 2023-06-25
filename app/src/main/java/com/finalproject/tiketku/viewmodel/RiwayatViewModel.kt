@@ -1,9 +1,8 @@
 package com.finalproject.tiketku.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.finalproject.tiketku.model.notif.DataNotif
-import com.finalproject.tiketku.model.notif.NotifResponse
 import com.finalproject.tiketku.model.riwayat.Data
 import com.finalproject.tiketku.model.riwayat.ResponseRiwayat
 import com.finalproject.tiketku.network.ApiService
@@ -14,28 +13,27 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class RiwayatViewModel @Inject constructor(private var api : ApiService): ViewModel() {
+class RiwayatViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
 
-    private val liveDataRiwayat: MutableLiveData<List<Data>?> = MutableLiveData()
+    private val liveDataRiwayat: MutableLiveData<Data?> = MutableLiveData()
+    val liveRiwayat: LiveData<Data?> get() = liveDataRiwayat
 
-    val liveRiwayat: MutableLiveData<List<Data>?> get() = liveDataRiwayat
-
-    fun getRiwayat() {
-        api.getRiwayat().enqueue(object : Callback<ResponseRiwayat> {
+    fun getRiwayat(token: String) {
+        api.getRiwayat(token).enqueue(object : Callback<ResponseRiwayat> {
             override fun onResponse(
                 call: Call<ResponseRiwayat>,
                 response: Response<ResponseRiwayat>
             ) {
                 if (response.isSuccessful) {
-                    val notifList = response.body()?.data
-                    liveDataRiwayat.postValue(notifList)
+                    val responseData = response.body()?.data
+                    liveDataRiwayat.value = responseData
                 } else {
-                    liveDataRiwayat.postValue(emptyList())
+                    liveDataRiwayat.value = null
                 }
             }
 
             override fun onFailure(call: Call<ResponseRiwayat>, t: Throwable) {
-                liveDataRiwayat.postValue(emptyList())
+                liveDataRiwayat.value = null
             }
         })
     }
