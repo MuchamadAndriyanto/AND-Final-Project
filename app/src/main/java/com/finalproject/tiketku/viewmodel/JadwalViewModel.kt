@@ -1,5 +1,7 @@
 package com.finalproject.tiketku.viewmodel
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.finalproject.tiketku.model.notif.DataNotif
@@ -14,11 +16,15 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class JadwalViewModel @Inject constructor(private var api: ApiService) : ViewModel() {
+class JadwalViewModel @Inject constructor(private var api: ApiService, context: Context) : ViewModel() {
 
     private val liveDataRountrip: MutableLiveData<List<DataRountip>?> = MutableLiveData()
 
     val livedataRountrip: MutableLiveData<List<DataRountip>?> get() = liveDataRountrip
+
+    private val jadwal: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    val jadwalSharedPreferns = jadwal.getString("jadwal", "")
+    private var jdwlSharedPreferences = jadwalSharedPreferns
 
     fun getRountrip() {
         if (liveDataRountrip.value != null) {

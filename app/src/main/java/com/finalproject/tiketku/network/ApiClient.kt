@@ -1,5 +1,7 @@
 package com.finalproject.tiketku.network
 
+import android.app.Application
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,4 +41,9 @@ object ApiClient {
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService =
         retrofit.create(ApiService::class.java)
+
+    @Provides
+    fun provideContext(application: Application): Context {
+        return application.applicationContext
+    }
 }
