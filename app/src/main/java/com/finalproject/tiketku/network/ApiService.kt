@@ -17,6 +17,7 @@ import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.model.rincianCO.DataDetailOrder
 import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
+import com.finalproject.tiketku.model.riwayat.ResponseRiwayat
 import com.finalproject.tiketku.model.rountrip.ResponseRountrip
 import com.finalproject.tiketku.model.search.SearchResponse
 import retrofit2.Call
@@ -96,4 +97,7 @@ interface ApiService {
 
     @GET("tiket?tanggal=08-06-2023")
     fun geTrip(): Call<ResponseRountrip>
+
+    @GET("get-pemesan")
+    fun getRiwayat():  Call<ResponseRiwayat>
 }

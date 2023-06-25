@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp">
+
+                <LinearLayout
+                    android:id="@+id/label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="9dp"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutFlightSchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/label">
+
+                    <LinearLayout
+                        android:id="@+id/layoutDeparture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="2dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextBody14Bold"
+                            android:lineHeight="20dp"
+                            android:text="Jakarta"
+                            android:textColor="@color/neutral_05"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            style="@style/TextBody12Regular"
+                            android:lineHeight="20dp"
+                            android:text="5 Maret 2023"
+                            android:textColor="@color/neutral_05"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            style="@style/TextBody12Regular"
+                            android:lineHeight="20dp"
+                            android:text="19:10"
+                            android:textColor="@color/neutral_05" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutFlightTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginEnd="13dp"
+                        android:layout_toEndOf="@id/layoutDeparture"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:lineHeight="18dp"
+                            android:text="4h 0m"
+                            android:textColor="@color/neutral_03"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:src="@drawable/arrow" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutArrive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toEndOf="@id/layoutFlightTime"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextBody14Bold"
+                            android:lineHeight="20dp"
+                            android:text="Melbourne"
+                            android:textColor="@color/neutral_05"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextBody12Regular"
+                            android:lineHeight="20dp"
+                            android:text="5 Maret 2023"
+                            android:textColor="@color/neutral_05"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            style="@style/TextBody12Regular"
+                            android:lineHeight="20dp"
+                            android:text="21:10"
+                            android:textColor="@color/neutral_05"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:src="@drawable/ic_maps" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="239dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:src="@drawable/ic_maps" />
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/layoutFlightSchedule"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/neutral_02" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/grid">
+
+                    <LinearLayout
+                        android:id="@+id/layoutAirline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextBody12Bold"
+                            android:lineHeight="18dp"
+                            android:text="Booking Code : "
+                            android:textColor="@color/neutral_05"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextBody12Regular"
+                            android:lineHeight="18dp"
+                            android:text="453653657"
+                            android:textColor="@color/neutral_05" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/layoutAirline">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextBody12Bold"
+                            android:text="Class : "
+                            android:textColor="@color/neutral_05"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextBody12Regular"
+                            android:lineHeight="18dp"
+                            android:text="Economy"
+                            android:textColor="@color/neutral_05"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutharga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/layoutClass">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextBody12Bold"
+                            android:text="TOTAL : "
+                            android:textColor="@color/neutral_05"
+                            android:layout_gravity="end" />
+
+                        <TextView
+                            android:id="@+id/tvPriceFlight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextTitle16Medium"
+                            android:lineHeight="24dp"
+                            android:text="IDR 5.950.000"
+                            android:textColor="@color/purple"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
