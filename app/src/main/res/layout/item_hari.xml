@@ -44,7 +44,7 @@
                 android:text="19/10/2024"
                 android:gravity="center"
                 android:textSize="14sp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

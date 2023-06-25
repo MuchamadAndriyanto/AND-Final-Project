@@ -25,6 +25,8 @@ import com.finalproject.tiketku.adapter.DestinasiAdapter
 import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
 import com.finalproject.tiketku.adapter.HariAdapter
 import com.finalproject.tiketku.adapter.HasilPenerbanganAdapter
+import com.finalproject.tiketku.adapter.JadwalTanggalAdapter
+import com.finalproject.tiketku.adapter.NotifAdapter
 import com.finalproject.tiketku.adapter.SetClassAdapter
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
 import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
@@ -33,6 +35,8 @@ import com.finalproject.tiketku.model.ListFilter
 import com.finalproject.tiketku.model.ListHasilPencarian
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
 import com.finalproject.tiketku.viewmodel.FavoritDestinasiViewModel
+import com.finalproject.tiketku.viewmodel.JadwalViewModel
+import com.finalproject.tiketku.viewmodel.NotifViewModel
 import com.finalproject.tiketku.viewmodel.PencarianPenerbanganViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -68,33 +72,7 @@ class HasilPencarianFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        classList = ArrayList()
-        classList.add(ListHasilPencarian("Senin", "00/00/00"))
-        classList.add(ListHasilPencarian("Selasa", "00/00/00"))
-        classList.add(ListHasilPencarian("Rabu", "00/00/00"))
-        classList.add(ListHasilPencarian("Kamis", "00/00/00"))
-        classList.add(ListHasilPencarian("Jumat", "00/00/00"))
-        classList.add(ListHasilPencarian("Sabtu", "00/00/00"))
-        classList.add(ListHasilPencarian("Minggu", "00/00/00"))
 
-        classAdapter = HariAdapter(classList)
-        classAdapter.setOnItemClickCallback(object : HariAdapter.OnItemClickCallback {
-            override fun onItemClicked(position: Int, data: ListHasilPencarian) {
-                selectedFilter = data.hari
-                applyFilter(selectedFilter)
-            }
-        })
-
-        binding.rvHari.apply {
-            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-            adapter = classAdapter
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.HORIZONTAL
-                )
-            )
-        }
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_hasilPencarianFragment_to_homeFragment)
@@ -120,10 +98,10 @@ class HasilPencarianFragment : Fragment() {
                 .commit()
         }
 
-        val viewModelFavorite = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
+        val viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
 
-        viewModelFavorite.getFavorite()
-        viewModelFavorite.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelPencarianPenerbangan.getFavorite()
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
             if (favList != null) {
                 tiketList = favList
                 hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
@@ -133,6 +111,22 @@ class HasilPencarianFragment : Fragment() {
                 applyFilter(selectedFilter)
             }
         })
+
+        val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
+
+        viewModelJadwal.getRountrip()
+        viewModelJadwal.livedataRountrip.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null) {
+
+                val adapter = JadwalTanggalAdapter(requireContext(), favList)
+                binding.rvHari.layoutManager = LinearLayoutManager(requireContext())
+                binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                binding.rvHari.adapter = adapter
+
+
+            }
+        })
+
     }
 
     private fun applyFilter(filter: String?) {

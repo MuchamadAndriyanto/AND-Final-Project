@@ -204,7 +204,7 @@ class HomeFragment : Fragment() {
 
                 // Navigasi ke fragment tujuan
                 findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
-            }, 2000) // Penundaan selama 4 detik (4000 milidetik)
+            }, 1000) // Penundaan selama 4 detik (4000 milidetik)
         }
 
     }
