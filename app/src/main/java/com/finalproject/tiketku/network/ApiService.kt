@@ -87,8 +87,12 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<ResponseOrder>
 
-    @GET("tiket-round-trip?tanggalBerangkat=08-06-2023&tanggalPulang=12-06-2023")
-    fun getRoundtrip(): Call<ResponseRountrip>
+    @GET("tiket-round-trip")
+    fun getRoundtrip(
+        @Query("tanggalBerangkat") tanggalBerangkat: String,
+        @Query("tanggalPulang") tanggalPulang: String
+    ): Call<ResponseRountrip>
+
 
     @GET("tiket?tanggal=08-06-2023")
     fun geTrip(): Call<ResponseRountrip>

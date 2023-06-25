@@ -14,14 +14,21 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class JadwalViewModel @Inject constructor(private var api : ApiService): ViewModel() {
+class JadwalViewModel @Inject constructor(private var api: ApiService) : ViewModel() {
 
     private val liveDataRountrip: MutableLiveData<List<DataRountip>?> = MutableLiveData()
 
     val livedataRountrip: MutableLiveData<List<DataRountip>?> get() = liveDataRountrip
 
     fun getRountrip() {
-        api.getRoundtrip().enqueue(object : Callback<ResponseRountrip> {
+        if (liveDataRountrip.value != null) {
+
+            return
+        }
+        liveDataRountrip.value = null
+        val tanggalBerangkat = "08-06-2023"
+        val tanggalPulang = "12-06-2023"
+        api.getRoundtrip(tanggalBerangkat, tanggalPulang).enqueue(object : Callback<ResponseRountrip> {
             override fun onResponse(
                 call: Call<ResponseRountrip>,
                 response: Response<ResponseRountrip>

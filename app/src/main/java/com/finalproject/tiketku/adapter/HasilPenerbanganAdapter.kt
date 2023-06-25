@@ -36,6 +36,10 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     val filterSharedPref = filterPref.getString("filter_key", "")
     val filter = filterSharedPref
 
+    private val jadwal: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    val jadwalSharedPreferns = jadwal.getString("jadwal", "")
+    val jdwlSharedPreferences = jadwalSharedPreferns
+
     private val filteredList = mutableListOf<DataCariPenerbangan>()
 
     init {
@@ -76,8 +80,9 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     private fun updateFilteredList(filter: String? = null) {
         filteredList.clear()
         filteredList.addAll(list.filter { item ->
-            item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo
+            item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo &&item.tanggalBerangkat == jdwlSharedPreferences
         })
+
 
         if (filter == "Termurah") {
             filteredList.sortBy { it.maskapai.hargaTiketNoFormat }
