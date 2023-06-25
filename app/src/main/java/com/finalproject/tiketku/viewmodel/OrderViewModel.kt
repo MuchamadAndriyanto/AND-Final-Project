@@ -3,11 +3,8 @@ package com.finalproject.tiketku.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.finalproject.tiketku.model.detail.Data
-import com.finalproject.tiketku.model.detail.Detail
 import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.order.ResponseOrder
-import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.rincianCO.DataDetailOrder
 import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
 import com.finalproject.tiketku.network.ApiService
@@ -24,7 +21,7 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
     private val liveDataDetailOrder: MutableLiveData<DataDetailOrder?> = MutableLiveData()
 
     val liveDataOrders: MutableLiveData<DataOrder?> get() = liveDataOrder
-    val liveDataDetailOrders: MutableLiveData<DataDetailOrder?> get() = liveDataDetailOrder
+    val liveDetailOrders: MutableLiveData<DataDetailOrder?> get() = liveDataDetailOrder
     private val orderIdLiveData: MutableLiveData<Int> = MutableLiveData()
 
     // Getter untuk LiveData ID
@@ -61,7 +58,7 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
         })
     }
 
-    fun getOrders(token: String) {
+    fun getOrders(token: String, idPenerbangan: Int) {
         val orderId = orderIdLiveData.value
         if (orderId != null) {
             val bearerToken = "Bearer $token"
@@ -70,14 +67,14 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
                 override fun onResponse(call: Call<ResponseRincianOrder>, response: Response<ResponseRincianOrder>) {
                     if (response.isSuccessful) {
                         val rincian = response.body()?.data
-                        liveDataDetailOrders.postValue(rincian)
+                        liveDataDetailOrder.postValue(rincian)
                     } else {
-                        liveDataDetailOrders.postValue(null)
+                        liveDataDetailOrder.postValue(null)
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseRincianOrder>, t: Throwable) {
-                    liveDataDetailOrders.postValue(null)
+                    liveDataDetailOrder.postValue(null)
                 }
             })
         } else {

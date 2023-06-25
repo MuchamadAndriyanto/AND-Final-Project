@@ -268,9 +268,6 @@
                 android:name="email"
                 app:argType="string" />
             <argument
-                android:name="idPenerbangan"
-                app:argType="integer" />
-            <argument
                 android:name="jumlahPenumpang"
                 app:argType="string" />
             <argument
@@ -282,6 +279,9 @@
             <argument
                 android:name="no_telp"
                 app:argType="string" />
+            <argument
+                android:name="idPenerbangan"
+                app:argType="integer" />
         </action>
     </fragment>
     <fragment
@@ -298,8 +298,8 @@
             android:id="@+id/action_selectSeatFragment_to_checkOutDetailFragment"
             app:destination="@id/checkOutDetailFragment">
             <argument
-                android:name="id"
-                app:argType="integer" />
+                android:name="idPenerbangan"
+                app:argType="integer"/>
         </action>
     </fragment>
     <fragment
@@ -313,10 +313,22 @@
         android:label="fragment_check_out_detail"
         tools:layout="@layout/fragment_check_out_detail" >
         <argument
-            android:name="id"
+            android:name="idPenerbangan"
             app:argType="integer" />
         <action
             android:id="@+id/action_checkOutDetail_to_selectSeatFragment"
             app:destination="@id/selectSeatFragment" />
+        <action
+            android:id="@+id/action_checkOutDetailFragment_to_paymentFragment2"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_checkOutDetailFragment"
+            app:destination="@id/checkOutDetailFragment" />
     </fragment>
 </navigation>

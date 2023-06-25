@@ -41,27 +41,27 @@ class SelectSeatFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
 
         val email = sharedPref.getString("email", "")
-        val idPenerbangan = sharedPref.getInt("idPenerbangan", 0)
+        val idPenerbangan = requireArguments().getInt("idPenerbangan", 0)
         val jumlahPenumpang = sharedPref.getString("jumlahPenumpang", "")
         val namaKeluarga = sharedPref.getString("namaKeluarga", "")
         val namaLengkap = sharedPref.getString("namaLengkap", "")
         val noTelp = sharedPref.getString("noTelp", "")
 
-        Log.d("SelectSeatCheck", "data : $email, $idPenerbangan,$jumlahPenumpang, $namaKeluarga, $namaLengkap,$noTelp")
+        Log.d("SelectSeatCheck", "data : $email, $idPenerbangan, $jumlahPenumpang, $namaKeluarga, $namaLengkap, $noTelp")
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_selectSeatFragment_to_checkoutBiodataPemesanFragment)
         }
         binding.btnSubmit.setOnClickListener {
-            // Mengambil nilai-nilai dari SharedPreferences
+            // Mendapatkan nilai-nilai dari SharedPreferences
             val email = sharedPref.getString("email", "")
-            val idPenerbangan = sharedPref.getInt("idPenerbangan", 0)
+            val idPenerbangan = requireArguments().getInt("idPenerbangan", 0)
             val jumlahPenumpang = sharedPref.getString("jumlahPenumpang", "")
             val namaKeluarga = sharedPref.getString("namaKeluarga", "")
             val namaLengkap = sharedPref.getString("namaLengkap", "")
             val noTelp = sharedPref.getString("noTelp", "")
 
-            // Memastikan kursi dipilih
+// Memastikan kursi dipilih
             if (selectedSeat != null) {
                 // Misalkan Anda memiliki fungsi untuk melakukan proses pemesanan atau tindakan lainnya
                 if (email != null && jumlahPenumpang != null && namaKeluarga != null && namaLengkap != null && noTelp != null) {
@@ -69,7 +69,14 @@ class SelectSeatFragment : Fragment() {
                     Log.d("SelectSeatCheck", "data : $selectedSeat, $email, $idPenerbangan,$jumlahPenumpang, $namaKeluarga, $namaLengkap,$noTelp")
 
                     // Navigasi ke halaman selanjutnya setelah melakukan proses
-                    findNavController().navigate(R.id.action_selectSeatFragment_to_checkOutDetailFragment)
+                    val bundle = Bundle()
+                    bundle.putString("email", email)
+                    bundle.putInt("idPenerbangan", idPenerbangan)
+                    bundle.putString("jumlahPenumpang", jumlahPenumpang)
+                    bundle.putString("namaKeluarga", namaKeluarga)
+                    bundle.putString("namaLengkap", namaLengkap)
+                    bundle.putString("noTelp", noTelp)
+                    findNavController().navigate(R.id.action_selectSeatFragment_to_checkOutDetailFragment, bundle)
                 } else {
                     // Salah satu nilai-nilai null, lakukan sesuatu
                     Toast.makeText(requireContext(), "Gagal pesan", Toast.LENGTH_SHORT).show()
@@ -78,6 +85,7 @@ class SelectSeatFragment : Fragment() {
                 // Kursi tidak dipilih, lakukan sesuatu
                 Toast.makeText(requireContext(), "Pilih kursi terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         /// Mengatur onClickListener untuk tombol kursi

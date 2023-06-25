@@ -40,7 +40,6 @@ class CheckoutBiodataPemesanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var idPenerbangan: Int = 0
 
         // Inisialisasi DetailViewModel
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
@@ -73,7 +72,7 @@ class CheckoutBiodataPemesanFragment : Fragment() {
 
         // Mengambil data detail
         val args: CheckoutBiodataPemesanFragmentArgs by navArgs()
-        idPenerbangan = args.idPenerbangan
+        val idPenerbangan: Int = args.idPenerbangan
         detailViewModel.getDetail(idPenerbangan)
 
         binding.btnSubmit.setOnClickListener {
@@ -92,12 +91,14 @@ class CheckoutBiodataPemesanFragment : Fragment() {
             editor.putString("namaKeluarga", nama_keluarga)
             editor.putString("namaLengkap", nama_lengkap)
             editor.putString("noTelp", nomorTelepon)
-            editor.putString("jumlahPenumpang", jumlahPenumpang)
             editor.apply()
 
-            Log.d("SelectSeatCheckOut", "data : $email, $idPenerbangan,$jumlahPenumpang, $nama_keluarga, $nama_lengkap,$nomorTelepon")
-            // Navigasi ke fragment SelectSeatFragment
-            findNavController().navigate(R.id.action_checkoutBiodataPemesanFragment_to_selectSeatFragment)
+            Log.d("SelectSeatCheckOut", "data : $email, $idPenerbangan, $jumlahPenumpang, $nama_keluarga, $nama_lengkap, $nomorTelepon")
+
+            val bundle = Bundle()
+            bundle.putInt("idPenerbangan", sharedPref.getInt("idPenerbangan", 0))
+            findNavController().navigate(R.id.action_checkoutBiodataPemesanFragment_to_selectSeatFragment, bundle)
+
         }
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_checkoutBiodataPemesanFragment_to_detailPenerbanganFragment)
