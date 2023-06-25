@@ -4,6 +4,8 @@ package com.finalproject.tiketku.model.order
 import com.google.gson.annotations.SerializedName
 
 data class DataOrder(
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("email")
     val email: String,
     @SerializedName("id_penerbangan")

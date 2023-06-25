@@ -43,16 +43,13 @@ class CheckOutDetailFragment : Fragment() {
         // Inisialisasi DetailViewModel
         detailViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
 
-
         val token = sharedPref.getString("accessToken", "")
         if (token != null) {
-//            id = CheckOutDetailFragmentArgs.fromBundle(requireArguments()).id
-            detailViewModel.getOrders(id, token)
+            detailViewModel.getOrders(token)
             Log.d("SelectSeatCheck", "id : $id ")
         } else {
             Toast.makeText(requireContext(), "Kosong", Toast.LENGTH_SHORT).show()
         }
-
 
         // Observer untuk liveDetailFavorite
         detailViewModel.liveDataDetailOrders.observe(viewLifecycleOwner, { detail ->

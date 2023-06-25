@@ -142,6 +142,7 @@ class SelectSeatFragment : Fragment() {
         // Anda dapat menggunakan ViewModel untuk mengirimkan data ke server atau melakukan operasi lainnya
         val token = sharedPref.getString("accessToken", "")
         val dataOrder = DataOrder(
+            0,
             email,
             idPenerbangan,
             jumlahPenumpang.toInt(),

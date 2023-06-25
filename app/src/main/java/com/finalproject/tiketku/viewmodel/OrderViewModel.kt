@@ -34,6 +34,7 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
     fun setOrderId(orderId: Int) {
         orderIdLiveData.value = orderId
     }
+
     fun postOrders(token: String, dataOrder: DataOrder) {
         val bearerToken = "Bearer $token"
         val call = api.postOrderBiodata(bearerToken, dataOrder)
@@ -42,7 +43,13 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
             override fun onResponse(call: Call<ResponseOrder>, response: Response<ResponseOrder>) {
                 if (response.isSuccessful) {
                     val detail = response.body()?.data
-                    liveDataOrder.postValue(detail)
+
+                    // Menyimpan ID pemesanan
+                    detail?.let {
+                        val orderId = it.id
+                        setOrderId(orderId)
+                        liveDataOrder.postValue(detail)
+                    }
                 } else {
                     liveDataOrder.postValue(null)
                 }
@@ -54,26 +61,38 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
         })
     }
 
-    fun getOrders(id:Int, token: String){
-        val bearerToken = "Bearer $token"
-        val call = api.getDetailOrder(bearerToken, id)
-        call.enqueue(object : Callback<ResponseRincianOrder> {
+    fun getOrders(token: String) {
+        val orderId = orderIdLiveData.value
+        if (orderId != null) {
+            val bearerToken = "Bearer $token"
+            val call = api.getDetailOrder(bearerToken, orderId)
+            call.enqueue(object : Callback<ResponseRincianOrder> {
+                override fun onResponse(call: Call<ResponseRincianOrder>, response: Response<ResponseRincianOrder>) {
+                    if (response.isSuccessful) {
+                        val rincian = response.body()?.data
+                        liveDataDetailOrders.postValue(rincian)
+                    } else {
+                        liveDataDetailOrders.postValue(null)
+                    }
+                }
 
-            override fun onResponse(call: Call<ResponseRincianOrder>, response: Response<ResponseRincianOrder>) {
-                if (response.isSuccessful) {
-                    val rincian = response.body()?.data
-                    liveDataDetailOrders.postValue(rincian)
-                } else {
+                override fun onFailure(call: Call<ResponseRincianOrder>, t: Throwable) {
                     liveDataDetailOrders.postValue(null)
                 }
-            }
-
-            override fun onFailure(call: Call<ResponseRincianOrder>, t: Throwable) {
-                liveDataDetailOrders.postValue(null)
-            }
-        })
-
+            })
+        } else {
+            // ID kosong, tampilkan pesan kesalahan kepada pengguna
+            val errorMessage = "ID tidak tersedia"
+            // Lakukan sesuatu dengan pesan kesalahan, misalnya tampilkan di UI atau lemparkan exception
+            // Contoh: showError(errorMessage)
+        }
     }
+
+
+    fun getOrderID(): Int {
+        return orderIdLiveData.value?.let { it } ?: 0
+    }
+
     fun getKursi(token: String) {
         val bearerToken = "Bearer $token"
         val call = api.getKursi(bearerToken)
