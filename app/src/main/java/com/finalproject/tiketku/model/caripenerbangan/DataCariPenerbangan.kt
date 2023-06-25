@@ -27,5 +27,7 @@ data class DataCariPenerbangan(
     @SerializedName("selisih_menit")
     val selisihMenit: Int,
     @SerializedName("tanggal_berangkat")
-    val tanggalBerangkat: String
+    val tanggalBerangkat: String,
+    @SerializedName("hari")
+    val hari: String
 )

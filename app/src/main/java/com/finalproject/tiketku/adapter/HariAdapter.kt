@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.ListHasilPencarian
+import com.finalproject.tiketku.model.rountrip.DataRountip
 
 class HariAdapter(private val listClass:List<ListHasilPencarian>):
     RecyclerView.Adapter<HariAdapter.ViewHolder>() {
@@ -32,7 +33,7 @@ class HariAdapter(private val listClass:List<ListHasilPencarian>):
                 if (position != RecyclerView.NO_POSITION) {
                     selectedCard = position
                     notifyDataSetChanged()
-                    onItemClickCallback?.onItemClicked(position, listClass[position])
+/*                    onItemClickCallback?.onItemClicked(position, listClass[position])*/
                 }
             }
         }
@@ -83,6 +84,8 @@ class HariAdapter(private val listClass:List<ListHasilPencarian>):
     }
 
     override fun getItemCount(): Int = listClass.size
+
+
 
     interface OnItemClickCallback {
         fun onItemClicked(position: Int, data:ListHasilPencarian)

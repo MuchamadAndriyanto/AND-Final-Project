@@ -227,8 +227,8 @@ class HomeFragment : Fragment() {
         )
 
         datePickerDialog.setOnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-            val date = "$dayOfMonth ${getMonthName(monthOfYear)} $year"
-            onDateSelected(date)
+            val formattedDate = formatDate(dayOfMonth, monthOfYear, year)
+            onDateSelected(formattedDate)
         }
 
         datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Oke") { _, _ ->
@@ -236,8 +236,8 @@ class HomeFragment : Fragment() {
             val year = datePicker.year
             val month = datePicker.month
             val day = datePicker.dayOfMonth
-            val date = "$day ${getMonthName(month)} $year"
-            onDateSelected(date)
+            val formattedDate = formatDate(day, month, year)
+            onDateSelected(formattedDate)
         }
 
         datePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Batal") { _, _ ->
@@ -254,12 +254,13 @@ class HomeFragment : Fragment() {
 
         datePickerDialog.show()
     }
-    private fun getMonthName(month: Int): String {
-        val dateFormat = SimpleDateFormat("MMMM", Locale.getDefault())
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.MONTH, month)
-        return dateFormat.format(calendar.time)
+
+    private fun formatDate(day: Int, month: Int, year: Int): String {
+        val formattedDay = String.format("%02d", day)
+        val formattedMonth = String.format("%02d", month + 1) // Month value is zero-based
+        return "$formattedDay-$formattedMonth-$year"
     }
+
 
     override fun onResume() {
         super.onResume()

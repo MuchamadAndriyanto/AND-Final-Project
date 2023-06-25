@@ -38,7 +38,9 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
 
     private val jadwal: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
     val jadwalSharedPreferns = jadwal.getString("jadwal", "")
-    val jdwlSharedPreferences = jadwalSharedPreferns
+    private var jdwlSharedPreferences = jadwalSharedPreferns
+
+
 
     private val filteredList = mutableListOf<DataCariPenerbangan>()
 
@@ -104,6 +106,18 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     fun filterData(filter: String?) {
         updateFilteredList(filter)
     }
+
+    fun updateJadwalSharedPreferns(newJadwal: String) {
+        jdwlSharedPreferences = newJadwal
+        updateFilteredList(newJadwal)
+    }
+
+    fun updateData(newList: List<DataCariPenerbangan>, newJadwal: String) {
+        list = newList
+        jdwlSharedPreferences = newJadwal
+        updateFilteredList()
+    }
+
 
     fun updateData(newList: List<DataCariPenerbangan>) {
         list = newList

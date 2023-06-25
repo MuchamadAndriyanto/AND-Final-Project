@@ -4,11 +4,16 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.icu.text.SimpleDateFormat
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.ItemHariBinding
 import com.finalproject.tiketku.databinding.ItemNotifBinding
+import com.finalproject.tiketku.model.ListHasilPencarian
 import com.finalproject.tiketku.model.notif.DataNotif
 import com.finalproject.tiketku.model.rountrip.DataRountip
 import java.util.Locale
@@ -18,8 +23,29 @@ class JadwalTanggalAdapter (private val context: Context, private val list: List
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
-    inner class ViewHolder(val binding: ItemHariBinding) : RecyclerView.ViewHolder(binding.root) {
+    private var selectedCard = -1
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    inner class ViewHolder(val binding: ItemHariBinding) : RecyclerView.ViewHolder(binding.root) {
+        var hari = itemView.findViewById<TextView>(R.id.tv_hari)
+        var tgl = itemView.findViewById<TextView>(R.id.tv_tgl)
+        val lin1 = itemView.findViewById<View>(R.id.layout_hari)
+
+        init {
+            lin1.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    selectedCard = position
+                    notifyDataSetChanged()
+                    onItemClickCallback?.onItemClicked(position, list[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,9 +58,19 @@ class JadwalTanggalAdapter (private val context: Context, private val list: List
         val sortedList = list.sortedBy { it.tanggalBerangkat }
         val item = sortedList[position]
         holder.binding.tvTgl.text = item.tanggalBerangkat
+        holder.binding.tvHari.text = item.hari
+
+        if (position == selectedCard) {
+            holder.lin1.setBackgroundResource(R.drawable.curved_set_class)
+            holder.hari.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+            holder.tgl.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+        } else {
+            holder.lin1.setBackgroundResource(R.drawable.curve_set_class)
+            holder.hari.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.black))
+            holder.tgl.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.black))
+        }
 
 
-        holder.binding.tvHari.text = "Senin"
 
         holder.binding.layoutHari.setOnClickListener {
             val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -46,7 +82,9 @@ class JadwalTanggalAdapter (private val context: Context, private val list: List
     }
 
 
-    override fun getItemCount(): Int {
-        return list.size
+    override fun getItemCount(): Int = list.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked(position: Int, data: DataRountip)
     }
 }

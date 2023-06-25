@@ -34,7 +34,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="14sp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 />
 
             <TextView

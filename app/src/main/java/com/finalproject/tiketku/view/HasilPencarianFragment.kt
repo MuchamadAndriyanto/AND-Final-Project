@@ -46,6 +46,7 @@ class HasilPencarianFragment : Fragment() {
     private lateinit var classAdapter: HariAdapter
     private lateinit var classList: ArrayList<ListHasilPencarian>
     private var selectedFilter: String? = null
+    private var selectedJadwal: String? = null
 
     private lateinit var sharedPreferences: SharedPreferences
     lateinit var btnFilter2: Button
@@ -109,6 +110,7 @@ class HasilPencarianFragment : Fragment() {
                 val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                 binding.rvTiket.layoutManager = layoutManager
                 applyFilter(selectedFilter)
+                /*applyDate(selectedJadwal ?: "")*/
             }
         })
 
@@ -131,7 +133,15 @@ class HasilPencarianFragment : Fragment() {
 
     private fun applyFilter(filter: String?) {
         hasilPenerbanganAdapter.filterData(filter)
+
     }
+
+/*    private fun applyDate(newJadwal: String) {
+        hasilPenerbanganAdapter.updateJadwalSharedPreferns(newJadwal)
+
+    }*/
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
