@@ -298,7 +298,7 @@
             android:id="@+id/action_selectSeatFragment_to_checkOutDetailFragment"
             app:destination="@id/checkOutDetailFragment">
             <argument
-                android:name="idPenerbangan"
+                android:name="orderId"
                 app:argType="integer"/>
         </action>
     </fragment>
@@ -313,7 +313,7 @@
         android:label="fragment_check_out_detail"
         tools:layout="@layout/fragment_check_out_detail" >
         <argument
-            android:name="idPenerbangan"
+            android:name="orderId"
             app:argType="integer" />
         <action
             android:id="@+id/action_checkOutDetail_to_selectSeatFragment"

@@ -24,16 +24,20 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
         val liveDataOrders: MutableLiveData<DataOrder?> get() = liveDataOrder
         val liveDetailOrders: MutableLiveData<DataDetailOrder?> get() = liveDataDetailOrder
         private val orderIdLiveData: MutableLiveData<Int> = MutableLiveData()
-
+    private val _isOrderIdAvailable = MutableLiveData<Boolean>()
+    val isOrderIdAvailable: LiveData<Boolean> = _isOrderIdAvailable
         // Getter untuk LiveData ID
         fun getOrderIdLiveData(): LiveData<Int> = orderIdLiveData
 
         // Setter untuk ID
+        private var orderId: Int? = null
+
         fun setOrderId(orderId: Int) {
-            orderIdLiveData.value = orderId
+            this.orderId = orderId
         }
+
         fun getOrderId(): Int? {
-            return orderIdLiveData.value
+            return orderId
         }
 
         fun postOrders(token: String, dataOrder: DataOrder) {
@@ -49,28 +53,32 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
                         detail?.let {
                             val orderId = it.id
                             setOrderId(orderId)
-                            Log.d("idOrder","id nya : $orderId")
                             liveDataOrder.postValue(detail)
+                            _isOrderIdAvailable.postValue(true)
                         }
                     } else {
                         liveDataOrder.postValue(null)
+                        _isOrderIdAvailable.postValue(false)
                     }
                 }
-
                 override fun onFailure(call: Call<ResponseOrder>, t: Throwable) {
                     liveDataOrder.postValue(null)
+                    _isOrderIdAvailable.postValue(false)
                 }
             })
         }
 
         fun getOrders(token: String, orderId: Int?) {
+            if (orderId != null) {
+                setOrderId(orderId)
+            }
             val bearerToken = "Bearer $token"
             val call = api.getDetailOrder(bearerToken, orderId)
             call.enqueue(object : Callback<ResponseRincianOrder> {
                 override fun onResponse(call: Call<ResponseRincianOrder>, response: Response<ResponseRincianOrder>) {
                     if (response.isSuccessful) {
                         val rincian = response.body()?.data
-                        Log.d("idOrder","id get nya : $orderId")
+                        Log.d("idOrder","id get nya : ${orderId ?: "null"}")
                         liveDataDetailOrder.postValue(rincian)
                     } else {
                         liveDataDetailOrder.postValue(null)
