@@ -17,6 +17,7 @@ import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
 import com.finalproject.tiketku.model.riwayat.ResponseRiwayat
+import com.finalproject.tiketku.model.roundtrip.RoundTripResponse
 import com.finalproject.tiketku.model.rountrip.ResponseRountrip
 import com.finalproject.tiketku.model.search.SearchResponse
 import retrofit2.Call
@@ -87,11 +88,11 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<ResponseOrder>
 
-    @GET("tiket-round-trip")
+    @GET("get-date-round-trip")
     fun getRoundtrip(
         @Query("tanggalBerangkat") tanggalBerangkat: String,
         @Query("tanggalPulang") tanggalPulang: String
-    ): Call<ResponseRountrip>
+    ): Call<RoundTripResponse>
 
 
     @GET("tiket?tanggal=08-06-2023")

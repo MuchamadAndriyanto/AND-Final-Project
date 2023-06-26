@@ -87,14 +87,29 @@ class HomeFragment : Fragment() {
 
             if (!isChecked) {
                 // Reset nilai tanggal kembali saat switch dinonaktifkan
+                val dateSharedPrefrens = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
                 selectedReturnDate = ""
                 tvPilihTanggal.text = "Pilih tanggal"
+                val editor = dateSharedPrefrens.edit()
+                editor.remove("returnDate")
+                editor.apply()
+
+                Log.d(
+                    "test", "Update $selectedReturnDate"
+                )
             }
 
+            val dateSharedPrefrens = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
             binding.dateDeparture.setOnClickListener {
                 showDatePicker(requireContext()) { date ->
                     selectedStartDate = date
                     binding.tvDateDeparture.text = date
+                    val editor = dateSharedPrefrens.edit()
+                    editor.putString("startDate", selectedStartDate)
+                    editor.apply()
+                    Log.d(
+                        "test", "Update $selectedStartDate"
+                    )
                 }
             }
 
@@ -103,7 +118,23 @@ class HomeFragment : Fragment() {
                     showDatePicker(requireContext()) { date ->
                         selectedReturnDate = date
                         binding.tvPilihTanggal.text = date
+                        val editor = dateSharedPrefrens.edit()
+                        editor.putString("returnDate", selectedReturnDate)
+                        editor.apply()
+                        Log.d(
+                            "test", "Update $selectedReturnDate"
+                        )
                     }
+                }else {
+                    val editor = dateSharedPrefrens.edit()
+                    editor.remove("returnDate")
+                    editor.apply()
+
+                    binding.tvPilihTanggal.text = ""
+
+                    Log.d(
+                        "test", "Update $selectedReturnDate"
+                    )
                 }
             }
 

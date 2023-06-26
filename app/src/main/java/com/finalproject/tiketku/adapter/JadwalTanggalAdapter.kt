@@ -15,10 +15,11 @@ import com.finalproject.tiketku.databinding.ItemHariBinding
 import com.finalproject.tiketku.databinding.ItemNotifBinding
 import com.finalproject.tiketku.model.ListHasilPencarian
 import com.finalproject.tiketku.model.notif.DataNotif
+import com.finalproject.tiketku.model.roundtrip.DataRoundTrip
 import com.finalproject.tiketku.model.rountrip.DataRountip
 import java.util.Locale
 
-class JadwalTanggalAdapter (private val context: Context, private val list: List<DataRountip>) : RecyclerView.Adapter<JadwalTanggalAdapter.ViewHolder>() {
+class JadwalTanggalAdapter (private val context: Context, private val list: List<DataRoundTrip>) : RecyclerView.Adapter<JadwalTanggalAdapter.ViewHolder>() {
 
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -85,6 +86,6 @@ class JadwalTanggalAdapter (private val context: Context, private val list: List
     override fun getItemCount(): Int = list.size
 
     interface OnItemClickCallback {
-        fun onItemClicked(position: Int, data: DataRountip)
+        fun onItemClicked(position: Int, data: DataRoundTrip)
     }
 }
