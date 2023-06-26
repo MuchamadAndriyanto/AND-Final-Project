@@ -8,6 +8,10 @@
     <color name="teal_700" tools:keep="@color/teal_700">#FF018786</color>
     <color name="red" tools:keep="@color/red">#870115</color>
     <color name="biru" tools:keep="@color/biru">#0F23A3</color>
+
+    <color name="birutua" tools:keep="@color/birutua">#005c99</color>
+
+    <color name="birumuda" tools:keep="@color/birumuda">#00afef</color>
     <color name="yellow">#FFC801</color>
     <color name="backgor">#232020</color>
     <color name="emas">#00000000</color>

@@ -71,6 +71,7 @@ class SelectSeatFragment : Fragment() {
                     // Navigasi ke halaman selanjutnya setelah melakukan proses
                     val bundle = Bundle()
                     bundle.putString("email", email)
+                    bundle.putString("id", id.toString())
                     bundle.putInt("idPenerbangan", idPenerbangan)
                     bundle.putString("jumlahPenumpang", jumlahPenumpang)
                     bundle.putString("namaKeluarga", namaKeluarga)

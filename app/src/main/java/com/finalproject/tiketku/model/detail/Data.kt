@@ -12,5 +12,6 @@ data class Data(
     val maskapai: Maskapai,
     val selisih_jam: Int,
     val selisih_menit: Int,
-    val tanggal_berangkat: String
+    val tanggal_berangkat: String,
+    val tanggal_kedatangan: String
 )

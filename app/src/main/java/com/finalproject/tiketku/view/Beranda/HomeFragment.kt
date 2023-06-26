@@ -20,6 +20,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.ContextThemeWrapper
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -152,9 +153,13 @@ class HomeFragment : Fragment() {
         }
 
         binding.btnPencarian.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
-
+            if (isDataValid()) {
+                findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
+            } else {
+                Toast.makeText(requireContext(), "Harap lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
         binding.dateDeparture.setOnClickListener {
             showDatePicker(requireContext()) { date ->
@@ -209,10 +214,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun showDatePicker(
-        context: Context,
-        onDateSelected: (date: String) -> Unit
-    ) {
+    private fun showDatePicker(context: Context, onDateSelected: (date: String) -> Unit) {
         val calendar = Calendar.getInstance()
         val initialYear = calendar.get(Calendar.YEAR)
         val initialMonth = calendar.get(Calendar.MONTH)
@@ -227,8 +229,10 @@ class HomeFragment : Fragment() {
         )
 
         datePickerDialog.setOnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-            val formattedDate = formatDate(dayOfMonth, monthOfYear, year)
-            onDateSelected(formattedDate)
+            val formattedDay = String.format("%02d", dayOfMonth)
+            val formattedMonth = String.format("%02d", monthOfYear + 1)
+            val date = "$formattedDay-$formattedMonth-$year"
+            onDateSelected(date)
         }
 
         datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Oke") { _, _ ->
@@ -236,8 +240,10 @@ class HomeFragment : Fragment() {
             val year = datePicker.year
             val month = datePicker.month
             val day = datePicker.dayOfMonth
-            val formattedDate = formatDate(day, month, year)
-            onDateSelected(formattedDate)
+            val formattedDay = String.format("%02d", day)
+            val formattedMonth = String.format("%02d", month + 1)
+            val date = "$formattedDay-$formattedMonth-$year"
+            onDateSelected(date)
         }
 
         datePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Batal") { _, _ ->
@@ -255,11 +261,6 @@ class HomeFragment : Fragment() {
         datePickerDialog.show()
     }
 
-    private fun formatDate(day: Int, month: Int, year: Int): String {
-        val formattedDay = String.format("%02d", day)
-        val formattedMonth = String.format("%02d", month + 1) // Month value is zero-based
-        return "$formattedDay-$formattedMonth-$year"
-    }
 
 
     override fun onResume() {
@@ -319,6 +320,18 @@ class HomeFragment : Fragment() {
         binding.btnPencarian.isEnabled = true
     }
 
+    private fun isDataValid(): Boolean {
+        val selectedDate = binding.tvDateDeparture.text.toString()
+        val selectedDeparture = binding.tvDeparture.text.toString()
+        val selectedDestination = binding.tvTujuan.text.toString()
+
+        // Lakukan pengecekan sesuai kebutuhan
+        if (selectedDate.isEmpty() || selectedDeparture.isEmpty() || selectedDestination.isEmpty()) {
+            return false
+        }
+
+        return true
+    }
 
 
 

@@ -79,7 +79,7 @@ interface ApiService {
     @GET("get-order/{id}")
     fun getDetailOrder(
         @Header("Authorization") token: String,
-        @Path("id") id: Int
+        @Path("id") id: Int?
     ): Call<ResponseRincianOrder>
 
     @GET("get-pemesan")
