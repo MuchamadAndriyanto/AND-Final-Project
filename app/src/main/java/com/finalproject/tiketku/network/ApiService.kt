@@ -100,6 +100,7 @@ interface ApiService {
 
     @GET("history-order")
     fun getRiwayat(
-        @Header("Authorization") token: String,
-    ):  Call<ResponseRiwayat>
+        @Header("Authorization") token: String
+    ): Call<ResponseRiwayat>
+
 }

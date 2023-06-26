@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/grey"
     tools:context=".view.HistoryFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/tvRiwayat"
@@ -41,9 +43,9 @@
             android:layout_marginTop="20dp"
             tools:listitem="@layout/item_riwayat"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+

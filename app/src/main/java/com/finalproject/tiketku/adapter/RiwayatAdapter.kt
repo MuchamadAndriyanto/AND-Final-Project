@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.databinding.ItemRiwayatBinding
 import com.finalproject.tiketku.model.riwayat.Data
 
-class RiwayatAdapter(private val context: Context, private val list: List<Data>) : RecyclerView.Adapter<RiwayatAdapter.ViewHolder>() {
+class RiwayatAdapter(private val context: Context, var list: List<Data>) : RecyclerView.Adapter<RiwayatAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemRiwayatBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -24,10 +24,12 @@ class RiwayatAdapter(private val context: Context, private val list: List<Data>)
         holder.binding.tvBerangkat.text = item.tiket.tanggal_berangkat
         holder.binding.tvJamBerangkat.text = item.tiket.jam_berangkat
 
+        holder.binding.tvJam.text = item.tiket.selisih_jam.toString() + "h"
+        holder.binding.tvMenit.text = item.tiket.selisih_menit.toString() + "m"
+
         holder.binding.tvMelbourne.text = item.tiket.bandaraTujuan.kota
         holder.binding.tvKedatangan.text = item.tiket.tanggal_kedatangan
         holder.binding.tvJamKedatangan.text = item.tiket.jam_kedatangan
-
 
         holder.binding.Kode.text = item.id.kode_booking
         holder.binding.tvPrice.text = item.totalHargaTiket

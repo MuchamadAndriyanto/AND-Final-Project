@@ -3,10 +3,13 @@ package com.finalproject.tiketku.view
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,11 +30,12 @@ class HistoryFragment : Fragment() {
     private lateinit var sharedPref: SharedPreferences
     private lateinit var viewModel: RiwayatViewModel
     private lateinit var token: String
+    private lateinit var riwayatAdapter: RiwayatAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,20 +43,23 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(requireActivity()).get(RiwayatViewModel::class.java)
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
         // Ambil token dari SharedPreferences
         token = sharedPref.getString("accessToken", "") ?: ""
 
-        viewModel = ViewModelProvider(this).get(RiwayatViewModel::class.java)
+        riwayatAdapter = RiwayatAdapter(requireContext(), emptyList())
+        binding.rvRiwayat.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvRiwayat.adapter = riwayatAdapter
 
         viewModel.getRiwayat(token)
-        viewModel.liveRiwayat.observe(viewLifecycleOwner, { responseData ->
-            if (responseData != null) {
-                val riwayatList = listOf(responseData)
-                val adapter = RiwayatAdapter(requireContext(), riwayatList)
-                binding.rvRiwayat.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvRiwayat.adapter = adapter
+
+        viewModel.liveData.observe(viewLifecycleOwner, { responseData ->
+            responseData?.let {
+                riwayatAdapter.list = it
+                riwayatAdapter.notifyDataSetChanged()
+                Log.d("HistoryFragment", "Data riwayat berhasil diatur dalam adapter")
             }
         })
     }
