@@ -3,6 +3,7 @@ package com.finalproject.tiketku.adapter
 import android.content.Context
 import android.content.SharedPreferences
 import android.icu.text.SimpleDateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,7 @@ class JadwalTanggalAdapter (private val context: Context, private val list: List
                 if (position != RecyclerView.NO_POSITION) {
                     selectedCard = position
                     notifyDataSetChanged()
+
                     onItemClickCallback?.onItemClicked(position, list[position])
                 }
             }
@@ -79,6 +81,7 @@ class JadwalTanggalAdapter (private val context: Context, private val list: List
             editor.putString("jadwal", item.tanggalBerangkat)
             editor.apply()
             Toast.makeText(context, "Jadwal tersimpan", Toast.LENGTH_SHORT).show()
+
         }
     }
 

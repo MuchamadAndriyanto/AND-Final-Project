@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class HariAdapter(private val listClass:List<ListHasilPencarian>):
                 if (position != RecyclerView.NO_POSITION) {
                     selectedCard = position
                     notifyDataSetChanged()
+
 /*                    onItemClickCallback?.onItemClicked(position, listClass[position])*/
                 }
             }
