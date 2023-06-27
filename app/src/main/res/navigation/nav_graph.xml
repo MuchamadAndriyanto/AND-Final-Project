@@ -319,7 +319,7 @@
             android:id="@+id/action_checkOutDetail_to_selectSeatFragment"
             app:destination="@id/selectSeatFragment" />
         <action
-            android:id="@+id/action_checkOutDetailFragment_to_paymentFragment2"
+            android:id="@+id/action_checkOutDetailFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
     </fragment>
     <fragment
@@ -330,5 +330,13 @@
         <action
             android:id="@+id/action_paymentFragment_to_checkOutDetailFragment"
             app:destination="@id/checkOutDetailFragment" />
+        <action
+            android:id="@+id/action_paymentFragment_to_paymentSuccesFragment"
+            app:destination="@id/paymentSuccesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentSuccesFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.PaymentSuccesFragment"
+        android:label="fragment_payment_succes"
+        tools:layout="@layout/fragment_payment_succes" />
 </navigation>

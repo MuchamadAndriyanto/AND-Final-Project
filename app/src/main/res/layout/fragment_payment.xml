@@ -423,6 +423,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextBody14Medium"
@@ -431,17 +432,18 @@
                 android:textColor="@color/neutral_05" />
 
             <EditText
-                android:id="@+id/editTextText1"
+                android:id="@+id/etNoCard"
                 style="@style/TextBody14Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="4480 0000 0000 0000"
+                android:hint="4480 0000 0000 0000"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
+                android:id="@+id/tvCardName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -451,14 +453,13 @@
                 android:textColor="@color/neutral_05" />
 
             <EditText
-                android:id="@+id/editTextText2"
+                android:id="@+id/etName"
                 style="@style/TextBody14Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ems="10"
-                android:inputType="text"
-                android:text="John Doe"
+                android:hint="John Doe"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RelativeLayout
@@ -472,6 +473,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvCvv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TextBody14Medium"
@@ -480,13 +482,12 @@
                         android:textColor="@color/neutral_05" />
 
                     <EditText
-                        android:id="@+id/editTextText4"
+                        android:id="@+id/etCvv"
                         style="@style/TextBody14Regular"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="text"
-                        android:text="000"
+                        android:hint="000"
                         tools:ignore="TouchTargetSizeCheck" />
 
                 </LinearLayout>
@@ -503,7 +504,7 @@
                         android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textViewExpDate"
+                        android:id="@+id/tvExpDate"
                         android:layout_marginStart="20dp"
                         style="@style/TextBody14Medium"
                         android:lineHeight="20dp"
@@ -511,15 +512,14 @@
                         android:textColor="@color/neutral_05" />
 
                     <EditText
-                        android:id="@+id/edit_expdate"
+                        android:id="@+id/etExpdate"
                         style="@style/TextBody14Regular"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginStart="20dp"
                         android:ems="10"
-                        android:inputType="text"
-                        android:text="07/24"
+                        android:hint="16/20"
                         tools:ignore="TouchTargetSizeCheck" />
 
                 </LinearLayout>
@@ -570,6 +570,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnbayar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

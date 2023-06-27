@@ -13,6 +13,8 @@ import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
 import com.finalproject.tiketku.model.notif.NotifResponse
 import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.order.ResponseOrder
+import com.finalproject.tiketku.model.payment.Data
+import com.finalproject.tiketku.model.payment.ResponsePayment
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
@@ -102,5 +104,11 @@ interface ApiService {
     fun getRiwayat(
         @Header("Authorization") token: String
     ): Call<ResponseRiwayat>
+
+    @POST("payment")
+    fun postPayment(
+        @Header("Authorization") token: String,
+        @Body paymentData: Data
+    ): Call<ResponsePayment>
 
 }

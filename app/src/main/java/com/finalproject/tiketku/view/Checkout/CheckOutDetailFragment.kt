@@ -76,8 +76,14 @@ class CheckOutDetailFragment : Fragment() {
         })
 
         binding.btnSubmit.setOnClickListener {
-            findNavController().navigate(R.id.action_checkOutDetailFragment_to_paymentFragment2)
+            val bundle = Bundle().apply {
+                putInt(PaymentFragment.ARG_ORDER_ID, orderId)
+            }
+            Log.d("Payment", "Order ID: $orderId")
+            Log.d("Payment", "Bundle: $bundle")
+            findNavController().navigate(R.id.action_checkOutDetailFragment_to_paymentFragment, bundle)
         }
+
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_checkOutDetail_to_selectSeatFragment)
