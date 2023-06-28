@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
 import com.finalproject.tiketku.model.favorit.DataFavorite
+import com.finalproject.tiketku.view.HasilPencarianFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -206,7 +207,16 @@ class HomeFragment : Fragment() {
                 editor.putInt("totalPassengers", totalPassengers)
                 editor.apply()
 
-                findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
+                val sharedPreferences = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
+                val returnDate = sharedPreferences.getString("returnDate", "")
+
+                if (returnDate.isNullOrEmpty()) {
+                    findNavController().navigate(R.id.action_homeFragment_to_hasilPenerbanganRoundtripFragment)
+                } else {
+                    findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
+                }
+
+
             } else {
                 Toast.makeText(requireContext(), "Harap lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
