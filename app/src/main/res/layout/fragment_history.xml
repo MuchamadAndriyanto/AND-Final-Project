@@ -26,33 +26,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivSearch"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
-            android:layout_alignTop="@id/tvRiwayat"
-            android:layout_marginStart="345dp"
-            android:elevation="4dp"
-            android:src="@drawable/baseline_search_24" />
-
-        <TextView
-            android:id="@+id/tvBulan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Juni 2023"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_below="@id/tvRiwayat"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/tvBulan"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:text="Juni 2023"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_below="@id/tvRiwayat"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRiwayat"
-            android:layout_below="@+id/tvBulan"
+            android:layout_below="@+id/tvRiwayat"
             android:layout_marginTop="10dp"
             tools:listitem="@layout/item_riwayat"
             android:layout_width="match_parent"
