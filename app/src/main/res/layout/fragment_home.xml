@@ -97,7 +97,7 @@
                                             style="@style/TextTitle16Medium"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Jakarta (JKT)"
+                                            android:text="Asal Penerbangan"
                                             android:textColor="@color/black"
                                             android:layout_marginStart="20dp" />
 
