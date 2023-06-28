@@ -156,7 +156,7 @@
                                             android:layout_height="wrap_content"
                                             android:text="Melbourne (MLB)"
                                             android:textColor="@color/black"
-                                            android:layout_marginStart="40dp" />
+                                            android:layout_marginStart="37dp" />
                                     </com.google.android.flexbox.FlexboxLayout>
                                 </LinearLayout>
 

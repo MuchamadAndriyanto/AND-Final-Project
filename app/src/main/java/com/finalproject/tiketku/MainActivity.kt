@@ -100,13 +100,13 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-        editor.putString("key", "Jakarta (JKT)")
+        editor.putString("key", "Pilih Asal")
         editor.apply()
 
         val sharedPreferencesTo = getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
         val editorTo = sharedPreferencesTo.edit()
 
-        editorTo.putString("keyTo", "Tujuan Penerbangan ")
+        editorTo.putString("keyTo", "Pilih Tujuan")
         editorTo.apply()
     }
 
