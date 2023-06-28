@@ -82,7 +82,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     private fun updateFilteredList(filter: String? = null) {
         filteredList.clear()
         filteredList.addAll(list.filter { item ->
-            item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo &&item.tanggalBerangkat == jdwlSharedPreferences
+            item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo && item.tanggalBerangkat == jdwlSharedPreferences
         })
 
 

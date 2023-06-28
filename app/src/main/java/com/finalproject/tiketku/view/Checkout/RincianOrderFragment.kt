@@ -17,7 +17,6 @@ import com.finalproject.tiketku.adapter.RiwayatAdapter
 import com.finalproject.tiketku.databinding.FragmentCheckOutDetailBinding
 import com.finalproject.tiketku.databinding.FragmentRincianOrderBinding
 import com.finalproject.tiketku.viewmodel.OrderViewModel
-import com.finalproject.tiketku.viewmodel.RincianViewModel
 import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
