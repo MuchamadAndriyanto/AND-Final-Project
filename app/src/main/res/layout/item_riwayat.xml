@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/cardDetail"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -23,13 +24,12 @@
                 style="@style/TextBody10Medium"
                 android:layout_width="72dp"
                 android:layout_height="24dp"
-                android:text="Limited!"
+                android:text="Paid!"
                 android:layout_margin="6dp"
                 android:layout_gravity="top|end"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:background="@drawable/badge_shape"
-                />
+                android:background="@drawable/badge_shape_paid" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                         android:id="@+id/layoutDeparture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="25dp"
                         android:layout_marginTop="2dp"
                         android:orientation="vertical">
 
@@ -97,7 +97,7 @@
                         android:id="@+id/layoutFlightTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="35dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginEnd="13dp"
                         android:layout_toEndOf="@id/layoutDeparture"
                         android:gravity="center"
@@ -147,7 +147,7 @@
                         android:id="@+id/layoutArrive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="2dp"
                         android:layout_toEndOf="@id/layoutFlightTime"
                         android:orientation="vertical">
@@ -192,7 +192,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginStart="239dp"
+                        android:layout_marginStart="215dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
@@ -248,7 +248,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:orientation="vertical"

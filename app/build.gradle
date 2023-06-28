@@ -43,6 +43,9 @@ android {
 
 dependencies {
 
+    //desain
+    implementation 'com.google.android.material:material:1.4.0'
+
     //lottie
     implementation 'com.airbnb.android:lottie:4.0.0'
 

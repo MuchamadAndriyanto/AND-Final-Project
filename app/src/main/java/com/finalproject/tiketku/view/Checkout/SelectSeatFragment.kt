@@ -166,5 +166,9 @@ class SelectSeatFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), "Token kosong", Toast.LENGTH_SHORT).show()
         }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_selectSeatFragment_to_checkoutBiodataPemesanFragment)
+        }
     }
 }

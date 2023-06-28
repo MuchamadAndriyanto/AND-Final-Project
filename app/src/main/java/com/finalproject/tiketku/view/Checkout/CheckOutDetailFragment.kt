@@ -84,21 +84,29 @@ class CheckOutDetailFragment : Fragment() {
                 binding.tvHargaAdult.text = detail.tiket.maskapai.hargaTiket
                 binding.detailTotalHarga.text = detail.totalHargaTiket
 
+                binding.btnSubmit.setOnClickListener {
+                    val bundle = Bundle().apply {
+                        putInt(PaymentFragment.ARG_ORDER_ID, orderId)
+                        putString("departureCountry", detail.tiket.bandaraAwal.negara)
+                        putString("destinationAirport", detail.tiket.bandaraTujuan.negara)
+                        putString("jamBerangkat", detail.tiket.jamBerangkat)
+                        putString("jamKedatangan", detail.tiket.jamKedatangan)
+                        putString("tanggalBerangkat", detail.tiket.tanggalBerangkat)
+                        putString("tanggalKedatangan", detail.tiket.tanggalKedatangan)
+                        putString("jumlahPenumpang", detail.order.jumlahPenumpang.toString())
+                        putString("totalHargaTiket", detail.totalHargaTiket)
+                        putString("selisihJam", "(" + detail.tiket.selisihJam + "h - ")
+                        putString("selisihMenit", detail.tiket.selisihMenit.toString() + "m)")
+                    }
+                    Log.d("Payment", "Order ID: $orderId")
+                    Log.d("Payment", "Bundle: $bundle")
+                    findNavController().navigate(R.id.action_checkOutDetailFragment_to_paymentFragment, bundle)
+                }
             } else {
                 // Permintaan GET tidak berhasil, lakukan sesuatu
                 Toast.makeText(requireContext(), "Gagal menampilkan pesanan", Toast.LENGTH_SHORT).show()
             }
         })
-
-        binding.btnSubmit.setOnClickListener {
-            val bundle = Bundle().apply {
-                putInt(PaymentFragment.ARG_ORDER_ID, orderId)
-            }
-            Log.d("Payment", "Order ID: $orderId")
-            Log.d("Payment", "Bundle: $bundle")
-            findNavController().navigate(R.id.action_checkOutDetailFragment_to_paymentFragment, bundle)
-        }
-
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_checkOutDetail_to_selectSeatFragment)

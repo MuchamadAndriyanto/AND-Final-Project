@@ -16,6 +16,7 @@ import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentCheckOutDetailBinding
 import com.finalproject.tiketku.databinding.FragmentPaymentBinding
 import com.finalproject.tiketku.model.payment.Data
+import com.finalproject.tiketku.model.payment.DataPost
 import com.finalproject.tiketku.viewmodel.PaymentViewModel
 import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +46,29 @@ class PaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         orderId = arguments?.getInt(ARG_ORDER_ID, 0) ?: 0
-        Log.d("PaymentFragment", "Order ID: $orderId")
+        Log.d("PaymentFragment", "orderId $orderId")
+
+        val departureCountry = arguments?.getString("departureCountry", "")
+        val destinationAirport = arguments?.getString("destinationAirport", "")
+        val jamBerangkat = arguments?.getString("jamBerangkat")
+        val jamKedatangan = arguments?.getString("jamKedatangan")
+        val tanggalBerangkat = arguments?.getString("tanggalBerangkat")
+        val tanggalKedatangan = arguments?.getString("tanggalKedatangan")
+        val jumlahPenumpang = arguments?.getString("jumlahPenumpang")
+        val totalHargaTiket = arguments?.getString("totalHargaTiket")
+        val selisihJam = arguments?.getString("selisihJam")
+        val selisihMenit = arguments?.getString("selisihMenit")
+
+        binding.tvjakarta.text = departureCountry
+        binding.tvMelbourne.text = destinationAirport
+        binding.tvBerangkat.text = tanggalBerangkat
+        binding.tvKedatangan.text = tanggalKedatangan
+        binding.tvJamBerangkat.text = jamBerangkat
+        binding.tvJamKedatangan.text = jamKedatangan
+        binding.tvAdulst.text = " $jumlahPenumpang Adults"
+        binding.tvTotalHarga.text = totalHargaTiket
+        binding.tvJam.text = selisihJam
+        binding.tvMenit.text = selisihMenit
 
         // Inisialisasi ViewModel
         paymentViewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
@@ -56,33 +79,40 @@ class PaymentFragment : Fragment() {
         token = sharedPref.getString("accessToken", "") ?: ""
 
         binding.btnbayar.setOnClickListener {
-            // Validasi input pembayaran (misalnya, cek apakah semua data terisi dengan benar)
-
             val cardNumber = binding.etNoCard.text.toString()
             val cardName = binding.etName.text.toString()
             val cvv = binding.etCvv.text.toString()
             val expiryDate = binding.etExpdate.text.toString()
 
             if (cardNumber.isNotEmpty() && cardName.isNotEmpty() && cvv.isNotEmpty() && expiryDate.isNotEmpty()) {
-                val paymentData = Data(cardName, cardNumber, cvv, expiryDate, 0, orderId, 0)
+                // Mengatur nilai orderId dari argument yang diterima
+                val paymentData = DataPost(orderId, cardNumber, cardName, cvv, expiryDate)
 
-                // Lakukan proses pembayaran
                 paymentViewModel.postPayment(token, paymentData)
             } else {
                 Toast.makeText(requireContext(), "Mohon lengkapi data pembayaran", Toast.LENGTH_SHORT).show()
             }
         }
 
-        paymentViewModel.postPaymentIdLiveData().observe(viewLifecycleOwner, { paymentId ->
-            if (paymentId != null) {
-                // Proses pembayaran berhasil
-                Log.d("PaymentFragment", "Pembayaran sukses, paymentId: $paymentId")
+        paymentViewModel.getPaymentSuccessfulLiveData().observe(viewLifecycleOwner, { isPaymentSuccessful ->
+            if (isPaymentSuccessful) {
+                Log.d("PaymentFragment", "Pembayaran sukses")
                 findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccesFragment)
             } else {
-                // Proses pembayaran gagal
                 Log.e("PaymentFragment", "Gagal melakukan pembayaran")
                 Toast.makeText(requireContext(), "Gagal melakukan pembayaran", Toast.LENGTH_SHORT).show()
             }
         })
+
+        paymentViewModel.getPaymentLiveData().observe(viewLifecycleOwner, { payment ->
+            if (payment == null) {
+                Log.e("PaymentFragment", "Gagal memperoleh data pembayaran")
+                Toast.makeText(requireContext(), "Gagal memperoleh data pembayaran", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_paymentFragment_to_checkOutDetailFragment)
+        }
     }
 }

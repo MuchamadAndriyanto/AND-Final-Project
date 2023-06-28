@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.finalproject.tiketku.model.payment.Data
+import com.finalproject.tiketku.model.payment.DataPost
 import com.finalproject.tiketku.model.payment.ResponsePayment
 import com.finalproject.tiketku.model.riwayat.ResponseRiwayat
 import com.finalproject.tiketku.network.ApiService
@@ -18,35 +19,42 @@ import javax.inject.Inject
 @HiltViewModel
 class PaymentViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
 
-    private val liveDataPayment: MutableLiveData<List<Data>> = MutableLiveData()
-    private val orderIdLiveData: MutableLiveData<Int?> = MutableLiveData()
+    private val liveDataPayment: MutableLiveData<DataPost?> = MutableLiveData()
 
-    fun postPaymentIdLiveData(): LiveData<Int?> = orderIdLiveData
+    private val _isPaymentSuccessful = MutableLiveData<Boolean>()
 
-    val liveData: MutableLiveData<List<Data>> get() = liveDataPayment
-
-    fun postPayment(token: String, paymentData: Data) {
+    fun postPayment(token: String, paymentData: DataPost) {
         val bearerToken = "Bearer $token"
 
         val call = api.postPayment(bearerToken, paymentData)
         call.enqueue(object : Callback<ResponsePayment> {
             override fun onResponse(call: Call<ResponsePayment>, response: Response<ResponsePayment>) {
                 if (response.isSuccessful) {
-                    val payment = response.body()?.data
-                    liveDataPayment.postValue(payment?.let { listOf(it) } ?: emptyList())
-                    val orderId = payment?.id_order
-                    orderIdLiveData.postValue(orderId)
-                    Log.d("PaymentViewModel", "Data pembayaran diterima: $payment")
+                    val paymentResponse = response.body()
+                    val payment = paymentResponse?.data
+                    liveDataPayment.postValue(paymentData)
+                    _isPaymentSuccessful.postValue(true)
+                    Log.d("PaymentViewModel", "Pembayaran sukses: $payment")
                 } else {
-                    Log.e("PaymentViewModel", "Gagal memperoleh data pembayaran")
-                    liveDataPayment.postValue(emptyList())
+                    Log.e("PaymentViewModel", "Gagal memproses pembayaran")
+                    liveDataPayment.postValue(null)
+                    _isPaymentSuccessful.postValue(false)
                 }
             }
 
             override fun onFailure(call: Call<ResponsePayment>, t: Throwable) {
-                Log.e("PaymentViewModel", "Gagal memperoleh data pembayaran: ${t.message}")
-                liveDataPayment.postValue(emptyList())
+                Log.e("PaymentViewModel", "Gagal memproses pembayaran: ${t.message}")
+                liveDataPayment.postValue(null)
+                _isPaymentSuccessful.postValue(false)
             }
         })
+    }
+
+    fun getPaymentLiveData(): LiveData<DataPost?> {
+        return liveDataPayment
+    }
+
+    fun getPaymentSuccessfulLiveData(): LiveData<Boolean> {
+        return _isPaymentSuccessful
     }
 }

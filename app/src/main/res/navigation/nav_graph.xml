@@ -93,7 +93,16 @@
         android:id="@+id/historyFragment"
         android:name="com.finalproject.tiketku.view.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_historyFragment_to_detailHistoryFragment"
+            app:destination="@id/detailHistoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.finalproject.tiketku.view.NotificationsFragment"
@@ -338,5 +347,35 @@
         android:id="@+id/paymentSuccesFragment"
         android:name="com.finalproject.tiketku.view.Checkout.PaymentSuccesFragment"
         android:label="fragment_payment_succes"
-        tools:layout="@layout/fragment_payment_succes" />
+        tools:layout="@layout/fragment_payment_succes" >
+        <action
+            android:id="@+id/action_paymentSuccesFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_paymentSuccesFragment_to_rincianOrderFragment"
+            app:destination="@id/rincianOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailHistoryFragment"
+        android:name="com.finalproject.tiketku.view.DetailHistoryFragment"
+        android:label="fragment_detail_history"
+        tools:layout="@layout/fragment_detail_history" >
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_detailHistoryFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rincianOrderFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.RincianOrderFragment"
+        android:label="fragment_rincian_order"
+        tools:layout="@layout/fragment_rincian_order" >
+        <action
+            android:id="@+id/action_rincianOrderFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

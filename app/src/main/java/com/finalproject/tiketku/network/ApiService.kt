@@ -11,10 +11,10 @@ import com.finalproject.tiketku.model.caripenerbangan.ResponseCariPenerbangan
 import com.finalproject.tiketku.model.detail.Detail
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
 import com.finalproject.tiketku.model.notif.NotifResponse
-import com.finalproject.tiketku.model.onetrip.OneTripResponse
 import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.order.ResponseOrder
 import com.finalproject.tiketku.model.payment.Data
+import com.finalproject.tiketku.model.payment.DataPost
 import com.finalproject.tiketku.model.payment.ResponsePayment
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.ResponseProfile
@@ -97,11 +97,8 @@ interface ApiService {
         @Query("tanggalPulang") tanggalPulang: String
     ): Call<RoundTripResponse>
 
-
-    @GET("get-date-one-trip")
-    fun getOnetrip(
-        @Query("tanggalBerangkat") tanggalBerangkat: String
-    ): Call<OneTripResponse>
+    @GET("tiket?tanggal=08-06-2023")
+    fun geTrip(): Call<ResponseRountrip>
 
     @GET("history-order")
     fun getRiwayat(
@@ -111,7 +108,7 @@ interface ApiService {
     @POST("payment")
     fun postPayment(
         @Header("Authorization") token: String,
-        @Body paymentData: Data
+        @Body request: DataPost
     ): Call<ResponsePayment>
 
 }

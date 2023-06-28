@@ -18,6 +18,7 @@ import com.finalproject.tiketku.adapter.NotifAdapter
 import com.finalproject.tiketku.adapter.RiwayatAdapter
 import com.finalproject.tiketku.databinding.FragmentHistoryBinding
 import com.finalproject.tiketku.databinding.FragmentNotificationsBinding
+import com.finalproject.tiketku.model.riwayat.Data
 import com.finalproject.tiketku.viewmodel.NotifViewModel
 import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import com.finalproject.tiketku.viewmodel.UsersViewModel
@@ -39,6 +40,9 @@ class HistoryFragment : Fragment() {
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
+    // Extension property untuk mendapatkan data dari List<Data>
+    val List<Data>.data: List<Data>
+        get() = this
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,14 +54,15 @@ class HistoryFragment : Fragment() {
         token = sharedPref.getString("accessToken", "") ?: ""
 
         riwayatAdapter = RiwayatAdapter(requireContext(), emptyList())
-        binding.rvRiwayat.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvRiwayat.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvRiwayat.adapter = riwayatAdapter
 
         viewModel.getRiwayat(token)
 
         viewModel.liveData.observe(viewLifecycleOwner, { responseData ->
             responseData?.let {
-                riwayatAdapter.list = it
+                riwayatAdapter.list = it.data
                 riwayatAdapter.notifyDataSetChanged()
                 Log.d("HistoryFragment", "Data riwayat berhasil diatur dalam adapter")
             }
