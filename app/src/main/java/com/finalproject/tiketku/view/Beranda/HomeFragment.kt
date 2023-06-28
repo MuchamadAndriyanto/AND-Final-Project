@@ -52,7 +52,13 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: DestinasiFavoritAdapter
     private lateinit var listDestinasiFavorit: List<DataFavorite>
+    private fun convertDateFormat(date: String): String {
+        val inputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 
+        val parsedDate = inputFormat.parse(date)
+        return outputFormat.format(parsedDate)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -103,7 +109,7 @@ class HomeFragment : Fragment() {
             binding.dateDeparture.setOnClickListener {
                 showDatePicker(requireContext()) { date ->
                     selectedStartDate = date
-                    binding.tvDateDeparture.text = date
+                    binding.tvDateDeparture.text = convertDateFormat(date)
                     val editor = dateSharedPrefrens.edit()
                     editor.putString("startDate", selectedStartDate)
                     editor.apply()
@@ -370,9 +376,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun isDataValid(): Boolean {
-        val selectedDate = binding.tvDateDeparture.text.toString()
-        val selectedDeparture = binding.tvDeparture.text.toString()
-        val selectedDestination = binding.tvTujuan.text.toString()
+        val selectedDate = binding.tvDateDeparture.text.toString().trim()
+        val selectedDeparture = binding.tvDeparture.text.toString().trim()
+        val selectedDestination = binding.tvTujuan.text.toString().trim()
 
         // Lakukan pengecekan sesuai kebutuhan
         if (selectedDate.isEmpty() || selectedDeparture.isEmpty() || selectedDestination.isEmpty()) {
