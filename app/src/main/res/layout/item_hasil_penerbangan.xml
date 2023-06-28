@@ -22,14 +22,23 @@
                 android:id="@+id/detailTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="07.00"
+                android:text="07"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
             <TextView
-                android:layout_marginStart="30dp"
+                android:id="@+id/wib"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/detailTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WIB"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginStart="18dp"
                 android:layout_marginEnd="35dp"
                 android:id="@+id/time"
-                android:layout_toEndOf="@+id/detailTime"
+                android:layout_toEndOf="@+id/wib"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4h 0m"/>
@@ -37,8 +46,17 @@
                 android:id="@+id/detailTimeArrived"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="07.45"
+                android:text="07"
                 android:layout_toEndOf="@+id/time"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/wib2"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/detailTimeArrived"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WIB"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
             <TextView
@@ -47,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="IDR 1.200.000"
+                android:textSize="10sp"
                 android:textColor="@color/purple"
                 android:textStyle="bold" />
 
@@ -107,7 +126,7 @@
             android:layout_marginBottom="20dp">
             <View
                 android:id="@+id/divider"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:background="#D0D0D0" />
             <ImageView
@@ -135,19 +154,21 @@
                 android:id="@+id/baggage"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_baggage" />
 
             <ImageView
-                android:layout_below="@id/Maskapai"
                 android:id="@+id/bot_arrow"
-                android:layout_margin="10dp"
-                android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/Maskapai"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/btn_bot_arrow_" />
 
         </RelativeLayout>

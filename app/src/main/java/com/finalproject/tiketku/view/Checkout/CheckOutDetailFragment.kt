@@ -71,16 +71,10 @@ class CheckOutDetailFragment : Fragment() {
                 val defaultAdultCount = 1
 
                 // Mendapatkan nilai adultCount dari Shared Preferences
-                val adultCount = sharedPreferences.getInt("adult", defaultAdultCount)
-
-                // Mengatur nilai default untuk babyCount
-                val defaultBabyCount = 0
-
-                // Mendapatkan nilai babyCount dari Shared Preferences
-                val babyCount = sharedPreferences.getInt("baby", defaultBabyCount)
+                val adultCount = sharedPreferences.getInt("totalPassengers", defaultAdultCount)
 
                 binding.tvAdult.text = adultCount.toString()
-                binding.tvBaby.text = babyCount.toString()
+
                 binding.tvHargaAdult.text = detail.tiket.maskapai.hargaTiket
                 binding.detailTotalHarga.text = detail.totalHargaTiket
 

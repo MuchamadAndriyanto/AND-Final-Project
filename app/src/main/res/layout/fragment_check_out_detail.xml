@@ -122,6 +122,15 @@
                     android:text="07.00"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/wib"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/detailTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WIB"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/detailStatus"
@@ -241,7 +250,16 @@
                         android:id="@+id/detailTimeArrived"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="07.45 WIB"
+                        android:text="07.45"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/wib2"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@id/detailTimeArrived"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WIB"
                         android:textStyle="bold"
                         android:textColor="@color/black"/>
 
@@ -305,8 +323,9 @@
                     android:id="@+id/tvAdult2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:text="Adults"
+                    android:text="Passangers"
                     android:textColor="@color/black"/>
 
                 <TextView
@@ -318,32 +337,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="10dp">
 
-                <TextView
-                    android:id="@+id/tvBaby"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Baby"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="IDR 0"
-                    android:textColor="@color/black"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
