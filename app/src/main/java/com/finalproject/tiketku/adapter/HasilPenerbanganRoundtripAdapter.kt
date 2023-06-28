@@ -2,25 +2,16 @@ package com.finalproject.tiketku.adapter
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.ItemDestinasiFavBinding
 import com.finalproject.tiketku.databinding.ItemTiketBinding
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
-import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.view.HasilPencarianFragmentDirections
 
-class HasilPenerbanganAdapter(private val context: Context, private var list: List<DataCariPenerbangan>)
-    : RecyclerView.Adapter<HasilPenerbanganAdapter.ViewHolder>() {
+class HasilPenerbanganRoundtripAdapter (private val context: Context, private var list: List<DataCariPenerbangan>)
+    : RecyclerView.Adapter<HasilPenerbanganRoundtripAdapter.ViewHolder>() {
 
     private val sharedPreferencesTo: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
     val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
@@ -67,12 +58,12 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         holder.binding.maskapai1.text = item2.maskapai.namaMaskapai
         holder.binding.setClass.text = selected_class
 
-        //kedetail
-        holder.binding.cardDetail.setOnClickListener { view ->
-            val id = item2.id
-            val action = HasilPencarianFragmentDirections.actionHasilPencarianFragmentToDetailPenerbanganFragment(id)
-            holder.itemView.findNavController().navigate(action)
-        }
+
+//        holder.binding.cardDetail.setOnClickListener { view ->
+//            val id = item2.id
+//            val action = HasilPencarianFragmentDirections.actionHasilPencarianFragmentToDetailPenerbanganFragment(id)
+//            holder.itemView.findNavController().navigate(action)
+//        }
     }
 
     override fun getItemCount(): Int {
@@ -125,5 +116,3 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         updateFilteredList()
     }
 }
-
-
