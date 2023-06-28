@@ -116,8 +116,8 @@ class HasilPencarianFragment : Fragment() {
 
         val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
 
-        viewModelJadwal.getRountrip()
-        viewModelJadwal.livedataRountrip.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelJadwal.getOnetrip()
+        viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, Observer { favList ->
             if (favList != null) {
 
                 val adapter = JadwalTanggalAdapter(requireContext(), favList)

@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.finalproject.tiketku.model.notif.DataNotif
 import com.finalproject.tiketku.model.notif.NotifResponse
+import com.finalproject.tiketku.model.onetrip.DataOneTrip
+import com.finalproject.tiketku.model.onetrip.OneTripResponse
 import com.finalproject.tiketku.model.roundtrip.DataRoundTrip
 import com.finalproject.tiketku.model.roundtrip.RoundTripResponse
 import com.finalproject.tiketku.model.rountrip.DataRountip
@@ -59,6 +61,37 @@ class JadwalViewModel @Inject constructor(private var api: ApiService, context: 
                     }
                 })
             }
+        }
+    }
+
+    private val liveDataOnetrip: MutableLiveData<List<DataOneTrip>?> = MutableLiveData()
+
+    val livedataOnetrip: MutableLiveData<List<DataOneTrip>?> get() = liveDataOnetrip
+    fun getOnetrip() {
+        if (liveDataOnetrip.value != null) {
+            return
+        }
+        liveDataOnetrip.value = null
+        val tanggalBerangkat = startDatee
+        if (tanggalBerangkat != null) {
+            api.getOnetrip(tanggalBerangkat).enqueue(object : Callback<OneTripResponse> {
+                override fun onResponse(
+                    call: Call<OneTripResponse>,
+                    response: Response<OneTripResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val rountripList = response.body()?.data
+                        liveDataOnetrip.postValue(rountripList)
+                    } else {
+                        liveDataOnetrip.postValue(emptyList())
+                    }
+                }
+
+                override fun onFailure(call: Call<OneTripResponse>, t: Throwable) {
+                    liveDataOnetrip.postValue(emptyList())
+                }
+            })
+
         }
     }
 }
