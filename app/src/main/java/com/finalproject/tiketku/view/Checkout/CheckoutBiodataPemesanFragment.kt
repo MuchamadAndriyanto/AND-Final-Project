@@ -105,7 +105,7 @@ class CheckoutBiodataPemesanFragment : Fragment() {
             Log.d("SelectSeatCheckOut", "data : $email, $idPenerbangan, $jumlahPenumpang, $nama_keluarga, $nama_lengkap, $nomorTelepon")
 
             val bundle = Bundle()
-            bundle.putInt("idPenerbangan", sharedPref.getInt("idPenerbangan", 0))
+            bundle.putInt("idPenerbangan", sharedPrefs.getInt("idPenerbangan", 0))
             findNavController().navigate(R.id.action_checkoutBiodataPemesanFragment_to_selectSeatFragment, bundle)
 
         }
