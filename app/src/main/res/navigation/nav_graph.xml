@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_homeFragment_to_checkoutBiodataPemesanFragment"
             app:destination="@id/checkoutBiodataPemesanFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hasilPenerbanganRoundtripFragment"
+            app:destination="@id/hasilPenerbanganRoundtripFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -378,4 +381,9 @@
             android:id="@+id/action_rincianOrderFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/hasilPenerbanganRoundtripFragment"
+        android:name="com.finalproject.tiketku.view.HasilPenerbanganRoundtripFragment"
+        android:label="fragment_hasil_penerbangan_roundtrip"
+        tools:layout="@layout/fragment_hasil_penerbangan_roundtrip" />
 </navigation>
