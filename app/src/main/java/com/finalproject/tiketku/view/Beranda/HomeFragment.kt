@@ -47,6 +47,7 @@ class HomeFragment : Fragment() {
     private var adultCount = 0
     private var totalPassengerCount = 0
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var dateSharedPreferences: SharedPreferences
     private val sharedPreferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
         updatePassengerCount()
     }
@@ -184,37 +185,6 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_destinasiPencarianToFragment)
         }
 
-        binding.btnPencarian.setOnClickListener {
-            if (isDataValid()) {
-                sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
-
-                babyCount = sharedPreferences.getInt("baby", 0)
-                childCount = sharedPreferences.getInt("child", 0)
-                adultCount = sharedPreferences.getInt("adult", 0)
-                val totalPassengers = childCount + adultCount
-
-                // Simpan nilai total penumpang ke dalam Shared Preferences
-                val editor = sharedPreferences.edit()
-                editor.putInt("baby", babyCount)
-                editor.putInt("child", childCount)
-                editor.putInt("adult", adultCount)
-                editor.putInt("totalPassengers", totalPassengers)
-                editor.apply()
-
-                val sharedPreferences = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
-                val returnDate = sharedPreferences.getString("returnDate", "")
-
-                if (returnDate.isNullOrEmpty()) {
-                    findNavController().navigate(R.id.action_homeFragment_to_hasilPenerbanganRoundtripFragment)
-                } else {
-                    findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
-                }
-
-
-            } else {
-                Toast.makeText(requireContext(), "Harap lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
-            }
-        }
 
 
         binding.dateDeparture.setOnClickListener {
@@ -246,7 +216,7 @@ class HomeFragment : Fragment() {
         
         loadSelectedClass()
 
-        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        var sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val selectedDestination = sharedPreferences.getString("key", "")
 
         binding.tvDeparture.text = selectedDestination
@@ -258,14 +228,43 @@ class HomeFragment : Fragment() {
 
         binding.btnPencarian.setOnClickListener {
             showLoading()
+            if (isDataValid()) {
+                sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
 
-            // Jalankan penundaan selama 4 detik sebelum navigasi dilakukan
-            Handler().postDelayed({
-                hideLoading()
+                babyCount = sharedPreferences.getInt("baby", 0)
+                childCount = sharedPreferences.getInt("child", 0)
+                adultCount = sharedPreferences.getInt("adult", 0)
+                val totalPassengers = childCount + adultCount
 
-                // Navigasi ke fragment tujuan
-                findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
-            }, 1000) // Penundaan selama 4 detik (4000 milidetik)
+                // Simpan nilai total penumpang ke dalam Shared Preferences
+                val editor = sharedPreferences.edit()
+                editor.putInt("baby", babyCount)
+                editor.putInt("child", childCount)
+                editor.putInt("adult", adultCount)
+                editor.putInt("totalPassengers", totalPassengers)
+                editor.apply()
+
+                // Jalankan penundaan selama 4 detik sebelum navigasi dilakukan
+                Handler().postDelayed({
+                    hideLoading()
+
+                    // Navigasi ke fragment tujuan
+                    dateSharedPreferences = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
+                    val returnDate = dateSharedPreferences.getString("returnDate", "")
+                    if (returnDate != null) {
+                        if (returnDate.isEmpty()) {
+                            findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
+                        } else {
+                            findNavController().navigate(R.id.action_homeFragment_to_hasilPenerbanganRoundtripFragment)
+                        }
+                    }
+
+                }, 1000) // Penundaan selama 4 detik (4000 milidetik)
+
+
+            } else {
+                Toast.makeText(requireContext(), "Harap lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }

@@ -385,5 +385,9 @@
         android:id="@+id/hasilPenerbanganRoundtripFragment"
         android:name="com.finalproject.tiketku.view.HasilPenerbanganRoundtripFragment"
         android:label="fragment_hasil_penerbangan_roundtrip"
-        tools:layout="@layout/fragment_hasil_penerbangan_roundtrip" />
+        tools:layout="@layout/fragment_hasil_penerbangan_roundtrip" >
+        <action
+            android:id="@+id/action_hasilPenerbanganRoundtripFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

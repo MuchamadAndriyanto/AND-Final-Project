@@ -1,33 +1,54 @@
 package com.finalproject.tiketku.view
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
+import com.finalproject.tiketku.adapter.HariAdapter
+import com.finalproject.tiketku.adapter.HasilPenerbanganAdapter
+import com.finalproject.tiketku.adapter.JadwalTanggalAdapter
+import com.finalproject.tiketku.adapter.JadwalTanggalRoundtripAdapter
+import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
+import com.finalproject.tiketku.databinding.FragmentHasilPenerbanganRoundtripBinding
+import com.finalproject.tiketku.model.ListHasilPencarian
+import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
+import com.finalproject.tiketku.viewmodel.JadwalViewModel
+import com.finalproject.tiketku.viewmodel.PencarianPenerbanganViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HasilPenerbanganRoundtripFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class HasilPenerbanganRoundtripFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentHasilPenerbanganRoundtripBinding
+    private lateinit var classAdapter: HariAdapter
+    private lateinit var classList: ArrayList<ListHasilPencarian>
+    private var selectedFilter: String? = null
+    private var selectedJadwal: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private lateinit var sharedPreferences: SharedPreferences
+    lateinit var btnFilter2: Button
+
+    private lateinit var hasilPenerbanganAdapter: HasilPenerbanganAdapter
+    private lateinit var viewModelPencarianPenerbangan: PencarianPenerbanganViewModel
+    private lateinit var tiketList: List<DataCariPenerbangan>
+
+    companion object {
+        const val REQUEST_CODE_FILTER = 123
+        const val REQUEST_KEY_FILTER = "request_key_filter" // Kunci untuk menyimpan fragment hasil filter
+        const val RESULT_KEY_FILTER = "result_key_filter" // Kunci untuk menyimpan hasil filter dalam Intent
+        const val SHARED_PREFS_NAME = "MyPrefs" // Nama Shared Preferences
+        const val FILTER_KEY = "filter_key" // Kunci untuk menyimpan data filter di Shared Preferences
     }
 
     override fun onCreateView(
@@ -35,26 +56,97 @@ class HasilPenerbanganRoundtripFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hasil_penerbangan_roundtrip, container, false)
+        binding = FragmentHasilPenerbanganRoundtripBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HasilPenerbanganRoundtripFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HasilPenerbanganRoundtripFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_hasilPenerbanganRoundtripFragment_to_homeFragment)
+        }
+
+        sharedPreferences = requireContext().getSharedPreferences(HasilPencarianFragment.SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        selectedFilter = sharedPreferences.getString(HasilPencarianFragment.FILTER_KEY, null)
+
+        btnFilter2 = binding.btnFilter2
+        btnFilter2.text = selectedFilter
+
+        btnFilter2.setOnClickListener {
+            selectedFilter = sharedPreferences.getString(HasilPencarianFragment.FILTER_KEY, null)
+            applyFilter(selectedFilter)
+            btnFilter2.text = selectedFilter
+        }
+
+        binding.btnFilter1.setOnClickListener {
+            val filterFragment = HasilPencarianWithFilterFragment()
+            filterFragment.setTargetFragment(this, HasilPencarianFragment.REQUEST_CODE_FILTER)
+            parentFragmentManager.beginTransaction()
+                .add(filterFragment, HasilPencarianFragment.REQUEST_KEY_FILTER)
+                .commit()
+        }
+
+        viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
+        viewModelPencarianPenerbangan.getFavorite()
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null) {
+                tiketList = favList
+                hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
+                binding.rvTiket.adapter = hasilPenerbanganAdapter
+                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                binding.rvTiket.layoutManager = layoutManager
+                applyFilter(selectedFilter)
+                /*applyDate(selectedJadwal ?: "")*/
             }
+        })
+
+        val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
+
+        viewModelJadwal.getRountrip()
+        viewModelJadwal.livedataRountrip.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null) {
+
+                val adapter = JadwalTanggalRoundtripAdapter(requireContext(), favList)
+                binding.rvHari.layoutManager = LinearLayoutManager(requireContext())
+                binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                binding.rvHari.adapter = adapter
+
+
+            }
+        })
+
     }
+
+    private fun applyFilter(filter: String?) {
+        hasilPenerbanganAdapter.filterData(filter)
+        updateAdapterData()
+    }
+
+    private fun updateAdapterData() {
+        viewModelPencarianPenerbangan.getFavorite()
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null) {
+                tiketList = favList
+                hasilPenerbanganAdapter.updateData(tiketList)
+            }
+        })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == HasilPencarianFragment.REQUEST_CODE_FILTER && resultCode == Activity.RESULT_OK) {
+            selectedFilter = data?.getStringExtra(HasilPencarianFragment.RESULT_KEY_FILTER)
+            if (selectedFilter != null) {
+                applyFilter(selectedFilter)
+                btnFilter2.text = selectedFilter
+                // Simpan data filter ke SharedPreferences
+                sharedPreferences.edit().putString(HasilPencarianFragment.FILTER_KEY, selectedFilter).apply()
+            }
+        }
+
+    }
+
 }
