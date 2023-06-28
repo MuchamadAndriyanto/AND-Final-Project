@@ -110,7 +110,8 @@ class CheckoutBiodataPemesanFragment : Fragment() {
 
         }
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_checkoutBiodataPemesanFragment_to_detailPenerbanganFragment)
+            findNavController().popBackStack()
         }
+
     }
 }

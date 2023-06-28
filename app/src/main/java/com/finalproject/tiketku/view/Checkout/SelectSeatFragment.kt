@@ -42,8 +42,9 @@ class SelectSeatFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_selectSeatFragment_to_checkoutBiodataPemesanFragment)
+            findNavController().popBackStack()
         }
+
 
         binding.btnSubmit.setOnClickListener {
             sharedPrefs = requireContext().getSharedPreferences("biodata", Context.MODE_PRIVATE)
@@ -143,18 +144,20 @@ class SelectSeatFragment : Fragment() {
     private fun processBooking(
         email: String,
         idPenerbangan: Int,
-        jumlahPenumpang: String,
+        jumlahPenumpang: String?,
         selectedSeatId: String,
         namaKeluarga: String,
         namaLengkap: String,
         noTelp: String
     ) {
         val token = sharedPref.getString("accessToken", "")
+        val jumlahPenumpangInt = jumlahPenumpang?.toIntOrNull() ?: 0 // Ubah null menjadi 0 jika jumlahPenumpang null
+
         val dataOrder = DataOrder(
             0,
             email,
             idPenerbangan,
-            jumlahPenumpang.toInt(),
+            jumlahPenumpangInt,
             selectedSeatId,
             namaKeluarga,
             namaLengkap,
@@ -163,12 +166,17 @@ class SelectSeatFragment : Fragment() {
 
         if (!token.isNullOrEmpty()) {
             viewModel.postOrders(token, dataOrder)
+            binding.btnBack.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("idPenerbangan", idPenerbangan)
+                findNavController().navigate(
+                    R.id.action_selectSeatFragment_to_checkoutBiodataPemesanFragment,
+                    bundle
+                )
+            }
         } else {
             Toast.makeText(requireContext(), "Token kosong", Toast.LENGTH_SHORT).show()
         }
-
-        binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_selectSeatFragment_to_checkoutBiodataPemesanFragment)
-        }
     }
+
 }
