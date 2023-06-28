@@ -23,8 +23,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class SelectSeatFragment : Fragment() {
     private lateinit var binding: FragmentSelectSeatBinding
     private lateinit var sharedPref: SharedPreferences
+    private lateinit var sharedPrefs: SharedPreferences
     private lateinit var viewModel: OrderViewModel
-    private var selectedSeat: String? = null
+    private var selectedSeatId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,38 +41,36 @@ class SelectSeatFragment : Fragment() {
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
 
-
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_selectSeatFragment_to_checkoutBiodataPemesanFragment)
         }
-        binding.btnSubmit.setOnClickListener {
-            // Mendapatkan nilai-nilai dari SharedPreferences
-            val email = sharedPref.getString("email", "")
-            val idPenerbangan = requireArguments().getInt("idPenerbangan", 0)
-            val jumlahPenumpang = sharedPref.getString("jumlahPenumpang", "")
-            val namaKeluarga = sharedPref.getString("namaKeluarga", "")
-            val namaLengkap = sharedPref.getString("namaLengkap", "")
-            val noTelp = sharedPref.getString("noTelp", "")
 
-            // Memastikan kursi dipilih
-            if (selectedSeat != null) {
-                // Misalkan Anda memiliki fungsi untuk melakukan proses pemesanan atau tindakan lainnya
+        binding.btnSubmit.setOnClickListener {
+            sharedPrefs = requireContext().getSharedPreferences("biodata", Context.MODE_PRIVATE)
+
+            val email = sharedPrefs.getString("email", "")
+            val idPenerbangan = requireArguments().getInt("idPenerbangan", 0)
+            val jumlahPenumpang = sharedPrefs.getString("jumlahPenumpang", "")
+            val namaKeluarga = sharedPrefs.getString("namaKeluarga", "")
+            val namaLengkap = sharedPrefs.getString("namaLengkap", "")
+            val noTelp = sharedPrefs.getString("noTelp", "")
+
+            if (selectedSeatId != null) {
                 if (email != null && jumlahPenumpang != null && namaKeluarga != null && namaLengkap != null && noTelp != null) {
                     processBooking(
                         email,
                         idPenerbangan,
                         jumlahPenumpang,
-                        selectedSeat!!,
+                        selectedSeatId!!,
                         namaKeluarga!!,
                         namaLengkap!!,
                         noTelp
                     )
                     Log.d(
                         "SelectSeatCheck",
-                        "data : $selectedSeat, $email, $idPenerbangan,$jumlahPenumpang, $namaKeluarga, $namaLengkap,$noTelp"
+                        "data : $selectedSeatId, $email, $idPenerbangan, $jumlahPenumpang, $namaKeluarga, $namaLengkap, $noTelp"
                     )
 
-                    // Navigasi ke halaman selanjutnya setelah melakukan proses
                     viewModel.isOrderIdAvailable.observe(viewLifecycleOwner) { isAvailable ->
                         if (isAvailable) {
                             val bundle = Bundle()
@@ -88,75 +87,64 @@ class SelectSeatFragment : Fragment() {
                                 bundle
                             )
                         } else {
-                            Toast.makeText(requireContext(), "Gagal pesan", Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(requireContext(), "Kursi sudah terisi", Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
-                    // Salah satu nilai-nilai null, lakukan sesuatu
                     Toast.makeText(requireContext(), "Gagal pesan", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                // Kursi tidak dipilih, lakukan sesuatu
-                Toast.makeText(requireContext(), "Pilih kursi terlebih dahulu", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Pilih kursi terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
         }
 
-        /// Mengatur onClickListener untuk tombol kursi
         val seatButtons = binding.seatGrid.children.toList()
 
         for (button in seatButtons) {
             button.setOnClickListener {
-                // Mengambil ID tombol yang diklik
-                val seatId = button.id
+                val seatId = button.id.toString()
 
-                // Mengambil nilai kursi dari ID tombol
-                val seat = resources.getResourceEntryName(seatId)
-
-                // Mengatur kursi terpilih
-                setSelectedSeat(seat)
-
-                // Mengubah tampilan tombol saat dipilih
-                updateButtonAppearance(seatId)
+                // Memanggil fungsi toggleSeatSelection untuk memilih atau membatalkan pemilihan kursi
+                toggleSeatSelection(button, seatId)
             }
         }
     }
 
-    // Fungsi untuk mengatur kursi terpilih
-    private fun setSelectedSeat(seat: String) {
-        if (selectedSeat == seat) {
-            // Menghapus pilihan jika kursi sudah dipilih sebelumnya
-            selectedSeat = null
+    private fun toggleSeatSelection(button: View, seatId: String) {
+        if (selectedSeatId == seatId) {
+            // Membatalkan pemilihan kursi jika tombol kursi yang sama diklik lagi
+            selectedSeatId = null
+            updateButtonAppearance(button, false)
         } else {
-            // Mengatur kursi terpilih
-            selectedSeat = seat
-        }
-    }
-
-    // Fungsi untuk memperbarui tampilan tombol berdasarkan status pemilihan kursi
-    private fun updateButtonAppearance(selectedSeatId: Int) {
-        val seatButtons = binding.seatGrid.children.toList()
-
-        for (button in seatButtons) {
-            if (button.id == selectedSeatId) {
-                // Mengatur tampilan tombol saat dipilih
-                button.isSelected = true
-                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.darkblue_03))
-            } else {
-                // Mengatur tampilan tombol saat tidak dipilih
-                button.isSelected = false
-                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.grey))
+            // Memilih kursi baru
+            if (selectedSeatId != null) {
+                // Membatalkan pemilihan kursi sebelumnya
+                val previousButton = binding.seatGrid.findViewWithTag<View>(selectedSeatId)
+                if (previousButton != null) {
+                    // Membatalkan pemilihan kursi sebelumnya
+                    updateButtonAppearance(previousButton, false)
+                }
             }
+
+            selectedSeatId = seatId
+            updateButtonAppearance(button, true)
         }
+
+        Log.d("SelectSeatCheck", "Kursi terpilih: $selectedSeatId")
     }
 
-    // Fungsi untuk melakukan proses pemesanan
+    private fun updateButtonAppearance(button: View, isSelected: Boolean) {
+        button.isSelected = isSelected
+        val colorResId = if (isSelected) R.color.darkblue_03 else R.color.grey
+        button.setBackgroundColor(ContextCompat.getColor(requireContext(), colorResId))
+    }
+
+
     private fun processBooking(
         email: String,
         idPenerbangan: Int,
         jumlahPenumpang: String,
-        kursi: String,
+        selectedSeatId: String,
         namaKeluarga: String,
         namaLengkap: String,
         noTelp: String
@@ -167,7 +155,7 @@ class SelectSeatFragment : Fragment() {
             email,
             idPenerbangan,
             jumlahPenumpang.toInt(),
-            kursi,
+            selectedSeatId,
             namaKeluarga,
             namaLengkap,
             noTelp
@@ -176,9 +164,7 @@ class SelectSeatFragment : Fragment() {
         if (!token.isNullOrEmpty()) {
             viewModel.postOrders(token, dataOrder)
         } else {
-            // Data token tidak tersedia, lakukan sesuatu
-            Toast.makeText(requireContext(), "Gagal pesan", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Token kosong", Toast.LENGTH_SHORT).show()
         }
-
     }
 }

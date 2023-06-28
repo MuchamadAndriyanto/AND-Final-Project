@@ -18,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OrderViewModel @Inject constructor(private var api : ApiService): ViewModel() {
 
+        private val liveDataGetKursi: MutableLiveData<DataOrder?> = MutableLiveData()
         private val liveDataOrder: MutableLiveData<DataOrder?> = MutableLiveData()
         private val liveDataDetailOrder: MutableLiveData<DataDetailOrder?> = MutableLiveData()
 
@@ -81,6 +82,7 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
                         Log.d("idOrder","id get nya : ${orderId ?: "null"}")
                         liveDataDetailOrder.postValue(rincian)
                     } else {
+                        Log.d("SelectSeatCheck", "Gagal mengirim data ke API (token kosong)")
                         liveDataDetailOrder.postValue(null)
                     }
                 }
@@ -91,11 +93,7 @@ class OrderViewModel @Inject constructor(private var api : ApiService): ViewMode
             })
         }
 
-        fun getOrderID(): Int {
-            return orderIdLiveData.value?.let { it } ?: 0
-        }
-
-        fun getKursi(token: String) {
+    fun getKursi(token: String) {
             val bearerToken = "Bearer $token"
             val call = api.getKursi(bearerToken)
 

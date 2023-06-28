@@ -27,6 +27,7 @@ class CheckoutBiodataPemesanFragment : Fragment() {
     private lateinit var viewModel: OrderViewModel
     private lateinit var detailViewModel: DetailViewModel
     private lateinit var sharedPref: SharedPreferences
+    private lateinit var sharedPrefs: SharedPreferences
     private lateinit var token: String
 
     override fun onCreateView(
@@ -80,11 +81,19 @@ class CheckoutBiodataPemesanFragment : Fragment() {
             val nama_keluarga = binding.inputNamaKeluarga.text.toString()
             val nomorTelepon = binding.inputNoTelp.text.toString()
             val email = binding.inputEmail.text.toString()
-            val jumlahPenumpang = binding.inputJumlahKursi.text.toString()
 
+            val sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
+
+            // Mendapatkan nilai default untuk jumlahPenumpang
+            val defaultJumlahPenumpang = 1
+
+            // Mendapatkan nilai jumlahPenumpang dari Shared Preferences
+            val jumlahPenumpang = sharedPreferences.getInt("totalPassengers", defaultJumlahPenumpang).toString()
+
+            sharedPrefs = requireContext().getSharedPreferences("biodata", Context.MODE_PRIVATE)
 
             // Simpan data ke SharedPreferences
-            val editor = sharedPref.edit()
+            val editor = sharedPrefs.edit()
             editor.putString("email", email)
             editor.putInt("idPenerbangan", idPenerbangan)
             editor.putString("jumlahPenumpang", jumlahPenumpang)

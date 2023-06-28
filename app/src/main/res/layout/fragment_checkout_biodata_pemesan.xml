@@ -256,43 +256,43 @@
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Jumlah Kursi"
-                        android:textColor="@color/darkpurple"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:layout_marginTop="10dp"
-                        />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Jumlah Kursi"-->
+<!--                        android:textColor="@color/darkpurple"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textSize="14sp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        />-->
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/etKursi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="Jumlah kursi"
-                        app:hintEnabled="true"
-                        app:endIconMode="clear_text"
-                        style="@style/TextInputLayoutStyle"
-                        app:boxStrokeColor="@color/purple"
-                        app:hintTextColor="@color/purple"
-                        android:backgroundTint="@color/white">
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/etKursi"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:layout_marginStart="5dp"-->
+<!--                        android:layout_marginEnd="5dp"-->
+<!--                        android:hint="Jumlah kursi"-->
+<!--                        app:hintEnabled="true"-->
+<!--                        app:endIconMode="clear_text"-->
+<!--                        style="@style/TextInputLayoutStyle"-->
+<!--                        app:boxStrokeColor="@color/purple"-->
+<!--                        app:hintTextColor="@color/purple"-->
+<!--                        android:backgroundTint="@color/white">-->
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/inputJumlahKursi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:maxLines="1"
-                            android:singleLine="true"
-                            android:textColor="@android:color/black"
-                            android:backgroundTint="@color/white"
-                            />
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/inputJumlahKursi"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:inputType="textPersonName"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:singleLine="true"-->
+<!--                            android:textColor="@android:color/black"-->
+<!--                            android:backgroundTint="@color/white"-->
+<!--                            />-->
 
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
                 </LinearLayout>
 
 

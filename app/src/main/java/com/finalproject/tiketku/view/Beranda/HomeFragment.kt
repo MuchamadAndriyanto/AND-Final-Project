@@ -185,6 +185,21 @@ class HomeFragment : Fragment() {
 
         binding.btnPencarian.setOnClickListener {
             if (isDataValid()) {
+                sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
+
+                babyCount = sharedPreferences.getInt("baby", 0)
+                childCount = sharedPreferences.getInt("child", 0)
+                adultCount = sharedPreferences.getInt("adult", 0)
+                val totalPassengers = childCount + adultCount
+
+                // Simpan nilai total penumpang ke dalam Shared Preferences
+                val editor = sharedPreferences.edit()
+                editor.putInt("baby", babyCount)
+                editor.putInt("child", childCount)
+                editor.putInt("adult", adultCount)
+                editor.putInt("totalPassengers", totalPassengers)
+                editor.apply()
+
                 findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
             } else {
                 Toast.makeText(requireContext(), "Harap lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
@@ -321,6 +336,9 @@ class HomeFragment : Fragment() {
 
         // Simpan nilai total penumpang ke dalam Shared Preferences
         val editor = sharedPreferences.edit()
+        editor.putInt("baby", babyCount)
+        editor.putInt("child", childCount)
+        editor.putInt("adult", adultCount)
         editor.putInt("totalPassengers", totalPassengers)
         editor.apply()
 
