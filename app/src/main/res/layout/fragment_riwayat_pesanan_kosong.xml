@@ -11,39 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvRiwayat"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:text="Riwayat Pesanan"
-            android:textStyle="bold"
-            android:textColor="#151515"
-            android:textSize="30sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ivSearch"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
-            android:layout_alignTop="@id/tvRiwayat"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="-1dp"
-            android:layout_toEndOf="@id/tvRiwayat"
-            android:src="@drawable/baseline_search_24" />
-
-        <ImageView
-            android:id="@+id/iv_filter"
-            android:layout_width="77dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="30dp"
-            android:layout_below="@id/tvRiwayat"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
-            android:src="@drawable/ic_filter" />
-
         <ImageView
             android:id="@+id/personSearch"
             android:layout_width="237.76dp"

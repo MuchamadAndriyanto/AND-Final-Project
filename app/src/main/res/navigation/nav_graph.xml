@@ -314,7 +314,7 @@
                 app:argType="integer"/>
         </action>
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/riwayatPesananKosongFragment"
         android:name="com.finalproject.tiketku.view.RiwayatPesananKosongFragment"
         android:label="fragment_riwayat_pesanan_kosong"

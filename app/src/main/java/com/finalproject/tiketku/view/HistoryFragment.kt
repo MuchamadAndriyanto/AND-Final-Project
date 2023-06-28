@@ -32,6 +32,8 @@ class HistoryFragment : Fragment() {
     private lateinit var viewModel: RiwayatViewModel
     private lateinit var token: String
     private lateinit var riwayatAdapter: RiwayatAdapter
+    private var riwayatPesananKosongFragment: RiwayatPesananKosongFragment? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +42,9 @@ class HistoryFragment : Fragment() {
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     // Extension property untuk mendapatkan data dari List<Data>
-    val List<Data>.data: List<Data>
+    private val List<Data>.data: List<Data>
         get() = this
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,10 +65,35 @@ class HistoryFragment : Fragment() {
 
         viewModel.liveData.observe(viewLifecycleOwner, { responseData ->
             responseData?.let {
-                riwayatAdapter.list = it.data
-                riwayatAdapter.notifyDataSetChanged()
-                Log.d("HistoryFragment", "Data riwayat berhasil diatur dalam adapter")
+                if (it.data.isNotEmpty()) {
+                    hideRiwayatPesananKosongFragment()
+                    riwayatAdapter.list = it.data
+                    riwayatAdapter.notifyDataSetChanged()
+                    Log.d("HistoryFragment", "Data riwayat berhasil diatur dalam adapter")
+                } else {
+                    showRiwayatPesananKosongFragment()
+                }
             }
         })
+    }
+
+    // Fungsi untuk menampilkan fragment RiwayatPesananKosong
+    private fun showRiwayatPesananKosongFragment() {
+        if (riwayatPesananKosongFragment == null) {
+            riwayatPesananKosongFragment = RiwayatPesananKosongFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, riwayatPesananKosongFragment!!)
+                .commit()
+        }
+    }
+
+    // Fungsi untuk menyembunyikan fragment RiwayatPesananKosong
+    private fun hideRiwayatPesananKosongFragment() {
+        if (riwayatPesananKosongFragment != null) {
+            parentFragmentManager.beginTransaction()
+                .remove(riwayatPesananKosongFragment!!)
+                .commit()
+            riwayatPesananKosongFragment = null
+        }
     }
 }
