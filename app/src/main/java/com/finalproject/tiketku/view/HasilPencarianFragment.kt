@@ -52,6 +52,7 @@ class HasilPencarianFragment : Fragment() {
     lateinit var btnFilter2: Button
 
     private lateinit var hasilPenerbanganAdapter: HasilPenerbanganAdapter
+    private lateinit var viewModelPencarianPenerbangan: PencarianPenerbanganViewModel
     private lateinit var tiketList: List<DataCariPenerbangan>
 
     companion object {
@@ -99,8 +100,7 @@ class HasilPencarianFragment : Fragment() {
                 .commit()
         }
 
-        val viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
-
+        viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
         viewModelPencarianPenerbangan.getFavorite()
         viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
             if (favList != null) {
@@ -133,13 +133,18 @@ class HasilPencarianFragment : Fragment() {
 
     private fun applyFilter(filter: String?) {
         hasilPenerbanganAdapter.filterData(filter)
-
+        updateAdapterData()
     }
 
-/*    private fun applyDate(newJadwal: String) {
-        hasilPenerbanganAdapter.updateJadwalSharedPreferns(newJadwal)
-
-    }*/
+    private fun updateAdapterData() {
+        viewModelPencarianPenerbangan.getFavorite()
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null) {
+                tiketList = favList
+                hasilPenerbanganAdapter.updateData(tiketList)
+            }
+        })
+    }
 
 
 
@@ -154,6 +159,7 @@ class HasilPencarianFragment : Fragment() {
                 sharedPreferences.edit().putString(FILTER_KEY, selectedFilter).apply()
             }
         }
+
     }
 }
 

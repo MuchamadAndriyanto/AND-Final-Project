@@ -110,6 +110,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     fun updateJadwalSharedPreferns(newJadwal: String) {
         jdwlSharedPreferences = newJadwal
         updateFilteredList(newJadwal)
+        notifyDataSetChanged()
     }
 
     fun updateData(newList: List<DataCariPenerbangan>, newJadwal: String) {
