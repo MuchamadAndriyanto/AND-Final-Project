@@ -8,20 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.adapter.NotifAdapter
 import com.finalproject.tiketku.adapter.RiwayatAdapter
 import com.finalproject.tiketku.databinding.FragmentHistoryBinding
-import com.finalproject.tiketku.databinding.FragmentNotificationsBinding
 import com.finalproject.tiketku.model.riwayat.Data
-import com.finalproject.tiketku.viewmodel.NotifViewModel
 import com.finalproject.tiketku.viewmodel.RiwayatViewModel
-import com.finalproject.tiketku.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +28,6 @@ class HistoryFragment : Fragment() {
     private lateinit var riwayatAdapter: RiwayatAdapter
     private var riwayatPesananKosongFragment: RiwayatPesananKosongFragment? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +37,7 @@ class HistoryFragment : Fragment() {
     }
 
     // Extension property untuk mendapatkan data dari List<Data>
-    private val List<Data>.data: List<Data>
+    val List<Data>.data: List<Data>
         get() = this
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,21 +54,20 @@ class HistoryFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvRiwayat.adapter = riwayatAdapter
 
-        viewModel.getRiwayat(token)
-
-        viewModel.liveData.observe(viewLifecycleOwner, { responseData ->
-            responseData?.let {
-                if (it.data.isNotEmpty()) {
-                    hideRiwayatPesananKosongFragment()
-                    riwayatAdapter.list = it.data
-                    riwayatAdapter.notifyDataSetChanged()
-                    Log.d("HistoryFragment", "Data riwayat berhasil diatur dalam adapter")
-                } else {
-                    showRiwayatPesananKosongFragment()
-                }
+        viewModel.liveData.observe(viewLifecycleOwner, Observer { riwayatData ->
+            if (riwayatData.data.isNotEmpty()) {
+                hideRiwayatPesananKosongFragment()
+                riwayatAdapter.list = riwayatData.data
+                riwayatAdapter.notifyDataSetChanged()
+                Log.d("HistoryFragment", "Data riwayat berhasil diatur dalam adapter")
+            } else {
+                showRiwayatPesananKosongFragment()
             }
         })
+
+        viewModel.getRiwayat(token)
     }
+
 
     // Fungsi untuk menampilkan fragment RiwayatPesananKosong
     private fun showRiwayatPesananKosongFragment() {

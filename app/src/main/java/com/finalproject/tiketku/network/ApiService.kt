@@ -14,7 +14,6 @@ import com.finalproject.tiketku.model.notif.NotifResponse
 import com.finalproject.tiketku.model.onetrip.OneTripResponse
 import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.order.ResponseOrder
-import com.finalproject.tiketku.model.payment.Data
 import com.finalproject.tiketku.model.payment.DataPost
 import com.finalproject.tiketku.model.payment.ResponsePayment
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
@@ -22,7 +21,6 @@ import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
 import com.finalproject.tiketku.model.riwayat.ResponseRiwayat
 import com.finalproject.tiketku.model.roundtrip.RoundTripResponse
-import com.finalproject.tiketku.model.rountrip.ResponseRountrip
 import com.finalproject.tiketku.model.search.SearchResponse
 import retrofit2.Call
 import retrofit2.http.Body
