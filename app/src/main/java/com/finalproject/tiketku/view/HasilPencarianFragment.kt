@@ -53,7 +53,7 @@ class HasilPencarianFragment : Fragment() {
 
     private lateinit var hasilPenerbanganAdapter: HasilPenerbanganAdapter
     private lateinit var viewModelPencarianPenerbangan: PencarianPenerbanganViewModel
-    private lateinit var tiketList: List<DataCariPenerbangan>
+    private var tiketList: List<DataCariPenerbangan> = emptyList()
 
     companion object {
         const val REQUEST_CODE_FILTER = 123
@@ -73,8 +73,6 @@ class HasilPencarianFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_hasilPencarianFragment_to_homeFragment)
@@ -100,17 +98,18 @@ class HasilPencarianFragment : Fragment() {
                 .commit()
         }
 
+        hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
+        binding.rvTiket.adapter = hasilPenerbanganAdapter
+        val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        binding.rvTiket.layoutManager = layoutManager
+
         viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
         viewModelPencarianPenerbangan.getFavorite()
         viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
             if (favList != null) {
                 tiketList = favList
-                hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
-                binding.rvTiket.adapter = hasilPenerbanganAdapter
-                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                binding.rvTiket.layoutManager = layoutManager
+                hasilPenerbanganAdapter.updateData(tiketList)
                 applyFilter(selectedFilter)
-
             } else {
                 Toast.makeText(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
@@ -122,34 +121,17 @@ class HasilPencarianFragment : Fragment() {
         viewModelJadwal.getOnetrip()
         viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, Observer { favList ->
             if (favList != null) {
-
                 val adapter = JadwalTanggalAdapter(requireContext(), favList)
                 binding.rvHari.layoutManager = LinearLayoutManager(requireContext())
                 binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 binding.rvHari.adapter = adapter
-
-
             }
         })
-
     }
 
     private fun applyFilter(filter: String?) {
         hasilPenerbanganAdapter.filterData(filter)
-        updateAdapterData()
     }
-
-    private fun updateAdapterData() {
-        viewModelPencarianPenerbangan.getFavorite()
-        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
-            if (favList != null) {
-                tiketList = favList
-                hasilPenerbanganAdapter.updateData(tiketList)
-            }
-        })
-    }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -162,8 +144,5 @@ class HasilPencarianFragment : Fragment() {
                 sharedPreferences.edit().putString(FILTER_KEY, selectedFilter).apply()
             }
         }
-
     }
 }
-
-
