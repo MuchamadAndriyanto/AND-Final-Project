@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +21,7 @@ import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.viewmodel.DetailViewModel
 import com.finalproject.tiketku.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 @AndroidEntryPoint
 class CheckoutBiodataPemesanFragment : Fragment() {
@@ -73,9 +75,26 @@ class CheckoutBiodataPemesanFragment : Fragment() {
 
         // Mengambil data detail
         val args: CheckoutBiodataPemesanFragmentArgs by navArgs()
-        val idPenerbangan: Int = args.idPenerbangan
-        detailViewModel.getDetail(idPenerbangan)
+        var idPenerbangan: Int = args.idPenerbangan
 
+        // Periksa apakah idPenerbangan ada dalam args
+        if (idPenerbangan == 0) {
+            // Jika tidak ada dalam args, periksa apakah ada dalam SharedPreferences
+            idPenerbangan = sharedPref.getInt("idPenerbangan", 0)
+
+        } else {
+            // Jika ada dalam args, simpan nilainya ke SharedPreferences untuk penggunaan selanjutnya
+            val editor = sharedPref.edit()
+            editor.putInt("idPenerbangan", idPenerbangan)
+            editor.apply()
+        }
+
+        // Mengambil data detail jika idPenerbangan ada
+        if (idPenerbangan != 0) {
+            detailViewModel.getDetail(idPenerbangan)
+        } else {
+            Toasty.error(requireContext(), "Penerbangan belum dipilih", Toast.LENGTH_SHORT, true).show()
+        }
         binding.btnSubmit.setOnClickListener {
             val nama_lengkap = binding.inputNamaLengkap.text.toString()
             val nama_keluarga = binding.inputNamaKeluarga.text.toString()

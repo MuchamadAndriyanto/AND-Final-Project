@@ -61,7 +61,6 @@ class DetailPenerbanganFragment : Fragment() {
                 binding.detailTotalDec.text = detail.maskapai.harga_tiket
 
                 // Cek status login
-                // Cek status login
                 val sharedPreferences = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
                 val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
@@ -74,7 +73,9 @@ class DetailPenerbanganFragment : Fragment() {
                 } else {
                     binding.btnSubmit.setOnClickListener {
                         val editor = sharedPreferences.edit()
-                        editor.putInt("clickedMenuItemId", R.id.checkOutDetailFragment)
+                        editor.putInt("idPenerbangan", id)
+
+                        editor.putInt("clickedMenuItemId", R.id.checkoutBiodataPemesanFragment)
                         editor.apply()
                         findNavController().navigate(R.id.action_detailPenerbanganFragment_to_akunNonLoginFragment)
                     }

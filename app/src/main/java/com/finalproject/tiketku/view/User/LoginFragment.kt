@@ -108,15 +108,17 @@ class LoginFragment : Fragment() {
                         val namaLengkap = responseUser.namaLengkap
                         val alamat = responseUser.alamat
                         val nomorTelepon = responseUser.nomorTelepon
+                        val idPenerbangan = sharedPref.getInt("idPenerbangan", 0)
 
 
+                        editor.putInt("idPenerbangan", idPenerbangan)
                         editor.putString("username", username)
                         editor.putString("namaLengkap", namaLengkap)
                         editor.putString("alamat", alamat)
                         editor.putString("nomorTelepon", nomorTelepon)
                         editor.putString("accessToken", accessToken) // Save the token to SharedPreferences
                         editor.apply()
-
+                        Log.d("Login","id penerbangan : $idPenerbangan")
                         // Ambil ID halaman terakhir yang diklik dari shared preferences
                         val lastClickedItemId = sharedPref.getInt("clickedMenuItemId", 0)
 
