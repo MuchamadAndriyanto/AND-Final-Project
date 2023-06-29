@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
     }
     private fun convertDateFormat(date: String): String {
         val inputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH)
 
         val parsedDate = inputFormat.parse(date)
         return outputFormat.format(parsedDate)
