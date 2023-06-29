@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_loginFragment_to_verifikasiFragment"
             app:destination="@id/verifikasiFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_detailPenerbanganFragment"
+            app:destination="@id/detailPenerbanganFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -203,6 +206,9 @@
         <action
             android:id="@+id/action_akunNonLoginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_akunNonLoginFragment_to_detailPenerbanganFragment"
+            app:destination="@id/detailPenerbanganFragment" />
     </fragment>
     <fragment
         android:id="@+id/verifikasiFragment"
@@ -264,6 +270,12 @@
         <action
             android:id="@+id/action_detailPenerbanganFragment_to_noResultDetailFragment"
             app:destination="@id/noResultDetailFragment" />
+        <action
+            android:id="@+id/action_detailPenerbanganFragment_to_akunNonLoginFragment2"
+            app:destination="@id/akunNonLoginFragment" />
+        <action
+            android:id="@+id/action_detailPenerbanganFragment_to_akunNonLoginFragment3"
+            app:destination="@id/akunNonLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkoutBiodataPenumpangFragment"
