@@ -108,6 +108,12 @@ class MainActivity : AppCompatActivity() {
 
         editorTo.putString("keyTo", "Pilih Tujuan")
         editorTo.apply()
+
+        val sharedPrefs= getSharedPreferences("date", Context.MODE_PRIVATE)
+        val editorTgl = sharedPrefs.edit()
+        editorTgl.remove("startDate")
+        editorTgl.remove("returnDate")
+        editorTgl.apply()
     }
 
     private fun isLoggedIn(): Boolean {

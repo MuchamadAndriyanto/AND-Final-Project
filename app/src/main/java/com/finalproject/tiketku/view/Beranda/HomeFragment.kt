@@ -30,6 +30,7 @@ import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
 import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.view.HasilPencarianFragment
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -38,7 +39,7 @@ import java.util.Locale
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private var selectedStartDate: String? = null
+    private var selectedStartDate: String? = ""
     private var selectedReturnDate: String? = null
     private var selectedDate: String? = null
     private var loadingDialog: Dialog? = null
@@ -51,9 +52,6 @@ class HomeFragment : Fragment() {
     private val sharedPreferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
         updatePassengerCount()
     }
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: DestinasiFavoritAdapter
-    private lateinit var listDestinasiFavorit: List<DataFavorite>
     private fun convertDateFormat(date: String): String {
         val inputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
@@ -106,8 +104,8 @@ class HomeFragment : Fragment() {
                     "test", "Update $selectedReturnDate"
                 )
             }
-
             val dateSharedPrefrens = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
+            // Set onClickListener untuk dateDeparture
             binding.dateDeparture.setOnClickListener {
                 showDatePicker(requireContext()) { date ->
                     selectedStartDate = date
@@ -121,11 +119,12 @@ class HomeFragment : Fragment() {
                 }
             }
 
+
             binding.dateReturn.setOnClickListener {
                 if (switchMaterial.isChecked) {
                     showDatePicker(requireContext()) { date ->
                         selectedReturnDate = date
-                        binding.tvPilihTanggal.text = date
+                        binding.tvPilihTanggal.text = convertDateFormat(date)
                         val editor = dateSharedPrefrens.edit()
                         editor.putString("returnDate", selectedReturnDate)
                         editor.apply()
@@ -191,16 +190,27 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_destinasiPencarianToFragment)
         }
 
-
-
+        val dateSharedPrefrens = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
+        selectedStartDate = dateSharedPrefrens.getString("startDate", null)
+        if (selectedStartDate == null) {
+            selectedStartDate = selectedDate
+            val editor = dateSharedPrefrens.edit()
+            editor.putString("startDate", selectedStartDate)
+            editor.apply()
+        }
+        // Set onClickListener untuk dateDeparture
         binding.dateDeparture.setOnClickListener {
             showDatePicker(requireContext()) { date ->
-                selectedDate = date
-                binding.tvDateDeparture.text = date
-                Log.d("homefragment","tgl=$date" )
+                selectedStartDate = date
+                binding.tvDateDeparture.text = convertDateFormat(date)
+                val editor = dateSharedPrefrens.edit()
+                editor.putString("startDate", selectedStartDate)
+                editor.apply()
+                Log.d(
+                    "home", "date $selectedStartDate"
+                )
             }
         }
-
         sharedPreferences.edit()
             .putInt("baby", 0)
             .putInt("child", 0)
@@ -235,8 +245,9 @@ class HomeFragment : Fragment() {
         binding.btnPencarian.setOnClickListener {
             showLoading()
             if (isDataValid()) {
-                sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
+                // Mengambil nilai selectDestination dan selectDestinationTo
 
+                sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
                 babyCount = sharedPreferences.getInt("baby", 0)
                 childCount = sharedPreferences.getInt("child", 0)
                 adultCount = sharedPreferences.getInt("adult", 0)
@@ -250,29 +261,44 @@ class HomeFragment : Fragment() {
                 editor.putInt("totalPassengers", totalPassengers)
                 editor.apply()
 
+                // Buat bundle dan tambahkan data selectDestination dan selectDestinationTo
+                if (selectedStartDate != null && selectedDestination != "Pilih Asal" && selectedDestinationTo != "Pilih Tujuan" ) {
+                    Log.d("HomeFragment", "selectedStartDate: $selectedStartDate")
+                    Log.d("HomeFragment", "selectedReturnDate: $selectedReturnDate")
+                    Log.d("HomeFragment", "selectedStartDate: $selectedDestinationTo")
+                    Log.d("HomeFragment", "selectedReturnDate: $selectedDestination")
+
+                    val bundle = Bundle()
+                bundle.putString("selectDestination", selectedDestination)
+                bundle.putString("selectDestinationTo", selectedDestinationTo)
+                bundle.putString("startDate", selectedStartDate)
+                bundle.putString("returnDate", selectedReturnDate)
+
+                Log.d("HomeFragment", "selectedStartDate: $selectedStartDate")
+                Log.d("HomeFragment", "selectedReturnDate: $selectedReturnDate")
+                Log.d("HomeFragment", "selectedStartDate: $selectedDestinationTo")
+                Log.d("HomeFragment", "selectedReturnDate: $selectedDestination")
+
                 // Jalankan penundaan selama 4 detik sebelum navigasi dilakukan
                 Handler().postDelayed({
                     hideLoading()
 
-                    // Navigasi ke fragment tujuan
-                    dateSharedPreferences = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
-                    val returnDate = dateSharedPreferences.getString("returnDate", "")
-                    if (returnDate != null) {
-                        if (returnDate.isEmpty()) {
-                            findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment)
-                        } else {
-                            findNavController().navigate(R.id.action_homeFragment_to_hasilPenerbanganRoundtripFragment)
-                        }
-                    }
+                    // Navigasi ke fragment tujuan dengan menyertakan bundle
+                    findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment, bundle)
 
-                }, 1000) // Penundaan selama 4 detik (4000 milidetik)
-
-
+                }, 1000)
+                } else {
+                    Toasty.warning(
+                        requireContext(),
+                        "Lengkapi Pencarian",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    hideLoading()
+                }// Penundaan selama 4 detik (4000 milidetik)
             } else {
                 Toast.makeText(requireContext(), "Harap lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
     private fun showDatePicker(context: Context, onDateSelected: (date: String) -> Unit) {
@@ -385,15 +411,24 @@ class HomeFragment : Fragment() {
     }
 
     private fun isDataValid(): Boolean {
-        val selectedDate = binding.tvDateDeparture.text.toString().trim()
+        val selectedStartDate = binding.tvDateDeparture.text.toString().trim()
         val selectedDeparture = binding.tvDeparture.text.toString().trim()
         val selectedDestination = binding.tvTujuan.text.toString().trim()
 
-        // Lakukan pengecekan sesuai kebutuhan
-        if (selectedDate.isEmpty() || selectedDeparture.isEmpty() || selectedDestination.isEmpty()) {
+        if (selectedDeparture.isEmpty()) {
+            Toast.makeText(requireContext(), "Pilih kota keberangkatan", Toast.LENGTH_SHORT).show()
             return false
         }
 
+        if (selectedDestination.isEmpty()) {
+            Toast.makeText(requireContext(), "Pilih kota tujuan", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (selectedStartDate.isEmpty()) {
+            Toast.makeText(requireContext(), "Pilih tanggal keberangkatan", Toast.LENGTH_SHORT).show()
+            return false
+        }
         return true
     }
 

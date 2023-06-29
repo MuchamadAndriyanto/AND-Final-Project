@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_homeFragment_to_hasilPenerbanganRoundtripFragment"
             app:destination="@id/hasilPenerbanganRoundtripFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_noResultDetailFragment"
+            app:destination="@id/noResultDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -176,6 +179,9 @@
         <action
             android:id="@+id/action_hasilPencarianFragment_to_detailPenerbanganFragment"
             app:destination="@id/detailPenerbanganFragment" />
+        <action
+            android:id="@+id/action_hasilPencarianFragment_to_noResultDetailFragment2"
+            app:destination="@id/noResultDetailFragment" />
     </fragment>
     <dialog
         android:id="@+id/hasilPencarianWithFilterFragment"
@@ -255,6 +261,9 @@
                 app:argType="integer" />
 
         </action>
+        <action
+            android:id="@+id/action_detailPenerbanganFragment_to_noResultDetailFragment"
+            app:destination="@id/noResultDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkoutBiodataPenumpangFragment"
@@ -401,5 +410,20 @@
         <action
             android:id="@+id/action_hasilPenerbanganRoundTripPulangFragment_to_hasilPenerbanganRoundtripFragment"
             app:destination="@id/hasilPenerbanganRoundtripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noResultDetailFragment"
+        android:name="com.finalproject.tiketku.view.DetailPenerbangan.NoResultDetailFragment"
+        android:label="fragment_no_result_detail"
+        tools:layout="@layout/fragment_no_result_detail" >
+        <action
+            android:id="@+id/action_noResultDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_noResultDetailFragment_to_detailPenerbanganFragment"
+            app:destination="@id/detailPenerbanganFragment" />
+        <action
+            android:id="@+id/action_noResultDetailFragment_to_hasilPencarianFragment"
+            app:destination="@id/hasilPencarianFragment" />
     </fragment>
 </navigation>

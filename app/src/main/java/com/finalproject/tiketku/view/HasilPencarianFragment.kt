@@ -110,7 +110,10 @@ class HasilPencarianFragment : Fragment() {
                 val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                 binding.rvTiket.layoutManager = layoutManager
                 applyFilter(selectedFilter)
-                /*applyDate(selectedJadwal ?: "")*/
+
+            } else {
+                Toast.makeText(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
             }
         })
 
