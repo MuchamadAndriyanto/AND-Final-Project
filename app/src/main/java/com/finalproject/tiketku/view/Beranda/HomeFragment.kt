@@ -110,8 +110,10 @@ class HomeFragment : Fragment() {
                 showDatePicker(requireContext()) { date ->
                     selectedStartDate = date
                     binding.tvDateDeparture.text = convertDateFormat(date)
+                    selectedDate = convertDateFormat(date)
                     val editor = dateSharedPrefrens.edit()
                     editor.putString("startDate", selectedStartDate)
+                    editor.putString("startDateFormat", selectedDate)
                     editor.apply()
                     Log.d(
                         "test", "Update $selectedStartDate"
@@ -196,6 +198,7 @@ class HomeFragment : Fragment() {
             selectedStartDate = selectedDate
             val editor = dateSharedPrefrens.edit()
             editor.putString("startDate", selectedStartDate)
+            editor.putString("startDateFormat", selectedDate)
             editor.apply()
         }
         // Set onClickListener untuk dateDeparture
@@ -203,11 +206,18 @@ class HomeFragment : Fragment() {
             showDatePicker(requireContext()) { date ->
                 selectedStartDate = date
                 binding.tvDateDeparture.text = convertDateFormat(date)
+                selectedDate = convertDateFormat(date)
                 val editor = dateSharedPrefrens.edit()
+
+                editor.putString("startDateFormat", selectedDate)
                 editor.putString("startDate", selectedStartDate)
+
                 editor.apply()
                 Log.d(
                     "home", "date $selectedStartDate"
+                )
+                Log.d(
+                    "home", "date $selectedDate"
                 )
             }
         }
@@ -263,21 +273,19 @@ class HomeFragment : Fragment() {
 
                 // Buat bundle dan tambahkan data selectDestination dan selectDestinationTo
                 if (selectedStartDate != null && selectedDestination != "Pilih Asal" && selectedDestinationTo != "Pilih Tujuan" ) {
+
+                    val bundle = Bundle()
+                    bundle.putString("selectDestination", selectedDestination)
+                    bundle.putString("selectDestinationTo", selectedDestinationTo)
+                    bundle.putString("startDateFormat", selectedDate)
+                    bundle.putString("startDate", selectedStartDate)
+                    bundle.putString("returnDate", selectedReturnDate)
+
+                    Log.d("HomeFragment", "selectedDate: $selectedDate")
                     Log.d("HomeFragment", "selectedStartDate: $selectedStartDate")
                     Log.d("HomeFragment", "selectedReturnDate: $selectedReturnDate")
                     Log.d("HomeFragment", "selectedStartDate: $selectedDestinationTo")
                     Log.d("HomeFragment", "selectedReturnDate: $selectedDestination")
-
-                    val bundle = Bundle()
-                bundle.putString("selectDestination", selectedDestination)
-                bundle.putString("selectDestinationTo", selectedDestinationTo)
-                bundle.putString("startDate", selectedStartDate)
-                bundle.putString("returnDate", selectedReturnDate)
-
-                Log.d("HomeFragment", "selectedStartDate: $selectedStartDate")
-                Log.d("HomeFragment", "selectedReturnDate: $selectedReturnDate")
-                Log.d("HomeFragment", "selectedStartDate: $selectedDestinationTo")
-                Log.d("HomeFragment", "selectedReturnDate: $selectedDestination")
 
                 // Jalankan penundaan selama 4 detik sebelum navigasi dilakukan
                 Handler().postDelayed({

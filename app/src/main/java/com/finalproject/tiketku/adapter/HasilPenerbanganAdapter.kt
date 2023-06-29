@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,8 +37,8 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     val filterSharedPref = filterPref.getString("filter_key", "")
     val filtertest = filterSharedPref
 
-    private val jadwal: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-    val jadwalSharedPreferns = jadwal.getString("jadwal", "")
+    private val jadwal: SharedPreferences = context.getSharedPreferences("date", Context.MODE_PRIVATE)
+    val jadwalSharedPreferns = jadwal.getString("startDateFormat", "")
     private var jdwlSharedPreferences = jadwalSharedPreferns
 
 
@@ -81,8 +82,11 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
 
     private fun updateFilteredList() {
         filteredList.clear()
+
+        Log.d("date","date : $jdwlSharedPreferences")
         filteredList.addAll(list.filter { item ->
             item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo && item.tanggalBerangkat == jdwlSharedPreferences
+
         })
 
 
@@ -108,21 +112,28 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
     }
 
     fun updateJadwalSharedPreferns(newJadwal: String) {
-        jdwlSharedPreferences = newJadwal
-        updateFilteredList()
-        notifyDataSetChanged()
+        if (jdwlSharedPreferences != newJadwal) {
+            jdwlSharedPreferences = newJadwal
+            updateFilteredList()
+            notifyDataSetChanged()
+        }
     }
 
     fun updateData(newList: List<DataCariPenerbangan>, newJadwal: String) {
-        list = newList
-        jdwlSharedPreferences = newJadwal
-        updateFilteredList()
+        if (list != newList || jdwlSharedPreferences != newJadwal) {
+            list = newList
+            jdwlSharedPreferences = newJadwal
+            updateFilteredList()
+            notifyDataSetChanged()
+        }
     }
 
-
     fun updateData(newList: List<DataCariPenerbangan>) {
-        list = newList
-        updateFilteredList()
+        if (list != newList) {
+            list = newList
+            updateFilteredList()
+            notifyDataSetChanged()
+        }
     }
 }
 
