@@ -5,17 +5,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.databinding.ItemTiketBinding
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
-import com.finalproject.tiketku.view.HasilPencarianFragmentDirections
-import com.finalproject.tiketku.view.HasilPenerbanganRoundtripFragment
 import com.finalproject.tiketku.view.HasilPenerbanganRoundtripFragmentDirections
 
-class HasilPenerbanganRoundtripAdapter (private val context: Context, private var list: List<DataCariPenerbangan>)
-    : RecyclerView.Adapter<HasilPenerbanganRoundtripAdapter.ViewHolder>() {
+class HasilPenerbanganRountdripPulangAdapter(private val context: Context, private var list: List<DataCariPenerbangan>)
+    : RecyclerView.Adapter<HasilPenerbanganRountdripPulangAdapter.ViewHolder>() {
 
     private val sharedPreferencesTo: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
     val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
@@ -39,6 +36,8 @@ class HasilPenerbanganRoundtripAdapter (private val context: Context, private va
 
     private val filteredList = mutableListOf<DataCariPenerbangan>()
 
+    private var firstClickPosition = RecyclerView.NO_POSITION
+    private var secondClickPosition = RecyclerView.NO_POSITION
 
 
     init {
@@ -66,10 +65,10 @@ class HasilPenerbanganRoundtripAdapter (private val context: Context, private va
 
 
         //kedetail
-        holder.binding.cardDetail.setOnClickListener { view ->
-            val action = HasilPenerbanganRoundtripFragmentDirections.actionHasilPenerbanganRoundtripFragmentToHasilPenerbanganRoundTripPulangFragment()
-            holder.itemView.findNavController().navigate(action)
-        }
+//        holder.binding.cardDetail.setOnClickListener { view ->
+//            val action = HasilPenerbanganRoundtripFragmentDirections.actionHasilPenerbanganRoundtripFragmentToHasilPenerbanganRoundTripPulangFragment()
+//            holder.itemView.findNavController().navigate(action)
+//        }
     }
 
     override fun getItemCount(): Int {
@@ -81,7 +80,7 @@ class HasilPenerbanganRoundtripAdapter (private val context: Context, private va
     private fun updateFilteredList() {
         filteredList.clear()
         filteredList.addAll(list.filter { item ->
-            item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo && item.tanggalBerangkat == jdwlSharedPreferences
+            item.bandaraAwal.kota == selectedDestinationTo && item.bandaraTujuan.kota == selectedDestination && item.tanggalBerangkat == jdwlSharedPreferences
         })
 
 

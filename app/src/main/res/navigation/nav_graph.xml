@@ -389,5 +389,17 @@
         <action
             android:id="@+id/action_hasilPenerbanganRoundtripFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_hasilPenerbanganRoundtripFragment_to_hasilPenerbanganRoundTripPulangFragment"
+            app:destination="@id/hasilPenerbanganRoundTripPulangFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hasilPenerbanganRoundTripPulangFragment"
+        android:name="com.finalproject.tiketku.view.HasilPenerbanganRoundTripPulangFragment"
+        android:label="fragment_hasil_penerbangan_round_trip_pulang"
+        tools:layout="@layout/fragment_hasil_penerbangan_round_trip_pulang" >
+        <action
+            android:id="@+id/action_hasilPenerbanganRoundTripPulangFragment_to_hasilPenerbanganRoundtripFragment"
+            app:destination="@id/hasilPenerbanganRoundtripFragment" />
     </fragment>
 </navigation>

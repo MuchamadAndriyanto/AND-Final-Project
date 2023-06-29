@@ -17,11 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.adapter.HariAdapter
-import com.finalproject.tiketku.adapter.HasilPenerbanganAdapter
 import com.finalproject.tiketku.adapter.HasilPenerbanganRoundtripAdapter
-import com.finalproject.tiketku.adapter.JadwalTanggalAdapter
+import com.finalproject.tiketku.adapter.HasilPenerbanganRountdripPulangAdapter
 import com.finalproject.tiketku.adapter.JadwalTanggalRoundtripAdapter
-import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
+import com.finalproject.tiketku.databinding.FragmentHasilPenerbanganRoundTripPulangBinding
 import com.finalproject.tiketku.databinding.FragmentHasilPenerbanganRoundtripBinding
 import com.finalproject.tiketku.model.ListHasilPencarian
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
@@ -30,8 +29,8 @@ import com.finalproject.tiketku.viewmodel.PencarianPenerbanganViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HasilPenerbanganRoundtripFragment : Fragment() {
-    private lateinit var binding: FragmentHasilPenerbanganRoundtripBinding
+class HasilPenerbanganRoundTripPulangFragment : Fragment() {
+    private lateinit var binding: FragmentHasilPenerbanganRoundTripPulangBinding
     private lateinit var classAdapter: HariAdapter
     private lateinit var classList: ArrayList<ListHasilPencarian>
     private var selectedFilter: String? = null
@@ -40,7 +39,7 @@ class HasilPenerbanganRoundtripFragment : Fragment() {
     private lateinit var sharedPreferences: SharedPreferences
     lateinit var btnFilter2: Button
 
-    private lateinit var hasilPenerbanganAdapter: HasilPenerbanganRoundtripAdapter
+    private lateinit var hasilPenerbanganAdapter: HasilPenerbanganRountdripPulangAdapter
     private lateinit var viewModelPencarianPenerbangan: PencarianPenerbanganViewModel
     private lateinit var tiketList: List<DataCariPenerbangan>
 
@@ -57,7 +56,7 @@ class HasilPenerbanganRoundtripFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentHasilPenerbanganRoundtripBinding.inflate(inflater, container, false)
+        binding = FragmentHasilPenerbanganRoundTripPulangBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -67,7 +66,7 @@ class HasilPenerbanganRoundtripFragment : Fragment() {
 
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_hasilPenerbanganRoundtripFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_hasilPenerbanganRoundTripPulangFragment_to_hasilPenerbanganRoundtripFragment)
         }
 
         sharedPreferences = requireContext().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
@@ -95,7 +94,7 @@ class HasilPenerbanganRoundtripFragment : Fragment() {
         viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
             if (favList != null) {
                 tiketList = favList
-                hasilPenerbanganAdapter = HasilPenerbanganRoundtripAdapter(requireContext(), tiketList)
+                hasilPenerbanganAdapter = HasilPenerbanganRountdripPulangAdapter(requireContext(), tiketList)
                 binding.rvTiket.adapter = hasilPenerbanganAdapter
                 val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                 binding.rvTiket.layoutManager = layoutManager

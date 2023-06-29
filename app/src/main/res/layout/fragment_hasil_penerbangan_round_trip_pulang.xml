@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.HasilPenerbanganRoundtripFragment">
+    tools:context=".view.HasilPenerbanganRoundTripPulangFragment">
 
     <ProgressBar
         android:id="@+id/loadingProgressBar"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_horizontal"
-                android:text="Pilih Tiket Perjalanan"
+                android:text="Pilih Tiket Perjalanan Pulang"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
