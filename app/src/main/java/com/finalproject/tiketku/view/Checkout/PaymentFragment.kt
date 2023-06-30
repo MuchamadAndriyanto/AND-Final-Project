@@ -66,7 +66,7 @@ class PaymentFragment : Fragment() {
                 val data = detail.find { it.order.id == orderId }
                 if (data != null) {
 
-                    binding.tvAdulst.text = " ${data.order.jumlah_penumpang.toString()} Adulst"
+                    binding.tvAdulst.text = " ${data.order.jumlah_penumpang.toString()} Passenger"
                     binding.tvjakarta.text = data.tiket.bandaraAwal.kota
                     binding.tvBerangkat.text = data.tiket.tanggal_berangkat
                     binding.tvJamBerangkat.text = data.tiket.jam_berangkat

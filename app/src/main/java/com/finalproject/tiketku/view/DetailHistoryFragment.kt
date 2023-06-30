@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.finalproject.tiketku.R
@@ -76,6 +77,12 @@ class DetailHistoryFragment : Fragment() {
                     binding.tvAdult.text = "${data.order.jumlah_penumpang.toString()} Adulst"
                     binding.detailTotalHarga.text = data.totalHargaTiket
 
+                    binding.btnSubmit.text = if (binding.tvBolean.text == "paid") {
+                        "Kembali ke Beranda"
+                    } else {
+                        "Lanjutkan Pembayaran"
+                    }
+
                 }
             }
         }
@@ -84,8 +91,21 @@ class DetailHistoryFragment : Fragment() {
             val bundle = Bundle().apply {
                 putInt(PaymentFragment.ARG_ORDER_ID, orderId)
             }
-            findNavController().navigate(R.id.action_detailHistoryFragment_to_paymentFragment, bundle)
+
+            val navController = findNavController()
+
+            if (binding.tvBolean.text == "paid") {
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.historyFragment, true)
+                    .build()
+                findNavController().navigate(R.id.action_detailHistoryFragment_to_homeFragment, null, navOptions)
+            } else {
+                navController.navigate(R.id.action_detailHistoryFragment_to_paymentFragment, bundle)
+            }
+        }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 }
-
