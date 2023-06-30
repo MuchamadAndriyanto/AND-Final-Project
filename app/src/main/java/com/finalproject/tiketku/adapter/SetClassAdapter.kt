@@ -22,7 +22,7 @@ class SetClassAdapter(private val listClass: List<DummySetClass>) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val className: TextView = itemView.findViewById(R.id.tv_Class)
-        val priceClass: TextView = itemView.findViewById(R.id.tv_Price)
+
         val layoutSetClass: View = itemView.findViewById(R.id.layout_SetKelas)
         val succesIcon: View = itemView.findViewById(R.id.iv_Succes)
 
@@ -47,7 +47,6 @@ class SetClassAdapter(private val listClass: List<DummySetClass>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = listClass[position]
         holder.className.text = currentItem.kelas
-        holder.priceClass.text = currentItem.harga
 
         if (position == selectedCard) {
             holder.layoutSetClass.setBackgroundResource(R.drawable.curved_set_class)
@@ -58,12 +57,7 @@ class SetClassAdapter(private val listClass: List<DummySetClass>) :
                     R.color.white
                 )
             )
-            holder.priceClass.setTextColor(
-                ContextCompat.getColor(
-                    holder.itemView.context,
-                    R.color.white
-                )
-            )
+
 
         } else {
             holder.layoutSetClass.setBackgroundResource(R.drawable.curve_set_class)
@@ -74,12 +68,7 @@ class SetClassAdapter(private val listClass: List<DummySetClass>) :
                     R.color.black
                 )
             )
-            holder.priceClass.setTextColor(
-                ContextCompat.getColor(
-                    holder.itemView.context,
-                    R.color.purple
-                )
-            )
+
         }
     }
 

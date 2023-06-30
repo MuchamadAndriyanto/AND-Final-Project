@@ -2,14 +2,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="600dp"
+    android:layout_height="match_parent"
     android:layout_gravity="bottom"
     android:elevation="15dp"
+    android:background="@color/grey"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.DetailPenerbangan.NoResultDetailFragment">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="650dp"
+        android:layout_gravity="bottom"
         app:cardCornerRadius="20dp">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
         <ImageView
             android:id="@+id/ivclose"
             android:src="@drawable/x"
-            android:layout_margin="14dp"
+            android:layout_margin="20dp"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -31,7 +33,7 @@
         <TextView
             android:id="@+id/tvHasilPencarian"
             android:layout_below="@+id/personSearch"
-            android:text="Maaf Tiket Terjual Habis!"
+            android:text="Maaf Pencarian Tidak Ditemukan!"
             android:layout_centerHorizontal="true"
             android:textColor="@color/black"
             android:layout_width="wrap_content"

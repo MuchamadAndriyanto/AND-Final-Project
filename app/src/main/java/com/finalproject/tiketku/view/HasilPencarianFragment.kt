@@ -39,6 +39,7 @@ import com.finalproject.tiketku.viewmodel.JadwalViewModel
 import com.finalproject.tiketku.viewmodel.NotifViewModel
 import com.finalproject.tiketku.viewmodel.PencarianPenerbanganViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 @AndroidEntryPoint
 class HasilPencarianFragment : Fragment() {
@@ -111,7 +112,7 @@ class HasilPencarianFragment : Fragment() {
                 hasilPenerbanganAdapter.updateData(tiketList)
                 applyFilter(selectedFilter)
             } else {
-                Toast.makeText(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
+                Toasty.warning(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
             }
         })
@@ -125,6 +126,9 @@ class HasilPencarianFragment : Fragment() {
                 binding.rvHari.layoutManager = LinearLayoutManager(requireContext())
                 binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 binding.rvHari.adapter = adapter
+            }else {
+                Toasty.warning(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
             }
         })
     }

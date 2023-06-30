@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.finalproject.tiketku.model.detail.Data
@@ -27,6 +28,7 @@ class DetailViewModel @Inject constructor(private val api: ApiService) : ViewMod
                     val detail = response.body()?.data
                     liveDetail.postValue(detail)
                 } else {
+                    Log.e("PaymentViewModel", "Gagal menampilkan detail")
                     liveDetail.postValue(null)
                 }
             }
