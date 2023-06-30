@@ -56,8 +56,8 @@ class CheckOutDetailFragment : Fragment() {
                 binding.tvDeparture.text = detail.tiket.idBandaraAsal
                 binding.tvDestination.text = detail.tiket.idBandaraTujuan
                 binding.detailTime.text = detail.tiket.jamBerangkat
-                binding.tvSelisihJam.text = detail.tiket.selisihJam.toString()
-                binding.tvSelisihMenit.text = detail.tiket.selisihMenit.toString()
+                binding.tvSelisihJam.setText("(" + detail.tiket.selisihJam + "h - ");
+                binding.tvSelisihMenit.setText(detail.tiket.selisihMenit.toString() + "m)");
                 binding.detailDate.text = detail.tiket.tanggalBerangkat
                 binding.detailAirport.text = detail.tiket.bandaraAwal.namaBandara
                 binding.Maskapai.text = detail.tiket.maskapai.namaMaskapai
@@ -73,7 +73,7 @@ class CheckOutDetailFragment : Fragment() {
                 // Mendapatkan nilai adultCount dari Shared Preferences
                 val adultCount = sharedPreferences.getInt("totalPassengers", defaultAdultCount)
 
-                binding.tvAdult.text = adultCount.toString()
+                binding.tvAdult.text = "$adultCount Adults"
 
                 binding.tvHargaAdult.text = detail.tiket.maskapai.hargaTiket
                 binding.detailTotalHarga.text = detail.totalHargaTiket
@@ -81,16 +81,6 @@ class CheckOutDetailFragment : Fragment() {
                 binding.btnSubmit.setOnClickListener {
                     val bundle = Bundle().apply {
                         putInt(PaymentFragment.ARG_ORDER_ID, orderId)
-                        putString("departureCountry", detail.tiket.bandaraAwal.negara)
-                        putString("destinationAirport", detail.tiket.bandaraTujuan.negara)
-                        putString("jamBerangkat", detail.tiket.jamBerangkat)
-                        putString("jamKedatangan", detail.tiket.jamKedatangan)
-                        putString("tanggalBerangkat", detail.tiket.tanggalBerangkat)
-                        putString("tanggalKedatangan", detail.tiket.tanggalKedatangan)
-                        putString("jumlahPenumpang", detail.order.jumlahPenumpang.toString())
-                        putString("totalHargaTiket", detail.totalHargaTiket)
-                        putString("selisihJam", "(" + detail.tiket.selisihJam + "h - ")
-                        putString("selisihMenit", detail.tiket.selisihMenit.toString() + "m)")
                     }
                     Log.d("Payment", "Order ID: $orderId")
                     Log.d("Payment", "Bundle: $bundle")

@@ -65,7 +65,7 @@ class HistoryFragment : Fragment() {
             }
         })
 
-        viewModel.getRiwayat(token)
+        viewModel.getRiwayat(token, null)
     }
 
 

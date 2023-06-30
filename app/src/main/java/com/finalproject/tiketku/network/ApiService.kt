@@ -106,6 +106,12 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<ResponseRiwayat>
 
+    @GET("history-order/{id}")
+    fun getRiwayatByOrderId(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Call<ResponseRiwayat>
+
     @POST("payment")
     fun postPayment(
         @Header("Authorization") token: String,

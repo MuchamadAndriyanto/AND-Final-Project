@@ -24,6 +24,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class RincianOrderFragment : Fragment() {
 
     private lateinit var binding: FragmentRincianOrderBinding
+    private lateinit var detailViewModel: RiwayatViewModel
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var token: String
+    private var orderId: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,12 +37,51 @@ class RincianOrderFragment : Fragment() {
         return binding.root
     }
 
+    companion object {
+        const val ARG_ORDER_ID = "order_id"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val orderId = arguments?.getInt(ARG_ORDER_ID, 0) ?: 0
+        Log.d("RincianOrderFragment", "orderId: $orderId")
+
+        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
+        token = sharedPref.getString("accessToken", "") ?: ""
+
+        detailViewModel = ViewModelProvider(requireActivity()).get(RiwayatViewModel::class.java)
+
+        detailViewModel.getRiwayat(token, orderId)
+
+        detailViewModel.liveDataDetailOrder.observe(viewLifecycleOwner) { detail ->
+            if (detail != null && detail.isNotEmpty()) {
+                val data = detail.find { it.order.id == orderId }
+                if (data != null) {
+                    binding.tvBolean.text = data.order.status_pembayaran
+                    binding.tvCode.text = data.order.kode_booking
+                    binding.detailTime.text = data.tiket.jam_berangkat
+                    binding.detailDate.text = data.tiket.tanggal_berangkat
+                    binding.detailAirport.text = data.tiket.bandaraAwal.nama_bandara
+                    binding.Maskapai.text = data.tiket.maskapai.nama_maskapai
+
+                    binding.detailTimeArrived.text = data.tiket.jam_kedatangan
+                    binding.detailDateArrived.text = data.tiket.tanggal_kedatangan
+                    binding.detailAirportArrived.text = data.tiket.bandaraTujuan.nama_bandara
+                    binding.kodeMaskapai.text = data.tiket.maskapai.id_maskapai.toString()
+
+                    binding.tvAdult.text = "${data.order.jumlah_penumpang.toString()} Adulst"
+                    binding.detailTotalHarga.text = data.totalHargaTiket
+
+                }
+            }
+        }
+
         binding.btnSubmit.setOnClickListener {
+            detailViewModel.clearRiwayat()
             findNavController().navigate(R.id.action_rincianOrderFragment_to_homeFragment)
         }
+
 
     }
 }

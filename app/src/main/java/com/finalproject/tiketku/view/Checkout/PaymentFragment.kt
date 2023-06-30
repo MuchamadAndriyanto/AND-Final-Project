@@ -26,6 +26,7 @@ class PaymentFragment : Fragment() {
 
     private lateinit var binding: FragmentPaymentBinding
     private lateinit var paymentViewModel: PaymentViewModel
+    private lateinit var detailViewModel: RiwayatViewModel
     private lateinit var token: String
     private lateinit var sharedPref: SharedPreferences
     private var orderId: Int = 0
@@ -48,35 +49,42 @@ class PaymentFragment : Fragment() {
         orderId = arguments?.getInt(ARG_ORDER_ID, 0) ?: 0
         Log.d("PaymentFragment", "orderId $orderId")
 
-        val departureCountry = arguments?.getString("departureCountry", "")
-        val destinationAirport = arguments?.getString("destinationAirport", "")
-        val jamBerangkat = arguments?.getString("jamBerangkat")
-        val jamKedatangan = arguments?.getString("jamKedatangan")
-        val tanggalBerangkat = arguments?.getString("tanggalBerangkat")
-        val tanggalKedatangan = arguments?.getString("tanggalKedatangan")
-        val jumlahPenumpang = arguments?.getString("jumlahPenumpang")
-        val totalHargaTiket = arguments?.getString("totalHargaTiket")
-        val selisihJam = arguments?.getString("selisihJam")
-        val selisihMenit = arguments?.getString("selisihMenit")
-
-        binding.tvjakarta.text = departureCountry
-        binding.tvMelbourne.text = destinationAirport
-        binding.tvBerangkat.text = tanggalBerangkat
-        binding.tvKedatangan.text = tanggalKedatangan
-        binding.tvJamBerangkat.text = jamBerangkat
-        binding.tvJamKedatangan.text = jamKedatangan
-        binding.tvAdulst.text = " $jumlahPenumpang Adults"
-        binding.tvTotalHarga.text = totalHargaTiket
-        binding.tvJam.text = selisihJam
-        binding.tvMenit.text = selisihMenit
 
         // Inisialisasi ViewModel
         paymentViewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
+        detailViewModel = ViewModelProvider(requireActivity()).get(RiwayatViewModel::class.java)
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
         // Ambil token dari SharedPreferences
         token = sharedPref.getString("accessToken", "") ?: ""
+
+        detailViewModel.getRiwayat(token, orderId)
+
+        detailViewModel.liveDataDetailOrder.observe(viewLifecycleOwner) { detail ->
+            if (detail != null && detail.isNotEmpty()) {
+                val data = detail.find { it.order.id == orderId }
+                if (data != null) {
+
+                    binding.tvAdulst.text = "${data.order.jumlah_penumpang.toString()} Adulst"
+                    binding.tvjakarta.text = data.tiket.bandaraAwal.kota
+                    binding.tvBerangkat.text = data.tiket.tanggal_berangkat
+                    binding.tvJamBerangkat.text = data.tiket.jam_berangkat
+
+                    binding.tvJam.setText("(" + data.tiket.selisih_jam + "h - ");
+                    binding.tvMenit.setText(data.tiket.selisih_menit.toString() + "m)");
+
+                    binding.tvMelbourne.text = data.tiket.bandaraTujuan.kota
+                    binding.tvKedatangan.text = data.tiket.tanggal_kedatangan
+                    binding.tvJamKedatangan.text = data.tiket.jam_kedatangan
+
+                    binding.tvBooking.text = data.order.kode_booking
+                    binding.tvTotalHarga.text = data.totalHargaTiket
+
+
+                }
+            }
+        }
 
         binding.btnbayar.setOnClickListener {
             val cardNumber = binding.etNoCard.text.toString()
@@ -96,8 +104,12 @@ class PaymentFragment : Fragment() {
 
         paymentViewModel.getPaymentSuccessfulLiveData().observe(viewLifecycleOwner, { isPaymentSuccessful ->
             if (isPaymentSuccessful) {
+                val bundle = Bundle().apply {
+                    putInt(PaymentSuccesFragment.ARG_ORDER_ID, orderId)
+                }
+
                 Log.d("PaymentFragment", "Pembayaran sukses")
-                findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccesFragment)
+                findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccesFragment, bundle)
             } else {
                 Log.e("PaymentFragment", "Gagal melakukan pembayaran")
                 Toast.makeText(requireContext(), "Gagal melakukan pembayaran", Toast.LENGTH_SHORT).show()
@@ -110,6 +122,7 @@ class PaymentFragment : Fragment() {
                 Toast.makeText(requireContext(), "Gagal memperoleh data pembayaran", Toast.LENGTH_SHORT).show()
             }
         })
+
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_paymentFragment_to_checkOutDetailFragment)
