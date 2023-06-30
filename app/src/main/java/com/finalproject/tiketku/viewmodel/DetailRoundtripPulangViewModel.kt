@@ -12,13 +12,11 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailRoundtripViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
+class DetailRoundtripPulangViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
+    private val liveDataDetailRoundtripPulang: MutableLiveData<DetailRoundtripPergiResponse?> = MutableLiveData()
 
-    private val liveDataDetailRoundtrip: MutableLiveData<DetailRoundtripPergiResponse?> = MutableLiveData()
-
-    val livedetailPergi: LiveData<DetailRoundtripPergiResponse?> get() = liveDataDetailRoundtrip
-
-    fun getDetailRoundtrip(id: Int) {
+    val livedetailPulang: LiveData<DetailRoundtripPergiResponse?> get() = liveDataDetailRoundtripPulang
+    fun getDetailRoundtripPulang(id: Int) {
         api.getDetailRountrip(id).enqueue(object : Callback<DetailRoundtripPergiResponse> {
             override fun onResponse(
                 call: Call<DetailRoundtripPergiResponse>,
@@ -26,16 +24,15 @@ class DetailRoundtripViewModel @Inject constructor(private val api: ApiService) 
             ) {
                 if (response.isSuccessful) {
                     val detailRoundtrip = response.body()
-                    liveDataDetailRoundtrip.postValue(detailRoundtrip)
+                    liveDataDetailRoundtripPulang.postValue(detailRoundtrip)
                 } else {
-                    liveDataDetailRoundtrip.postValue(null)
+                    liveDataDetailRoundtripPulang.postValue(null)
                 }
             }
 
             override fun onFailure(call: Call<DetailRoundtripPergiResponse>, t: Throwable) {
-                liveDataDetailRoundtrip.postValue(null)
+                liveDataDetailRoundtripPulang.postValue(null)
             }
         })
     }
-
 }
