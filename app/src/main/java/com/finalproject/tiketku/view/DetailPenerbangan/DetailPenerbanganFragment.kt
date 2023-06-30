@@ -74,7 +74,6 @@ class DetailPenerbanganFragment : Fragment() {
                     binding.btnSubmit.setOnClickListener {
                         val editor = sharedPreferences.edit()
                         editor.putInt("idPenerbangan", id)
-
                         editor.putInt("clickedMenuItemId", R.id.checkoutBiodataPemesanFragment)
                         editor.apply()
                         findNavController().navigate(R.id.action_detailPenerbanganFragment_to_akunNonLoginFragment)

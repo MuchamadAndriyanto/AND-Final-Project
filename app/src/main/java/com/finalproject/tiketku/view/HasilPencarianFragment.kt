@@ -107,30 +107,36 @@ class HasilPencarianFragment : Fragment() {
         viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
         viewModelPencarianPenerbangan.getFavorite()
         viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
-            if (favList != null) {
-                tiketList = favList
-                hasilPenerbanganAdapter.updateData(tiketList)
-                applyFilter(selectedFilter)
-            } else {
-                Toasty.warning(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
-            }
+            tiketList = favList ?: emptyList()
+            hasilPenerbanganAdapter.updateData(tiketList)
+            applyFilter(selectedFilter)
+
+            val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
+
+            viewModelJadwal.getOnetrip()
+            viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, Observer { jadwalList ->
+                if (jadwalList != null) {
+                    val adapter = JadwalTanggalAdapter(requireContext(), jadwalList)
+                    binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                    binding.rvHari.adapter = adapter
+
+                    val isTicketEmpty = tiketList.isEmpty()
+                    val isJadwalEmpty = jadwalList.isEmpty()
+
+                    if (isTicketEmpty && isJadwalEmpty) {
+                        Toasty.warning(requireContext(), "Ticket dan Jadwal Tidak ditemukan", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
+                    } else if (isTicketEmpty) {
+                        Toasty.warning(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
+                    } else if (isJadwalEmpty) {
+                        Toasty.warning(requireContext(), "Jadwal Tidak ditemukan", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
+                    }
+                }
+            })
         })
 
-        val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
-
-        viewModelJadwal.getOnetrip()
-        viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, Observer { favList ->
-            if (favList != null) {
-                val adapter = JadwalTanggalAdapter(requireContext(), favList)
-                binding.rvHari.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                binding.rvHari.adapter = adapter
-            }else {
-                Toasty.warning(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
-            }
-        })
     }
 
     private fun applyFilter(filter: String?) {
