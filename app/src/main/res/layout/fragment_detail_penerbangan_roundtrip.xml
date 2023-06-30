@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/detail"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/transparent"
+    android:background="@color/grey"
     tools:context=".view.DetailPenerbangan.DetailPenerbanganRoundtripFragment"
     tools:ignore="HardcodedText" >
 
@@ -41,181 +41,189 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="9dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="9dp"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvDeparture"
-                android:layout_marginStart="16dp"
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jakarta"
-                android:textColor="#151515"
-                android:textStyle="bold"
-                />
+                    <TextView
+                        android:id="@+id/tvDeparture"
+                        android:layout_marginStart="16dp"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jakarta"
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
 
-            <TextView
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" -> "
-                android:textColor="#151515"
-                />
+                    <TextView
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" -> "
+                        android:textColor="#151515"
+                        />
 
-            <TextView
-                android:id="@+id/tvDestination"
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bangkok"
-                android:textColor="#151515"
-                android:textStyle="bold"
-                />
+                    <TextView
+                        android:id="@+id/tvDestination"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bangkok"
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
 
-            <TextView
-                android:id="@+id/tvSelisihJam"
-                android:layout_marginStart="5dp"
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(0h - "
-                android:textColor="#151515"
-                android:textStyle="bold"
-                />
+                    <TextView
+                        android:id="@+id/tvSelisihJam"
+                        android:layout_marginStart="5dp"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(0h - "
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
 
-            <TextView
-                android:id="@+id/tvSelisihMenit"
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="45m) "
-                android:textColor="#151515"
-                android:textStyle="bold"
-                />
+                    <TextView
+                        android:id="@+id/tvSelisihMenit"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45m) "
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDetailRountrip"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="9dp"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:id="@+id/tvDeparturePulang"
+                        android:layout_marginStart="16dp"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jakarta"
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDetailRountrip"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                    <TextView
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" -> "
+                        android:textColor="#151515"
+                        />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="9dp"
-            android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvDestinationPulang"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bangkok"
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
 
-            <TextView
-                android:id="@+id/tvDeparturePulang"
-                android:layout_marginStart="16dp"
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jakarta"
-                android:textColor="#151515"
-                android:textStyle="bold"
-                />
+                    <TextView
+                        android:id="@+id/tvSelisihJamPulang"
+                        android:layout_marginStart="5dp"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(0h - "
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
 
-            <TextView
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" -> "
-                android:textColor="#151515"
-                />
-
-            <TextView
-                android:id="@+id/tvDestinationPulang"
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bangkok"
-                android:textColor="#151515"
-                android:textStyle="bold"
-                />
-
-            <TextView
-                android:id="@+id/tvSelisihJamPulang"
-                android:layout_marginStart="5dp"
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(0h - "
-                android:textColor="#151515"
-                android:textStyle="bold"
-                />
-
-            <TextView
-                android:id="@+id/tvSelisihMenitPulang"
-                style="@style/TextBody12Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="45m) "
-                android:textColor="#151515"
-                android:textStyle="bold"
-                />
+                    <TextView
+                        android:id="@+id/tvSelisihMenitPulang"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45m) "
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
 
 
-        </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDetailRountripPulang"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDetailRountripPulang"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_margin="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <View
+                        android:id="@+id/divider3"
+                        android:layout_above="@id/detailTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#D0D0D0" />
+
+                    <TextView
+                        android:id="@+id/detailTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/btnSubmit"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Total"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/detailTotalDec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/btnSubmit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="IDR 1.200.000/pax"
+                        android:textColor="@color/purple"
+                        android:textStyle="bold" />
+                    <Button
+                        app:backgroundTint="@null"
+                        android:id="@+id/btnSubmit"
+                        android:padding="14dp"
+                        android:textAllCaps="false"
+                        android:text="Pilih"
+                        android:background="@drawable/button_radius"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
     </LinearLayout>
-    <RelativeLayout
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <View
-            android:id="@+id/divider3"
-            android:layout_above="@id/detailTotal"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#D0D0D0" />
-
-        <TextView
-            android:id="@+id/detailTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/btnSubmit"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Total"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/detailTotalDec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/btnSubmit"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="IDR 1.200.000/pax"
-            android:textColor="@color/purple"
-            android:textStyle="bold" />
-        <Button
-            app:backgroundTint="@null"
-            android:id="@+id/btnSubmit"
-            android:padding="14dp"
-            android:textAllCaps="false"
-            android:text="Pilih"
-            android:background="@drawable/button_radius"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
 
 </FrameLayout>
