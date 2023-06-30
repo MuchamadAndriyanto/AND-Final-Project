@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.finalproject.tiketku.R
@@ -78,8 +79,10 @@ class RincianOrderFragment : Fragment() {
         }
 
         binding.btnSubmit.setOnClickListener {
-            detailViewModel.clearRiwayat()
-            findNavController().navigate(R.id.action_rincianOrderFragment_to_homeFragment)
+            val navOptions = NavOptions.Builder()
+                .setPopUpTo(R.id.historyFragment, true)
+                .build()
+            findNavController().navigate(R.id.action_rincianOrderFragment_to_homeFragment, null, navOptions)
         }
 
 
