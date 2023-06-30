@@ -9,6 +9,7 @@ import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
 import com.finalproject.tiketku.model.caripenerbangan.ResponseCariPenerbangan
 import com.finalproject.tiketku.model.detail.Detail
+import com.finalproject.tiketku.model.detailrountrippergi.DetailRoundtripPergiResponse
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
 import com.finalproject.tiketku.model.notif.NotifResponse
 import com.finalproject.tiketku.model.onetrip.OneTripResponse
@@ -118,4 +119,8 @@ interface ApiService {
         @Body request: DataPost
     ): Call<ResponsePayment>
 
+    @GET("select-ticket/{id}")
+    fun getDetailRountrip(
+        @Path("id") id: Int
+    ): Call<DetailRoundtripPergiResponse>
 }

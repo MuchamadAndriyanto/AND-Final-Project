@@ -3,7 +3,7 @@ package com.finalproject.tiketku.model.detailrountrippergi
 
 import com.google.gson.annotations.SerializedName
 
-data class Data(
+data class DataPergi(
     @SerializedName("bandaraAwal")
     val bandaraAwal: BandaraAwal,
     @SerializedName("bandaraTujuan")

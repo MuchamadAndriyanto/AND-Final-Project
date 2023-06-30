@@ -3,9 +3,9 @@ package com.finalproject.tiketku.model.detailrountrippergi
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailRoundtripPulangResponse(
+data class DetailRoundtripPergiResponse(
     @SerializedName("data")
-    val `data`: Data,
+    val dataPergi: DataPergi,
     @SerializedName("message")
     val message: String,
     @SerializedName("success")

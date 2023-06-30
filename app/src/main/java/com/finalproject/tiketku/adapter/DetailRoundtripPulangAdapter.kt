@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.databinding.ItemDetailRoundtripBinding
-import com.finalproject.tiketku.databinding.ItemNotifBinding
 import com.finalproject.tiketku.model.detailrountrippergi.DetailRoundtripPergiResponse
 
-class DetailRoundtripPergiAdapter(private val context: Context, private val detailRoundtrip: DetailRoundtripPergiResponse?) : RecyclerView.Adapter<DetailRoundtripPergiAdapter.ViewHolder>() {
+class DetailRoundtripPulangAdapter(private val context: Context, private val detailRoundtrip: DetailRoundtripPergiResponse?) : RecyclerView.Adapter<DetailRoundtripPulangAdapter.ViewHolder>() {
 
     // ViewHolder
     inner class ViewHolder(val binding: ItemDetailRoundtripBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -35,4 +34,3 @@ class DetailRoundtripPergiAdapter(private val context: Context, private val deta
         return 1
     }
 }
-

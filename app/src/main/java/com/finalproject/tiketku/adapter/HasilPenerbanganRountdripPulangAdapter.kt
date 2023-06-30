@@ -72,7 +72,7 @@ class HasilPenerbanganRountdripPulangAdapter(private val context: Context, priva
 
             val item2 = filteredList[position]
             val id = item2.id
-            editor.putString("selected_id_pulang", id.toString())
+            editor.putInt("selected_id_pulang", id)
             editor.apply()
 
             Log.d("test", "Selected ID: $id")

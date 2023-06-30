@@ -72,7 +72,7 @@ class HasilPenerbanganRoundtripAdapter (private val context: Context, private va
         holder.binding.cardDetail.setOnClickListener { view ->
             val item2 = filteredList[position]
             val id = item2.id
-            editor.putString("selected_id_pergi", id.toString())
+            editor.putInt("selected_id_pergi", id)
             editor.apply()
 
             Log.d("test", "Selected ID: $id")
