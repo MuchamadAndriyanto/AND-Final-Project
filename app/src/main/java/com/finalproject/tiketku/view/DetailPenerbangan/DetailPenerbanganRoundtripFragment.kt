@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.finalproject.tiketku.R
 import com.finalproject.tiketku.adapter.DetailRoundtripPergiAdapter
 import com.finalproject.tiketku.adapter.DetailRoundtripPulangAdapter
 import com.finalproject.tiketku.databinding.FragmentDetailPenerbanganRoundtripBinding
@@ -54,6 +56,16 @@ class DetailPenerbanganRoundtripFragment : Fragment() {
         binding.tvDestinationPulang.text = from
 
 
+        binding.btnSubmit.setOnClickListener {
+            val jadwal: SharedPreferences = requireContext().getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
+            val idDatePref = jadwal.getInt("selected_id_pergi", 0)
+            val idPulangDatePref = jadwal.getInt("selected_id_pulang", 0)
+
+            val editor = jadwal.edit()
+            editor.putInt("selected_id_pergi", idDatePref)
+            editor.putInt("selected_id_pulang", idPulangDatePref)
+            findNavController().navigate(R.id.action_detailPenerbanganRoundtripFragment_to_checkoutBiodataPemesanRoundTrip)
+        }
 
         viewModelDetailRoundtrip = ViewModelProvider(this).get(DetailRoundtripViewModel::class.java)
         viewModelDetailRoundtripPulang = ViewModelProvider(this).get(DetailRoundtripPulangViewModel::class.java)

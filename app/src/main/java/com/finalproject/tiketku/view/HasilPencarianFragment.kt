@@ -136,7 +136,6 @@ class HasilPencarianFragment : Fragment() {
                 }
             })
         })
-
     }
 
     private fun applyFilter(filter: String?) {

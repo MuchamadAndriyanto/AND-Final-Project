@@ -455,5 +455,30 @@
         android:id="@+id/detailPenerbanganRoundtripFragment"
         android:name="com.finalproject.tiketku.view.DetailPenerbangan.DetailPenerbanganRoundtripFragment"
         android:label="fragment_detail_penerbangan_roundtrip"
-        tools:layout="@layout/fragment_detail_penerbangan_roundtrip" />
+        tools:layout="@layout/fragment_detail_penerbangan_roundtrip" >
+        <action
+            android:id="@+id/action_detailPenerbanganRoundtripFragment_to_checkoutBiodataPemesanRoundTrip"
+            app:destination="@id/checkoutBiodataPemesanRoundTrip" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutBiodataPemesanRoundTrip"
+        android:name="com.finalproject.tiketku.view.Checkout.CheckoutBiodataPemesanRoundTrip"
+        android:label="fragment_checkout_biodata_pemesan_round_trip"
+        tools:layout="@layout/fragment_checkout_biodata_pemesan_round_trip" >
+        <action
+            android:id="@+id/action_checkoutBiodataPemesanRoundTrip_to_detailPenerbanganRoundtripFragment"
+            app:destination="@id/detailPenerbanganRoundtripFragment" />
+        <action
+            android:id="@+id/action_checkoutBiodataPemesanRoundTrip_to_selectSeatRoundTripFragment"
+            app:destination="@id/selectSeatRoundTripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectSeatRoundTripFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.SelectSeatRoundTripFragment"
+        android:label="fragment_select_seat_round_trip"
+        tools:layout="@layout/fragment_select_seat_round_trip" >
+        <action
+            android:id="@+id/action_selectSeatRoundTripFragment_to_riwayatPesananKosongFragment"
+            app:destination="@id/riwayatPesananKosongFragment" />
+    </fragment>
 </navigation>

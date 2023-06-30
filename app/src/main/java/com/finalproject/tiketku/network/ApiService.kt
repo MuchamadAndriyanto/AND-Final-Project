@@ -15,6 +15,8 @@ import com.finalproject.tiketku.model.notif.NotifResponse
 import com.finalproject.tiketku.model.onetrip.OneTripResponse
 import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.order.ResponseOrder
+import com.finalproject.tiketku.model.orderRoundTrip.DataOrderRT
+import com.finalproject.tiketku.model.orderRoundTrip.ResponseOrderRT
 import com.finalproject.tiketku.model.payment.DataPost
 import com.finalproject.tiketku.model.payment.ResponsePayment
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
@@ -124,5 +126,9 @@ interface ApiService {
         @Path("id") id: Int
     ): Call<DetailRoundtripPergiResponse>
 
-
+    @POST("order-round-trip")
+    fun postOrderBiodataRT(
+        @Header("Authorization") token: String,
+        @Body request: DataOrderRT
+    ): Call<ResponseOrderRT>
 }
