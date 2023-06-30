@@ -429,6 +429,9 @@
         <action
             android:id="@+id/action_hasilPenerbanganRoundTripPulangFragment_to_hasilPenerbanganRoundtripFragment"
             app:destination="@id/hasilPenerbanganRoundtripFragment" />
+        <action
+            android:id="@+id/action_hasilPenerbanganRoundTripPulangFragment_to_detailPenerbanganRoundtripFragment"
+            app:destination="@id/detailPenerbanganRoundtripFragment" />
     </fragment>
     <fragment
         android:id="@+id/noResultDetailFragment"
@@ -445,4 +448,9 @@
             android:id="@+id/action_noResultDetailFragment_to_hasilPencarianFragment"
             app:destination="@id/hasilPencarianFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailPenerbanganRoundtripFragment"
+        android:name="com.finalproject.tiketku.view.DetailPenerbangan.DetailPenerbanganRoundtripFragment"
+        android:label="fragment_detail_penerbangan_roundtrip"
+        tools:layout="@layout/fragment_detail_penerbangan_roundtrip" />
 </navigation>

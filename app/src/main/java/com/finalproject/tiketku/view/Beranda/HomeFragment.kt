@@ -290,9 +290,15 @@ class HomeFragment : Fragment() {
                 // Jalankan penundaan selama 4 detik sebelum navigasi dilakukan
                 Handler().postDelayed({
                     hideLoading()
-
+                    dateSharedPreferences = requireContext().getSharedPreferences("date", Context.MODE_PRIVATE)
+                    val returnDate = dateSharedPreferences.getString("returnDate", "")
                     // Navigasi ke fragment tujuan dengan menyertakan bundle
-                    findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment, bundle)
+                    if (returnDate.isNullOrEmpty()) {
+                        findNavController().navigate(R.id.action_homeFragment_to_hasilPencarianFragment, bundle)
+                    }else{
+                        findNavController().navigate(R.id.action_homeFragment_to_hasilPenerbanganRoundtripFragment, bundle)
+                    }
+
 
                 }, 1000)
                 } else {

@@ -3,12 +3,14 @@ package com.finalproject.tiketku.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.databinding.ItemTiketBinding
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
+import com.finalproject.tiketku.view.HasilPenerbanganRoundTripPulangFragmentDirections
 import com.finalproject.tiketku.view.HasilPenerbanganRoundtripFragmentDirections
 
 class HasilPenerbanganRountdripPulangAdapter(private val context: Context, private var list: List<DataCariPenerbangan>)
@@ -63,12 +65,21 @@ class HasilPenerbanganRountdripPulangAdapter(private val context: Context, priva
         holder.binding.maskapai1.text = item2.maskapai.namaMaskapai
         holder.binding.setClass.text = selected_class
 
+        val IDPrefs: SharedPreferences = context.getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = IDPrefs.edit()
 
-        //kedetail
-//        holder.binding.cardDetail.setOnClickListener { view ->
-//            val action = HasilPenerbanganRoundtripFragmentDirections.actionHasilPenerbanganRoundtripFragmentToHasilPenerbanganRoundTripPulangFragment()
-//            holder.itemView.findNavController().navigate(action)
-//        }
+        holder.binding.cardDetail.setOnClickListener { view ->
+
+            val item2 = filteredList[position]
+            val id = item2.id
+            editor.putString("selected_id_pulang", id.toString())
+            editor.apply()
+
+            Log.d("test", "Selected ID: $id")
+
+            val action = HasilPenerbanganRoundTripPulangFragmentDirections.actionHasilPenerbanganRoundTripPulangFragmentToDetailPenerbanganRoundtripFragment()
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

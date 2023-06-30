@@ -3,6 +3,7 @@ package com.finalproject.tiketku.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -64,9 +65,17 @@ class HasilPenerbanganRoundtripAdapter (private val context: Context, private va
         holder.binding.maskapai1.text = item2.maskapai.namaMaskapai
         holder.binding.setClass.text = selected_class
 
+        val IDPrefs: SharedPreferences = context.getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = IDPrefs.edit()
 
         //kedetail
         holder.binding.cardDetail.setOnClickListener { view ->
+            val item2 = filteredList[position]
+            val id = item2.id
+            editor.putString("selected_id_pergi", id.toString())
+            editor.apply()
+
+            Log.d("test", "Selected ID: $id")
             val action = HasilPenerbanganRoundtripFragmentDirections.actionHasilPenerbanganRoundtripFragmentToHasilPenerbanganRoundTripPulangFragment()
             holder.itemView.findNavController().navigate(action)
         }
