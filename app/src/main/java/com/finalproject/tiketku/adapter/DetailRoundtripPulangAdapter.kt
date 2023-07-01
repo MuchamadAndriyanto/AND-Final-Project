@@ -25,7 +25,7 @@ class DetailRoundtripPulangAdapter(private val context: Context, private val det
         holder.binding.detailTime.text = detail?.dataPergi?.jamBerangkat
         holder.binding.detailTimeArrived.text = detail?.dataPergi?.jamKedatangan
         holder.binding.detailDate.text = detail?.dataPergi?.tanggalBerangkat
-        holder.binding.detailDateArrived.text = detail?.dataPergi?.jamKedatangan
+        holder.binding.detailDateArrived.text = detail?.dataPergi?.tanggalBerangkat
         holder.binding.detailAirport.text = detail?.dataPergi?.bandaraAwal?.namaBandara
         holder.binding.detailAirportArrived.text = detail?.dataPergi?.bandaraTujuan?.namaBandara
         holder.binding.Maskapai.text = detail?.dataPergi?.maskapai?.namaMaskapai
