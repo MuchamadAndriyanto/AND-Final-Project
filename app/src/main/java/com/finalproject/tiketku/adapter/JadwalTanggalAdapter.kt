@@ -22,74 +22,80 @@ import com.finalproject.tiketku.model.rountrip.DataRountip
 import java.util.Locale
 
 class JadwalTanggalAdapter (private val context: Context, private val list: List<DataOneTrip>) : RecyclerView.Adapter<JadwalTanggalAdapter.ViewHolder>() {
+        private var selectedCard = -1
 
-    private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        private var onItemClickCallback: OnItemClickCallback? = null
 
-    private var selectedCard = -1
+        fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+            this.onItemClickCallback = onItemClickCallback
+        }
 
-    private var onItemClickCallback: OnItemClickCallback? = null
+        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            var hari = itemView.findViewById<TextView>(R.id.tv_hari)
+            var tgl = itemView.findViewById<TextView>(R.id.tv_tgl)
+            val lin1 = itemView.findViewById<View>(R.id.layout_hari)
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
+            init {
+                lin1.setOnClickListener {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        selectedCard = position
+                        notifyDataSetChanged()
 
-    inner class ViewHolder(val binding: ItemHariBinding) : RecyclerView.ViewHolder(binding.root) {
-        var hari = itemView.findViewById<TextView>(R.id.tv_hari)
-        var tgl = itemView.findViewById<TextView>(R.id.tv_tgl)
-        val lin1 = itemView.findViewById<View>(R.id.layout_hari)
-
-        init {
-            lin1.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    selectedCard = position
-                    notifyDataSetChanged()
-
-                    onItemClickCallback?.onItemClicked(position, list[position])
+                        /*                    onItemClickCallback?.onItemClicked(position, listClass[position])*/
+                    }
                 }
             }
         }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemHariBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
-    }
 
-    override fun onBindViewHolder(holder: JadwalTanggalAdapter.ViewHolder, position: Int) {
-        val sortedList = list.sortedBy { it.tanggalBerangkat }
-        val item = sortedList[position]
-        holder.binding.tvTgl.text = item.tanggalBerangkat
-        holder.binding.tvHari.text = item.hari
-
-        if (position == selectedCard) {
-            holder.lin1.setBackgroundResource(R.drawable.curved_set_class)
-            holder.hari.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
-            holder.tgl.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
-        } else {
-            holder.lin1.setBackgroundResource(R.drawable.curve_set_class)
-            holder.hari.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.black))
-            holder.tgl.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.black))
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JadwalTanggalAdapter.ViewHolder {
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(R.layout.item_hari, parent, false)
+            return ViewHolder(itemView)
         }
 
+        override fun onBindViewHolder(holder: JadwalTanggalAdapter.ViewHolder, position: Int) {
+            val currentItem = list[position]
+            holder.hari.text = currentItem.hari
+            holder.tgl.text = currentItem.tanggalBerangkat
 
-
-        holder.binding.layoutHari.setOnClickListener {
-            val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putString("jadwal", item.tanggalBerangkat)
-            editor.apply()
-            Toast.makeText(context, "Jadwal tersimpan", Toast.LENGTH_SHORT).show()
+            if (position == selectedCard) {
+                holder.lin1.setBackgroundResource(R.drawable.curved_set_class)
+                holder.hari.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.white
+                    )
+                )
+                holder.tgl.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.white
+                    )
+                )
+            } else {
+                holder.lin1.setBackgroundResource(R.drawable.curve_set_class)
+                holder.hari.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.black
+                    )
+                )
+                holder.tgl.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.black
+                    )
+                )
+            }
 
         }
+
+        override fun getItemCount(): Int = list.size
+
+
+        interface OnItemClickCallback {
+            fun onItemClicked(position: Int, data: ListHasilPencarian)
+        }
     }
-
-
-    override fun getItemCount(): Int = list.size
-
-    interface OnItemClickCallback {
-        fun onItemClicked(position: Int, data: DataOneTrip)
-    }
-}
