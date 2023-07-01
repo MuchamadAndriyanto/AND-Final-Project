@@ -47,7 +47,6 @@ class SelectSeatRoundTripFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-
         binding.btnSubmit.setOnClickListener {
             sharedPrefs = requireContext().getSharedPreferences("biodata", Context.MODE_PRIVATE)
 
@@ -79,7 +78,7 @@ class SelectSeatRoundTripFragment : Fragment() {
                     viewModel.isOrderIdAvailable.observe(viewLifecycleOwner) { isAvailable ->
                         if (isAvailable) {
                             val bundle = Bundle()
-                            bundle.putInt("orderId", viewModel.getOrderId()!!)
+                            bundle.putInt("orderIdRT", viewModel.getOrderIdRT()!!)
                             bundle.putString("email", email)
                             bundle.putInt("selected_id_pergi", idPenerbanganBerangkat)
                             bundle.putInt("selected_id_pulang", idPenerbanganPulang)
@@ -89,7 +88,7 @@ class SelectSeatRoundTripFragment : Fragment() {
                             bundle.putString("noTelp", noTelp)
 
                             findNavController().navigate(
-                                R.id.action_selectSeatRoundTripFragment_to_riwayatPesananKosongFragment,
+                                R.id.action_selectSeatRoundTripFragment_to_checkOutDetailRoundTripFragment,
                                 bundle
                             )
                         } else {
@@ -108,10 +107,13 @@ class SelectSeatRoundTripFragment : Fragment() {
 
         for (button in seatButtons) {
             button.setOnClickListener {
-                val seatId = button.id.toString()
+                val resourceId = button.id
+                val resourceName = resources.getResourceName(resourceId)
+                val seatId = resourceName.substringAfter("/")
 
-                // Memanggil fungsi toggleSeatSelection untuk memilih atau membatalkan pemilihan kursi
                 toggleSeatSelection(button, seatId)
+                // Gunakan seatId sesuai kebutuhan Anda
+                Log.d("ClickedSeatId", seatId)
             }
         }
     }
@@ -145,9 +147,7 @@ class SelectSeatRoundTripFragment : Fragment() {
         button.setBackgroundColor(ContextCompat.getColor(requireContext(), colorResId))
     }
 
-
     private fun processBooking(
-
         email: String,
         idPenerbanganBerangkat: Int,
         idPenerbanganPulang: Int,
@@ -177,9 +177,9 @@ class SelectSeatRoundTripFragment : Fragment() {
             binding.btnBack.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putInt("selected_id_pergi", idPenerbanganBerangkat)
-                bundle.putInt("selected_id_pergi", idPenerbanganBerangkat)
+                bundle.putInt("selected_id_pulang", idPenerbanganPulang)
                 findNavController().navigate(
-                    R.id.action_selectSeatRoundTripFragment_to_riwayatPesananKosongFragment,
+                    R.id.action_selectSeatRoundTripFragment_to_checkOutDetailRoundTripFragment,
                     bundle
                 )
             }

@@ -73,7 +73,7 @@ class CheckOutDetailFragment : Fragment() {
                 // Mendapatkan nilai adultCount dari Shared Preferences
                 val adultCount = sharedPreferences.getInt("totalPassengers", defaultAdultCount)
 
-                binding.tvAdult.text = "$adultCount Adults"
+                binding.tvAdult.text = "$adultCount "
 
                 binding.tvHargaAdult.text = detail.tiket.maskapai.hargaTiket
                 binding.detailTotalHarga.text = detail.totalHargaTiket

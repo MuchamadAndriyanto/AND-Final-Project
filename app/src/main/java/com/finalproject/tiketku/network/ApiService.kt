@@ -22,6 +22,7 @@ import com.finalproject.tiketku.model.payment.ResponsePayment
 import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
+import com.finalproject.tiketku.model.rincianCORoundTrip.ResponseDetailChekcoutRT
 import com.finalproject.tiketku.model.riwayat.ResponseRiwayat
 import com.finalproject.tiketku.model.roundtrip.RoundTripResponse
 import com.finalproject.tiketku.model.search.SearchResponse
@@ -131,4 +132,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body request: DataOrderRT
     ): Call<ResponseOrderRT>
+
+
+    @GET("get-order-round-trip/{id}")
+    fun getDetailOrderRT(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int?
+    ): Call<ResponseDetailChekcoutRT>
 }

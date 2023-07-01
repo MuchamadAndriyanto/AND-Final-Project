@@ -471,6 +471,9 @@
         <action
             android:id="@+id/action_checkoutBiodataPemesanRoundTrip_to_selectSeatRoundTripFragment"
             app:destination="@id/selectSeatRoundTripFragment" />
+        <action
+            android:id="@+id/action_checkoutBiodataPemesanRoundTrip_to_checkOutDetailRoundTripFragment"
+            app:destination="@id/checkOutDetailRoundTripFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectSeatRoundTripFragment"
@@ -480,5 +483,27 @@
         <action
             android:id="@+id/action_selectSeatRoundTripFragment_to_riwayatPesananKosongFragment"
             app:destination="@id/riwayatPesananKosongFragment" />
+        <action
+            android:id="@+id/action_selectSeatRoundTripFragment_to_checkOutDetailRoundTripFragment"
+            app:destination="@id/checkOutDetailRoundTripFragment" >
+            <argument
+                android:name="orderIdRT"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/checkOutDetailRoundTripFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.CheckOutDetailRoundTripFragment"
+        android:label="fragment_check_out_detail_round_trip"
+        tools:layout="@layout/fragment_check_out_detail_round_trip" >
+        <argument
+            android:name="orderIdRT"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_checkOutDetailRoundTripFragment_to_checkoutBiodataPemesanRoundTrip"
+            app:destination="@id/checkoutBiodataPemesanRoundTrip" />
+        <action
+            android:id="@+id/action_checkOutDetailRoundTripFragment_to_selectSeatRoundTripFragment"
+            app:destination="@id/selectSeatRoundTripFragment" />
     </fragment>
 </navigation>

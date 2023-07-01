@@ -3,12 +3,682 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="HardcodedText"
     tools:context=".view.Checkout.CheckOutDetailRoundTripFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Navbar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkpurple"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <!-- Tombol Kembali -->
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fi_arrow_left" />
+
+            <!-- Judul Navbar -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:text="Pilihan Penerbangan"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="9dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvDeparture"
+                        android:layout_marginStart="16dp"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jakarta"
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" -> "
+                        android:textColor="#151515"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvDestination"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bangkok"
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvSelisihJam"
+                        android:layout_marginStart="5dp"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(0h - "
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvSelisihMenit"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45m) "
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDetail"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="5dp"
+                    android:outlineAmbientShadowColor="@color/cardview_dark_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/detailTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="07.00"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/wib"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/detailTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="WIB"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:id="@+id/detailStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/lightpurple"
+                            android:textStyle="bold"
+                            android:text="Keberangkatan" />
+                        <TextView
+                            android:layout_below="@id/detailTime"
+                            android:id="@+id/detailDate"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6 Juni 2023" />
+                        <TextView
+                            android:layout_below="@id/detailDate"
+                            android:id="@+id/detailAirport"
+                            android:layout_marginBottom="20dp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Adi Soemarmo Airport" />
+                        <View
+                            android:id="@+id/divider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#D0D0D0"
+                            android:layout_below="@id/detailAirport"/>
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl2"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/divider"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="20dp">
+
+                            <ImageView
+                                android:id="@+id/logoMaskapai"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/logo_maskapai" />
+
+                            <TextView
+                                android:id="@+id/Maskapai"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/black"
+                                android:layout_toEndOf="@id/logoMaskapai"
+                                android:text="Jet Air - Economy"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/kodeMaskapai"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/Maskapai"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_toEndOf="@id/logoMaskapai"
+                                android:text="JA - 117"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:id="@+id/infoMaskapai"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/kodeMaskapai"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_toEndOf="@id/logoMaskapai"
+                                android:text="Informasi :"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:id="@+id/detailInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/infoMaskapai"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_toEndOf="@id/logoMaskapai"
+                                android:text="Baggage 20 Kg"
+                                android:textColor="@color/black"/>
+
+
+                        </RelativeLayout>
+                        <View
+                            android:id="@+id/divider2"
+                            android:layout_below="@id/rl2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#D0D0D0" />
+                        <RelativeLayout
+                            android:layout_below="@+id/rl2"
+                            android:layout_marginTop="14dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/detailTimeArrived"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="07.45"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:id="@+id/wib2"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@id/detailTimeArrived"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="WIB"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:layout_alignEnd="@id/detailTimeArrived"
+                                android:id="@+id/detailStatusArrived"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:textColor="@color/lightpurple"
+                                android:textStyle="bold"
+                                android:text="Kedatangan" />
+                            <TextView
+                                android:id="@+id/detailDateArrived"
+                                android:layout_below="@id/detailTimeArrived"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="6 Juni 2023"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:layout_below="@id/detailDateArrived"
+                                android:id="@+id/detailAirportArrived"
+                                android:textColor="@color/black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Soekarno Hatta Airport" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="9dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvDeparturePulang"
+                        android:layout_marginStart="16dp"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jakarta"
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" -> "
+                        android:textColor="#151515"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvDestinationPulang"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bangkok"
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvSelisihJamPulang"
+                        android:layout_marginStart="5dp"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(0h - "
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvSelisihMenitPulang"
+                        style="@style/TextBody12Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45m) "
+                        android:textColor="#151515"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDetailPulang"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="5dp"
+                    android:outlineAmbientShadowColor="@color/cardview_dark_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/detailTimePulang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="07.00"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/wibPulang"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/detailTimePulang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="WIB"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:id="@+id/detailStatusPulang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/lightpurple"
+                            android:textStyle="bold"
+                            android:text="Keberangkatan" />
+                        <TextView
+                            android:layout_below="@id/detailTimePulang"
+                            android:id="@+id/detailDatePulang"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6 Juni 2023" />
+                        <TextView
+                            android:layout_below="@id/detailDatePulang"
+                            android:id="@+id/detailAirportPulang"
+                            android:layout_marginBottom="20dp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Adi Soemarmo Airport" />
+                        <View
+                            android:id="@+id/dividerPulang"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#D0D0D0"
+                            android:layout_below="@id/detailAirportPulang"/>
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl2Pulang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/dividerPulang"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="20dp">
+
+                            <ImageView
+                                android:id="@+id/logoMaskapaiPulang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/logo_maskapai" />
+
+                            <TextView
+                                android:id="@+id/MaskapaiPulang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/black"
+                                android:layout_toEndOf="@id/logoMaskapaiPulang"
+                                android:text="Jet Air - Economy"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/kodeMaskapaiPulang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/MaskapaiPulang"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_toEndOf="@id/logoMaskapaiPulang"
+                                android:text="JA - 117"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:id="@+id/infoMaskapaiPulang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/kodeMaskapaiPulang"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_toEndOf="@id/logoMaskapaiPulang"
+                                android:text="Informasi :"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:id="@+id/detailInfoPulang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/infoMaskapaiPulang"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_toEndOf="@id/logoMaskapaiPulang"
+                                android:text="Baggage 20 Kg"
+                                android:textColor="@color/black"/>
+
+
+                        </RelativeLayout>
+                        <View
+                            android:id="@+id/divider2Pulang"
+                            android:layout_below="@id/rl2Pulang"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#D0D0D0" />
+                        <RelativeLayout
+                            android:layout_below="@+id/rl2Pulang"
+                            android:layout_marginTop="14dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/detailTimeArrivedPulang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="07.45"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:id="@+id/wib2Pulang"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@id/detailTimeArrivedPulang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="WIB"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:layout_alignEnd="@id/detailTimeArrivedPulang"
+                                android:id="@+id/detailStatusArrivedPulang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:textColor="@color/lightpurple"
+                                android:textStyle="bold"
+                                android:text="Kedatangan" />
+                            <TextView
+                                android:id="@+id/detailDateArrivedPulang"
+                                android:layout_below="@id/detailTimeArrivedPulang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="6 Juni 2023"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:layout_below="@id/detailDateArrivedPulang"
+                                android:id="@+id/detailAirportArrivedPulang"
+                                android:textColor="@color/black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Soekarno Hatta Airport" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:layout_below="@+id/layoutContentBody"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rincian Harga"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:paddingTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvAdult"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/tvAdult2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight="1"
+                            android:text="Passangers"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:id="@+id/tvHargaAdult"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="IDR 9.550.000"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tax"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="IDR 0"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Promo"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="IDR 0"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <View
+                        android:id="@+id/divider3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#D0D0D0" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/detailTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Total"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/detailTotalHarga"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="IDR 1.200.000/pax"
+                        android:textColor="@color/purple"
+                        android:textStyle="bold" />
+                        </RelativeLayout>
+                    <Button
+                        app:backgroundTint="@null"
+                        android:id="@+id/btnSubmit"
+                        android:padding="14dp"
+                        android:textAllCaps="false"
+                        android:text="Pilih"
+                        android:background="@drawable/button_radius"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 </FrameLayout>

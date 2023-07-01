@@ -103,10 +103,13 @@ class SelectSeatFragment : Fragment() {
 
         for (button in seatButtons) {
             button.setOnClickListener {
-                val seatId = button.id.toString()
+                val resourceId = button.id
+                val resourceName = resources.getResourceName(resourceId)
+                val seatId = resourceName.substringAfter("/")
 
-                // Memanggil fungsi toggleSeatSelection untuk memilih atau membatalkan pemilihan kursi
                 toggleSeatSelection(button, seatId)
+                // Gunakan seatId sesuai kebutuhan Anda
+                Log.d("ClickedSeatId", seatId)
             }
         }
     }
