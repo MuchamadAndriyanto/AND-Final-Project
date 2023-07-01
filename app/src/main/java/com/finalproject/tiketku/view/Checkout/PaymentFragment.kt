@@ -67,19 +67,19 @@ class PaymentFragment : Fragment() {
                 if (data != null) {
 
                     binding.tvAdulst.text = " ${data.order.jumlah_penumpang.toString()} Passenger"
-                    binding.tvjakarta.text = data.tiket.bandaraAwal.kota
-                    binding.tvBerangkat.text = data.tiket.tanggal_berangkat
-                    binding.tvJamBerangkat.text = data.tiket.jam_berangkat
+                    binding.tvjakarta.text = data.tiketBerangkat.bandaraAwal.kota
+                    binding.tvBerangkat.text = data.tiketBerangkat.tanggal_berangkat
+                    binding.tvJamBerangkat.text = data.tiketBerangkat.jam_berangkat
 
-                    binding.tvJam.setText("(" + data.tiket.selisih_jam + "h - ");
-                    binding.tvMenit.setText(data.tiket.selisih_menit.toString() + "m)");
+                    binding.tvJam.setText("(" + data.tiketBerangkat.selisih_jam + "h - ");
+                    binding.tvMenit.setText(data.tiketBerangkat.selisih_menit.toString() + "m)");
 
-                    binding.tvMelbourne.text = data.tiket.bandaraTujuan.kota
-                    binding.tvKedatangan.text = data.tiket.tanggal_kedatangan
-                    binding.tvJamKedatangan.text = data.tiket.jam_kedatangan
+                    binding.tvMelbourne.text = data.tiketBerangkat.bandaraTujuan.kota
+                    binding.tvKedatangan.text = data.tiketBerangkat.tanggal_kedatangan
+                    binding.tvJamKedatangan.text = data.tiketBerangkat.jam_kedatangan
 
                     binding.tvBooking.text = data.order.kode_booking
-                    binding.tvTotalHarga.text = data.totalHargaTiket
+                    binding.tvTotalHarga.text = data.totalHargaTiketBerangkat
 
 
                 }

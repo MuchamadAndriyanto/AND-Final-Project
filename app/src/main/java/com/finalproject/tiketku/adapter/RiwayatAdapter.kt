@@ -35,19 +35,19 @@ class RiwayatAdapter(private val context: Context, var list: List<Data>) : Recyc
 
         holder.binding.status.text = item.order.status_pembayaran
 
-            holder.binding.tvjakarta.text = item.tiket.bandaraAwal.kota
-            holder.binding.tvBerangkat.text = item.tiket.tanggal_berangkat
-            holder.binding.tvJamBerangkat.text = item.tiket.jam_berangkat
+            holder.binding.tvjakarta.text = item.tiketBerangkat.bandaraAwal.kota
+            holder.binding.tvBerangkat.text = item.tiketBerangkat.tanggal_berangkat
+            holder.binding.tvJamBerangkat.text = item.tiketBerangkat.jam_berangkat
 
-            holder.binding.tvJam.text = item.tiket.selisih_jam.toString() + "h"
-            holder.binding.tvMenit.text = item.tiket.selisih_menit.toString() + "m"
+            holder.binding.tvJam.text = item.tiketBerangkat.selisih_jam.toString() + "h"
+            holder.binding.tvMenit.text = item.tiketBerangkat.selisih_menit.toString() + "m"
 
-            holder.binding.tvMelbourne.text = item.tiket.bandaraTujuan.kota
-            holder.binding.tvKedatangan.text = item.tiket.tanggal_kedatangan
-            holder.binding.tvJamKedatangan.text = item.tiket.jam_kedatangan
+            holder.binding.tvMelbourne.text = item.tiketBerangkat.bandaraTujuan.kota
+            holder.binding.tvKedatangan.text = item.tiketBerangkat.tanggal_kedatangan
+            holder.binding.tvJamKedatangan.text = item.tiketBerangkat.jam_kedatangan
 
             holder.binding.Kode.text = item.order.kode_booking
-            holder.binding.tvPrice.text = item.totalHargaTiket
+            holder.binding.tvPrice.text = item.totalHargaTiketBerangkat
 
             // Set text and background color based on payment status
             holder.binding.status.text = if (item.status) "Paid" else "Unpaid"

@@ -19,7 +19,6 @@ import com.finalproject.tiketku.databinding.FragmentDetailHistoryBinding
 import com.finalproject.tiketku.databinding.FragmentDetailPenerbanganBinding
 import com.finalproject.tiketku.model.riwayat.Data
 import com.finalproject.tiketku.model.riwayat.Order
-import com.finalproject.tiketku.model.riwayat.Tiket
 import com.finalproject.tiketku.view.Checkout.PaymentFragment
 import com.finalproject.tiketku.view.DetailPenerbangan.DetailPenerbanganFragmentArgs
 import com.finalproject.tiketku.view.DetailPenerbangan.DetailPenerbanganFragmentDirections
@@ -64,18 +63,18 @@ class DetailHistoryFragment : Fragment() {
                 if (data != null) {
                     binding.tvBolean.text = data.order.status_pembayaran
                     binding.tvCode.text = data.order.kode_booking
-                    binding.detailTime.text = data.tiket.jam_berangkat
-                    binding.detailDate.text = data.tiket.tanggal_berangkat
-                    binding.detailAirport.text = data.tiket.bandaraAwal.nama_bandara
-                    binding.Maskapai.text = data.tiket.maskapai.nama_maskapai
+                    binding.detailTime.text = data.tiketBerangkat.jam_berangkat
+                    binding.detailDate.text = data.tiketBerangkat.tanggal_berangkat
+                    binding.detailAirport.text = data.tiketBerangkat.bandaraAwal.nama_bandara
+                    binding.Maskapai.text = data.penerbanganBerangkat.maskapai.nama_maskapai
 
-                    binding.detailTimeArrived.text = data.tiket.jam_kedatangan
-                    binding.detailDateArrived.text = data.tiket.tanggal_kedatangan
-                    binding.detailAirportArrived.text = data.tiket.bandaraTujuan.nama_bandara
-                    binding.kodeMaskapai.text = data.tiket.maskapai.id_maskapai.toString()
+                    binding.detailTimeArrived.text = data.tiketBerangkat.jam_kedatangan
+                    binding.detailDateArrived.text = data.tiketBerangkat.tanggal_kedatangan
+                    binding.detailAirportArrived.text = data.tiketBerangkat.bandaraTujuan.nama_bandara
+                    binding.kodeMaskapai.text = data.penerbanganBerangkat.maskapai.id_maskapai.toString()
 
                     binding.tvAdult.text = "${data.order.jumlah_penumpang.toString()} Adulst"
-                    binding.detailTotalHarga.text = data.totalHargaTiket
+                    binding.detailTotalHarga.text = data.totalHargaTiketBerangkat
 
                     binding.btnSubmit.text = if (binding.tvBolean.text == "paid") {
                         "Kembali ke Beranda"
