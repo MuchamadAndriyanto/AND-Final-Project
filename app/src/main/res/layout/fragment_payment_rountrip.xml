@@ -772,6 +772,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:ems="10"
+                        android:maxLines="1"
                         android:inputType="text"
                         android:hint="4480 0000 0000 0000"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -793,6 +794,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:ems="10"
+                        android:maxLines="1"
                         android:hint="John Doe"
                         tools:ignore="TouchTargetSizeCheck" />
 
@@ -821,6 +823,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
+                                android:maxLines="1"
                                 android:hint="000"
                                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -853,6 +856,7 @@
                                 android:layout_gravity="end"
                                 android:layout_marginStart="20dp"
                                 android:ems="10"
+                                android:maxLines="1"
                                 android:hint="16/20"
                                 tools:ignore="TouchTargetSizeCheck" />
 

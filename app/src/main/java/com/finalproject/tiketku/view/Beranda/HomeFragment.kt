@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
 import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.view.HasilPencarianFragment
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import java.text.SimpleDateFormat
@@ -39,6 +40,7 @@ import java.util.Locale
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var selectedStartDate: String? = ""
     private var selectedReturnDate: String? = null
     private var selectedDate: String? = null
@@ -177,15 +179,6 @@ class HomeFragment : Fragment() {
             Log.d("TestLog", "Data ditukar antara Shared Preferences 1 dan 2")
         }
 
-//        binding.flip.setOnClickListener {
-//
-//            val currentDepartureText = binding.tvDeparture.text.toString()
-//            val currentArrivalText = binding.tvTujuan.text.toString()
-//
-//            binding.tvDeparture.text = currentArrivalText
-//            binding.tvTujuan.text = currentDepartureText
-//        }
-
         // Isi listDestinasiFavorit dengan data destinasi favorit yang sesuai
         val viewModelFavorite = ViewModelProvider(this).get(FavoritDestinasiViewModel::class.java)
         viewModelFavorite.getFavorite()
@@ -203,6 +196,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Inisialisasi Firebase Analytics
+        firebaseAnalytics = FirebaseAnalytics.getInstance(requireContext())
 
         binding.Passangers.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_setPenumpangFragment)
@@ -282,7 +278,18 @@ class HomeFragment : Fragment() {
 
         binding.btnPencarian.setOnClickListener {
             showLoading()
+
             if (isDataValid()) {
+
+                // mengirimkan ke firebase analytics
+                val bundleFirebase = Bundle()
+                bundleFirebase.putString("selectDestination", selectedDestination)
+                bundleFirebase.putString("selectDestinationTo", selectedDestinationTo)
+                bundleFirebase.putString("startDateFormat", selectedDate)
+                bundleFirebase.putString("startDate", selectedStartDate)
+                bundleFirebase.putString("returnDate", selectedReturnDate)
+
+                firebaseAnalytics.logEvent("pencarian_button_clicked", bundleFirebase)
                 // Mengambil nilai selectDestination dan selectDestinationTo
 
                 sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)

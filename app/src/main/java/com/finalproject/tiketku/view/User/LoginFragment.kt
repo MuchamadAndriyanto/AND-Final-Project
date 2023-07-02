@@ -63,6 +63,9 @@ class LoginFragment : Fragment() {
             loginUserVM.dataLoginPassword.observe(viewLifecycleOwner) { dataLoginPassword ->
                 if (dataLoginPassword != null) {
 
+                    val editor = sharedPref.edit()
+                    editor.putString("email", email)
+                    editor.apply()
                     Toast.makeText(requireContext(), "Reset Password", Toast.LENGTH_SHORT).show()
                     val currentDestination = findNavController().currentDestination
                     if (currentDestination?.id == R.id.loginFragment) {

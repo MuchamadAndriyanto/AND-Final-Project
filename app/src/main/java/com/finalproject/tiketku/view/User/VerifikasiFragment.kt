@@ -9,14 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentVerifikasiBinding
+import com.finalproject.tiketku.model.DataPassword
 import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.viewmodel.UsersViewModel
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 
@@ -41,6 +40,22 @@ class VerifikasiFragment : Fragment() {
         // Initialize ViewModel
         resetPasswordViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
 
+        binding.tvMintaKode.setOnClickListener {
+            val email = sharedPreferences.getString("email", "")
+            resetPasswordViewModel.dataLoginPassword.observe(viewLifecycleOwner) { dataLoginPassword ->
+                if (dataLoginPassword != null) {
+
+                    Toast.makeText(requireContext(), "OTP Telah dikirim Email", Toast.LENGTH_SHORT).show()
+
+                    Log.d("LoginFragment", "email resetPassword = $email")
+                } else {
+                    // Login failed
+                    Toasty.error(requireContext(), "Reset Password Failed", Toast.LENGTH_SHORT, true)
+                        .show()
+                }
+            }
+            resetPasswordViewModel.postUserPassword(DataPassword(email))
+        }
         binding.ivBack.setOnClickListener {
             findNavController().navigate(R.id.action_verifikasiFragment_to_resetPasswordFragment)
         }

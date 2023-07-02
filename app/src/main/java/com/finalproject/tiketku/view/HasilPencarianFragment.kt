@@ -5,38 +5,25 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.GridLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.adapter.DestinasiAdapter
-import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
 import com.finalproject.tiketku.adapter.HariAdapter
 import com.finalproject.tiketku.adapter.HasilPenerbanganAdapter
 import com.finalproject.tiketku.adapter.JadwalTanggalAdapter
-import com.finalproject.tiketku.adapter.NotifAdapter
-import com.finalproject.tiketku.adapter.SetClassAdapter
-import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
 import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
-import com.finalproject.tiketku.model.DummySetClass
-import com.finalproject.tiketku.model.ListFilter
 import com.finalproject.tiketku.model.ListHasilPencarian
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
-import com.finalproject.tiketku.viewmodel.FavoritDestinasiViewModel
 import com.finalproject.tiketku.viewmodel.JadwalViewModel
-import com.finalproject.tiketku.viewmodel.NotifViewModel
 import com.finalproject.tiketku.viewmodel.PencarianPenerbanganViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
@@ -56,6 +43,7 @@ class HasilPencarianFragment : Fragment() {
     private lateinit var viewModelPencarianPenerbangan: PencarianPenerbanganViewModel
     private var tiketList: List<DataCariPenerbangan> = emptyList()
 
+
     companion object {
         const val REQUEST_CODE_FILTER = 123
         const val REQUEST_KEY_FILTER = "request_key_filter" // Kunci untuk menyimpan fragment hasil filter
@@ -74,6 +62,8 @@ class HasilPencarianFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_hasilPencarianFragment_to_homeFragment)
@@ -97,6 +87,11 @@ class HasilPencarianFragment : Fragment() {
             parentFragmentManager.beginTransaction()
                 .add(filterFragment, REQUEST_KEY_FILTER)
                 .commit()
+
+            // Mengirim filter yang sedang dipilih ke fragment filter
+            val bundle = Bundle()
+            bundle.putString(FILTER_KEY, selectedFilter)
+            filterFragment.arguments = bundle
         }
 
         hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
@@ -133,15 +128,63 @@ class HasilPencarianFragment : Fragment() {
                         Toasty.warning(requireContext(), "Jadwal Tidak ditemukan", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
                     }
-
                 }
             })
         })
+
+//        viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
+//        viewModelPencarianPenerbangan.getFavorite()
+//        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+//            if (favList != null) {
+//                tiketList = favList
+//                hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
+//                binding.rvTiket.adapter = hasilPenerbanganAdapter
+//                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//                binding.rvTiket.layoutManager = layoutManager
+//                applyFilter(selectedFilter)
+//
+//            } else {
+//                Toast.makeText(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
+//                findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
+//            }
+//        })
+//
+//        val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
+//
+//        viewModelJadwal.getOnetrip()
+//        viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, Observer { favList ->
+//            if (favList != null) {
+//
+//                val adapter = JadwalTanggalAdapter(requireContext(), favList)
+//                binding.rvHari.layoutManager = LinearLayoutManager(requireContext())
+//                binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//                binding.rvHari.adapter = adapter
+//
+//
+//            }
+//        })
+
     }
 
     private fun applyFilter(filter: String?) {
-        hasilPenerbanganAdapter.filterData(filter)
+        if (filter != null) {
+            hasilPenerbanganAdapter.filterData(filter)
+            hasilPenerbanganAdapter.notifyDataSetChanged() // Mengupdate adapter setelah filter diterapkan
+        }
     }
+
+
+    private fun updateAdapterData() {
+        viewModelPencarianPenerbangan.getFavorite()
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null) {
+                tiketList = favList
+                hasilPenerbanganAdapter.updateData(tiketList)
+            }
+        })
+    }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -154,5 +197,6 @@ class HasilPencarianFragment : Fragment() {
                 sharedPreferences.edit().putString(FILTER_KEY, selectedFilter).apply()
             }
         }
+
     }
 }

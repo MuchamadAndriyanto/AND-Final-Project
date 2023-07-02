@@ -107,7 +107,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         notifyDataSetChanged()
     }
 
-    fun filterData(filter: String?) {
+    fun filterData(filter: Any) {
         updateFilteredList()
     }
 

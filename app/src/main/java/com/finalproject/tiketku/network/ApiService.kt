@@ -47,10 +47,10 @@ interface ApiService {
     @POST("register")
     fun registerUser(@Body request: DataPostUsersItem): Call<ResponseUsersItem>
 
-    @POST("forgotPassword")
+    @POST("forgot-password-otp")
     fun postPassword(@Body request: DataPassword) : Call<DataPassword>
 
-    @POST("reset-password")
+    @POST("reset-password-otp")
     fun postResetPassword(@Body request: DataResetPassword) : Call<ResponseResetPassword>
 
     @GET("get-city")
