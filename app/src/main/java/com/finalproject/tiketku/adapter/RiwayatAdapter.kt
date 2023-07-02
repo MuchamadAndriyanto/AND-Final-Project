@@ -49,6 +49,7 @@ class RiwayatAdapter(private val context: Context, var list: List<Data>) : Recyc
             holder.binding.Kode.text = item.order.kode_booking
             holder.binding.tvPrice.text = item.totalHargaTiketBerangkat
 
+
             // Set text and background color based on payment status
             holder.binding.status.text = if (item.status) "Paid" else "Unpaid"
             if (item.order.status_pembayaran == "paid") {

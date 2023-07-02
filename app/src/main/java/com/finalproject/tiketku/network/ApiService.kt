@@ -24,6 +24,7 @@ import com.finalproject.tiketku.model.profile.ResponseProfile
 import com.finalproject.tiketku.model.rincianCO.ResponseRincianOrder
 import com.finalproject.tiketku.model.rincianCORoundTrip.ResponseDetailChekcoutRT
 import com.finalproject.tiketku.model.riwayat.ResponseRiwayat
+import com.finalproject.tiketku.model.riwayatRT.ResponseRiwayatRT
 import com.finalproject.tiketku.model.roundtrip.RoundTripResponse
 import com.finalproject.tiketku.model.search.SearchResponse
 import retrofit2.Call
@@ -115,6 +116,16 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Call<ResponseRiwayat>
+
+    @GET("history-order")
+    fun getRiwayatRt(
+        @Header("Authorization") token: String
+    ): Call<ResponseRiwayatRT>
+    @GET("history-order/{id}")
+    fun getRiwayatByOrderIdRT(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Call<ResponseRiwayatRT>
 
     @POST("payment")
     fun postPayment(

@@ -505,5 +505,35 @@
         <action
             android:id="@+id/action_checkOutDetailRoundTripFragment_to_selectSeatRoundTripFragment"
             app:destination="@id/selectSeatRoundTripFragment" />
+        <action
+            android:id="@+id/action_checkOutDetailRoundTripFragment_to_paymentRountripFragment"
+            app:destination="@id/paymentRountripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentSuccesRountripFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.PaymentSuccesRountripFragment"
+        android:label="fragment_payment_succes_rountrip"
+        tools:layout="@layout/fragment_payment_succes_rountrip" >
+        <action
+            android:id="@+id/action_paymentSuccesRountripFragment_to_rincianOrderRountripFragment"
+            app:destination="@id/rincianOrderRountripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rincianOrderRountripFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.RincianOrderRountripFragment"
+        android:label="fragment_rincian_order_rountrip"
+        tools:layout="@layout/fragment_rincian_order_rountrip" >
+        <action
+            android:id="@+id/action_rincianOrderRountripFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentRountripFragment"
+        android:name="com.finalproject.tiketku.view.Checkout.PaymentRountripFragment"
+        android:label="fragment_payment_rountrip"
+        tools:layout="@layout/fragment_payment_rountrip" >
+        <action
+            android:id="@+id/action_paymentRountripFragment_to_paymentSuccesRountripFragment"
+            app:destination="@id/paymentSuccesRountripFragment" />
     </fragment>
 </navigation>

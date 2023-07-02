@@ -96,11 +96,11 @@ class CheckOutDetailRoundTripFragment : Fragment() {
 
                 binding.btnSubmit.setOnClickListener {
                     val bundle = Bundle().apply {
-                        putInt(PaymentFragment.ARG_ORDER_ID, orderIdRT)
+                        putInt(PaymentRountripFragment.ARG_ORDER_ID, orderIdRT)
                     }
-                    Log.d("Payment", "Order ID: $orderIdRT")
+                    Log.d("payment", "Order ID: $orderIdRT")
                     Log.d("Payment", "Bundle: $bundle")
-                    findNavController().navigate(R.id.action_checkOutDetailRoundTripFragment_to_selectSeatRoundTripFragment, bundle)
+                    findNavController().navigate(R.id.action_checkOutDetailRoundTripFragment_to_paymentRountripFragment, bundle)
                 }
             } else {
                 // Permintaan GET tidak berhasil, lakukan sesuatu
