@@ -49,6 +49,8 @@ class HomeFragment : Fragment() {
     private var totalPassengerCount = 0
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var dateSharedPreferences: SharedPreferences
+    private lateinit var sharedPreferences1: SharedPreferences
+    private lateinit var sharedPreferences2: SharedPreferences
     private val sharedPreferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
         updatePassengerCount()
     }
@@ -149,14 +151,40 @@ class HomeFragment : Fragment() {
 
         }
 
-        binding.flip.setOnClickListener {
 
+
+        sharedPreferences1 = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences2 = requireContext().getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
+
+        binding.flip.setOnClickListener {
             val currentDepartureText = binding.tvDeparture.text.toString()
             val currentArrivalText = binding.tvTujuan.text.toString()
 
             binding.tvDeparture.text = currentArrivalText
             binding.tvTujuan.text = currentDepartureText
+
+            // Mengupdate nilai shared preferences setelah melakukan flip
+            val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("key", currentArrivalText)
+            editor.apply()
+
+            val sharedPreferencesTo = requireContext().getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
+            val editorTo = sharedPreferencesTo.edit()
+            editorTo.putString("keyTo", currentDepartureText)
+            editorTo.apply()
+
+            Log.d("TestLog", "Data ditukar antara Shared Preferences 1 dan 2")
         }
+
+//        binding.flip.setOnClickListener {
+//
+//            val currentDepartureText = binding.tvDeparture.text.toString()
+//            val currentArrivalText = binding.tvTujuan.text.toString()
+//
+//            binding.tvDeparture.text = currentArrivalText
+//            binding.tvTujuan.text = currentDepartureText
+//        }
 
         // Isi listDestinasiFavorit dengan data destinasi favorit yang sesuai
         val viewModelFavorite = ViewModelProvider(this).get(FavoritDestinasiViewModel::class.java)
