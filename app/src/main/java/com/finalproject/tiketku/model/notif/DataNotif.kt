@@ -15,5 +15,7 @@ data class DataNotif(
     @SerializedName("pesanTambahan")
     val pesanTambahan: String,
     @SerializedName("tanggal")
-    val tanggal: String
+    val tanggal: String,
+    @SerializedName("isRead")
+    var isRead: Boolean
 )
