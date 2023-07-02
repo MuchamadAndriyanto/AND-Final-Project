@@ -74,6 +74,7 @@ class DetailHistoryFragment : Fragment() {
                     binding.kodeMaskapai.text = data.penerbanganBerangkat.maskapai.id_maskapai.toString()
 
                     binding.tvAdult.text = "${data.order.jumlah_penumpang.toString()} Adulst"
+                    binding.tvHargaAdult.text = data.totalHargaTiketBerangkat
                     binding.detailTotalHarga.text = data.totalHargaTiketBerangkat
 
                     binding.btnSubmit.text = if (binding.tvBolean.text == "paid") {

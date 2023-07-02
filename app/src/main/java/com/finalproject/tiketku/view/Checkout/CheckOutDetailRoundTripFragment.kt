@@ -91,7 +91,7 @@ class CheckOutDetailRoundTripFragment : Fragment() {
 
                 binding.tvAdult.text = "$adultCount"
 
-                binding.tvHargaAdult.text = detail.tiket.berangkat.maskapai.hargaTiket
+                binding.tvHargaAdult.text = detail.totalHargaTiket
                 binding.detailTotalHarga.text = detail.totalHargaTiket
 
                 binding.btnSubmit.setOnClickListener {
@@ -109,7 +109,7 @@ class CheckOutDetailRoundTripFragment : Fragment() {
         })
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_checkOutDetail_to_selectSeatFragment)
+            findNavController().popBackStack()
         }
     }
 }

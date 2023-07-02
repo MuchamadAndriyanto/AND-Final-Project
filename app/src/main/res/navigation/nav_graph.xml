@@ -117,6 +117,9 @@
         <action
             android:id="@+id/action_historyFragment_to_detailHistoryFragment"
             app:destination="@id/detailHistoryFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_detailHistoryRountripFragment"
+            app:destination="@id/detailHistoryRountripFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
@@ -535,5 +538,22 @@
         <action
             android:id="@+id/action_paymentRountripFragment_to_paymentSuccesRountripFragment"
             app:destination="@id/paymentSuccesRountripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailHistoryRountripFragment"
+        android:name="com.finalproject.tiketku.view.DetailHistoryRountripFragment"
+        android:label="fragment_detail_history_rountrip"
+        tools:layout="@layout/fragment_detail_history_rountrip" >
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_detailHistoryRountripFragment_to_paymentRountripFragment"
+            app:destination="@id/paymentRountripFragment" />
+        <action
+            android:id="@+id/action_detailHistoryRountripFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="HardcodedText"
     android:background="@color/grey"
-    tools:context=".view.Checkout.CheckOutDetailRoundTripFragment">
+    tools:context=".view.DetailHistoryRountripFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,6 +39,29 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBolean"
+                style="@style/TextBody10Medium"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:text="Issue!"
+                android:layout_margin="2dp"
+                android:layout_gravity="top|end"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/badge_shape"
+                />
+
+        </LinearLayout>
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -46,64 +69,6 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:padding="9dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvDeparture"
-                        android:layout_marginStart="16dp"
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Jakarta"
-                        android:textColor="#151515"
-                        android:textStyle="bold"
-                        />
-
-                    <TextView
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" -> "
-                        android:textColor="#151515"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvDestination"
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bangkok"
-                        android:textColor="#151515"
-                        android:textStyle="bold"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvSelisihJam"
-                        android:layout_marginStart="5dp"
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="(0h - "
-                        android:textColor="#151515"
-                        android:textStyle="bold"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvSelisihMenit"
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="45m) "
-                        android:textColor="#151515"
-                        android:textStyle="bold"
-                        />
-
-                </LinearLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardDetail"
@@ -118,27 +83,46 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp">
 
+                        <LinearLayout
+                            android:id="@+id/tvBookingan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvBooking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Booking Code :"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:id="@+id/tvCode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/lightpurple"
+                                android:textStyle="bold"
+                                android:text="9999999"
+                                android:layout_marginStart="8dp" />
+
+                        </LinearLayout>
+
                         <TextView
                             android:id="@+id/detailTime"
+                            android:layout_below="@id/tvBookingan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="07.00"
                             android:textStyle="bold"
                             android:textColor="@color/black"/>
-                        <TextView
-                            android:id="@+id/wib"
-                            android:layout_marginStart="5dp"
-                            android:layout_toEndOf="@id/detailTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="WIB"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"/>
+
 
                         <TextView
                             android:id="@+id/detailStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/tvBookingan"
                             android:layout_alignParentEnd="true"
                             android:textColor="@color/lightpurple"
                             android:textStyle="bold"
@@ -256,15 +240,7 @@
                                 android:text="07.45"
                                 android:textStyle="bold"
                                 android:textColor="@color/black"/>
-                            <TextView
-                                android:id="@+id/wib2"
-                                android:layout_marginStart="5dp"
-                                android:layout_toEndOf="@id/detailTimeArrived"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="WIB"
-                                android:textStyle="bold"
-                                android:textColor="@color/black"/>
+
 
                             <TextView
                                 android:layout_alignEnd="@id/detailTimeArrived"
@@ -293,65 +269,8 @@
 
                     </RelativeLayout>
 
+
                 </androidx.cardview.widget.CardView>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:padding="9dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvDeparturePulang"
-                        android:layout_marginStart="16dp"
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Jakarta"
-                        android:textColor="#151515"
-                        android:textStyle="bold"
-                        />
-
-                    <TextView
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" -> "
-                        android:textColor="#151515"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvDestinationPulang"
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bangkok"
-                        android:textColor="#151515"
-                        android:textStyle="bold"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvSelisihJamPulang"
-                        android:layout_marginStart="5dp"
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="(0h - "
-                        android:textColor="#151515"
-                        android:textStyle="bold"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvSelisihMenitPulang"
-                        style="@style/TextBody12Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="45m) "
-                        android:textColor="#151515"
-                        android:textStyle="bold"
-                        />
-
-                </LinearLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardDetailPulang"
@@ -366,20 +285,37 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp">
 
+                        <LinearLayout
+                            android:id="@+id/tvBookingann"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvBookingg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Booking Code :"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:id="@+id/tvCodee"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/lightpurple"
+                                android:textStyle="bold"
+                                android:text="9999999"
+                                android:layout_marginStart="8dp" />
+
+                        </LinearLayout>
+
                         <TextView
                             android:id="@+id/detailTimePulang"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/tvBookingann"
                             android:text="07.00"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"/>
-                        <TextView
-                            android:id="@+id/wibPulang"
-                            android:layout_marginStart="5dp"
-                            android:layout_toEndOf="@id/detailTimePulang"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="WIB"
                             android:textStyle="bold"
                             android:textColor="@color/black"/>
 
@@ -387,6 +323,7 @@
                             android:id="@+id/detailStatusPulang"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/tvBookingann"
                             android:layout_alignParentEnd="true"
                             android:textColor="@color/lightpurple"
                             android:textStyle="bold"
@@ -501,15 +438,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="07.45"
-                                android:textStyle="bold"
-                                android:textColor="@color/black"/>
-                            <TextView
-                                android:id="@+id/wib2Pulang"
-                                android:layout_marginStart="5dp"
-                                android:layout_toEndOf="@id/detailTimeArrivedPulang"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="WIB"
                                 android:textStyle="bold"
                                 android:textColor="@color/black"/>
 
@@ -636,47 +564,47 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                    <View
-                        android:id="@+id/divider3"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#D0D0D0" />
+                        <View
+                            android:id="@+id/divider3"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#D0D0D0" />
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/detailTotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="Total"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/detailTotal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Total"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/detailTotalHarga"
-                        android:layout_alignParentEnd="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="IDR 1.200.000/pax"
-                        android:textColor="@color/purple"
-                        android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/detailTotalHarga"
+                                android:layout_alignParentEnd="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="IDR 1.200.000/pax"
+                                android:textColor="@color/purple"
+                                android:textStyle="bold" />
                         </RelativeLayout>
-                    <Button
-                        app:backgroundTint="@null"
-                        android:id="@+id/btnSubmit"
-                        android:padding="14dp"
-                        android:textAllCaps="false"
-                        android:text="Pilih"
-                        android:background="@drawable/button_radius"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        <Button
+                            app:backgroundTint="@null"
+                            android:id="@+id/btnSubmit"
+                            android:padding="14dp"
+                            android:textAllCaps="false"
+                            android:text="Pilih"
+                            android:background="@drawable/button_radius"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
-            </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

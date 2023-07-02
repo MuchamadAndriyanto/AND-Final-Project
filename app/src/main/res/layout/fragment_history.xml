@@ -50,7 +50,7 @@
             android:id="@+id/rvRiwayat"
             android:layout_below="@+id/tvRiwayat"
             android:layout_marginTop="10dp"
-            tools:listitem="@layout/item_riwayat"
+            tools:listitem="@layout/item_riwayat_rountrip"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

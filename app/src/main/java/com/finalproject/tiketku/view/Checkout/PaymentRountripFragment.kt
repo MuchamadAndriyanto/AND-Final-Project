@@ -138,7 +138,7 @@ class PaymentRountripFragment : Fragment() {
 
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_paymentFragment_to_checkOutDetailFragment)
+            findNavController().popBackStack()
         }
     }
 }

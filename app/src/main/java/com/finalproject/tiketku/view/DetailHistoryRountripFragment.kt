@@ -1,9 +1,8 @@
-package com.finalproject.tiketku.view.Checkout
+package com.finalproject.tiketku.view
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,50 +11,47 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.FragmentRincianOrderRountripBinding
+import com.finalproject.tiketku.databinding.FragmentDetailHistoryBinding
+import com.finalproject.tiketku.databinding.FragmentDetailHistoryRountripBinding
+import com.finalproject.tiketku.view.Checkout.PaymentFragment
 import com.finalproject.tiketku.viewmodel.RiwayatRtViewModel
 import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RincianOrderRountripFragment : Fragment() {
+class DetailHistoryRountripFragment : Fragment() {
 
-    private lateinit var binding: FragmentRincianOrderRountripBinding
+    private lateinit var binding: FragmentDetailHistoryRountripBinding
     private lateinit var detailViewModel: RiwayatRtViewModel
     private lateinit var sharedPref: SharedPreferences
     private lateinit var token: String
     private var orderId: Int = 0
-    private var orderIdRT: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRincianOrderRountripBinding.inflate(inflater, container, false)
+        binding = FragmentDetailHistoryRountripBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    companion object {
-        const val ARG_ORDER_ID = "order_id"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Mengambil nilai orderId dari argument jika tersedia
-        orderIdRT = arguments?.getInt(RincianOrderRountripFragment.ARG_ORDER_ID, 0) ?: 0
-        Log.d("RountTripFragment", "Order ID: $orderIdRT")
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         token = sharedPref.getString("accessToken", "") ?: ""
 
         detailViewModel = ViewModelProvider(requireActivity()).get(RiwayatRtViewModel::class.java)
 
-        detailViewModel.getRiwayatRt(token, orderIdRT)
+        // Ambil ID order dari arguments
+        val args = DetailHistoryRountripFragmentArgs.fromBundle(requireArguments())
+        orderId = args.id
+
+        detailViewModel.getRiwayatRt(token, orderId)
 
         detailViewModel.liveDataDetailOrder.observe(viewLifecycleOwner) { detail ->
             if (detail != null && detail.isNotEmpty()) {
-                val data = detail.find { it.order.id == orderIdRT }
+                val data = detail.find { it.order.id == orderId }
                 if (data != null) {
                     // Tiket Berangkat
                     binding.tvBolean.text = data.order.status_pembayaran
@@ -86,21 +82,36 @@ class RincianOrderRountripFragment : Fragment() {
                     binding.tvHargaAdult.text = data.formatTiketKeseluruhan
                     binding.detailTotalHarga.text = data.formatTiketKeseluruhan
 
+
+                    binding.btnSubmit.text = if (binding.tvBolean.text == "paid") {
+                        "Kembali ke Beranda"
+                    } else {
+                        "Lanjutkan Pembayaran"
+                    }
+
                 }
             }
         }
 
         binding.btnSubmit.setOnClickListener {
-            val navOptions = NavOptions.Builder()
-                .setPopUpTo(R.id.historyFragment, true)
-                .build()
-            findNavController().navigate(R.id.action_rincianOrderRountripFragment_to_homeFragment, null, navOptions)
+            val bundle = Bundle().apply {
+                putInt(PaymentFragment.ARG_ORDER_ID, orderId)
+            }
+
+            val navController = findNavController()
+
+            if (binding.tvBolean.text == "paid") {
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.historyFragment, true)
+                    .build()
+                findNavController().navigate(R.id.action_detailHistoryRountripFragment_to_homeFragment, null, navOptions)
+            } else {
+                navController.navigate(R.id.action_detailHistoryRountripFragment_to_paymentRountripFragment, bundle)
+            }
         }
 
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
-
-
     }
 }

@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.adapter.RiwayatAdapter
 import com.finalproject.tiketku.databinding.FragmentHistoryBinding
-import com.finalproject.tiketku.model.riwayat.Data
+import com.finalproject.tiketku.model.riwayatRT.Data
+import com.finalproject.tiketku.viewmodel.RiwayatRtViewModel
 import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +24,7 @@ class HistoryFragment : Fragment() {
 
     private lateinit var binding: FragmentHistoryBinding
     private lateinit var sharedPref: SharedPreferences
-    private lateinit var viewModel: RiwayatViewModel
+    private lateinit var viewModel: RiwayatRtViewModel
     private lateinit var token: String
     private lateinit var riwayatAdapter: RiwayatAdapter
     private var riwayatPesananKosongFragment: RiwayatPesananKosongFragment? = null
@@ -43,7 +44,7 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(RiwayatViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(RiwayatRtViewModel::class.java)
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
         // Ambil token dari SharedPreferences
@@ -54,7 +55,7 @@ class HistoryFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvRiwayat.adapter = riwayatAdapter
 
-        viewModel.liveData.observe(viewLifecycleOwner, Observer { riwayatData ->
+        viewModel.liveDataRt.observe(viewLifecycleOwner, Observer { riwayatData ->
             if (riwayatData.data.isNotEmpty()) {
                 hideRiwayatPesananKosongFragment()
                 riwayatAdapter.list = riwayatData.data
@@ -65,7 +66,7 @@ class HistoryFragment : Fragment() {
             }
         })
 
-        viewModel.getRiwayat(token, null)
+        viewModel.getRiwayatRt(token, null)
     }
 
 
