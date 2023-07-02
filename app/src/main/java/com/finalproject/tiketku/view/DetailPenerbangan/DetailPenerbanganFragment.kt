@@ -54,6 +54,7 @@ class DetailPenerbanganFragment : Fragment() {
                 binding.detailAirport.text = detail.bandaraAwal.nama_bandara
 
                 binding.Maskapai.text = detail.maskapai.nama_maskapai
+                binding.kodeMaskapai.text = detail.maskapai.kode_maskapai
                 binding.detailDateArrived.text = detail.tanggal_kedatangan
                 binding.detailTimeArrived.text = detail.jam_kedatangan
                 binding.detailAirportArrived.text = detail.bandaraTujuan.nama_bandara
@@ -93,8 +94,9 @@ class DetailPenerbanganFragment : Fragment() {
         }
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_detailPenerbanganFragment_to_homeFragment)
+            findNavController().popBackStack()
         }
+
 
     }
 }

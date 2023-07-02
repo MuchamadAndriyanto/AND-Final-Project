@@ -119,13 +119,21 @@
                     android:id="@+id/detailTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="07.00"
+                    android:text="07"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_toEndOf="@id/detailTime"
+                    android:id="@+id/detailTimeMenit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":00"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/wib"
                     android:layout_marginStart="5dp"
-                    android:layout_toEndOf="@id/detailTime"
+                    android:layout_toEndOf="@id/detailTimeMenit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="WIB"
@@ -250,13 +258,22 @@
                             android:id="@+id/detailTimeArrived"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="07.45"
+                            android:text="07"
                             android:textStyle="bold"
                             android:textColor="@color/black"/>
                         <TextView
+                            android:layout_toEndOf="@id/detailTimeArrived"
+                            android:id="@+id/detailTimeMenitArrived"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":00"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"/>
+
+                        <TextView
                             android:id="@+id/wib2"
                             android:layout_marginStart="5dp"
-                            android:layout_toEndOf="@id/detailTimeArrived"
+                            android:layout_toEndOf="@id/detailTimeMenitArrived"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="WIB"

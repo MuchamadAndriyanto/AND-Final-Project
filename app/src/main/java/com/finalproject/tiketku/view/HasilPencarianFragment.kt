@@ -133,6 +133,7 @@ class HasilPencarianFragment : Fragment() {
                         Toasty.warning(requireContext(), "Jadwal Tidak ditemukan", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
                     }
+
                 }
             })
         })

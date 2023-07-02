@@ -61,7 +61,7 @@ class CheckOutDetailFragment : Fragment() {
                 binding.detailDate.text = detail.tiket.tanggalBerangkat
                 binding.detailAirport.text = detail.tiket.bandaraAwal.namaBandara
                 binding.Maskapai.text = detail.tiket.maskapai.namaMaskapai
-                binding.kodeMaskapai.text = detail.tiket.maskapai.idMaskapai.toString()
+                binding.kodeMaskapai.text = detail.tiket.maskapai.kode_maskapai
                 binding.detailTimeArrived.text = detail.tiket.jamKedatangan
                 binding.detailDateArrived.text = detail.tiket.tanggalKedatangan
                 binding.detailAirportArrived.text = detail.tiket.bandaraTujuan.namaBandara
@@ -93,7 +93,8 @@ class CheckOutDetailFragment : Fragment() {
         })
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_checkOutDetail_to_selectSeatFragment)
+            findNavController().popBackStack()
         }
+
     }
 }

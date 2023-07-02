@@ -29,6 +29,7 @@ class DetailRoundtripPulangAdapter(private val context: Context, private val det
         holder.binding.detailAirport.text = detail?.dataPergi?.bandaraAwal?.namaBandara
         holder.binding.detailAirportArrived.text = detail?.dataPergi?.bandaraTujuan?.namaBandara
         holder.binding.Maskapai.text = detail?.dataPergi?.maskapai?.namaMaskapai
+        holder.binding.kodeMaskapai.text = detail?.dataPergi?.maskapai?.kode_maskapai
     }
 
     override fun getItemCount(): Int {

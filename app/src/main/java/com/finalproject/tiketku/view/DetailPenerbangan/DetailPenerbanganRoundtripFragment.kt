@@ -55,6 +55,9 @@ class DetailPenerbanganRoundtripFragment : Fragment() {
         binding.tvDestination.text = to
         binding.tvDestinationPulang.text = from
 
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         binding.btnSubmit.setOnClickListener {
             val jadwal: SharedPreferences = requireContext().getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
