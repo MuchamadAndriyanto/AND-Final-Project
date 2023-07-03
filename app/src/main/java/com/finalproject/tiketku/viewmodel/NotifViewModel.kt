@@ -18,8 +18,10 @@ class NotifViewModel  @Inject constructor(private var api : ApiService): ViewMod
 
     val livedataNotifikasi: MutableLiveData<List<DataNotif>?> get() = liveDataNotif
 
-    fun getNotif() {
-        api.getNotif().enqueue(object : Callback<NotifResponse> {
+    fun getNotif(token: String) {
+        val bearerToken = "Bearer $token"
+
+        api.getNotif(bearerToken).enqueue(object : Callback<NotifResponse> {
             override fun onResponse(
                 call: Call<NotifResponse>,
                 response: Response<NotifResponse>

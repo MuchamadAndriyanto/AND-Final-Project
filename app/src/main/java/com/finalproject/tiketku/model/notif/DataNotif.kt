@@ -4,6 +4,8 @@ package com.finalproject.tiketku.model.notif
 import com.google.gson.annotations.SerializedName
 
 data class DataNotif(
+    @SerializedName("accessToken")
+    val accessToken: String,
     @SerializedName("id")
     val id: Int,
     @SerializedName("jam")

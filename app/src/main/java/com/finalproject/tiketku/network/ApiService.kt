@@ -68,7 +68,9 @@ interface ApiService {
     fun getFavorite(): Call<ResponseFavoriteDestination>
 
     @GET("notification")
-    fun getNotif(): Call<NotifResponse>
+    fun getNotif(
+        @Header("Authorization") token: String
+    ): Call<NotifResponse>
 
     @GET("select-ticket/{id}")
     fun getDetail(

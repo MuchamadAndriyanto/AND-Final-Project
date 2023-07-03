@@ -1,6 +1,9 @@
 package com.finalproject.tiketku.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NotificationsFragment : Fragment() {
 
+    lateinit var sharedPref: SharedPreferences
     private lateinit var binding: FragmentNotificationsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,28 +32,36 @@ class NotificationsFragment : Fragment() {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         return binding.root
 
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         val viewModelHasilPencarian = ViewModelProvider(this).get(NotifViewModel::class.java)
 
-        viewModelHasilPencarian.getNotif()
-        viewModelHasilPencarian.livedataNotifikasi.observe(viewLifecycleOwner, Observer { favList ->
-            if (favList != null) {
-                val adapter = NotifAdapter(requireContext(), favList)
-                binding.rvNotif.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvNotif.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvNotif.adapter = adapter
+        val token = sharedPref.getString("accessToken", "") ?: ""
 
-                adapter.setOnItemClickListener(object : NotifAdapter.OnItemClickListener {
-                    override fun onItemClick(item: DataNotif) {
-                        showNotificationDialog(item)
+        viewModelHasilPencarian.getNotif(token)
+        viewModelHasilPencarian.livedataNotifikasi.observe(viewLifecycleOwner, Observer { favList ->
+            if (favList != null && favList.isNotEmpty()) {
+
+                Log.d("Notif", "token: $token")
+                        val adapter = NotifAdapter(requireContext(), favList)
+                        binding.rvNotif.layoutManager = LinearLayoutManager(requireContext())
+                        binding.rvNotif.layoutManager = LinearLayoutManager(
+                            requireContext(),
+                            LinearLayoutManager.VERTICAL,
+                            false
+                        )
+                        binding.rvNotif.adapter = adapter
+
+                        adapter.setOnItemClickListener(object : NotifAdapter.OnItemClickListener {
+                            override fun onItemClick(item: DataNotif) {
+                                showNotificationDialog(item)
+                            }
+                        })
                     }
-                })
-            }
+
         })
     }
 
