@@ -4,15 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.finalproject.tiketku.R
 import com.finalproject.tiketku.adapter.NotifAdapter
 import com.finalproject.tiketku.databinding.FragmentNotificationsBinding
 import com.finalproject.tiketku.model.notif.DataNotif
@@ -27,7 +25,7 @@ class NotificationsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,7 +40,7 @@ class NotificationsFragment : Fragment() {
         val token = sharedPref.getString("accessToken", "") ?: ""
 
         viewModelHasilPencarian.getNotif(token)
-        viewModelHasilPencarian.livedataNotifikasi.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelHasilPencarian.livedataNotifikasi.observe(viewLifecycleOwner, { favList ->
             if (favList != null && favList.isNotEmpty()) {
 
                 Log.d("Notif", "token: $token")

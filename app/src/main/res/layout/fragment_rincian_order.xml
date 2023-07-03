@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
     tools:context=".view.Checkout.RincianOrderFragment"
-    tools:ignore="HardcodedText" >
+    tools:ignore="HardcodedText,Overdraw" >
 
 
     <LinearLayout
@@ -28,7 +28,8 @@
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/fi_arrow_left" />
+                android:src="@drawable/fi_arrow_left"
+                tools:ignore="ContentDescription" />
 
             <!-- Judul Navbar -->
             <TextView
@@ -72,7 +73,8 @@
             app:cardCornerRadius="5dp"
             android:outlineAmbientShadowColor="@color/cardview_dark_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UnusedAttribute">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -161,7 +163,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/logo_maskapai" />
+                        android:src="@drawable/logo_maskapai"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/Maskapai"
@@ -271,7 +274,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="20dp"
+            tools:ignore="ObsoleteLayoutParam">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

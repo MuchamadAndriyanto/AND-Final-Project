@@ -30,7 +30,8 @@
                 android:layout_height="110dp"
                 android:scaleType="fitXY"
                 tools:src ="@tools:sample/backgrounds/scenic"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 style="@style/TextBody10Medium"

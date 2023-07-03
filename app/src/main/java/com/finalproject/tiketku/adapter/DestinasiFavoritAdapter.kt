@@ -1,3 +1,12 @@
+@file:Suppress("unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused"
+)
+
 package com.finalproject.tiketku.adapter
 
 import android.content.Context
@@ -12,13 +21,12 @@ import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.bumptech.glide.Glide
 import com.finalproject.tiketku.view.Beranda.HomeFragmentDirections
 
+@Suppress("unused")
 class DestinasiFavoritAdapter(private val context: Context, private val list: List<DataFavorite>) : RecyclerView.Adapter<DestinasiFavoritAdapter.ViewHolder>() {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
-    inner class ViewHolder(val binding: ItemDestinasiFavBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    inner class ViewHolder(val binding: ItemDestinasiFavBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)

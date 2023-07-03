@@ -1,20 +1,20 @@
 package com.finalproject.tiketku.view.Checkout
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentRincianOrderRountripBinding
 import com.finalproject.tiketku.viewmodel.RiwayatRtViewModel
-import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +30,7 @@ class RincianOrderRountripFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRincianOrderRountripBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,17 +39,18 @@ class RincianOrderRountripFragment : Fragment() {
         const val ARG_ORDER_ID = "order_id"
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Mengambil nilai orderId dari argument jika tersedia
-        orderIdRT = arguments?.getInt(RincianOrderRountripFragment.ARG_ORDER_ID, 0) ?: 0
+        orderIdRT = arguments?.getInt(ARG_ORDER_ID, 0) ?: 0
         Log.d("RountTripFragment", "Order ID: $orderIdRT")
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         token = sharedPref.getString("accessToken", "") ?: ""
 
-        detailViewModel = ViewModelProvider(requireActivity()).get(RiwayatRtViewModel::class.java)
+        detailViewModel = ViewModelProvider(requireActivity())[RiwayatRtViewModel::class.java]
 
         detailViewModel.getRiwayatRt(token, orderIdRT)
 
@@ -64,7 +65,7 @@ class RincianOrderRountripFragment : Fragment() {
                     binding.detailDate.text = data.tiketBerangkat.tanggal_berangkat
                     binding.detailAirport.text = data.tiketBerangkat.bandaraAwal.nama_bandara
                     binding.Maskapai.text = data.penerbanganBerangkat.maskapai.nama_maskapai
-                    binding.kodeMaskapai.text = data.penerbanganBerangkat.maskapai.id_maskapai.toString()
+                    binding.kodeMaskapai.text = data.penerbanganBerangkat.maskapai.id_maskapai
 
                     binding.detailTimeArrived.text = "${data.tiketBerangkat.jam_kedatangan} WIB"
                     binding.detailDateArrived.text = data.tiketBerangkat.tanggal_kedatangan
@@ -76,7 +77,7 @@ class RincianOrderRountripFragment : Fragment() {
                     binding.detailDatePulang.text = data.tiketPulang.tanggal_berangkat
                     binding.detailAirportPulang.text = data.tiketPulang.bandaraAwal.nama_bandara
                     binding.MaskapaiPulang.text = data.penerbanganPulang.maskapai.nama_maskapai
-                    binding.kodeMaskapaiPulang.text = data.penerbanganPulang.maskapai.id_maskapai.toString()
+                    binding.kodeMaskapaiPulang.text = data.penerbanganPulang.maskapai.id_maskapai
 
                     binding.detailTimeArrivedPulang.text = "${data.tiketPulang.jam_kedatangan} WIB"
                     binding.detailDateArrivedPulang.text = data.tiketPulang.tanggal_kedatangan

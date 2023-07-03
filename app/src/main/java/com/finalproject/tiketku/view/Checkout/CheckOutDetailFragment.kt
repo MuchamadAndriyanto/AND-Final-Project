@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.view.Checkout
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -26,16 +27,17 @@ class CheckOutDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCheckOutDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
-        detailViewModel = ViewModelProvider(requireActivity()).get(OrderViewModel::class.java)
+        detailViewModel = ViewModelProvider(requireActivity())[OrderViewModel::class.java]
         detailViewModel.setOrderId(orderId)
 
         // Mengambil nilai orderId dari argument jika tersedia
@@ -51,13 +53,13 @@ class CheckOutDetailFragment : Fragment() {
             Toast.makeText(requireContext(), "Gagal mendapatkan pesanan", Toast.LENGTH_SHORT).show()
         }
 
-        detailViewModel.liveDetailOrders.observe(viewLifecycleOwner, { detail ->
+        detailViewModel.liveDetailOrders.observe(viewLifecycleOwner) { detail ->
             if (detail != null) {
                 binding.tvDeparture.text = detail.tiket.idBandaraAsal
                 binding.tvDestination.text = detail.tiket.idBandaraTujuan
                 binding.detailTime.text = detail.tiket.jamBerangkat
-                binding.tvSelisihJam.setText("(" + detail.tiket.selisihJam + "h - ");
-                binding.tvSelisihMenit.setText(detail.tiket.selisihMenit.toString() + "m)");
+                binding.tvSelisihJam.text = "(" + detail.tiket.selisihJam + "h - "
+                binding.tvSelisihMenit.text = detail.tiket.selisihMenit.toString() + "m)"
                 binding.detailDate.text = detail.tiket.tanggalBerangkat
                 binding.detailAirport.text = detail.tiket.bandaraAwal.namaBandara
                 binding.Maskapai.text = detail.tiket.maskapai.namaMaskapai
@@ -66,7 +68,8 @@ class CheckOutDetailFragment : Fragment() {
                 binding.detailDateArrived.text = detail.tiket.tanggalKedatangan
                 binding.detailAirportArrived.text = detail.tiket.bandaraTujuan.namaBandara
 
-                val sharedPreferences = requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
+                val sharedPreferences =
+                    requireContext().getSharedPreferences("passenger_counts", Context.MODE_PRIVATE)
                 // Mendapatkan nilai default untuk adultCount
                 val defaultAdultCount = 1
 
@@ -84,13 +87,17 @@ class CheckOutDetailFragment : Fragment() {
                     }
                     Log.d("Payment", "Order ID: $orderId")
                     Log.d("Payment", "Bundle: $bundle")
-                    findNavController().navigate(R.id.action_checkOutDetailFragment_to_paymentFragment, bundle)
+                    findNavController().navigate(
+                        R.id.action_checkOutDetailFragment_to_paymentFragment,
+                        bundle
+                    )
                 }
             } else {
                 // Permintaan GET tidak berhasil, lakukan sesuatu
-                Toast.makeText(requireContext(), "Gagal menampilkan pesanan", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Gagal menampilkan pesanan", Toast.LENGTH_SHORT)
+                    .show()
             }
-        })
+        }
 
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()

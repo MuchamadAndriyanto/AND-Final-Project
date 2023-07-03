@@ -1,6 +1,6 @@
 package com.finalproject.tiketku.adapter
 
-import android.util.Log
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.ListHasilPencarian
-import com.finalproject.tiketku.model.rountrip.DataRountip
 
 class HariAdapter(private val listClass:List<ListHasilPencarian>):
     RecyclerView.Adapter<HariAdapter.ViewHolder>() {
@@ -23,10 +21,11 @@ class HariAdapter(private val listClass:List<ListHasilPencarian>):
         this.onItemClickCallback = onItemClickCallback
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var hari = itemView.findViewById<TextView>(R.id.tv_hari)
-        var tgl = itemView.findViewById<TextView>(R.id.tv_tgl)
-        val lin1 = itemView.findViewById<View>(R.id.layout_hari)
+        var hari = itemView.findViewById<TextView>(R.id.tv_hari)!!
+        var tgl = itemView.findViewById<TextView>(R.id.tv_tgl)!!
+        val lin1 = itemView.findViewById<View>(R.id.layout_hari)!!
 
         init {
             lin1.setOnClickListener {

@@ -41,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_close_24"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="12dp" />
+                android:layout_margin="12dp"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 
@@ -50,7 +51,8 @@
             android:layout_height="241.9dp"
             android:src="@drawable/ic_nonlogin"
             android:layout_marginTop="160dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            tools:ignore="ContentDescription" />
 
         <TextView
             style="@style/TextBody14Medium"
@@ -73,7 +75,8 @@
             android:layout_marginEnd="14dp"
             app:backgroundTint="@null"
             android:background="@drawable/button_radius"
-            android:text="Masuk" />
+            android:text="Masuk"
+            tools:ignore="ObsoleteLayoutParam" />
 
     </LinearLayout>
 

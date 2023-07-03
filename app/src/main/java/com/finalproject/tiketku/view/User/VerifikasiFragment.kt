@@ -29,7 +29,7 @@ class VerifikasiFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentVerifikasiBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,7 +38,7 @@ class VerifikasiFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         // Initialize ViewModel
-        resetPasswordViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
+        resetPasswordViewModel = ViewModelProvider(this)[UsersViewModel::class.java]
 
         binding.tvMintaKode.setOnClickListener {
             val email = sharedPreferences.getString("email", "")

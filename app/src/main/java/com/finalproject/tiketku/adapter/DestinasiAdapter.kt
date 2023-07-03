@@ -2,20 +2,15 @@ package com.finalproject.tiketku.adapter
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.ItemDestinasiBinding
-import com.finalproject.tiketku.model.BandaraAwal
 import com.finalproject.tiketku.model.search.Data
-import com.finalproject.tiketku.model.search.SearchResponse
 
-class DestinasiAdapter(private val context: Context, private val list: List<Data>) : RecyclerView.Adapter<DestinasiAdapter.ViewHolder>() {
+class DestinasiAdapter(context: Context, private val list: List<Data>) : RecyclerView.Adapter<DestinasiAdapter.ViewHolder>() {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 

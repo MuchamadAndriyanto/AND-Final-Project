@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    tools:context=".view.HasilPencarianWithFilterFragment">
+    tools:context=".view.HasilPencarianWithFilterFragment"
+    tools:ignore="Overdraw">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -23,7 +24,8 @@
                 android:layout_margin="14dp"
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription" />
             <View
                 android:id="@+id/gridTop"
                 android:layout_below="@+id/iv_Close"

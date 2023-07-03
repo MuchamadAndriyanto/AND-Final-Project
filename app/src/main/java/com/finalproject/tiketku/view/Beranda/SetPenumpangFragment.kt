@@ -29,7 +29,7 @@ class SetPenumpangFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSetPenumpangBinding.inflate(inflater, container, false)
         setStyle(STYLE_NORMAL, R.style.AppBottomSheetDialogTheme)
         return binding.root

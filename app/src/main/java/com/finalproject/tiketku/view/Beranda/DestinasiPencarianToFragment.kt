@@ -3,16 +3,15 @@ package com.finalproject.tiketku.view.Beranda
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.adapter.DestinasiAdapter
 import com.finalproject.tiketku.adapter.DestinasiToAdapter
 import com.finalproject.tiketku.adapter.HistoriPencarianAdapter
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
@@ -32,7 +31,7 @@ class DestinasiPencarianToFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDestinasiPencarianBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -45,7 +44,7 @@ class DestinasiPencarianToFragment : Fragment() {
             findNavController().navigate(R.id.action_destinasiPencarianToFragment_to_homeFragment)
         }
 
-        searchVM = ViewModelProvider(requireActivity()).get(DestinasiViewModel::class.java)
+        searchVM = ViewModelProvider(requireActivity())[DestinasiViewModel::class.java]
 
         binding.ivSearch.setOnClickListener {
             val kotaSearch = binding.etSearch.text.toString()

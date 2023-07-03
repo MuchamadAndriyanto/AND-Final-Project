@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.finalproject.tiketku.network
 
 import com.finalproject.tiketku.model.DataLoginUserItem
@@ -36,10 +38,8 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+@Suppress("unused", "unused")
 interface ApiService {
-
-    @GET("users")
-    fun getAllUsers(): Call<List<ResponseUsersItem>>
 
     @POST("login")
     fun postLogin(@Body request: DataLoginUserItem ): Call<ResponseLogin>
@@ -91,11 +91,6 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int?
     ): Call<ResponseRincianOrder>
-
-    @GET("get-pemesan")
-    fun getKursi(
-        @Header("Authorization") token: String
-    ): Call<ResponseOrder>
 
     @GET("get-date-round-trip")
     fun getRoundtrip(

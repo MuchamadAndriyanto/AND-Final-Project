@@ -1,30 +1,30 @@
+@file:Suppress("SameParameterValue", "SameParameterValue", "PrivatePropertyName",
+    "PrivatePropertyName", "PrivatePropertyName", "PrivatePropertyName", "PrivatePropertyName",
+    "PrivatePropertyName", "PrivatePropertyName"
+)
+
 package com.finalproject.tiketku.view.Beranda
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.finalproject.tiketku.adapter.DestinasiAdapter
 import com.finalproject.tiketku.R
+import com.finalproject.tiketku.adapter.DestinasiAdapter
 import com.finalproject.tiketku.adapter.HistoriPencarianAdapter
 import com.finalproject.tiketku.databinding.FragmentDestinasiPencarianBinding
-import com.finalproject.tiketku.model.BandaraAwal
-import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.viewmodel.DestinasiViewModel
-import com.finalproject.tiketku.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("SameParameterValue", "PrivatePropertyName", "PrivatePropertyName", "PrivatePropertyName")
 @AndroidEntryPoint
 class DestinasiPencarianFragment : Fragment() {
 
@@ -38,7 +38,7 @@ class DestinasiPencarianFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDestinasiPencarianBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -51,7 +51,7 @@ class DestinasiPencarianFragment : Fragment() {
             findNavController().navigate(R.id.action_destinasiPencarianFragment_to_homeFragment)
         }
 
-        searchVM = ViewModelProvider(requireActivity()).get(DestinasiViewModel::class.java)
+        searchVM = ViewModelProvider(requireActivity())[DestinasiViewModel::class.java]
 
         binding.ivSearch.setOnClickListener {
             val kotaSearch = binding.etSearch.text.toString()

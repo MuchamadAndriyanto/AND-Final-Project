@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".view.Beranda.DestinasiPencarianToFragment">
+    tools:context=".view.Beranda.DestinasiPencarianToFragment"
+    tools:ignore="Overdraw">
     <RelativeLayout
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
@@ -30,7 +31,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_search_24"/>
+                    android:src="@drawable/ic_search_24"
+                    tools:ignore="ContentDescription" />
 
                 <EditText
                     android:id="@+id/etSearch"
@@ -44,14 +46,15 @@
                     android:hint="Masukan Kota atau Negara"
                     android:inputType="text"
                     android:paddingStart="15dp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="Autofill,RtlSymmetry,TouchTargetSizeCheck" />
                 <ImageView
                     android:id="@+id/ivClose"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerInParent="true"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_close_24" />
+                    android:src="@drawable/ic_close_24"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
 
@@ -70,7 +73,8 @@
         android:layout_marginStart="20dp"
         android:text="Pencarian Terkini"
         android:textSize="18dp"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        tools:ignore="SpUsage" />
 
     <TextView
         android:id="@+id/tv_Hapus"

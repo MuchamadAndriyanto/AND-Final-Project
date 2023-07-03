@@ -1,16 +1,14 @@
 package com.finalproject.tiketku.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.FragmentAkunNonLoginBinding
-import com.finalproject.tiketku.databinding.FragmentHomeBinding
-import com.finalproject.tiketku.databinding.FragmentSetClassBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +20,7 @@ class AkunNonLoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentAkunNonLoginBinding.inflate(inflater, container, false)
         return binding.root

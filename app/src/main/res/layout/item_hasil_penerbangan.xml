@@ -9,7 +9,8 @@
     android:layout_margin="20dp"
     app:cardCornerRadius="5dp"
     android:outlineAmbientShadowColor="@color/darkpurple"
-    tools:context=".adapter.HasilPenerbanganAdapter">
+    tools:context=".adapter.HasilPenerbanganAdapter"
+    tools:ignore="UnusedAttribute,UnusedResources">
     <RelativeLayout
         android:layout_margin="10dp"
         android:layout_width="match_parent"
@@ -67,7 +68,8 @@
                 android:text="IDR 1.200.000"
                 android:textSize="10sp"
                 android:textColor="@color/purple"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
 
         </RelativeLayout>
         <RelativeLayout
@@ -82,7 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/arrow" />
+                android:src="@drawable/arrow"
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl2"
@@ -134,7 +137,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/logo_maskapai" />
+                android:src="@drawable/logo_maskapai"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/Maskapai"
@@ -157,7 +161,8 @@
                 android:layout_marginBottom="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_baggage" />
+                android:src="@drawable/icon_baggage"
+                tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/bot_arrow"
@@ -169,7 +174,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/btn_bot_arrow_" />
+                android:src="@drawable/btn_bot_arrow_"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 

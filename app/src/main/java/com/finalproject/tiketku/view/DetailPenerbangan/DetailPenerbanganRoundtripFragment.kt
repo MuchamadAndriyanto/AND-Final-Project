@@ -1,5 +1,11 @@
+@file:Suppress("RedundantSamConstructor", "RedundantSamConstructor", "RedundantSamConstructor",
+    "RedundantSamConstructor", "RedundantSamConstructor", "RedundantSamConstructor",
+    "RedundantSamConstructor", "RedundantSamConstructor"
+)
+
 package com.finalproject.tiketku.view.DetailPenerbangan
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -20,6 +26,14 @@ import com.finalproject.tiketku.viewmodel.DetailRoundtripViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
+@Suppress("KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation",
+    "KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation",
+    "RedundantSuppression", "RedundantSuppression", "RedundantSuppression", "RedundantSuppression",
+    "RedundantSuppression", "RedundantSuppression", "RedundantSuppression", "RedundantSuppression",
+    "RedundantSuppression", "RedundantSuppression", "RedundantSuppression", "RedundantSuppression",
+    "RedundantSuppression", "RedundantSuppression", "RedundantSuppression", "RedundantSuppression",
+    "RedundantSuppression", "RedundantSuppression", "RedundantSuppression"
+)
 @AndroidEntryPoint
 class DetailPenerbanganRoundtripFragment : Fragment() {
 
@@ -32,35 +46,36 @@ class DetailPenerbanganRoundtripFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentDetailPenerbanganRoundtripBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @SuppressLint("CommitPrefEdits")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val kotafrom: SharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val kotato: SharedPreferences = requireContext().getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
+        val kotafrom: SharedPreferences =
+            requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val kotato: SharedPreferences =
+            requireContext().getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
         val fromDatePref = kotafrom.getString("key", "")
         val toDatePref = kotato.getString("keyTo", "")
 
 
-        var from = fromDatePref
-        var to = toDatePref
-
-        binding.tvDeparture.text = from
-        binding.tvDeparturePulang.text = to
-        binding.tvDestination.text = to
-        binding.tvDestinationPulang.text = from
+        binding.tvDeparture.text = fromDatePref
+        binding.tvDeparturePulang.text = toDatePref
+        binding.tvDestination.text = toDatePref
+        binding.tvDestinationPulang.text = fromDatePref
 
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
         binding.btnSubmit.setOnClickListener {
-            val jadwal: SharedPreferences = requireContext().getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
+            val jadwal: SharedPreferences =
+                requireContext().getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
             val idDatePref = jadwal.getInt("selected_id_pergi", 0)
             val idPulangDatePref = jadwal.getInt("selected_id_pulang", 0)
 
@@ -70,13 +85,14 @@ class DetailPenerbanganRoundtripFragment : Fragment() {
             findNavController().navigate(R.id.action_detailPenerbanganRoundtripFragment_to_checkoutBiodataPemesanRoundTrip)
         }
 
-        viewModelDetailRoundtrip = ViewModelProvider(this).get(DetailRoundtripViewModel::class.java)
-        viewModelDetailRoundtripPulang = ViewModelProvider(this).get(DetailRoundtripPulangViewModel::class.java)
+        viewModelDetailRoundtrip = ViewModelProvider(this)[DetailRoundtripViewModel::class.java]
+        viewModelDetailRoundtripPulang =
+            ViewModelProvider(this)[DetailRoundtripPulangViewModel::class.java]
 
-        val jadwal: SharedPreferences = requireContext().getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
+        val jadwal: SharedPreferences =
+            requireContext().getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
         val idDatePref = jadwal.getInt("selected_id_pergi", 0).toString()
         val idPulangDatePref = jadwal.getInt("selected_id_pulang", 0).toString()
-
 
 
         val idPergi = idDatePref?.toIntOrNull() ?: 0
@@ -84,26 +100,32 @@ class DetailPenerbanganRoundtripFragment : Fragment() {
 
         viewModelDetailRoundtrip.getDetailRoundtrip(idPergi)
 
-        viewModelDetailRoundtrip.livedetailPergi.observe(viewLifecycleOwner, Observer { detailRoundtrip ->
-            if (detailRoundtrip != null) {
-                adapter = DetailRoundtripPergiAdapter(requireContext(), detailRoundtrip)
-                binding.rvDetailRountrip.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvDetailRountrip.adapter = adapter
-            } else {
-                // Handle error case
-            }
-        })
+        viewModelDetailRoundtrip.livedetailPergi.observe(
+            viewLifecycleOwner,
+            Observer { detailRoundtrip ->
+                if (detailRoundtrip != null) {
+                    adapter = DetailRoundtripPergiAdapter(requireContext(), detailRoundtrip)
+                    binding.rvDetailRountrip.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvDetailRountrip.adapter = adapter
+                } else {
+                    // Handle error case
+                }
+            })
 
         viewModelDetailRoundtripPulang.getDetailRoundtripPulang(idPulang)
 
-        viewModelDetailRoundtripPulang.livedetailPulang.observe(viewLifecycleOwner, Observer { detailRoundtripPulang ->
-            if (detailRoundtripPulang != null) {
-                adapterPulang = DetailRoundtripPulangAdapter(requireContext(), detailRoundtripPulang)
-                binding.rvDetailRountripPulang.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvDetailRountripPulang.adapter = adapterPulang
-            } else {
-                // Handle error case
-            }
-        })
+        viewModelDetailRoundtripPulang.livedetailPulang.observe(
+            viewLifecycleOwner,
+            Observer { detailRoundtripPulang ->
+                if (detailRoundtripPulang != null) {
+                    adapterPulang =
+                        DetailRoundtripPulangAdapter(requireContext(), detailRoundtripPulang)
+                    binding.rvDetailRountripPulang.layoutManager =
+                        LinearLayoutManager(requireContext())
+                    binding.rvDetailRountripPulang.adapter = adapterPulang
+                } else {
+                    // Handle error case
+                }
+            })
     }
 }

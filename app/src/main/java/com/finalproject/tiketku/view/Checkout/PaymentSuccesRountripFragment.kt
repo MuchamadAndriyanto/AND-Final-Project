@@ -24,7 +24,7 @@ class PaymentSuccesRountripFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPaymentSuccesRountripBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,7 +37,7 @@ class PaymentSuccesRountripFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Mengambil nilai orderId dari argument jika tersedia
-        orderIdRT = arguments?.getInt(PaymentSuccesRountripFragment.ARG_ORDER_ID, 0) ?: 0
+        orderIdRT = arguments?.getInt(ARG_ORDER_ID, 0) ?: 0
         Log.d("RountTripFragment", "Order ID: $orderIdRT")
 
         binding.btnLogin.setOnClickListener {

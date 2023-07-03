@@ -5,11 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,11 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.adapter.HariAdapter
-import com.finalproject.tiketku.adapter.HasilPenerbanganRoundtripAdapter
 import com.finalproject.tiketku.adapter.HasilPenerbanganRountdripPulangAdapter
 import com.finalproject.tiketku.adapter.JadwalTanggalRoundtripAdapter
 import com.finalproject.tiketku.databinding.FragmentHasilPenerbanganRoundTripPulangBinding
-import com.finalproject.tiketku.databinding.FragmentHasilPenerbanganRoundtripBinding
 import com.finalproject.tiketku.model.ListHasilPencarian
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
 import com.finalproject.tiketku.viewmodel.JadwalViewModel
@@ -37,7 +35,7 @@ class HasilPenerbanganRoundTripPulangFragment : Fragment() {
     private var selectedJadwal: String? = null
 
     private lateinit var sharedPreferences: SharedPreferences
-    lateinit var btnFilter2: Button
+    private lateinit var btnFilter2: Button
 
     private lateinit var hasilPenerbanganAdapter: HasilPenerbanganRountdripPulangAdapter
     private lateinit var viewModelPencarianPenerbangan: PencarianPenerbanganViewModel
@@ -54,7 +52,7 @@ class HasilPenerbanganRoundTripPulangFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHasilPenerbanganRoundTripPulangBinding.inflate(inflater, container, false)
         return binding.root
@@ -89,9 +87,9 @@ class HasilPenerbanganRoundTripPulangFragment : Fragment() {
                 .commit()
         }
 
-        viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
+        viewModelPencarianPenerbangan = ViewModelProvider(this)[PencarianPenerbanganViewModel::class.java]
         viewModelPencarianPenerbangan.getFavorite()
-        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, { favList ->
             if (favList != null) {
                 tiketList = favList
                 hasilPenerbanganAdapter = HasilPenerbanganRountdripPulangAdapter(requireContext(), tiketList)
@@ -103,10 +101,10 @@ class HasilPenerbanganRoundTripPulangFragment : Fragment() {
             }
         })
 
-        val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
+        val viewModelJadwal = ViewModelProvider(this)[JadwalViewModel::class.java]
 
         viewModelJadwal.getRountrip()
-        viewModelJadwal.livedataRountrip.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelJadwal.livedataRountrip.observe(viewLifecycleOwner, { favList ->
             if (favList != null) {
 
                 val adapter = JadwalTanggalRoundtripAdapter(requireContext(), favList)
@@ -127,7 +125,7 @@ class HasilPenerbanganRoundTripPulangFragment : Fragment() {
 
     private fun updateAdapterData() {
         viewModelPencarianPenerbangan.getFavorite()
-        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, { favList ->
             if (favList != null) {
                 tiketList = favList
                 hasilPenerbanganAdapter.updateData(tiketList)

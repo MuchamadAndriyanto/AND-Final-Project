@@ -4,12 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.finalproject.tiketku.model.BandaraAwal
-import com.finalproject.tiketku.model.ResponseResetPassword
-import com.finalproject.tiketku.model.SearchRespomse
 import com.finalproject.tiketku.model.search.Data
 import com.finalproject.tiketku.model.search.SearchResponse
-import com.finalproject.tiketku.network.ApiClient
 import com.finalproject.tiketku.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call

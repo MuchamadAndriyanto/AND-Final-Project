@@ -5,26 +5,17 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.adapter.FilterAdapter
-import com.finalproject.tiketku.adapter.HariAdapter
-import com.finalproject.tiketku.adapter.SetClassAdapter
-import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
 import com.finalproject.tiketku.databinding.FragmentHasilPencarianWithFilterBinding
-import com.finalproject.tiketku.databinding.FragmentSetPenumpangBinding
-import com.finalproject.tiketku.model.DummySetClass
 import com.finalproject.tiketku.model.ListFilter
-import com.finalproject.tiketku.model.ListHasilPencarian
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,7 +40,7 @@ class HasilPencarianWithFilterFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHasilPencarianWithFilterBinding.inflate(inflater, container, false)
         return binding.root
     }

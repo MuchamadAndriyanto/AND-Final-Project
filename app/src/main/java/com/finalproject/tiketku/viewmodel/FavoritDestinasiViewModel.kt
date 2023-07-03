@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.model.favorit.ResponseFavoriteDestination
-import com.finalproject.tiketku.network.ApiClient
 import com.finalproject.tiketku.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call

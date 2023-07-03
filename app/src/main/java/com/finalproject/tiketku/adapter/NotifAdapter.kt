@@ -1,10 +1,9 @@
 package com.finalproject.tiketku.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
@@ -27,6 +26,7 @@ class NotifAdapter(
         onItemClickListener = listener
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     inner class ViewHolder(val binding: ItemNotifBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.rootLayout.setOnClickListener {

@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("BooleanMethodIsAlwaysInverted")
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

@@ -11,10 +11,8 @@ import com.finalproject.tiketku.model.DataResetPassword
 import com.finalproject.tiketku.model.ResponseLogin
 import com.finalproject.tiketku.model.ResponseResetPassword
 import com.finalproject.tiketku.model.ResponseUsersItem
-import com.finalproject.tiketku.model.profile.UpdateProfilePost
-import com.finalproject.tiketku.model.profile.Data
 import com.finalproject.tiketku.model.profile.ResponseProfile
-import com.finalproject.tiketku.network.ApiClient
+import com.finalproject.tiketku.model.profile.UpdateProfilePost
 import com.finalproject.tiketku.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call

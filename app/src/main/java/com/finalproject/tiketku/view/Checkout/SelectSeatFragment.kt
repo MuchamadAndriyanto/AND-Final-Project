@@ -30,7 +30,7 @@ class SelectSeatFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSelectSeatBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,7 +39,7 @@ class SelectSeatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
-        viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
+        viewModel = ViewModelProvider(this)[OrderViewModel::class.java]
 
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
@@ -63,8 +63,8 @@ class SelectSeatFragment : Fragment() {
                         idPenerbangan,
                         jumlahPenumpang,
                         selectedSeatId!!,
-                        namaKeluarga!!,
-                        namaLengkap!!,
+                        namaKeluarga,
+                        namaLengkap,
                         noTelp
                     )
                     Log.d(

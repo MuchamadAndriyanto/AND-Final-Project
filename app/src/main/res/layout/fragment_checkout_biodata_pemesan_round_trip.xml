@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    tools:context=".view.Checkout.CheckoutBiodataPemesanRoundTrip">
+    tools:context=".view.Checkout.CheckoutBiodataPemesanRoundTrip"
+    tools:ignore="Overdraw">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/lin1"
@@ -24,7 +26,8 @@
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/fi_arrow_left" />
+                android:src="@drawable/fi_arrow_left"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +81,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="16dp"
-                        >
+                        tools:ignore="SpUsage">
 
                     </TextView>
                 </LinearLayout>
@@ -135,7 +138,8 @@
                             android:layout_alignParentEnd="true"
                             android:checked="false"
                             app:thumbTint="@color/white"
-                            app:trackTint="@color/grey" />
+                            app:trackTint="@color/grey"
+                            tools:ignore="ObsoleteLayoutParam" />
 
                     </LinearLayout>
 

@@ -15,7 +15,8 @@
         tools:background="@color/darkblue_05"
         android:foreground="@drawable/selected_view"
         android:clickable="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="KeyboardInaccessibleWidget">
 
         <LinearLayout
             android:id="@+id/layout_Text"
@@ -45,7 +46,8 @@
             android:layout_gravity="right"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

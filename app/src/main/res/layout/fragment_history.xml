@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/grey"
-    tools:context=".view.HistoryFragment">
+    tools:context=".view.HistoryFragment"
+    tools:ignore="Overdraw">
 
     <FrameLayout
         android:id="@+id/fragment_container"

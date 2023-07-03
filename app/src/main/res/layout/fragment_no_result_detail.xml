@@ -7,7 +7,8 @@
     android:elevation="15dp"
     android:background="@color/grey"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.DetailPenerbangan.NoResultDetailFragment">
+    tools:context=".view.DetailPenerbangan.NoResultDetailFragment"
+    tools:ignore="Overdraw">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="650dp"
@@ -23,13 +24,15 @@
             android:layout_margin="20dp"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:ignore="ContentDescription" />
         <ImageView
             android:id="@+id/personSearch"
             android:layout_width="237.76dp"
             android:layout_height="153.26dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/person_search" />
+            android:src="@drawable/person_search"
+            tools:ignore="ContentDescription" />
         <TextView
             android:id="@+id/tvHasilPencarian"
             android:layout_below="@+id/personSearch"

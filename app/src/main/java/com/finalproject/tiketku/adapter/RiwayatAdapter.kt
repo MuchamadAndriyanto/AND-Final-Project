@@ -1,20 +1,21 @@
+@file:Suppress("KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation")
+
 package com.finalproject.tiketku.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.ItemRiwayatBinding
 import com.finalproject.tiketku.databinding.ItemRiwayatRountripBinding
 import com.finalproject.tiketku.model.riwayatRT.Data
 import com.finalproject.tiketku.view.HistoryFragmentDirections
 
-class RiwayatAdapter(private val context: Context, var list: List<Data>) : RecyclerView.Adapter<RiwayatAdapter.ViewHolder>() {
+class RiwayatAdapter(context: Context, var list: List<Data>) : RecyclerView.Adapter<RiwayatAdapter.ViewHolder>() {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
@@ -26,6 +27,7 @@ class RiwayatAdapter(private val context: Context, var list: List<Data>) : Recyc
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 

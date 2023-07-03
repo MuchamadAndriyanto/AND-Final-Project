@@ -1,23 +1,19 @@
 package com.finalproject.tiketku.view.Checkout
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.adapter.RiwayatAdapter
-import com.finalproject.tiketku.databinding.FragmentCheckOutDetailBinding
 import com.finalproject.tiketku.databinding.FragmentRincianOrderBinding
-import com.finalproject.tiketku.viewmodel.OrderViewModel
 import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +29,7 @@ class RincianOrderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRincianOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,6 +38,7 @@ class RincianOrderFragment : Fragment() {
         const val ARG_ORDER_ID = "order_id"
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,7 +48,7 @@ class RincianOrderFragment : Fragment() {
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         token = sharedPref.getString("accessToken", "") ?: ""
 
-        detailViewModel = ViewModelProvider(requireActivity()).get(RiwayatViewModel::class.java)
+        detailViewModel = ViewModelProvider(requireActivity())[RiwayatViewModel::class.java]
 
         detailViewModel.getRiwayat(token, orderId)
 
@@ -69,9 +66,10 @@ class RincianOrderFragment : Fragment() {
                     binding.detailTimeArrived.text = data.tiketBerangkat.jam_kedatangan
                     binding.detailDateArrived.text = data.tiketBerangkat.tanggal_kedatangan
                     binding.detailAirportArrived.text = data.tiketBerangkat.bandaraTujuan.nama_bandara
-                    binding.kodeMaskapai.text = data.penerbanganBerangkat.maskapai.id_maskapai.toString()
+                    binding.kodeMaskapai.text = data.penerbanganBerangkat.maskapai.id_maskapai
 
-                    binding.tvAdult.text = "${data.order.jumlah_penumpang.toString()} Adulst"
+                    binding.tvAdult.text = "${data.order.jumlah_penumpang} Adulst"
+                    binding.tvHargaAdult.text = data.totalHargaTiketBerangkat
                     binding.detailTotalHarga.text = data.totalHargaTiketBerangkat
 
                 }

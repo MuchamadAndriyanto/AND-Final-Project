@@ -6,7 +6,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/homeFragment"
-    tools:ignore="HardcodedText"
+    tools:ignore="HardcodedText,Overdraw"
     android:background="@color/grey"
     tools:context=".view.Beranda.HomeFragment">
 
@@ -75,13 +75,15 @@
                                         android:layout_height="wrap_content"
                                         app:flexDirection="row"
                                         app:justifyContent="space_between"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="TooDeepLayout">
 
                                         <ImageView
                                             android:id="@+id/iv_PesawatDeparture"
                                             android:layout_width="26dp"
                                             android:layout_height="24dp"
-                                            android:src="@drawable/ic_pesawat_vector"/>
+                                            android:src="@drawable/ic_pesawat_vector"
+                                            tools:ignore="ContentDescription" />
 
                                         <TextView
                                             android:id="@+id/tv_FromDeparture"
@@ -122,7 +124,8 @@
                                             android:layout_marginStart="-12dp"
                                             android:layout_width="26dp"
                                             android:layout_height="24dp"
-                                            android:src="@drawable/ic_flip_departure" />
+                                            android:src="@drawable/ic_flip_departure"
+                                            tools:ignore="ContentDescription" />
 
                                     </LinearLayout>
 
@@ -138,7 +141,8 @@
                                             android:id="@+id/iv_PesawatTujuan"
                                             android:layout_width="26dp"
                                             android:layout_height="24dp"
-                                            android:src="@drawable/ic_pesawat_vector"/>
+                                            android:src="@drawable/ic_pesawat_vector"
+                                            tools:ignore="ContentDescription" />
 
                                         <TextView
                                             android:id="@+id/tv_FromTujuan"
@@ -198,7 +202,8 @@
                                 android:orientation="horizontal"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="20dp"
-                                android:layout_marginTop="12dp">
+                                android:layout_marginTop="12dp"
+                                tools:ignore="DisableBaselineAlignment">
 
                                 <RelativeLayout
                                     android:id="@+id/date_Departure"
@@ -212,7 +217,8 @@
                                         android:layout_height="24dp"
                                         android:src="@drawable/ic_kalender"
                                         android:layout_alignParentStart="true"
-                                        android:layout_centerVertical="true"/>
+                                        android:layout_centerVertical="true"
+                                        tools:ignore="ContentDescription" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -262,7 +268,8 @@
                                         android:layout_height="24dp"
                                         android:src="@drawable/ic_kalender"
                                         android:layout_alignParentStart="true"
-                                        android:layout_centerVertical="true"/>
+                                        android:layout_centerVertical="true"
+                                        tools:ignore="ContentDescription" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -305,7 +312,8 @@
                                 android:orientation="horizontal"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="20dp"
-                                android:layout_marginTop="16dp">
+                                android:layout_marginTop="16dp"
+                                tools:ignore="DisableBaselineAlignment">
 
                                 <RelativeLayout
                                     android:id="@+id/Passangers"
@@ -319,7 +327,8 @@
                                         android:layout_height="24dp"
                                         android:src="@drawable/ic_people_departure"
                                         android:layout_alignParentStart="true"
-                                        android:layout_centerVertical="true"/>
+                                        android:layout_centerVertical="true"
+                                        tools:ignore="ContentDescription" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -365,7 +374,8 @@
                                         android:layout_height="24dp"
                                         android:src="@drawable/ic_seat"
                                         android:layout_alignParentStart="true"
-                                        android:layout_centerVertical="true"/>
+                                        android:layout_centerVertical="true"
+                                        tools:ignore="ContentDescription" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"

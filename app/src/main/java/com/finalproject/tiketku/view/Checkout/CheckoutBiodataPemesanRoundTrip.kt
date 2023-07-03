@@ -1,3 +1,7 @@
+@file:Suppress("LocalVariableName", "LocalVariableName", "LocalVariableName", "LocalVariableName",
+    "LocalVariableName", "LocalVariableName", "LocalVariableName"
+)
+
 package com.finalproject.tiketku.view.Checkout
 
 import android.content.Context
@@ -5,25 +9,20 @@ import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.FragmentCheckoutBiodataPemesanBinding
 import com.finalproject.tiketku.databinding.FragmentCheckoutBiodataPemesanRoundTripBinding
-import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.viewmodel.DetailViewModel
 import com.finalproject.tiketku.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import es.dmoral.toasty.Toasty
 
+@Suppress("LocalVariableName")
 @AndroidEntryPoint
 class CheckoutBiodataPemesanRoundTrip : Fragment() {
     lateinit var binding: FragmentCheckoutBiodataPemesanRoundTripBinding
@@ -36,7 +35,7 @@ class CheckoutBiodataPemesanRoundTrip : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentCheckoutBiodataPemesanRoundTripBinding.inflate(inflater, container, false)
         return binding.root
@@ -46,9 +45,9 @@ class CheckoutBiodataPemesanRoundTrip : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Inisialisasi DetailViewModel
-        viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
+        viewModel = ViewModelProvider(this)[OrderViewModel::class.java]
         // Inisialisasi DetailViewModel
-        detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         // Ambil token dari SharedPreferences
         token = sharedPref.getString("accessToken", "") ?: ""

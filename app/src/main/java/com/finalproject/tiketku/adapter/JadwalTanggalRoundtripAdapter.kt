@@ -1,20 +1,16 @@
 package com.finalproject.tiketku.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.ItemHariBinding
 import com.finalproject.tiketku.model.ListHasilPencarian
-import com.finalproject.tiketku.model.onetrip.DataOneTrip
 import com.finalproject.tiketku.model.roundtrip.DataRoundTrip
-import com.finalproject.tiketku.model.rountrip.DataRountip
 
 class JadwalTanggalRoundtripAdapter (private val context: Context, private val list: List<DataRoundTrip>) : RecyclerView.Adapter<JadwalTanggalRoundtripAdapter.ViewHolder>() {
 
@@ -26,10 +22,11 @@ class JadwalTanggalRoundtripAdapter (private val context: Context, private val l
         this.onItemClickCallback = onItemClickCallback
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var hari = itemView.findViewById<TextView>(R.id.tv_hari)
-        var tgl = itemView.findViewById<TextView>(R.id.tv_tgl)
-        val lin1 = itemView.findViewById<View>(R.id.layout_hari)
+        var hari = itemView.findViewById<TextView>(R.id.tv_hari)!!
+        var tgl = itemView.findViewById<TextView>(R.id.tv_tgl)!!
+        val lin1 = itemView.findViewById<View>(R.id.layout_hari)!!
 
         init {
             lin1.setOnClickListener {

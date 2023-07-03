@@ -31,7 +31,7 @@ class AkunFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
+        viewModel = ViewModelProvider(this)[UsersViewModel::class.java]
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
         // Ambil token dari SharedPreferences

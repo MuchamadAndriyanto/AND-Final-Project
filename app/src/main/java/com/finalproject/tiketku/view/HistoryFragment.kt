@@ -1,13 +1,14 @@
 package com.finalproject.tiketku.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,6 @@ import com.finalproject.tiketku.adapter.RiwayatAdapter
 import com.finalproject.tiketku.databinding.FragmentHistoryBinding
 import com.finalproject.tiketku.model.riwayatRT.Data
 import com.finalproject.tiketku.viewmodel.RiwayatRtViewModel
-import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,10 +41,11 @@ class HistoryFragment : Fragment() {
     val List<Data>.data: List<Data>
         get() = this
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(RiwayatRtViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[RiwayatRtViewModel::class.java]
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
         // Ambil token dari SharedPreferences
@@ -55,7 +56,7 @@ class HistoryFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvRiwayat.adapter = riwayatAdapter
 
-        viewModel.liveDataRt.observe(viewLifecycleOwner, Observer { riwayatData ->
+        viewModel.liveDataRt.observe(viewLifecycleOwner, { riwayatData ->
             if (riwayatData.data.isNotEmpty()) {
                 hideRiwayatPesananKosongFragment()
                 riwayatAdapter.list = riwayatData.data

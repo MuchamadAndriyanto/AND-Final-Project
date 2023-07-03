@@ -1,44 +1,36 @@
 package com.finalproject.tiketku.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.ItemDestinasiFavBinding
 import com.finalproject.tiketku.databinding.ItemTiketBinding
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
-import com.finalproject.tiketku.model.favorit.DataFavorite
 import com.finalproject.tiketku.view.HasilPencarianFragmentDirections
 
-class HasilPenerbanganAdapter(private val context: Context, private var list: List<DataCariPenerbangan>)
+class HasilPenerbanganAdapter(context: Context, private var list: List<DataCariPenerbangan>)
     : RecyclerView.Adapter<HasilPenerbanganAdapter.ViewHolder>() {
 
     private val sharedPreferencesTo: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
-    val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
+    private val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-    val selectedDestination = sharedPreferences.getString("key", "")
+    private val selectedDestination = sharedPreferences.getString("key", "")
 
     private val SetClasSharedPref: SharedPreferences = context.getSharedPreferences("selected_class", Context.MODE_PRIVATE)
-    val setClassSharePrefe = SetClasSharedPref.getString("selected_class", "")
-    val selected_class = setClassSharePrefe
+    private val setClassSharePrefe = SetClasSharedPref.getString("selected_class", "")
+    private val selected_class = setClassSharePrefe
 
     private val filterPref: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-    val filterSharedPref = filterPref.getString("filter_key", "")
-    val filtertest = filterSharedPref
+    private val filterSharedPref = filterPref.getString("filter_key", "")
+    private val filtertest = filterSharedPref
 
     private val jadwal: SharedPreferences = context.getSharedPreferences("date", Context.MODE_PRIVATE)
-    val jadwalSharedPreferns = jadwal.getString("startDateFormat", "")
+    private val jadwalSharedPreferns = jadwal.getString("startDateFormat", "")
     private var jdwlSharedPreferences = jadwalSharedPreferns
 
 
@@ -49,7 +41,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         updateFilteredList()
     }
 
-    inner class ViewHolder(val binding: ItemTiketBinding) : RecyclerView.ViewHolder(binding.root) {}
+    inner class ViewHolder(val binding: ItemTiketBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -80,6 +72,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         return filteredList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun updateFilteredList() {
         filteredList.clear()
 
@@ -111,6 +104,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         updateFilteredList()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateJadwalSharedPreferns(newJadwal: String) {
         if (jdwlSharedPreferences != newJadwal) {
             jdwlSharedPreferences = newJadwal
@@ -119,6 +113,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newList: List<DataCariPenerbangan>, newJadwal: String) {
         if (list != newList || jdwlSharedPreferences != newJadwal) {
             list = newList
@@ -128,6 +123,7 @@ class HasilPenerbanganAdapter(private val context: Context, private var list: Li
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newList: List<DataCariPenerbangan>) {
         if (list != newList) {
             list = newList

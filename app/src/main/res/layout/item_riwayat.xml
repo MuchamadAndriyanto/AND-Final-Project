@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:id="@+id/cardDetail"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="UnusedResources">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -74,7 +75,8 @@
                             android:layout_height="wrap_content"
                             android:lineHeight="20dp"
                             android:text="Jakarta"
-                            android:textColor="@color/neutral_05" />
+                            android:textColor="@color/neutral_05"
+                            tools:ignore="UnusedAttribute" />
 
                         <TextView
                             android:id="@+id/tvBerangkat"
@@ -85,7 +87,8 @@
                             android:lineHeight="20dp"
                             android:text="5 Maret 2023"
                             android:textColor="@color/neutral_05"
-                            android:textSize="10sp" />
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp,UnusedAttribute" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -100,7 +103,8 @@
                                 android:layout_marginTop="2dp"
                                 android:lineHeight="20dp"
                                 android:text="19"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvwib"
@@ -111,7 +115,8 @@
                                 android:layout_marginTop="2dp"
                                 android:lineHeight="20dp"
                                 android:text="WIB"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -140,7 +145,8 @@
                                 android:lineHeight="18dp"
                                 android:text="4h "
                                 android:textColor="@color/neutral_03"
-                                android:textSize="12sp" />
+                                android:textSize="12sp"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvMenit"
@@ -152,7 +158,8 @@
                                 android:lineHeight="18dp"
                                 android:text="0m"
                                 android:textColor="@color/neutral_03"
-                                android:textSize="12sp" />
+                                android:textSize="12sp"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -161,7 +168,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="2dp"
-                            android:src="@drawable/arrow" />
+                            android:src="@drawable/arrow"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
 
@@ -172,7 +180,8 @@
                         android:layout_height="20dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginBottom="5dp"
-                        android:src="@drawable/ic_maps" />
+                        android:src="@drawable/ic_maps"
+                        tools:ignore="ContentDescription" />
                     <LinearLayout
                         android:id="@+id/layoutArrive"
                         android:layout_width="wrap_content"
@@ -189,7 +198,8 @@
                             android:layout_height="wrap_content"
                             android:lineHeight="20dp"
                             android:text="Melbourne"
-                            android:textColor="@color/neutral_05" />
+                            android:textColor="@color/neutral_05"
+                            tools:ignore="UnusedAttribute" />
 
                         <TextView
                             android:id="@+id/tvKedatangan"
@@ -199,7 +209,8 @@
                             android:lineHeight="20dp"
                             android:text="5 Maret 2023"
                             android:textColor="@color/neutral_05"
-                            android:textSize="10sp" />
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp,UnusedAttribute" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -214,7 +225,8 @@
                                 android:layout_marginTop="2dp"
                                 android:lineHeight="20dp"
                                 android:text="21"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvwib2"
@@ -225,7 +237,8 @@
                                 android:layout_marginTop="2dp"
                                 android:lineHeight="20dp"
                                 android:text="WIB"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -237,7 +250,8 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
-                        android:src="@drawable/ic_maps" />
+                        android:src="@drawable/ic_maps"
+                        tools:ignore="ContentDescription" />
 
 
 
@@ -273,7 +287,8 @@
                             android:layout_height="wrap_content"
                             android:lineHeight="18dp"
                             android:text="Booking Code : "
-                            android:textColor="@color/neutral_05" />
+                            android:textColor="@color/neutral_05"
+                            tools:ignore="UnusedAttribute" />
 
                         <TextView
                             android:id="@+id/Kode"
@@ -282,7 +297,8 @@
                             android:layout_height="wrap_content"
                             android:lineHeight="18dp"
                             android:text="453653657"
-                            android:textColor="@color/neutral_05" />
+                            android:textColor="@color/neutral_05"
+                            tools:ignore="UnusedAttribute" />
 
                     </LinearLayout>
 
@@ -312,7 +328,8 @@
                             android:layout_height="wrap_content"
                             android:lineHeight="18dp"
                             android:text="Economy"
-                            android:textColor="@color/neutral_05" />
+                            android:textColor="@color/neutral_05"
+                            tools:ignore="UnusedAttribute" />
 
                     </LinearLayout>
 
@@ -343,7 +360,8 @@
                             android:lineHeight="24dp"
                             android:text="IDR 5.950.000"
                             android:textColor="@color/purple"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            tools:ignore="UnusedAttribute" />
                     </LinearLayout>
                 </RelativeLayout>
 

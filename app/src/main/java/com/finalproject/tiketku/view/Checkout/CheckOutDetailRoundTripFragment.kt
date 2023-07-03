@@ -16,6 +16,7 @@ import com.finalproject.tiketku.databinding.FragmentCheckOutDetailRoundTripBindi
 import com.finalproject.tiketku.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("MoveLambdaOutsideParentheses", "MoveLambdaOutsideParentheses")
 @AndroidEntryPoint
 class CheckOutDetailRoundTripFragment : Fragment() {
     private lateinit var binding: FragmentCheckOutDetailRoundTripBinding
@@ -26,7 +27,7 @@ class CheckOutDetailRoundTripFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCheckOutDetailRoundTripBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,7 +36,7 @@ class CheckOutDetailRoundTripFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
-        rincianViewModel = ViewModelProvider(requireActivity()).get(OrderViewModel::class.java)
+        rincianViewModel = ViewModelProvider(requireActivity())[OrderViewModel::class.java]
         rincianViewModel.setOrderId(orderIdRT)
 
         // Mengambil nilai orderId dari argument jika tersedia

@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    tools:context=".view.Checkout.SelectSeatFragment">
+    tools:context=".view.Checkout.SelectSeatFragment"
+    tools:ignore="Overdraw">
 
     <!-- Layout utama -->
     <LinearLayout
@@ -25,7 +26,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/fi_arrow_left"
-                android:padding="10dp" />
+                android:padding="10dp"
+                tools:ignore="ContentDescription" />
 
             <!-- Judul -->
             <TextView

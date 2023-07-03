@@ -1,34 +1,30 @@
 package com.finalproject.tiketku.view.Beranda
 
-import com.finalproject.tiketku.viewmodel.FavoritDestinasiViewModel
-import android.content.res.ColorStateList
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
-import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.FragmentHomeBinding
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
+import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.ContextThemeWrapper
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.finalproject.tiketku.R
 import com.finalproject.tiketku.adapter.DestinasiFavoritAdapter
-import com.finalproject.tiketku.model.favorit.DataFavorite
-import com.finalproject.tiketku.view.HasilPencarianFragment
+import com.finalproject.tiketku.databinding.FragmentHomeBinding
+import com.finalproject.tiketku.viewmodel.FavoritDestinasiViewModel
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
@@ -63,6 +59,7 @@ class HomeFragment : Fragment() {
         val parsedDate = inputFormat.parse(date)
         return outputFormat.format(parsedDate)
     }
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -180,9 +177,9 @@ class HomeFragment : Fragment() {
         }
 
         // Isi listDestinasiFavorit dengan data destinasi favorit yang sesuai
-        val viewModelFavorite = ViewModelProvider(this).get(FavoritDestinasiViewModel::class.java)
+        val viewModelFavorite = ViewModelProvider(this)[FavoritDestinasiViewModel::class.java]
         viewModelFavorite.getFavorite()
-        viewModelFavorite.livedataFavorite.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelFavorite.livedataFavorite.observe(viewLifecycleOwner, { favList ->
             if (favList != null) {
                 val adapter = DestinasiFavoritAdapter(requireContext(), favList)
                 binding.rvItemDestinasi.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -447,12 +444,14 @@ class HomeFragment : Fragment() {
         binding.tvBusiness.text = className
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showLoading() {
         // Tampilkan efek loading di sini (misalnya dengan mengubah teks Button)
         binding.btnPencarian.text = "Loading..."
         binding.btnPencarian.isEnabled = false
     }
 
+    @SuppressLint("SetTextI18n")
     private fun hideLoading() {
         // Sembunyikan efek loading di sini (misalnya dengan mengembalikan teks Button)
         binding.btnPencarian.text = "Cari Penerbangan"

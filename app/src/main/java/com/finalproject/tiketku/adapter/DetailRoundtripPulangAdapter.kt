@@ -9,10 +9,8 @@ import com.finalproject.tiketku.model.detailrountrippergi.DetailRoundtripPergiRe
 
 class DetailRoundtripPulangAdapter(private val context: Context, private val detailRoundtrip: DetailRoundtripPergiResponse?) : RecyclerView.Adapter<DetailRoundtripPulangAdapter.ViewHolder>() {
 
-    // ViewHolder
-    inner class ViewHolder(val binding: ItemDetailRoundtripBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    // ViewHolderz
+    inner class ViewHolder(val binding: ItemDetailRoundtripBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)

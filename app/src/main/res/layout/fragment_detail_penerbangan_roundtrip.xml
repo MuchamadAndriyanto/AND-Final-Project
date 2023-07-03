@@ -7,13 +7,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
     tools:context=".view.DetailPenerbangan.DetailPenerbanganRoundtripFragment"
-    tools:ignore="HardcodedText" >
+    tools:ignore="HardcodedText,Overdraw" >
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <!-- Navbar -->
         <LinearLayout
@@ -28,7 +29,8 @@
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/fi_arrow_left" />
+                android:src="@drawable/fi_arrow_left"
+                tools:ignore="ContentDescription" />
 
             <!-- Judul Navbar -->
             <TextView

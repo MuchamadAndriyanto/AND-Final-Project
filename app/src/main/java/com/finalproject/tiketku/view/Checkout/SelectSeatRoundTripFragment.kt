@@ -14,9 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.databinding.FragmentSelectSeatBinding
 import com.finalproject.tiketku.databinding.FragmentSelectSeatRoundTripBinding
-import com.finalproject.tiketku.model.order.DataOrder
 import com.finalproject.tiketku.model.orderRoundTrip.DataOrderRT
 import com.finalproject.tiketku.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +30,7 @@ class SelectSeatRoundTripFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSelectSeatRoundTripBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -41,7 +39,7 @@ class SelectSeatRoundTripFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
-        viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
+        viewModel = ViewModelProvider(this)[OrderViewModel::class.java]
 
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
@@ -66,8 +64,8 @@ class SelectSeatRoundTripFragment : Fragment() {
                         idPenerbanganPulang,
                         jumlahPenumpang,
                         selectedSeatId!!,
-                        namaKeluarga!!,
-                        namaLengkap!!,
+                        namaKeluarga,
+                        namaLengkap,
                         noTelp
                     )
                     Log.d(

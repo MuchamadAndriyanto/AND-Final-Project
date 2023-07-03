@@ -74,7 +74,7 @@
     </style>
 
     <!--    Title-->
-    <style name="TextTitle16Regular">
+    <style name="TextTitle16Regular" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">16sp</item>
         <item name="lineHeight">24sp</item>
@@ -86,56 +86,56 @@
         <item name="lineHeight">24sp</item>
     </style>
 
-    <style name="TextTitle16Bold">
+    <style name="TextTitle16Bold" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">16sp</item>
         <item name="lineHeight">24sp</item>
     </style>
 
-    <style name="TextTitle18Regular">
+    <style name="TextTitle18Regular" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">18sp</item>
         <item name="lineHeight">26sp</item>
     </style>
 
-    <style name="TextTitle18Medium">
+    <style name="TextTitle18Medium" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textSize">18sp</item>
         <item name="lineHeight">26sp</item>
     </style>
 
-    <style name="TextTitle18Bold">
+    <style name="TextTitle18Bold" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">18sp</item>
         <item name="lineHeight">26sp</item>
     </style>
 
     <!--    Heading-->
-    <style name="TextHeading20Regular">
+    <style name="TextHeading20Regular" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">20sp</item>
         <item name="lineHeight">30sp</item>
     </style>
 
-    <style name="TextHeading20Medium">
+    <style name="TextHeading20Medium" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textSize">20sp</item>
         <item name="lineHeight">30sp</item>
     </style>
 
-    <style name="TextHeading20Bold">
+    <style name="TextHeading20Bold" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">20sp</item>
         <item name="lineHeight">30sp</item>
     </style>
 
-    <style name="TextHeading24Regular">
+    <style name="TextHeading24Regular" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">24sp</item>
         <item name="lineHeight">36sp</item>
     </style>
 
-    <style name="TextHeading24Medium">
+    <style name="TextHeading24Medium" tools:ignore="UnusedResources">
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textSize">24sp</item>
         <item name="lineHeight">36sp</item>
@@ -148,7 +148,7 @@
     </style>
 
     <!--    Button-->
-    <style name="ButtonPrimary" parent="Widget.MaterialComponents.Button">
+    <style name="ButtonPrimary" parent="Widget.MaterialComponents.Button" tools:ignore="UnusedResources">
         <item name="android:paddingHorizontal" tools:ignore="NewApi">24dp</item>
         <item name="android:paddingVertical" tools:ignore="NewApi">12dp</item>
         <item name="android:textColor">@color/white</item>
@@ -161,7 +161,7 @@
         <item name="minHeight">48dp</item>
     </style>
 
-    <style name="ButtonPrimarySmall" parent="Widget.MaterialComponents.Button">
+    <style name="ButtonPrimarySmall" parent="Widget.MaterialComponents.Button" tools:ignore="UnusedResources">
         <item name="android:paddingHorizontal" tools:ignore="NewApi">24dp</item>
         <item name="android:paddingVertical" tools:ignore="NewApi">8dp</item>
         <item name="android:textColor">@color/white</item>
@@ -175,7 +175,7 @@
     </style>
 
 
-    <style name="ButtonSecondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="ButtonSecondary" parent="Widget.MaterialComponents.Button.OutlinedButton" tools:ignore="UnusedResources">
         <item name="android:paddingHorizontal" tools:ignore="NewApi">24dp</item>
         <item name="android:paddingVertical" tools:ignore="NewApi">12dp</item>
         <item name="android:textColor">@color/black</item>
@@ -189,7 +189,7 @@
         <item name="strokeColor">@color/darkblue_04</item>
     </style>
 
-    <style name="ButtonSecondarySmall" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="ButtonSecondarySmall" parent="Widget.MaterialComponents.Button.OutlinedButton" tools:ignore="UnusedResources">
         <item name="android:paddingHorizontal" tools:ignore="NewApi">24dp</item>
         <item name="android:paddingVertical" tools:ignore="NewApi">8dp</item>
         <item name="android:textColor">@color/white</item>
@@ -203,7 +203,7 @@
     </style>
 
     <!--Edit Text-->
-    <style name="EditText">
+    <style name="EditText" tools:ignore="UnusedResources">
         <item name="background">@drawable/shape_rectangle</item>
         <item name="android:paddingHorizontal" tools:ignore="NewApi">16dp</item>
         <item name="android:paddingVertical" tools:ignore="NewApi">14dp</item>

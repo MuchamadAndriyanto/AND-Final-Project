@@ -1,5 +1,8 @@
+@file:Suppress("RedundantSemicolon", "RedundantSemicolon")
+
 package com.finalproject.tiketku.view.DetailPenerbangan
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +18,7 @@ import com.finalproject.tiketku.databinding.FragmentDetailPenerbanganBinding
 import com.finalproject.tiketku.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("RedundantSemicolon", "RedundantSemicolon")
 @AndroidEntryPoint
 class DetailPenerbanganFragment : Fragment() {
 
@@ -24,15 +28,16 @@ class DetailPenerbanganFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailPenerbanganBinding.inflate(inflater, container, false)
         return binding.root
     }
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Inisialisasi DetailViewModel
-        detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
 
         // Mengambil data detail
         val args: DetailPenerbanganFragmentArgs by navArgs()
@@ -40,14 +45,14 @@ class DetailPenerbanganFragment : Fragment() {
         detailViewModel.getDetail(id)
 
         // Observer untuk liveDetailFavorite
-        detailViewModel.liveDetailFavorite.observe(viewLifecycleOwner, { detail ->
+        detailViewModel.liveDetailFavorite.observe(viewLifecycleOwner) { detail ->
             if (detail != null) {
                 // Data detail tersedia, lakukan sesuatu
                 binding.tvDeparture.text = detail.id_bandara_asal
                 binding.tvDestination.text = detail.id_bandara_tujuan
 
-                binding.tvSelisihJam.setText("(" + detail.selisih_jam + "h - ");
-                binding.tvSelisihMenit.setText(detail.selisih_menit.toString() + "m)");
+                binding.tvSelisihJam.text = "(" + detail.selisih_jam + "h - ";
+                binding.tvSelisihMenit.text = detail.selisih_menit.toString() + "m)";
 
                 binding.detailTime.text = detail.jam_berangkat
                 binding.detailDate.text = detail.tanggal_berangkat
@@ -62,12 +67,16 @@ class DetailPenerbanganFragment : Fragment() {
                 binding.detailTotalDec.text = detail.maskapai.harga_tiket
 
                 // Cek status login
-                val sharedPreferences = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
+                val sharedPreferences =
+                    requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
                 val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
                 if (isLoggedIn) {
                     binding.btnSubmit.setOnClickListener {
-                        val action = DetailPenerbanganFragmentDirections.actionDetailPenerbanganFragmentToCheckoutBiodataPemesanFragment(id)
+                        val action =
+                            DetailPenerbanganFragmentDirections.actionDetailPenerbanganFragmentToCheckoutBiodataPemesanFragment(
+                                id
+                            )
                         action.idPenerbangan = id // Mengirimkan id_penerbangan ke action
                         findNavController().navigate(action)
                     }
@@ -86,7 +95,7 @@ class DetailPenerbanganFragment : Fragment() {
                 // Data detail tidak tersedia, lakukan sesuatu
                 Toast.makeText(requireContext(), "Gagal memuat detail", Toast.LENGTH_SHORT).show()
             }
-        })
+        }
 
         arguments?.let {
             val safeArgs = DetailPenerbanganFragmentArgs.fromBundle(it)

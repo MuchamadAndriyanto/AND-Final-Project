@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/grey"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.User.ProfileFragment">
+    tools:context=".view.User.ProfileFragment"
+    tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/tvAkun"
@@ -30,14 +31,16 @@
         android:layout_marginTop="100dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/ivEdit"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@color/purple"
-            android:src="@drawable/baseline_edit_24" />
+            android:src="@drawable/baseline_edit_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvProfile"
@@ -61,14 +64,16 @@
         android:layout_marginTop="170dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/ivSetting"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@color/purple"
-            android:src="@drawable/baseline_settings_24" />
+            android:src="@drawable/baseline_settings_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvSetting"
@@ -91,14 +96,16 @@
         android:layout_marginTop="237dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/ivLogout"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@color/purple"
-            android:src="@drawable/baseline_logout_24" />
+            android:src="@drawable/baseline_logout_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvKeluar"

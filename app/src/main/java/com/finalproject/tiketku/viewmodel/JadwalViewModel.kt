@@ -4,14 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.finalproject.tiketku.model.notif.DataNotif
-import com.finalproject.tiketku.model.notif.NotifResponse
 import com.finalproject.tiketku.model.onetrip.DataOneTrip
 import com.finalproject.tiketku.model.onetrip.OneTripResponse
 import com.finalproject.tiketku.model.roundtrip.DataRoundTrip
 import com.finalproject.tiketku.model.roundtrip.RoundTripResponse
-import com.finalproject.tiketku.model.rountrip.DataRountip
-import com.finalproject.tiketku.model.rountrip.ResponseRountrip
 import com.finalproject.tiketku.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
@@ -27,8 +23,8 @@ class JadwalViewModel @Inject constructor(private var api: ApiService, context: 
     val livedataRountrip: MutableLiveData<List<DataRoundTrip>?> get() = liveDataRountrip
 
     private val jadwal: SharedPreferences = context.getSharedPreferences("date", Context.MODE_PRIVATE)
-    val startDatePref = jadwal.getString("startDate", "")
-    val returnDatePref = jadwal.getString("returnDate", "")
+    private val startDatePref = jadwal.getString("startDate", "")
+    private val returnDatePref = jadwal.getString("returnDate", "")
 
 
     private var startDatee = startDatePref

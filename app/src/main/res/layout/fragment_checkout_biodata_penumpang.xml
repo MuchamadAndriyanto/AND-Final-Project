@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    tools:context=".view.Checkout.CheckoutBiodataPenumpangFragment">
+    tools:context=".view.Checkout.CheckoutBiodataPenumpangFragment"
+    tools:ignore="Overdraw">
 
     <RelativeLayout
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/lin1"
@@ -25,7 +27,8 @@
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/fi_arrow_left" />
+                android:src="@drawable/fi_arrow_left"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,7 +71,8 @@
                         app:strokeWidth="2dp"
                         app:strokeColor="@color/darkblue_03"
                         app:shapeAppearance="?attr/shapeAppearanceMediumComponent"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+                        tools:ignore="ObsoleteLayoutParam">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -90,7 +94,7 @@
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textSize="16dp"
-                                    >
+                                    tools:ignore="SpUsage">
 
                                 </TextView>
                             </LinearLayout>
@@ -129,7 +133,8 @@
                                         android:inputType="textPersonName"
                                         android:maxLines="1"
                                         android:singleLine="true"
-                                        android:textColor="@android:color/black" />
+                                        android:textColor="@android:color/black"
+                                        tools:ignore="TooDeepLayout" />
                                 </com.google.android.material.textfield.TextInputLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -152,7 +157,8 @@
                                         android:layout_alignParentEnd="true"
                                         android:checked="false"
                                         app:thumbTint="@color/white"
-                                        app:trackTint="@color/grey" />
+                                        app:trackTint="@color/grey"
+                                        tools:ignore="ObsoleteLayoutParam" />
 
                                 </LinearLayout>
 

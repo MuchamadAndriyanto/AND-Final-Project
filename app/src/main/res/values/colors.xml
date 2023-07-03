@@ -12,32 +12,32 @@
     <color name="birutua" tools:keep="@color/birutua">#005c99</color>
 
     <color name="birumuda" tools:keep="@color/birumuda">#00afef</color>
-    <color name="yellow">#FFC801</color>
-    <color name="backgor">#232020</color>
-    <color name="emas">#00000000</color>
+    <color name="yellow" tools:ignore="UnusedResources">#FFC801</color>
+    <color name="backgor" tools:ignore="UnusedResources">#232020</color>
+    <color name="emas" tools:ignore="UnusedResources">#00000000</color>
     <color name="abu">#807F7E</color>
     <color name="grey">#EDEDED</color>
 
-    <color name="bottom_nav_background">#FEDBD0</color>
+    <color name="bottom_nav_background" tools:ignore="UnusedResources">#FEDBD0</color>
     <color name="bottom_nav_item">#ACA9A9</color>
-    <color name="bottom_nav_selected_item">#220006</color>
-    <color name="fragment_bg_color">#FDF8F4</color>
+    <color name="bottom_nav_selected_item" tools:ignore="UnusedResources">#220006</color>
+    <color name="fragment_bg_color" tools:ignore="UnusedResources">#FDF8F4</color>
     <color name="purple">#7126B5</color>
     <color name="darkpurple">#4B1979</color>
     <color name="lightpurple">#A06ECE</color>
-    <color name="text">#8A8A8A</color>
+    <color name="text" tools:ignore="UnusedResources">#8A8A8A</color>
 
     <!--    ticketku alert color-->
     <color name="red_danger">#FF0000</color>
-    <color name="yellow_warning">#F9CC00</color>
+    <color name="yellow_warning" tools:ignore="UnusedResources">#F9CC00</color>
     <color name="green_success">#73CA5C</color>
 
     <!--    ticketku colors primary value-->
     <color name="darkblue_05">#4B1979</color>
     <color name="darkblue_04">#7126B5</color>
     <color name="darkblue_03">#A06ECE</color>
-    <color name="darkblue_02">#D0B7E6</color>
-    <color name="darkblue_01">#E2D4F0</color>
+    <color name="darkblue_02" tools:ignore="UnusedResources">#D0B7E6</color>
+    <color name="darkblue_01" tools:ignore="UnusedResources">#E2D4F0</color>
 
     <!--    ticketku neutral color-->
     <color name="neutral_05">#151515</color>

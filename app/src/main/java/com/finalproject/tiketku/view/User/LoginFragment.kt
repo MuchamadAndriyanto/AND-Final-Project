@@ -1,3 +1,5 @@
+@file:Suppress("VerboseNullabilityAndEmptiness")
+
 package com.finalproject.tiketku.view.User
 
 import android.content.Context
@@ -28,7 +30,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
@@ -36,7 +38,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginUserVM = ViewModelProvider(this).get(UsersViewModel::class.java)
+        loginUserVM = ViewModelProvider(this)[UsersViewModel::class.java]
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
         binding.btnRegister.setOnClickListener {

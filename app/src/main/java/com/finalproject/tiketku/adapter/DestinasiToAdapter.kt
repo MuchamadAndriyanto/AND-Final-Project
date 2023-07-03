@@ -10,7 +10,7 @@ import com.finalproject.tiketku.R
 import com.finalproject.tiketku.databinding.ItemDestinasiBinding
 import com.finalproject.tiketku.model.search.Data
 
-class DestinasiToAdapter(private val context: Context, private val list: List<Data>) : RecyclerView.Adapter<DestinasiToAdapter.ViewHolder>() {
+class DestinasiToAdapter(context: Context, private val list: List<Data>) : RecyclerView.Adapter<DestinasiToAdapter.ViewHolder>() {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
 

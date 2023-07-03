@@ -2,8 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +14,8 @@
         tools:background="@color/darkblue_05"
         android:foreground="@drawable/selected_view"
         android:clickable="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="KeyboardInaccessibleWidget">
 
         <LinearLayout
             android:id="@+id/passangerLayout"
@@ -31,14 +31,16 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:id="@+id/lin_harga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginStart="8dp">
+                    android:layout_marginStart="8dp"
+                    tools:ignore="UselessParent">
 
                     <TextView
                         android:id="@+id/text1"

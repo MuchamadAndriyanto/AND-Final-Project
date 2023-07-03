@@ -16,7 +16,8 @@
         android:layout_marginTop="15dp"
         android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tvOtp"
@@ -33,7 +34,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,RtlHardcoded" />
 
     <TextView
         android:id="@+id/ketik_6_dig"
@@ -71,7 +72,7 @@
             android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,UnusedAttribute" />
 
         <EditText
             android:layout_width="43dp"
@@ -81,7 +82,7 @@
             android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,UnusedAttribute" />
 
         <EditText
             android:layout_width="43dp"
@@ -91,7 +92,7 @@
             android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,UnusedAttribute" />
 
         <EditText
             android:layout_width="43dp"
@@ -101,7 +102,7 @@
             android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,UnusedAttribute" />
 
         <EditText
             android:layout_width="43dp"
@@ -111,7 +112,7 @@
             android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,UnusedAttribute" />
 
         <EditText
             android:layout_width="43dp"
@@ -121,7 +122,7 @@
             android:backgroundTint="@color/neutral_02"
             android:clipToOutline="true"
             android:inputType="number"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,UnusedAttribute" />
 
     </LinearLayout>
 

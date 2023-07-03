@@ -1,5 +1,6 @@
 package com.finalproject.tiketku.view
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -55,7 +56,7 @@ class HasilPencarianFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHasilPencarianBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -99,17 +100,17 @@ class HasilPencarianFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.rvTiket.layoutManager = layoutManager
 
-        viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
+        viewModelPencarianPenerbangan = ViewModelProvider(this)[PencarianPenerbanganViewModel::class.java]
         viewModelPencarianPenerbangan.getFavorite()
-        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, { favList ->
             tiketList = favList ?: emptyList()
             hasilPenerbanganAdapter.updateData(tiketList)
             applyFilter(selectedFilter)
 
-            val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
+            val viewModelJadwal = ViewModelProvider(this)[JadwalViewModel::class.java]
 
             viewModelJadwal.getOnetrip()
-            viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, Observer { jadwalList ->
+            viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, { jadwalList ->
                 if (jadwalList != null) {
                     val adapter = JadwalTanggalAdapter(requireContext(), jadwalList)
                     binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -166,6 +167,7 @@ class HasilPencarianFragment : Fragment() {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun applyFilter(filter: String?) {
         if (filter != null) {
             hasilPenerbanganAdapter.filterData(filter)
@@ -176,7 +178,7 @@ class HasilPencarianFragment : Fragment() {
 
     private fun updateAdapterData() {
         viewModelPencarianPenerbangan.getFavorite()
-        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
+        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, { favList ->
             if (favList != null) {
                 tiketList = favList
                 hasilPenerbanganAdapter.updateData(tiketList)

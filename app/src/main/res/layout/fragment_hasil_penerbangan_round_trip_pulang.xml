@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    tools:context=".view.HasilPenerbanganRoundTripPulangFragment">
+    tools:context=".view.HasilPenerbanganRoundTripPulangFragment"
+    tools:ignore="Overdraw">
 
     <ProgressBar
         android:id="@+id/loadingProgressBar"
@@ -34,7 +35,8 @@
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/fi_arrow_left" />
+                android:src="@drawable/fi_arrow_left"
+                tools:ignore="ContentDescription" />
 
             <!-- Judul Navbar -->
             <TextView
@@ -81,7 +83,8 @@
             <LinearLayout
                 android:gravity="right"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded">
 
                 <Button
                     android:id="@+id/btnFilter2"

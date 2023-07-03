@@ -13,7 +13,7 @@
         android:outlineAmbientShadowColor="@color/cardview_dark_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints,UnusedAttribute">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,7 +83,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/logo_maskapai" />
+                    android:src="@drawable/logo_maskapai"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/Maskapai"

@@ -1,31 +1,26 @@
 package com.finalproject.tiketku.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.finalproject.tiketku.R
-import com.finalproject.tiketku.adapter.RiwayatAdapter
 import com.finalproject.tiketku.databinding.FragmentDetailHistoryBinding
-import com.finalproject.tiketku.databinding.FragmentDetailPenerbanganBinding
-import com.finalproject.tiketku.model.riwayat.Data
-import com.finalproject.tiketku.model.riwayat.Order
 import com.finalproject.tiketku.view.Checkout.PaymentFragment
-import com.finalproject.tiketku.view.DetailPenerbangan.DetailPenerbanganFragmentArgs
-import com.finalproject.tiketku.view.DetailPenerbangan.DetailPenerbanganFragmentDirections
-import com.finalproject.tiketku.viewmodel.DetailViewModel
 import com.finalproject.tiketku.viewmodel.RiwayatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("RemoveRedundantCallsOfConversionMethods", "RemoveRedundantCallsOfConversionMethods",
+    "RemoveRedundantCallsOfConversionMethods", "RemoveRedundantCallsOfConversionMethods",
+    "RemoveRedundantCallsOfConversionMethods", "RemoveRedundantCallsOfConversionMethods"
+)
 @AndroidEntryPoint
 class DetailHistoryFragment : Fragment() {
 
@@ -38,18 +33,19 @@ class DetailHistoryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         token = sharedPref.getString("accessToken", "") ?: ""
 
-        detailViewModel = ViewModelProvider(requireActivity()).get(RiwayatViewModel::class.java)
+        detailViewModel = ViewModelProvider(requireActivity())[RiwayatViewModel::class.java]
 
         // Ambil ID order dari arguments
         val args = DetailHistoryFragmentArgs.fromBundle(requireArguments())
@@ -73,7 +69,7 @@ class DetailHistoryFragment : Fragment() {
                     binding.detailAirportArrived.text = data.tiketBerangkat.bandaraTujuan.nama_bandara
                     binding.kodeMaskapai.text = data.penerbanganBerangkat.maskapai.id_maskapai.toString()
 
-                    binding.tvAdult.text = "${data.order.jumlah_penumpang.toString()} Adulst"
+                    binding.tvAdult.text = "${data.order.jumlah_penumpang} Adulst"
                     binding.tvHargaAdult.text = data.totalHargaTiketBerangkat
                     binding.detailTotalHarga.text = data.totalHargaTiketBerangkat
 

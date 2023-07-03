@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".view.Checkout.PaymentRountripFragment">
+    tools:context=".view.Checkout.PaymentRountripFragment"
+    tools:ignore="Overdraw">
 
 
     <LinearLayout
@@ -20,14 +21,16 @@
             android:layout_height="wrap_content"
             android:background="@color/darkpurple"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="10dp"
+            tools:ignore="UselessParent">
 
             <!-- Tombol Kembali -->
             <ImageView
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/fi_arrow_left" />
+                android:src="@drawable/fi_arrow_left"
+                tools:ignore="ContentDescription" />
 
             <!-- Judul Navbar -->
             <TextView
@@ -59,7 +62,8 @@
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="1dp"
-                app:layout_constraintBottom_toBottomOf="@id/title">
+                app:layout_constraintBottom_toBottomOf="@id/title"
+                tools:ignore="ObsoleteLayoutParam">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -117,7 +121,8 @@
                                 style="@style/TextBody14Bold"
                                 android:lineHeight="20dp"
                                 android:text="Jakarta"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvBerangkat"
@@ -127,7 +132,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="20dp"
                                 android:text="5 Maret 2023"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvJamBerangkat"
@@ -137,7 +143,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="20dp"
                                 android:text="19:10"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -165,7 +172,8 @@
                                     android:lineHeight="18dp"
                                     android:text="4h "
                                     android:textColor="@color/neutral_03"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"
+                                    tools:ignore="UnusedAttribute" />
 
                                 <TextView
                                     android:id="@+id/tvMenit"
@@ -177,7 +185,8 @@
                                     android:lineHeight="18dp"
                                     android:text="0m"
                                     android:textColor="@color/neutral_03"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"
+                                    tools:ignore="UnusedAttribute" />
 
                             </LinearLayout>
 
@@ -186,7 +195,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:layout_marginBottom="2dp"
-                                android:src="@drawable/arrow" />
+                                android:src="@drawable/arrow"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 
@@ -207,7 +217,8 @@
                                 style="@style/TextBody14Bold"
                                 android:lineHeight="20dp"
                                 android:text="Melbourne"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvKedatangan"
@@ -216,7 +227,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="20dp"
                                 android:text="5 Maret 2023"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvJamKedatangan"
@@ -226,7 +238,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="20dp"
                                 android:text="21:10"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
                         </LinearLayout>
 
                         <ImageView
@@ -235,7 +248,8 @@
                             android:layout_marginTop="3dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
-                            android:src="@drawable/ic_maps" />
+                            android:src="@drawable/ic_maps"
+                            tools:ignore="ContentDescription" />
 
                         <ImageView
                             android:layout_width="20dp"
@@ -244,7 +258,8 @@
                             android:layout_marginTop="3dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
-                            android:src="@drawable/ic_maps" />
+                            android:src="@drawable/ic_maps"
+                            tools:ignore="ContentDescription" />
 
                     </RelativeLayout>
 
@@ -277,7 +292,8 @@
                                 style="@style/TextBody12Bold"
                                 android:lineHeight="18dp"
                                 android:text="Booking Code : "
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvBooking"
@@ -286,7 +302,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="18dp"
                                 android:text="453653657"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -315,7 +332,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="18dp"
                                 android:text="Economy"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -345,7 +363,8 @@
                                 style="@style/TextTitle16Medium"
                                 android:lineHeight="24dp"
                                 android:text="IDR 5.950.000"
-                                android:textColor="@color/purple"/>
+                                android:textColor="@color/purple"
+                                tools:ignore="UnusedAttribute" />
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -359,7 +378,8 @@
                 android:layout_below="@id/cardview"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="1dp">
+                app:cardElevation="1dp"
+                tools:ignore="ObsoleteLayoutParam">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -417,7 +437,8 @@
                                 style="@style/TextBody14Bold"
                                 android:lineHeight="20dp"
                                 android:text="Jakarta"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvBerangkat2"
@@ -427,7 +448,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="20dp"
                                 android:text="5 Maret 2023"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvJamBerangkat2"
@@ -437,7 +459,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="20dp"
                                 android:text="19:10"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -465,7 +488,8 @@
                                     android:lineHeight="18dp"
                                     android:text="4h "
                                     android:textColor="@color/neutral_03"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"
+                                    tools:ignore="UnusedAttribute" />
 
                                 <TextView
                                     android:id="@+id/tvMenit2"
@@ -477,7 +501,8 @@
                                     android:lineHeight="18dp"
                                     android:text="0m"
                                     android:textColor="@color/neutral_03"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"
+                                    tools:ignore="UnusedAttribute" />
 
                             </LinearLayout>
 
@@ -486,7 +511,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:layout_marginBottom="2dp"
-                                android:src="@drawable/arrow" />
+                                android:src="@drawable/arrow"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 
@@ -507,7 +533,8 @@
                                 style="@style/TextBody14Bold"
                                 android:lineHeight="20dp"
                                 android:text="Melbourne"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvKedatangan2"
@@ -516,7 +543,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="20dp"
                                 android:text="5 Maret 2023"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvJamKedatangan2"
@@ -526,7 +554,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="20dp"
                                 android:text="21:10"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
                         </LinearLayout>
 
                         <ImageView
@@ -535,7 +564,8 @@
                             android:layout_marginTop="3dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
-                            android:src="@drawable/ic_maps" />
+                            android:src="@drawable/ic_maps"
+                            tools:ignore="ContentDescription" />
 
                         <ImageView
                             android:layout_width="20dp"
@@ -544,7 +574,8 @@
                             android:layout_marginTop="3dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
-                            android:src="@drawable/ic_maps" />
+                            android:src="@drawable/ic_maps"
+                            tools:ignore="ContentDescription" />
 
                     </RelativeLayout>
 
@@ -577,7 +608,8 @@
                                 style="@style/TextBody12Bold"
                                 android:lineHeight="18dp"
                                 android:text="Booking Code : "
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <TextView
                                 android:id="@+id/tvBooking2"
@@ -586,7 +618,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="18dp"
                                 android:text="453653657"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -615,7 +648,8 @@
                                 style="@style/TextBody12Regular"
                                 android:lineHeight="18dp"
                                 android:text="Economy"
-                                android:textColor="@color/neutral_05"/>
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                         </LinearLayout>
 
@@ -645,7 +679,8 @@
                                 style="@style/TextTitle16Medium"
                                 android:lineHeight="24dp"
                                 android:text="IDR 5.950.000"
-                                android:textColor="@color/purple"/>
+                                android:textColor="@color/purple"
+                                tools:ignore="UnusedAttribute" />
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -663,7 +698,8 @@
                 android:layout_marginStart="17dp"
                 android:layout_marginEnd="17dp"
                 android:background="@color/neutral_04"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ObsoleteLayoutParam">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -679,7 +715,8 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginBottom="8dp"
-                        android:src="@drawable/victor2"/>
+                        android:src="@drawable/victor2"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -690,7 +727,8 @@
                         style="@style/TextBody14Medium"
                         android:textColor="@color/white"
                         android:lineHeight="20dp"
-                        android:text="Gopay"/>
+                        android:text="Gopay"
+                        tools:ignore="UnusedAttribute" />
                 </RelativeLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -703,7 +741,8 @@
                 android:layout_marginStart="17dp"
                 android:layout_marginEnd="17dp"
                 android:layout_below="@id/appBar"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ObsoleteLayoutParam">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -719,7 +758,8 @@
                         android:layout_marginEnd="15dp"
                         android:layout_marginBottom="8dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -730,7 +770,8 @@
                         style="@style/TextBody14Medium"
                         android:textColor="@color/white"
                         android:lineHeight="20dp"
-                        android:text="Credit Card"/>
+                        android:text="Credit Card"
+                        tools:ignore="UnusedAttribute" />
 
                 </RelativeLayout>
             </com.google.android.material.appbar.AppBarLayout>
@@ -745,7 +786,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="1dp">
+                app:cardElevation="1dp"
+                tools:ignore="ObsoleteLayoutParam,TooManyViews">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -763,7 +805,8 @@
                         style="@style/TextBody14Medium"
                         android:lineHeight="20dp"
                         android:text="Card number"
-                        android:textColor="@color/neutral_05" />
+                        android:textColor="@color/neutral_05"
+                        tools:ignore="UnusedAttribute" />
 
                     <EditText
                         android:id="@+id/etNoCard"
@@ -775,7 +818,7 @@
                         android:maxLines="1"
                         android:inputType="text"
                         android:hint="4480 0000 0000 0000"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        tools:ignore="Autofill,TouchTargetSizeCheck" />
 
                     <TextView
                         android:id="@+id/tvCardName"
@@ -785,7 +828,8 @@
                         style="@style/TextBody14Medium"
                         android:lineHeight="20dp"
                         android:text="Card Holder Name"
-                        android:textColor="@color/neutral_05" />
+                        android:textColor="@color/neutral_05"
+                        tools:ignore="UnusedAttribute" />
 
                     <EditText
                         android:id="@+id/etName"
@@ -796,7 +840,7 @@
                         android:ems="10"
                         android:maxLines="1"
                         android:hint="John Doe"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -815,7 +859,8 @@
                                 style="@style/TextBody14Medium"
                                 android:lineHeight="20dp"
                                 android:text="CVV"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <EditText
                                 android:id="@+id/etCvv"
@@ -825,7 +870,7 @@
                                 android:ems="10"
                                 android:maxLines="1"
                                 android:hint="000"
-                                tools:ignore="TouchTargetSizeCheck" />
+                                tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
 
                         </LinearLayout>
 
@@ -846,7 +891,8 @@
                                 style="@style/TextBody14Medium"
                                 android:lineHeight="20dp"
                                 android:text="Expiry date"
-                                android:textColor="@color/neutral_05" />
+                                android:textColor="@color/neutral_05"
+                                tools:ignore="UnusedAttribute" />
 
                             <EditText
                                 android:id="@+id/etExpdate"
@@ -858,7 +904,7 @@
                                 android:ems="10"
                                 android:maxLines="1"
                                 android:hint="16/20"
-                                tools:ignore="TouchTargetSizeCheck" />
+                                tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
 
                         </LinearLayout>
 
@@ -883,7 +929,8 @@
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="ObsoleteLayoutParam" />
 
         </LinearLayout>
 

@@ -1,5 +1,11 @@
+@file:Suppress("HasPlatformType", "HasPlatformType", "HasPlatformType", "HasPlatformType",
+    "HasPlatformType", "HasPlatformType", "HasPlatformType", "HasPlatformType", "HasPlatformType",
+    "HasPlatformType", "HasPlatformType", "HasPlatformType", "HasPlatformType"
+)
+
 package com.finalproject.tiketku.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.model.ListFilter
-import com.finalproject.tiketku.model.ListHasilPencarian
 
 class FilterAdapter(private val listClass:List<ListFilter>):
     RecyclerView.Adapter<FilterAdapter.ViewHolder>() {
@@ -20,6 +25,7 @@ class FilterAdapter(private val listClass:List<ListFilter>):
         this.onItemClickCallback = onItemClickCallback
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var text1 = itemView.findViewById<TextView>(R.id.text1)
         var text2 = itemView.findViewById<TextView>(R.id.text2)

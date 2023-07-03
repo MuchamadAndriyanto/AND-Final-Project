@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardMaxElevation="5dp"
     app:cardCornerRadius="15dp"
     android:layout_margin="20dp"
@@ -95,7 +96,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:background="#808080"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    tools:ignore="ObsoleteLayoutParam" />
 
                 <TextView
                     android:id="@+id/tvKot"
@@ -206,7 +208,8 @@
                     android:layout_marginBottom="20dp"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/logo"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
 
             <LinearLayout
@@ -262,7 +265,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:src="@drawable/logo2"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -276,7 +280,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/button_arrow_bottom" />
+                    android:src="@drawable/button_arrow_bottom"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
 
         </RelativeLayout>

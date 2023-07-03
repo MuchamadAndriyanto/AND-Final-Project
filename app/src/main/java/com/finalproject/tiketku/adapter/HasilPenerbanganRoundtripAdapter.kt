@@ -6,34 +6,31 @@ import android.content.SharedPreferences
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.databinding.ItemTiketBinding
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
-import com.finalproject.tiketku.view.HasilPencarianFragmentDirections
-import com.finalproject.tiketku.view.HasilPenerbanganRoundtripFragment
 import com.finalproject.tiketku.view.HasilPenerbanganRoundtripFragmentDirections
 
 class HasilPenerbanganRoundtripAdapter (private val context: Context, private var list: List<DataCariPenerbangan>)
     : RecyclerView.Adapter<HasilPenerbanganRoundtripAdapter.ViewHolder>() {
 
     private val sharedPreferencesTo: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
-    val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
+    private val selectedDestinationTo = sharedPreferencesTo.getString("keyTo", "")
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-    val selectedDestination = sharedPreferences.getString("key", "")
+    private val selectedDestination = sharedPreferences.getString("key", "")
 
     private val SetClasSharedPref: SharedPreferences = context.getSharedPreferences("selected_class", Context.MODE_PRIVATE)
-    val setClassSharePrefe = SetClasSharedPref.getString("selected_class", "")
-    val selected_class = setClassSharePrefe
+    private val setClassSharePrefe = SetClasSharedPref.getString("selected_class", "")
+    private val selected_class = setClassSharePrefe
 
     private val filterPref: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-    val filterSharedPref = filterPref.getString("filter_key", "")
-    val filtertest = filterSharedPref
+    private val filterSharedPref = filterPref.getString("filter_key", "")
+    private val filtertest = filterSharedPref
 
     private val jadwal: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-    val jadwalSharedPreferns = jadwal.getString("jadwal", "")
+    private val jadwalSharedPreferns = jadwal.getString("jadwal", "")
     private var jdwlSharedPreferences = jadwalSharedPreferns
 
 
@@ -46,7 +43,7 @@ class HasilPenerbanganRoundtripAdapter (private val context: Context, private va
         updateFilteredList()
     }
 
-    inner class ViewHolder(val binding: ItemTiketBinding) : RecyclerView.ViewHolder(binding.root) {}
+    inner class ViewHolder(val binding: ItemTiketBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -87,6 +84,7 @@ class HasilPenerbanganRoundtripAdapter (private val context: Context, private va
 
 
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun updateFilteredList() {
         filteredList.clear()
         filteredList.addAll(list.filter { item ->
@@ -115,6 +113,7 @@ class HasilPenerbanganRoundtripAdapter (private val context: Context, private va
         updateFilteredList()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateJadwalSharedPreferns(newJadwal: String) {
         jdwlSharedPreferences = newJadwal
         updateFilteredList()
