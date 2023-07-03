@@ -20,7 +20,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.R
 import com.finalproject.tiketku.adapter.HariAdapter
 import com.finalproject.tiketku.adapter.HasilPenerbanganAdapter
+import com.finalproject.tiketku.adapter.HasilPenerbanganRountdripPulangAdapter
 import com.finalproject.tiketku.adapter.JadwalTanggalAdapter
+import com.finalproject.tiketku.adapter.JadwalTanggalRoundtripAdapter
 import com.finalproject.tiketku.databinding.FragmentHasilPencarianBinding
 import com.finalproject.tiketku.model.ListHasilPencarian
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
@@ -44,7 +46,6 @@ class HasilPencarianFragment : Fragment() {
     private lateinit var viewModelPencarianPenerbangan: PencarianPenerbanganViewModel
     private var tiketList: List<DataCariPenerbangan> = emptyList()
 
-
     companion object {
         const val REQUEST_CODE_FILTER = 123
         const val REQUEST_KEY_FILTER = "request_key_filter" // Kunci untuk menyimpan fragment hasil filter
@@ -63,8 +64,6 @@ class HasilPencarianFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_hasilPencarianFragment_to_homeFragment)
@@ -88,93 +87,85 @@ class HasilPencarianFragment : Fragment() {
             parentFragmentManager.beginTransaction()
                 .add(filterFragment, REQUEST_KEY_FILTER)
                 .commit()
-
-            // Mengirim filter yang sedang dipilih ke fragment filter
-            val bundle = Bundle()
-            bundle.putString(FILTER_KEY, selectedFilter)
-            filterFragment.arguments = bundle
+//
+//            // Mengirim filter yang sedang dipilih ke fragment filter
+//            val bundle = Bundle()
+//            bundle.putString(FILTER_KEY, selectedFilter)
+//            filterFragment.arguments = bundle
         }
 
-        hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
-        binding.rvTiket.adapter = hasilPenerbanganAdapter
-        val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        binding.rvTiket.layoutManager = layoutManager
+//        hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
+//        binding.rvTiket.adapter = hasilPenerbanganAdapter
+//        val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//        binding.rvTiket.layoutManager = layoutManager
+
+//        viewModelPencarianPenerbangan = ViewModelProvider(this)[PencarianPenerbanganViewModel::class.java]
+//        viewModelPencarianPenerbangan.getFavorite()
+//        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, { favList ->
+//            tiketList = favList ?: emptyList()
+//            hasilPenerbanganAdapter.updateData(tiketList)
+//            applyFilter(selectedFilter)
+//
+//            val viewModelJadwal = ViewModelProvider(this)[JadwalViewModel::class.java]
+//
+//            viewModelJadwal.getOnetrip()
+//            viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, { jadwalList ->
+//                if (jadwalList != null) {
+//                    val adapter = JadwalTanggalAdapter(requireContext(), jadwalList)
+//                    binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//                    binding.rvHari.adapter = adapter
+//
+//                    val isTicketEmpty = tiketList.isEmpty()
+//                    val isJadwalEmpty = jadwalList.isEmpty()
+//
+//                    if (isTicketEmpty && isJadwalEmpty) {
+//                        Toasty.warning(requireContext(), "Ticket dan Jadwal Tidak ditemukan", Toast.LENGTH_SHORT).show()
+//                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
+//                    } else if (isTicketEmpty) {
+//                        Toasty.warning(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
+//                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
+//                    } else if (isJadwalEmpty) {
+//                        Toasty.warning(requireContext(), "Jadwal Tidak ditemukan", Toast.LENGTH_SHORT).show()
+//                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
+//                    }
+//                }
+//            })
+//        })
 
         viewModelPencarianPenerbangan = ViewModelProvider(this)[PencarianPenerbanganViewModel::class.java]
         viewModelPencarianPenerbangan.getFavorite()
         viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, { favList ->
-            tiketList = favList ?: emptyList()
-            hasilPenerbanganAdapter.updateData(tiketList)
-            applyFilter(selectedFilter)
-
-            val viewModelJadwal = ViewModelProvider(this)[JadwalViewModel::class.java]
-
-            viewModelJadwal.getOnetrip()
-            viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, { jadwalList ->
-                if (jadwalList != null) {
-                    val adapter = JadwalTanggalAdapter(requireContext(), jadwalList)
-                    binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                    binding.rvHari.adapter = adapter
-
-                    val isTicketEmpty = tiketList.isEmpty()
-                    val isJadwalEmpty = jadwalList.isEmpty()
-
-                    if (isTicketEmpty && isJadwalEmpty) {
-                        Toasty.warning(requireContext(), "Ticket dan Jadwal Tidak ditemukan", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
-                    } else if (isTicketEmpty) {
-                        Toasty.warning(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
-                    } else if (isJadwalEmpty) {
-                        Toasty.warning(requireContext(), "Jadwal Tidak ditemukan", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
-                    }
-                }
-            })
+            if (favList != null) {
+                tiketList = favList
+                hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
+                binding.rvTiket.adapter = hasilPenerbanganAdapter
+                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                binding.rvTiket.layoutManager = layoutManager
+                applyFilter(selectedFilter)
+                updateAdapterData()
+            }
         })
 
-//        viewModelPencarianPenerbangan = ViewModelProvider(this).get(PencarianPenerbanganViewModel::class.java)
-//        viewModelPencarianPenerbangan.getFavorite()
-//        viewModelPencarianPenerbangan.livedataCariPenerbangan.observe(viewLifecycleOwner, Observer { favList ->
-//            if (favList != null) {
-//                tiketList = favList
-//                hasilPenerbanganAdapter = HasilPenerbanganAdapter(requireContext(), tiketList)
-//                binding.rvTiket.adapter = hasilPenerbanganAdapter
-//                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-//                binding.rvTiket.layoutManager = layoutManager
-//                applyFilter(selectedFilter)
-//
-//            } else {
-//                Toast.makeText(requireContext(), "Ticket Tidak ditemukan", Toast.LENGTH_SHORT).show()
-//                findNavController().navigate(R.id.action_hasilPencarianFragment_to_noResultDetailFragment2)
-//            }
-//        })
-//
-//        val viewModelJadwal = ViewModelProvider(this).get(JadwalViewModel::class.java)
-//
-//        viewModelJadwal.getOnetrip()
-//        viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, Observer { favList ->
-//            if (favList != null) {
-//
-//                val adapter = JadwalTanggalAdapter(requireContext(), favList)
-//                binding.rvHari.layoutManager = LinearLayoutManager(requireContext())
-//                binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//                binding.rvHari.adapter = adapter
-//
-//
-//            }
-//        })
+        val viewModelJadwal = ViewModelProvider(this)[JadwalViewModel::class.java]
 
+        viewModelJadwal.getOnetrip()
+        viewModelJadwal.livedataOnetrip.observe(viewLifecycleOwner, { favList ->
+            if (favList != null) {
+
+                val adapter = JadwalTanggalAdapter(requireContext(), favList)
+                binding.rvHari.layoutManager = LinearLayoutManager(requireContext())
+                binding.rvHari.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                binding.rvHari.adapter = adapter
+
+
+            }
+        })
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun applyFilter(filter: String?) {
-        if (filter != null) {
-            hasilPenerbanganAdapter.filterData(filter)
-            hasilPenerbanganAdapter.notifyDataSetChanged() // Mengupdate adapter setelah filter diterapkan
-        }
-    }
+        hasilPenerbanganAdapter.filterData(filter)
 
+    }
 
     private fun updateAdapterData() {
         viewModelPencarianPenerbangan.getFavorite()
@@ -185,8 +176,6 @@ class HasilPencarianFragment : Fragment() {
             }
         })
     }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -199,6 +188,5 @@ class HasilPencarianFragment : Fragment() {
                 sharedPreferences.edit().putString(FILTER_KEY, selectedFilter).apply()
             }
         }
-
     }
 }

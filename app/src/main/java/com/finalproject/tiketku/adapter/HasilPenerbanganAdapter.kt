@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.finalproject.tiketku.databinding.ItemTiketBinding
 import com.finalproject.tiketku.model.caripenerbangan.DataCariPenerbangan
 import com.finalproject.tiketku.view.HasilPencarianFragmentDirections
+import com.finalproject.tiketku.view.HasilPenerbanganRoundtripFragmentDirections
 
-class HasilPenerbanganAdapter(context: Context, private var list: List<DataCariPenerbangan>)
+class HasilPenerbanganAdapter (private val context: Context, private var list: List<DataCariPenerbangan>)
     : RecyclerView.Adapter<HasilPenerbanganAdapter.ViewHolder>() {
 
     private val sharedPreferencesTo: SharedPreferences = context.getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)
@@ -37,6 +38,8 @@ class HasilPenerbanganAdapter(context: Context, private var list: List<DataCariP
 
     private val filteredList = mutableListOf<DataCariPenerbangan>()
 
+
+
     init {
         updateFilteredList()
     }
@@ -49,7 +52,7 @@ class HasilPenerbanganAdapter(context: Context, private var list: List<DataCariP
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val item2 = filteredList[position]
         holder.binding.tvKota.text = item2.bandaraAwal.kota
         holder.binding.tvKota2.text = item2.bandaraTujuan.kota
@@ -59,6 +62,9 @@ class HasilPenerbanganAdapter(context: Context, private var list: List<DataCariP
         holder.binding.tvHarga.text = item2.maskapai.hargaTiket
         holder.binding.maskapai1.text = item2.maskapai.namaMaskapai
         holder.binding.setClass.text = selected_class
+
+        val IDPrefs: SharedPreferences = context.getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = IDPrefs.edit()
 
         //kedetail
         holder.binding.cardDetail.setOnClickListener { view ->
@@ -72,14 +78,13 @@ class HasilPenerbanganAdapter(context: Context, private var list: List<DataCariP
         return filteredList.size
     }
 
+
+
     @SuppressLint("NotifyDataSetChanged")
     private fun updateFilteredList() {
         filteredList.clear()
-
-        Log.d("date","date : $jdwlSharedPreferences")
         filteredList.addAll(list.filter { item ->
             item.bandaraAwal.kota == selectedDestination && item.bandaraTujuan.kota == selectedDestinationTo && item.tanggalBerangkat == jdwlSharedPreferences
-
         })
 
 
@@ -100,37 +105,27 @@ class HasilPenerbanganAdapter(context: Context, private var list: List<DataCariP
         notifyDataSetChanged()
     }
 
-    fun filterData(filter: Any) {
+    fun filterData(filter: String?) {
         updateFilteredList()
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateJadwalSharedPreferns(newJadwal: String) {
-        if (jdwlSharedPreferences != newJadwal) {
-            jdwlSharedPreferences = newJadwal
-            updateFilteredList()
-            notifyDataSetChanged()
-        }
+        jdwlSharedPreferences = newJadwal
+        updateFilteredList()
+        notifyDataSetChanged()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newList: List<DataCariPenerbangan>, newJadwal: String) {
-        if (list != newList || jdwlSharedPreferences != newJadwal) {
-            list = newList
-            jdwlSharedPreferences = newJadwal
-            updateFilteredList()
-            notifyDataSetChanged()
-        }
+        list = newList
+        jdwlSharedPreferences = newJadwal
+        updateFilteredList()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+
     fun updateData(newList: List<DataCariPenerbangan>) {
-        if (list != newList) {
-            list = newList
-            updateFilteredList()
-            notifyDataSetChanged()
-        }
+        list = newList
+        updateFilteredList()
     }
 }
-
 
