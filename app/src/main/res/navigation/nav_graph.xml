@@ -462,6 +462,9 @@
         <action
             android:id="@+id/action_detailPenerbanganRoundtripFragment_to_checkoutBiodataPemesanRoundTrip"
             app:destination="@id/checkoutBiodataPemesanRoundTrip" />
+        <action
+            android:id="@+id/action_detailPenerbanganRoundtripFragment_to_akunNonLoginFragment"
+            app:destination="@id/akunNonLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkoutBiodataPemesanRoundTrip"

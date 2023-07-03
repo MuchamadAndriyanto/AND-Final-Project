@@ -73,16 +73,32 @@ class DetailPenerbanganRoundtripFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        binding.btnSubmit.setOnClickListener {
-            val jadwal: SharedPreferences =
-                requireContext().getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
-            val idDatePref = jadwal.getInt("selected_id_pergi", 0)
-            val idPulangDatePref = jadwal.getInt("selected_id_pulang", 0)
+        // Cek status login
+        val sharedPreferences =
+            requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
-            val editor = jadwal.edit()
-            editor.putInt("selected_id_pergi", idDatePref)
-            editor.putInt("selected_id_pulang", idPulangDatePref)
-            findNavController().navigate(R.id.action_detailPenerbanganRoundtripFragment_to_checkoutBiodataPemesanRoundTrip)
+        if (isLoggedIn) {
+            binding.btnSubmit.setOnClickListener {
+                val jadwal: SharedPreferences =
+                    requireContext().getSharedPreferences("IDPrefs", Context.MODE_PRIVATE)
+                val idDatePref = jadwal.getInt("selected_id_pergi", 0)
+                val idPulangDatePref = jadwal.getInt("selected_id_pulang", 0)
+
+                val editor = jadwal.edit()
+                editor.putInt("selected_id_pergi", idDatePref)
+                editor.putInt("selected_id_pulang", idPulangDatePref)
+                findNavController().navigate(R.id.action_detailPenerbanganRoundtripFragment_to_checkoutBiodataPemesanRoundTrip)
+
+            }
+        }else{
+            binding.btnSubmit.setOnClickListener {
+                val editor = sharedPreferences.edit()
+                editor.putInt("idPenerbangan", id)
+                editor.putInt("clickedMenuItemId", R.id.checkoutBiodataPemesanRoundTrip)
+                editor.apply()
+                findNavController().navigate(R.id.action_detailPenerbanganRoundtripFragment_to_akunNonLoginFragment)
+            }
         }
 
         viewModelDetailRoundtrip = ViewModelProvider(this)[DetailRoundtripViewModel::class.java]
