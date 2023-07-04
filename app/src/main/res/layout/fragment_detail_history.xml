@@ -173,9 +173,9 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="5dp"
-                        android:textColor="@color/black"
                         android:layout_toEndOf="@id/logoMaskapai"
                         android:text="Jet Air - Economy"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                     <TextView
@@ -188,8 +188,8 @@
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@id/logoMaskapai"
                         android:text="JA - 117"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/infoMaskapai"
@@ -201,23 +201,40 @@
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@id/logoMaskapai"
                         android:text="Informasi :"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/detailInfo"
+                    <RelativeLayout
+                        android:id="@+id/rlDetailPemesan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/infoMaskapai"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_toEndOf="@id/logoMaskapai"
-                        android:text="Baggage 20 Kg"
-                        android:textColor="@color/black"/>
+                        android:layout_toEndOf="@id/logoMaskapai">
 
+                        <TextView
+                            android:id="@+id/detailInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Penumpang :"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:id="@+id/detailPemesan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@id/detailInfo"
+                            android:text="Pemesan"
+                            android:textColor="@color/purple" />
+
+                    </RelativeLayout>
                 </RelativeLayout>
+
                 <View
                     android:id="@+id/divider2"
                     android:layout_below="@id/rl2"

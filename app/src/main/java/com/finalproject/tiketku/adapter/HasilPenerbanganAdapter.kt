@@ -52,6 +52,7 @@ class HasilPenerbanganAdapter (private val context: Context, private var list: L
         return ViewHolder(binding)
     }
 
+    @SuppressLint("CommitPrefEdits")
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val item2 = filteredList[position]
         holder.binding.tvKota.text = item2.bandaraAwal.kota

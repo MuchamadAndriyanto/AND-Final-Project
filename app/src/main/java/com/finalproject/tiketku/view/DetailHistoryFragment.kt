@@ -68,7 +68,7 @@ class DetailHistoryFragment : Fragment() {
                     binding.detailDateArrived.text = data.tiketBerangkat.tanggal_kedatangan
                     binding.detailAirportArrived.text = data.tiketBerangkat.bandaraTujuan.nama_bandara
                     binding.kodeMaskapai.text = data.penerbanganBerangkat.maskapai.id_maskapai.toString()
-
+                    binding.detailPemesan.text = data.order.nama_lengkap
                     binding.tvAdult.text = "${data.order.jumlah_penumpang} Adulst"
                     binding.tvHargaAdult.text = data.totalHargaTiketBerangkat
                     binding.detailTotalHarga.text = data.totalHargaTiketBerangkat

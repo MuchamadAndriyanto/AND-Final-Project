@@ -77,7 +77,9 @@ class DetailHistoryRountripFragment : Fragment() {
                     binding.detailTimeArrivedPulang.text = "${data.tiketPulang.jam_kedatangan} WIB"
                     binding.detailDateArrivedPulang.text = data.tiketPulang.tanggal_kedatangan
                     binding.detailAirportArrivedPulang.text = data.tiketPulang.bandaraTujuan.nama_bandara
-
+                    binding.detailPemesan.text = data.order.nama_lengkap
+                    binding.detailPemesanPulang.text = data.order.nama_lengkap
+                    binding.detailPemesanPulang.text = data.order.nama_lengkap
                     binding.tvAdult.text = data.order.jumlah_penumpang.toString()
                     binding.tvHargaAdult.text = data.formatTiketKeseluruhan
                     binding.detailTotalHarga.text = data.formatTiketKeseluruhan
