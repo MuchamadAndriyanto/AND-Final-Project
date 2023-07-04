@@ -79,14 +79,13 @@
 
                         <TextView
                             android:id="@+id/tvBerangkat"
-                            style="@style/TextBody12Regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:lineHeight="20dp"
                             android:text="5 Maret 2023"
                             android:textColor="@color/neutral_05"
-                            android:textSize="10sp"
+                            style="@style/TextBody10Regular"
                             tools:ignore="SmallSp,UnusedAttribute" />
 
                         <LinearLayout
@@ -101,19 +100,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:lineHeight="20dp"
-                                android:text="19"
-                                android:textColor="@color/neutral_05"
-                                tools:ignore="UnusedAttribute" />
-
-                            <TextView
-                                android:id="@+id/tvwib"
-                                style="@style/TextBody12Regular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="2dp"
-                                android:lineHeight="20dp"
-                                android:text="WIB"
+                                android:text="19:00"
                                 android:textColor="@color/neutral_05"
                                 tools:ignore="UnusedAttribute" />
 
@@ -126,6 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:layout_marginEnd="13dp"
                         android:layout_toEndOf="@id/layoutDeparture"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -176,16 +164,16 @@
                         android:id="@+id/layoutArrive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="70dp"
+                        android:layout_marginStart="40dp"
                         android:layout_marginTop="2dp"
                         android:layout_toEndOf="@id/layoutFlightTime"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvMelbourne"
-                            style="@style/TextBody14Bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            style="@style/TextBody14Bold"
                             android:lineHeight="20dp"
                             android:text="Melbourne"
                             android:textColor="@color/neutral_05"
@@ -193,13 +181,12 @@
 
                         <TextView
                             android:id="@+id/tvKedatangan"
-                            style="@style/TextBody12Regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:lineHeight="20dp"
                             android:text="5 Maret 2023"
                             android:textColor="@color/neutral_05"
-                            android:textSize="10sp"
+                            style="@style/TextBody10Regular"
                             tools:ignore="SmallSp,UnusedAttribute" />
 
                         <LinearLayout
@@ -214,19 +201,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:lineHeight="20dp"
-                                android:text="21"
-                                android:textColor="@color/neutral_05"
-                                tools:ignore="UnusedAttribute" />
-
-                            <TextView
-                                android:id="@+id/tvwib2"
-                                style="@style/TextBody12Regular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="2dp"
-                                android:lineHeight="20dp"
-                                android:text="WIB"
+                                android:text="21:00"
                                 android:textColor="@color/neutral_05"
                                 tools:ignore="UnusedAttribute" />
 
@@ -246,7 +221,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginStart="223dp"
+                        android:layout_marginStart="210dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
@@ -402,9 +377,9 @@
 
                         <TextView
                             android:id="@+id/tvjakarta2"
+                            style="@style/TextBody14Bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextBody14Bold"
                             android:lineHeight="20dp"
                             android:text="Jakarta"
                             android:textColor="@color/neutral_05"
@@ -415,7 +390,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            style="@style/TextBody12Regular"
+                            style="@style/TextBody10Regular"
                             android:lineHeight="20dp"
                             android:text="5 Maret 2023"
                             android:textColor="@color/neutral_05"
@@ -510,11 +485,11 @@
                             android:id="@+id/tvKedatangan2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextBody12Regular"
                             android:lineHeight="20dp"
                             android:text="5 Maret 2023"
                             android:textColor="@color/neutral_05"
-                            tools:ignore="UnusedAttribute" />
+                            style="@style/TextBody10Regular"
+                            tools:ignore="SmallSp,UnusedAttribute" />
 
                         <TextView
                             android:id="@+id/tvJamKedatangan2"
@@ -540,7 +515,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginStart="223dp"
+                        android:layout_marginStart="210dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
@@ -631,25 +606,26 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:orientation="vertical"
-                        android:layout_toEndOf="@id/layoutClass2">
+                        android:layout_toEndOf="@id/layoutClass2"
+                        android:orientation="vertical">
 
                         <TextView
+                            style="@style/TextBody12Bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextBody12Bold"
+                            android:layout_gravity="end"
                             android:text="TOTAL : "
-                            android:textColor="@color/neutral_05"
-                            android:layout_gravity="end" />
+                            android:textColor="@color/neutral_05" />
 
                         <TextView
                             android:id="@+id/tvTotalHarga2"
+                            style="@style/TextTitle16Medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextTitle16Medium"
                             android:lineHeight="24dp"
                             android:text="IDR 5.950.000"
                             android:textColor="@color/purple"
+                            android:textSize="14sp"
                             tools:ignore="UnusedAttribute" />
                     </LinearLayout>
                 </RelativeLayout>
