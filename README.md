@@ -1,7 +1,12 @@
-Tuku Tiket
-Merupakan sebuah platform pemesanan tiket secara online berbasis android
+# Tuku Tiket Android App
 
-Kelompok 6 : Final Project
+Tuku Tiket Merupakan sebuah platform pemesanan tiket secara online berbasis android
+
+# Deploy Apk
+
+Link : https://github.com/MuchamadAndriyanto/deployTukuTiket.git
+
+# Kelompok 6 : Final Project
 
 Nama Kelompok : 
 
@@ -9,7 +14,7 @@ Nama Kelompok :
 - Muchamad Andriyanto
 - Andika Nur Rifai
 
-Fitur Yang di Kerjakan:
+# Fitur Yang di Kerjakan:
 
 1. Authentikasi
    - Login
@@ -38,7 +43,7 @@ Fitur Yang di Kerjakan:
    - Menampilkan profile
    - Update Profile
 
-Tech Stack
+# Tech Stack
 
 1. Firebase Crashlythic
 2. Bahasa pemrograman Kotlin
