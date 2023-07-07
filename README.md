@@ -38,4 +38,17 @@ Fitur Yang di Kerjakan:
    - Menampilkan profile
    - Update Profile
 
+Tech Stack
+
+1. Firebase Crashlythic
+2. Bahasa pemrograman Kotlin
+3. Restful API Using Retrofit2, OkHttp, Gson
+4. Hilt Dagger
+5. Data Store (sharedpref)
+6. Nav Component
+7. IDEA Android Studio
+8. Android SDK
+9. Gradle
+10. UI code using XML
+11. Lint
 
