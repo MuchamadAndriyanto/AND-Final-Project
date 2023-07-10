@@ -5,6 +5,8 @@ Tuku Tiket Merupakan sebuah platform pemesanan tiket secara online berbasis andr
 # Deploy Apk
 
 Link : https://github.com/MuchamadAndriyanto/deployTukuTiket.git
+Link Dokumentasi API : https://documenter.getpostman.com/view/21213638/2s93z883Ug
+Link API : https://mang-eak-production.up.railway.app/v1/api/
 
 # Kelompok 6 : Final Project
 
