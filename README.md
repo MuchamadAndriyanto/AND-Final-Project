@@ -63,7 +63,7 @@ Nama Kelompok :
 
 
 # SS Project 
-![1704949858453](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/7834df44-9d20-49ea-adbd-810ff03e8cd6)
+![Screenshot 1](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/7834df44-9d20-49ea-adbd-810ff03e8cd6)
 ![1704949858321](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/b31c71f1-119f-419c-963c-5dcecbc8aa12)
 ![1704949858333](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/08d6e668-11d8-4b0b-b177-b618ad4c6295)
 ![1704949858574](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/fdbea09a-ab02-4442-9a46-acb1cfdbe63b)
