@@ -63,4 +63,12 @@ Nama Kelompok :
 
 
 # SS Project 
-![image](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/f7824813-c2b5-4837-b119-8d97f09ffc06)
+![1704949858453](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/7834df44-9d20-49ea-adbd-810ff03e8cd6)
+![1704949858321](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/b31c71f1-119f-419c-963c-5dcecbc8aa12)
+![1704949858333](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/08d6e668-11d8-4b0b-b177-b618ad4c6295)
+![1704949858574](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/fdbea09a-ab02-4442-9a46-acb1cfdbe63b)
+![1704949858101](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/151e1e08-ef7d-4bb1-b710-6866dabdd948)
+![1704949858021](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/1d7fbd98-8886-4c13-90da-974870a271b7)
+![1704949858006](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/91d390d9-5363-44b1-ab00-4f0aaa3af678)
+![1704949858036](https://github.com/MuchamadAndriyanto/AND-Final-Project/assets/112836841/2d679794-4e0d-49f5-b90c-b8d1c737fcd3)
+
